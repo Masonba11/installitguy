@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://installitguy.com
+
+# Sitemaps
+Sitemap: https://installitguy.com/sitemap.xml
