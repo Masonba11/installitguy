@@ -364,18 +364,23 @@ export default function TVMountingPage() {
                     </div>
                   </div>
                 </div>
-                <div className="space-y-4">
-                  {getServiceImages(service).slice(0, 2).map((image, index) => (
-                    <div key={index} className="relative rounded-lg overflow-hidden shadow-md">
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        width={250}
-                        height={180}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  ))}
+                <div className="space-y-3">
+                  {getServiceImages(service)
+                    .slice(0, 2)
+                    .map((image, index) => (
+                      <div
+                        key={index}
+                        className="relative rounded-lg overflow-hidden shadow-sm"
+                      >
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          width={150}
+                          height={100}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ))}
                 </div>
                 <div className="bg-white rounded-2xl shadow-lg p-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">
