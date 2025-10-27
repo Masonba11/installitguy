@@ -156,9 +156,15 @@ export default function ServiceAreaPage() {
 
       <main className="min-h-screen bg-gray-50">
         {/* Hero Section */}
-        <section className={`${city === 'shelby-nc' ? 'relative text-white overflow-hidden' : 'bg-gradient-to-br from-primary-600 to-primary-800 text-white'}`}>
+        <section
+          className={`${
+            city === "shelby-nc"
+              ? "relative text-white overflow-hidden"
+              : "bg-gradient-to-br from-primary-600 to-primary-800 text-white"
+          }`}
+        >
           {/* Background Video - Only for Shelby */}
-          {city === 'shelby-nc' && (
+          {city === "shelby-nc" && (
             <>
               <div className="absolute inset-0">
                 <video
@@ -176,7 +182,11 @@ export default function ServiceAreaPage() {
             </>
           )}
           {/* Content */}
-          <div className={`${city === 'shelby-nc' ? 'relative' : ''} container-custom section-padding`}>
+          <div
+            className={`${
+              city === "shelby-nc" ? "relative" : ""
+            } container-custom section-padding`}
+          >
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Handyman Services in {getCityName(city)}

@@ -1,4 +1,5 @@
 import { NextSeo } from "next-seo";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import Header from "../../components/Header";
@@ -9,6 +10,7 @@ import ContextualFAQs from "../../components/ContextualFAQs";
 import QuoteForm from "../../components/QuoteForm";
 import Link from "next/link";
 import metaData from "../../data/metaData.json";
+import { getServiceImages, getServiceName } from "../../utils/serviceImages";
 
 const services = [
   "tv-mounting",
@@ -195,6 +197,27 @@ export default function ServicePage() {
                 >
                   Get Free Quote
                 </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Service Images */}
+        <section className="section-padding bg-white">
+          <div className="container-custom">
+            <div className="service-gallery">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {getServiceImages(service).map((image, index) => (
+                  <div key={index} className="relative rounded-lg overflow-hidden shadow-lg">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      width={image.width}
+                      height={image.height}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
