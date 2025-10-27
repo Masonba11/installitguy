@@ -396,22 +396,6 @@ export default function ServicePage() {
                     </div>
                   </div>
                 </div>
-                <div className="mt-6 flex justify-center">
-                  <div className="relative rounded-lg overflow-hidden shadow-lg">
-                    <Image
-                      src={
-                        getServiceImages(service)[0]?.src ||
-                        "/images/installit-guy/securitycamera.jpg"
-                      }
-                      alt={
-                        getServiceImages(service)[0]?.alt || "Service image"
-                      }
-                      width={300}
-                      height={200}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
                 <div className="space-y-3">
                   {getServiceImages(service)
                     .slice(0, 1)
@@ -494,6 +478,22 @@ export default function ServicePage() {
                 We follow a proven process to ensure quality results and
                 customer satisfaction.
               </p>
+              <div className="flex justify-center mb-8">
+                <div className="relative rounded-lg overflow-hidden shadow-lg">
+                  <Image
+                    src={
+                      getServiceImages(service)[0]?.src ||
+                      "/images/installit-guy/securitycamera.jpg"
+                    }
+                    alt={
+                      getServiceImages(service)[0]?.alt || "Service image"
+                    }
+                    width={250}
+                    height={180}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 Our comprehensive approach to{" "}
                 {getServiceName(service).toLowerCase()} means we also provide{" "}
