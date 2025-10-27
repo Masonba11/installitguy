@@ -399,7 +399,7 @@ export default function ServicePage() {
                   </div>
                   <div className="space-y-3">
                     {getServiceImages(service)
-                      .slice(0, 1)
+                      .slice(0, 2)
                       .map((image, index) => (
                         <div
                           key={index}
