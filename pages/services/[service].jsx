@@ -420,6 +420,19 @@ export default function ServicePage() {
                     </div>
                   </div>
                 </div>
+                <div className="space-y-4">
+                  {getServiceImages(service).slice(0, 2).map((image, index) => (
+                    <div key={index} className="relative rounded-lg overflow-hidden shadow-md">
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        width={250}
+                        height={180}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
