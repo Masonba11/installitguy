@@ -83,7 +83,6 @@ export default function ServiceAreaServicePage() {
     return cityMap[citySlug] || citySlug;
   };
 
-
   const getServiceName = (serviceSlug) => {
     const serviceMap = {
       "tv-mounting": "TV Mounting",
