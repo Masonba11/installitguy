@@ -396,6 +396,22 @@ export default function ServicePage() {
                     </div>
                   </div>
                 </div>
+                <div className="mt-6 flex justify-center">
+                  <div className="relative rounded-lg overflow-hidden shadow-lg">
+                    <Image
+                      src={
+                        getServiceImages(service)[0]?.src ||
+                        "/images/installit-guy/securitycamera.jpg"
+                      }
+                      alt={
+                        getServiceImages(service)[0]?.alt || "Service image"
+                      }
+                      width={300}
+                      height={200}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
                 <div className="space-y-3">
                   {getServiceImages(service)
                     .slice(0, 1)
