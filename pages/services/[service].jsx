@@ -407,8 +407,8 @@ export default function ServicePage() {
                         <Image
                           src={image.src}
                           alt={image.alt}
-                          width={120}
-                          height={80}
+                          width={60}
+                          height={40}
                           className="w-full h-full object-cover"
                         />
                       </div>
