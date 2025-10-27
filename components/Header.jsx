@@ -1,8 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useState, useEffect, useRef } from "react";
 
 export default function Header() {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isServiceAreasOpen, setIsServiceAreasOpen] = useState(false);
@@ -300,26 +302,20 @@ export default function Header() {
                 {isServicesOpen && (
                   <div className="ml-4 mt-2 space-y-2">
                     {services.map((service) => (
-                      <Link
+                      <a
                         key={service.slug}
                         href={`/services/${service.slug}`}
-                        className="block text-sm text-gray-600 hover:text-primary-600 transition-colors py-2 px-2"
+                        className="block text-sm text-gray-600 hover:text-primary-600 transition-colors py-2 px-2 cursor-pointer"
                         onClick={(e) => {
-                          console.log(
-                            "Mobile service clicked:",
-                            service.slug,
-                            "URL:",
-                            `/services/${service.slug}`
-                          );
                           e.preventDefault();
+                          console.log("Navigating to:", `/services/${service.slug}`);
                           setIsServicesOpen(false);
                           setIsMenuOpen(false);
-                          // Force navigation
-                          window.location.href = `/services/${service.slug}`;
+                          router.push(`/services/${service.slug}`);
                         }}
                       >
                         {service.name}
-                      </Link>
+                      </a>
                     ))}
                   </div>
                 )}
@@ -351,26 +347,20 @@ export default function Header() {
                 {isServiceAreasOpen && (
                   <div className="ml-4 mt-2 space-y-2">
                     {serviceAreas.map((area) => (
-                      <Link
+                      <a
                         key={area.slug}
                         href={`/service-areas/${area.slug}`}
-                        className="block text-sm text-gray-600 hover:text-primary-600 transition-colors py-2 px-2"
+                        className="block text-sm text-gray-600 hover:text-primary-600 transition-colors py-2 px-2 cursor-pointer"
                         onClick={(e) => {
-                          console.log(
-                            "Mobile service area clicked:",
-                            area.slug,
-                            "URL:",
-                            `/service-areas/${area.slug}`
-                          );
                           e.preventDefault();
+                          console.log("Navigating to:", `/service-areas/${area.slug}`);
                           setIsServiceAreasOpen(false);
                           setIsMenuOpen(false);
-                          // Force navigation
-                          window.location.href = `/service-areas/${area.slug}`;
+                          router.push(`/service-areas/${area.slug}`);
                         }}
                       >
                         {area.name}
-                      </Link>
+                      </a>
                     ))}
                   </div>
                 )}
