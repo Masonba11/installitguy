@@ -302,20 +302,18 @@ export default function Header() {
                 {isServicesOpen && (
                   <div className="ml-4 mt-2 space-y-2">
                     {services.map((service) => (
-                      <a
+                      <Link
                         key={service.slug}
                         href={`/services/${service.slug}`}
-                        className="block text-sm text-gray-600 hover:text-primary-600 transition-colors py-2 px-2 cursor-pointer"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          console.log("Navigating to:", `/services/${service.slug}`);
+                        className="block text-sm text-gray-600 hover:text-primary-600 transition-colors py-2 px-2"
+                        onClick={() => {
+                          console.log("Mobile service clicked:", service.slug);
                           setIsServicesOpen(false);
                           setIsMenuOpen(false);
-                          router.push(`/services/${service.slug}`);
                         }}
                       >
                         {service.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 )}
@@ -347,20 +345,18 @@ export default function Header() {
                 {isServiceAreasOpen && (
                   <div className="ml-4 mt-2 space-y-2">
                     {serviceAreas.map((area) => (
-                      <a
+                      <Link
                         key={area.slug}
                         href={`/service-areas/${area.slug}`}
-                        className="block text-sm text-gray-600 hover:text-primary-600 transition-colors py-2 px-2 cursor-pointer"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          console.log("Navigating to:", `/service-areas/${area.slug}`);
+                        className="block text-sm text-gray-600 hover:text-primary-600 transition-colors py-2 px-2"
+                        onClick={() => {
+                          console.log("Mobile service area clicked:", area.slug);
                           setIsServiceAreasOpen(false);
                           setIsMenuOpen(false);
-                          router.push(`/service-areas/${area.slug}`);
                         }}
                       >
                         {area.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 )}
