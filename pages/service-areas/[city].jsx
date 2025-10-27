@@ -172,13 +172,9 @@ export default function ServiceAreaPage() {
           {/* Subtle Dark Overlay for Text Readability */}
           <div className="absolute inset-0 bg-black/30" />
           {/* Content */}
-          <div
-            className={`${
-              city === "shelby-nc" ? "relative" : ""
-            } container-custom section-padding`}
-          >
+          <div className="container-custom section-padding relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
                 Handyman Services in {getCityName(city)}
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-primary-100">
