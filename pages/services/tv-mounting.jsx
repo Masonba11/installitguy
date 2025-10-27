@@ -201,17 +201,17 @@ export default function TVMountingPage() {
         <section className="section-padding bg-white">
           <div className="container-custom">
             <div className="service-gallery">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 {getServiceImages(service).map((image, index) => (
                   <div
                     key={index}
-                    className="relative rounded-lg overflow-hidden shadow-lg"
+                    className="relative rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
                   >
                     <Image
                       src={image.src}
                       alt={image.alt}
-                      width={image.width}
-                      height={image.height}
+                      width={400}
+                      height={300}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </div>
