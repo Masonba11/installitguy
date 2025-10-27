@@ -202,30 +202,6 @@ export default function ServicePage() {
           </div>
         </section>
 
-        {/* Service Images */}
-        <section className="section-padding bg-white">
-          <div className="container-custom">
-            <div className="service-gallery">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                {getServiceImages(service).map((image, index) => (
-                  <div
-                    key={index}
-                    className="relative rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
-                  >
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      width={400}
-                      height={300}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* About Our Company */}
         <section className="section-padding">
           <div className="container-custom">
@@ -431,8 +407,8 @@ export default function ServicePage() {
                         <Image
                           src={image.src}
                           alt={image.alt}
-                          width={150}
-                          height={100}
+                          width={120}
+                          height={80}
                           className="w-full h-full object-cover"
                         />
                       </div>
