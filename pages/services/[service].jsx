@@ -10,7 +10,7 @@ import ContextualFAQs from "../../components/ContextualFAQs";
 import QuoteForm from "../../components/QuoteForm";
 import Link from "next/link";
 import metaData from "../../data/metaData.json";
-import { getServiceName } from "../../utils/serviceImages";
+import { getServiceName, getServiceImages } from "../../utils/serviceImages";
 
 const services = [
   "tv-mounting",
@@ -234,6 +234,24 @@ export default function ServicePage() {
                     fees – just honest, professional service that you can count
                     on.
                   </p>
+                  
+                  {/* Service Gallery */}
+                  {getServiceImages(service).length > 0 && (
+                    <div className="service-gallery">
+                      {getServiceImages(service).map((imageSrc) => (
+                        <div key={imageSrc} className="service-gallery-item">
+                          <Image
+                            src={`/images/installit-guy/${imageSrc}`}
+                            alt={`${getServiceName(service)} by Install It Guy`}
+                            width={900}
+                            height={600}
+                            className="service-gallery-img"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  
                   <div className="space-y-4">
                     <div className="flex items-start">
                       <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mr-3 mt-1">

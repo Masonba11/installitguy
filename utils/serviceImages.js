@@ -1,171 +1,54 @@
 // Service image mapping for Install It Guy
 export const serviceImageMap = {
-  "ceiling-fan-installation": [
-    {
-      src: "/images/installit-guy/ceilingfan.webp",
-      alt: "Professional ceiling fan installation in Shelby NC",
-          width: 400,
-          height: 300,
-    },
-  ],
   "tv-mounting": [
-    {
-      src: "/images/installit-guy/tvwallmount.webp",
-      alt: "TV wall mounting installation in Shelby NC",
-          width: 400,
-          height: 300,
-    },
-    {
-      src: "/images/installit-guy/tvwallmount2.webp",
-      alt: "Professional TV mounting service Shelby NC",
-          width: 400,
-          height: 300,
-    },
-    {
-      src: "/images/installit-guy/tvwallmount3.webp",
-      alt: "Clean TV wall mount installation Shelby NC",
-          width: 400,
-          height: 300,
-    },
+    "tvwallmount.webp",
+    "tvwallmount2.webp", 
+    "tvwallmount3.webp"
+  ],
+  "ceiling-fan-installation": [
+    "ceilingfan.webp"
   ],
   "lighting-installation": [
-    {
-      src: "/images/installit-guy/chandler.jpg",
-      alt: "Lighting installation services in Shelby NC",
-          width: 400,
-          height: 300,
-    },
+    "chandler.jpg"
   ],
   "garage-door-opener-installation": [
-    {
-      src: "/images/installit-guy/garagedoor.jpg",
-      alt: "Garage door opener installation Shelby NC",
-          width: 400,
-          height: 300,
-    },
+    "garagedoor.jpg"
   ],
   "ring-doorbell-installation": [
-    {
-      src: "/images/installit-guy/securitycamera.jpg",
-      alt: "Security camera installation service Shelby NC",
-          width: 400,
-          height: 300,
-    },
+    "securitycamera.jpg"
   ],
   "faucet-toilet-installation": [
-    {
-      src: "/images/installit-guy/tolietinstall.jpg",
-      alt: "Toilet installation service Shelby NC",
-          width: 400,
-          height: 300,
-    },
-    {
-      src: "/images/installit-guy/sinkinstall.jpg",
-      alt: "Faucet installation service Shelby NC",
-          width: 400,
-          height: 300,
-    },
+    "tolietinstall.jpg",
+    "sinkinstall.jpg",
+    "sinkinstall.webp"
   ],
   "appliance-installation": [
-    {
-      src: "/images/installit-guy/filter.jpg",
-      alt: "Appliance installation services Shelby NC",
-          width: 400,
-          height: 300,
-    },
+    "filter.jpg"
   ],
   "mirror-installation": [
-    {
-      src: "/images/installit-guy/mirrorinstall.jpg",
-      alt: "Mirror installation service Shelby NC",
-          width: 400,
-          height: 300,
-    },
-  ],
-  "door-installation": [
-    {
-      src: "/images/installit-guy/mailboxinstall.png",
-      alt: "Door installation services Shelby NC",
-          width: 400,
-          height: 300,
-    },
+    "mirrorinstall.jpg"
   ],
   "deck-fence-repair": [
-    {
-      src: "/images/installit-guy/outdoorinstall.jpg",
-      alt: "Deck and fence repair services Shelby NC",
-          width: 400,
-          height: 300,
-    },
-  ],
-  "water-leak-repair": [
-    {
-      src: "/images/installit-guy/filter.jpg",
-      alt: "Water leak repair services Shelby NC",
-          width: 400,
-          height: 300,
-    },
+    "outdoorinstall.jpg"
   ],
   "garbage-disposal-installation": [
-    {
-      src: "/images/installit-guy/sinkinstall.jpg",
-      alt: "Garbage disposal installation Shelby NC",
-          width: 400,
-          height: 300,
-    },
+    "sinkinstall.jpg",
+    "sinkinstall.webp"
   ],
   "shelving-installation": [
-    {
-      src: "/images/installit-guy/organize1installitguy.png",
-      alt: "Shelving installation services Shelby NC",
-          width: 400,
-          height: 300,
-    },
-    {
-      src: "/images/installit-guy/organize2installitguy.webp",
-      alt: "Professional shelving installation Shelby NC",
-          width: 400,
-          height: 300,
-    },
-    {
-      src: "/images/installit-guy/organize3installitguy.png",
-      alt: "Custom shelving installation Shelby NC",
-          width: 400,
-          height: 300,
-    },
-  ],
-  "painting-services": [
-    {
-      src: "/images/installit-guy/rooftopinstall.jpg",
-      alt: "Painting services Shelby NC",
-          width: 400,
-          height: 300,
-    },
-  ],
-  "flooring-installation": [
-    {
-      src: "/images/installit-guy/dresserinstall.jpg",
-      alt: "Flooring installation services Shelby NC",
-          width: 400,
-          height: 300,
-    },
+    "organize1installitguy.png",
+    "organize2installitguy.webp",
+    "organize3installitguy.png",
+    "organize4installitguy.jpg",
+    "organize6installitguy.jpg"
   ],
   "furniture-assembly": [
-    {
-      src: "/images/installit-guy/bedframe.jpg",
-      alt: "Furniture assembly services Shelby NC",
-          width: 400,
-          height: 300,
-    },
+    "bedframe.jpg",
+    "dresserinstall.jpg"
   ],
   "gutter-cleaning": [
-    {
-      src: "/images/installit-guy/roofinstall.jpg",
-      alt: "Gutter cleaning services Shelby NC",
-          width: 400,
-          height: 300,
-    },
-  ],
+    "rooftopinstall.jpg"
+  ]
 };
 
 // Helper function to get images for a service
@@ -173,14 +56,14 @@ export function getServiceImages(serviceSlug) {
   return serviceImageMap[serviceSlug] || [];
 }
 
-// Helper function to get service name from slug
+// Helper function to get service name for display
 export function getServiceName(serviceSlug) {
   const serviceNames = {
     "tv-mounting": "TV Mounting",
     "ceiling-fan-installation": "Ceiling Fan Installation",
     "lighting-installation": "Lighting Installation",
     "garage-door-opener-installation": "Garage Door Opener Installation",
-    "ring-doorbell-installation": "Ring Doorbell Installation",
+    "ring-doorbell-installation": "Security Camera Installation",
     "faucet-toilet-installation": "Faucet & Toilet Installation",
     "appliance-installation": "Appliance Installation",
     "mirror-installation": "Mirror Installation",

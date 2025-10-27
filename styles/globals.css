@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Service Gallery Styles */
+.service-gallery {
+  @apply my-10 flex flex-wrap justify-center gap-6;
+}
+
+.service-gallery-item {
+  @apply basis-full sm:basis-[48%] lg:basis-[45%];
+}
+
+.service-gallery-img {
+  @apply rounded-xl shadow-md w-full h-auto;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
 @layer base {

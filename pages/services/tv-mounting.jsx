@@ -7,6 +7,7 @@ import ContextualReviews from "../../components/ContextualReviews";
 import ContextualFAQs from "../../components/ContextualFAQs";
 import QuoteForm from "../../components/QuoteForm";
 import Link from "next/link";
+import { getServiceImages, getServiceName } from "../../utils/serviceImages";
 
 export default function TVMountingPage() {
   const service = "tv-mounting";
@@ -206,24 +207,43 @@ export default function TVMountingPage() {
                     Professional TV Mounting Services in Shelby NC
                   </h2>
                   <p className="text-lg text-gray-600 mb-6">
-                    We specialize in secure, professional TV mounting for all sizes
-                    and wall types. Our experienced technicians ensure your TV is
-                    mounted safely with clean cable management.
+                    We specialize in secure, professional TV mounting for all
+                    sizes and wall types. Our experienced technicians ensure
+                    your TV is mounted safely with clean cable management.
                   </p>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    Serving Shelby NC homeowners for over 30 years, we understand
-                    the unique challenges of mounting TVs in Carolina homes. From
-                    historic brick walls in downtown Shelby to modern drywall in
-                    newer developments, our team uses professional-grade tools and
-                    techniques to ensure your investment is protected.
+                    Serving Shelby NC homeowners for over 30 years, we
+                    understand the unique challenges of mounting TVs in Carolina
+                    homes. From historic brick walls in downtown Shelby to
+                    modern drywall in newer developments, our team uses
+                    professional-grade tools and techniques to ensure your
+                    investment is protected.
                   </p>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                     Our commitment to quality means we never cut corners. We use
                     stud finders, level lasers, and proper mounting hardware for
-                    every installation. Whether you're upgrading to a larger screen
-                    or mounting your first flat-panel TV, we'll make sure the job is
-                    done right the first time.
+                    every installation. Whether you're upgrading to a larger
+                    screen or mounting your first flat-panel TV, we'll make sure
+                    the job is done right the first time.
                   </p>
+                  
+                  {/* Service Gallery */}
+                  {getServiceImages(service).length > 0 && (
+                    <div className="service-gallery">
+                      {getServiceImages(service).map((imageSrc) => (
+                        <div key={imageSrc} className="service-gallery-item">
+                          <Image
+                            src={`/images/installit-guy/${imageSrc}`}
+                            alt={`${getServiceName(service)} by Install It Guy`}
+                            width={900}
+                            height={600}
+                            className="service-gallery-img"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  
                   <div className="space-y-4">
                     <div className="flex items-start">
                       <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mr-3 mt-1">
@@ -268,8 +288,8 @@ export default function TVMountingPage() {
                           Lifetime Warranty
                         </h3>
                         <p className="text-gray-600">
-                          We proudly back our TV mounting work with a
-                          lifetime customer satisfaction guarantee.
+                          We proudly back our TV mounting work with a lifetime
+                          customer satisfaction guarantee.
                         </p>
                       </div>
                     </div>
