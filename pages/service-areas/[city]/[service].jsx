@@ -247,14 +247,16 @@ export default function ServiceAreaServicePage() {
                   {(() => {
                     const images = getServiceImages(service);
                     if (images.length === 0) return null;
-                    
+
                     return (
                       <div className="service-gallery">
                         {images.map((src) => (
                           <div key={src} className="service-gallery-item">
                             <Image
                               src={`/images/installit-guy/${src}`}
-                              alt={`${getServiceName(service)} in ${getCityName(city)} by Install It Guy`}
+                              alt={`${getServiceName(service)} in ${getCityName(
+                                city
+                              )} by Install It Guy`}
                               width={900}
                               height={600}
                               className="service-gallery-img"

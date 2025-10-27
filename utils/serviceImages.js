@@ -11,7 +11,7 @@ export const serviceImageMap = {
     "sinkinstall.webp",
   ],
   "appliance-installation": ["filter.jpg"],
-  "mirror-installation": ["mirrorinstall.jpg"],
+  "mirror-installation": ["mirorinstall.jpg"],
   "deck-fence-repair": ["outdoorinstall.jpg"],
   "garbage-disposal-installation": ["sinkinstall.jpg", "sinkinstall.webp"],
   "shelving-installation": [
