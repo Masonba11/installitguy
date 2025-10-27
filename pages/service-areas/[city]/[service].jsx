@@ -7,7 +7,9 @@ import ServiceCard from "../../../components/ServiceCard";
 import Reviews from "../../../components/Reviews";
 import QuoteForm from "../../../components/QuoteForm";
 import Link from "next/link";
+import Image from "next/image";
 import metaData from "../../../data/metaData.json";
+import { getServiceImages, getServiceName } from "../../../utils/serviceImages";
 
 const serviceAreas = [
   "charlotte-nc",
@@ -240,6 +242,29 @@ export default function ServiceAreaServicePage() {
                     weather considerations to local building codes and common
                     home styles.
                   </p>
+
+                  {/* Service Images Gallery */}
+                  {(() => {
+                    const images = getServiceImages(service);
+                    if (images.length === 0) return null;
+                    
+                    return (
+                      <div className="service-gallery">
+                        {images.map((src) => (
+                          <div key={src} className="service-gallery-item">
+                            <Image
+                              src={`/images/installit-guy/${src}`}
+                              alt={`${getServiceName(service)} in ${getCityName(city)} by Install It Guy`}
+                              width={900}
+                              height={600}
+                              className="service-gallery-img"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  })()}
+
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                     We believe in building lasting relationships with our{" "}
                     {getCityName(city)} neighbors. That's why we offer
