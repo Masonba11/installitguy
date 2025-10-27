@@ -126,7 +126,7 @@ export default function Home() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative text-white overflow-hidden min-h-[80vh] flex items-center justify-center pt-40">
+        <section className="relative text-white overflow-hidden min-h-[80vh] flex items-center justify-center pt-40 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
           {/* Background Video */}
           <div className="absolute inset-0">
             <video
@@ -135,6 +135,9 @@ export default function Home() {
               loop
               playsInline
               className="absolute inset-0 w-full h-full object-cover"
+              onLoadStart={() => console.log("Video loading started")}
+              onLoadedData={() => console.log("Video loaded successfully")}
+              onError={(e) => console.log("Video error:", e)}
             >
               <source src="/shelby-background.mp4" type="video/mp4" />
             </video>
