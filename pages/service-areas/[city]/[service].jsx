@@ -136,7 +136,9 @@ export default function ServiceAreaServicePage() {
     category: "Home Improvement",
     offers: {
       "@type": "Offer",
-      description: `Professional ${getServiceName(service).toLowerCase()} service in ${getCityName(city)}`,
+      description: `Professional ${getServiceName(
+        service
+      ).toLowerCase()} service in ${getCityName(city)}`,
       availability: "https://schema.org/InStock",
     },
   };
@@ -214,6 +216,12 @@ export default function ServiceAreaServicePage() {
                     {getCityName(city)} and surrounding areas for over 30 years.
                     We bring expertise, reliability, and a commitment to
                     excellence to every project.
+                  </p>
+                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                    When you choose Install It Guy for {getServiceName(service).toLowerCase()} in {getCityName(city)}, you're getting more than just a service provider. Our local team understands the specific challenges and opportunities that come with working in this area, from weather considerations to local building codes and common home styles.
+                  </p>
+                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                    We believe in building lasting relationships with our {getCityName(city)} neighbors. That's why we offer transparent pricing, detailed explanations of our work, and our signature lifetime warranty. Whether you're updating an older home or working on a new construction project, we'll treat your property with the same care we'd give our own.
                   </p>
                   <div className="space-y-4">
                     <div className="flex items-start">
@@ -389,9 +397,12 @@ export default function ServiceAreaServicePage() {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Our {getServiceName(service)} Services
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
                 We offer comprehensive {getServiceName(service).toLowerCase()}{" "}
                 services in {getCityName(city)} and surrounding areas.
+              </p>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Beyond {getServiceName(service).toLowerCase()}, we also specialize in <Link href="/services/ceiling-fan-installation" className="text-primary-600 hover:text-primary-700 font-medium">ceiling fan installation</Link> throughout <Link href="/service-areas/concord-nc" className="text-primary-600 hover:text-primary-700 font-medium">Concord</Link> and surrounding areas, providing comprehensive home improvement solutions.
               </p>
             </div>
 

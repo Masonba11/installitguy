@@ -36,7 +36,8 @@ export default function ThankYou() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "Thank You",
-    description: "Thank you for your interest in our handyman services. We'll be in touch soon!",
+    description:
+      "Thank you for your interest in our handyman services. We'll be in touch soon!",
     url: "https://installitguy.com/thank-you",
     mainEntity: {
       "@type": "LocalBusiness",

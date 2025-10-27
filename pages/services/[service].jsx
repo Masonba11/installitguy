@@ -121,7 +121,9 @@ export default function ServicePage() {
     category: "Home Improvement",
     offers: {
       "@type": "Offer",
-      description: `Professional ${getServiceName(service).toLowerCase()} service`,
+      description: `Professional ${getServiceName(
+        service
+      ).toLowerCase()} service`,
       availability: "https://schema.org/InStock",
     },
   };
@@ -197,6 +199,12 @@ export default function ServicePage() {
                     over 30 years. We bring expertise, reliability, and a
                     commitment to excellence to every{" "}
                     {getServiceName(service).toLowerCase()} project.
+                  </p>
+                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                    When you choose Install It Guy for {getServiceName(service).toLowerCase()}, you're getting more than just a service provider – you're getting a trusted partner who understands the unique needs of Carolina homeowners. Our Shelby-based team knows the local building codes, common home styles, and weather considerations that affect installations in our area.
+                  </p>
+                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                    We believe in transparent communication and fair pricing. Before we start any {getServiceName(service).toLowerCase()} project, we'll explain exactly what we plan to do, how long it will take, and what it will cost. No surprises, no hidden fees – just honest, professional service that you can count on.
                   </p>
                   <div className="space-y-4">
                     <div className="flex items-start">
@@ -420,9 +428,12 @@ export default function ServicePage() {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Our {getServiceName(service)} Process
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
                 We follow a proven process to ensure quality results and
                 customer satisfaction.
+              </p>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Our comprehensive approach to {getServiceName(service).toLowerCase()} means we also provide <Link href="/services/appliance-installation" className="text-primary-600 hover:text-primary-700 font-medium">appliance installation</Link> services throughout <Link href="/service-areas/charlotte-nc" className="text-primary-600 hover:text-primary-700 font-medium">Charlotte</Link> and surrounding communities, ensuring your entire home runs smoothly.
               </p>
             </div>
 

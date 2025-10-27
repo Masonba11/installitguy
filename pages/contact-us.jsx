@@ -14,7 +14,8 @@ export default function ContactUs() {
     "@context": "https://schema.org",
     "@type": "ContactPage",
     name: "Contact Install It Guy",
-    description: "Reach Install It Guy in Shelby NC. Call or message for fast handyman service.",
+    description:
+      "Reach Install It Guy in Shelby NC. Call or message for fast handyman service.",
     url: "https://installitguy.com/contact-us",
     mainEntity: {
       "@type": "LocalBusiness",

@@ -33,14 +33,17 @@ export default function ServicesIndex() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Handyman Services",
-    description: "Professional handyman services including TV mounting, ceiling fan installation, lighting installation, and more",
+    description:
+      "Professional handyman services including TV mounting, ceiling fan installation, lighting installation, and more",
     numberOfItems: services.length,
     itemListElement: services.map((service, index) => ({
       "@type": "ListItem",
       position: index + 1,
       item: {
         "@type": "Service",
-        name: service.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+        name: service
+          .replace(/-/g, " ")
+          .replace(/\b\w/g, (l) => l.toUpperCase()),
         url: `https://installitguy.com/services/${service}`,
         provider: {
           "@type": "LocalBusiness",

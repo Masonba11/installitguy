@@ -94,7 +94,7 @@ export default function FAQs() {
     name: "Handyman FAQs",
     description: "Common handyman questions for Shelby NC homeowners",
     url: "https://installitguy.com/faqs",
-    mainEntity: faqs.map(faq => ({
+    mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {

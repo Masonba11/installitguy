@@ -191,10 +191,16 @@ export default function ServiceAreaPage() {
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Our Services in {getCityName(city)}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
                 From simple repairs to complex installations, we handle all your
                 home improvement needs in {getCityName(city)} with professional
                 expertise.
+              </p>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-6 leading-relaxed">
+                As a family-owned business serving {getCityName(city)} for over 30 years, we've built our reputation on reliability, quality workmanship, and fair pricing. Our local team understands the unique characteristics of homes in this area, from historic properties to modern developments.
+              </p>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                We also provide <Link href="/services/tv-mounting" className="text-primary-600 hover:text-primary-700 font-medium">TV mounting</Link> services across <Link href="/service-areas/shelby-nc" className="text-primary-600 hover:text-primary-700 font-medium">Shelby</Link> and surrounding areas, making us your trusted partner for all home improvement needs.
               </p>
             </div>
 

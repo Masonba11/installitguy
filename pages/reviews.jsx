@@ -10,7 +10,8 @@ export default function ReviewsPage() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "Customer Reviews",
-    description: "See real reviews from Shelby NC homeowners who trust Install It Guy for quality handyman services",
+    description:
+      "See real reviews from Shelby NC homeowners who trust Install It Guy for quality handyman services",
     url: "https://installitguy.com/reviews",
     mainEntity: {
       "@type": "LocalBusiness",

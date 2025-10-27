@@ -24,7 +24,8 @@ export default function ServiceAreasIndex() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Service Areas",
-    description: "We proudly serve Charlotte, Concord, Rock Hill, Gastonia, Hickory, Shelby, and surrounding areas in North and South Carolina",
+    description:
+      "We proudly serve Charlotte, Concord, Rock Hill, Gastonia, Hickory, Shelby, and surrounding areas in North and South Carolina",
     numberOfItems: serviceAreas.length,
     itemListElement: serviceAreas.map((area, index) => ({
       "@type": "ListItem",

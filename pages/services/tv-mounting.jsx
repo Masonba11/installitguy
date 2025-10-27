@@ -45,7 +45,8 @@ export default function TVMountingPage() {
     "@context": "https://schema.org",
     "@type": "Service",
     name: "TV Wall Mounting Service",
-    description: "Professional TV mounting services with clean cable management and secure installation in Shelby, NC",
+    description:
+      "Professional TV mounting services with clean cable management and secure installation in Shelby, NC",
     provider: {
       "@type": "LocalBusiness",
       name: "Install It Guy",
@@ -88,7 +89,8 @@ export default function TVMountingPage() {
           itemOffered: {
             "@type": "Service",
             name: "Fixed Wall Mounts",
-            description: "Perfect for living rooms and bedrooms where you want a clean, flush look against the wall",
+            description:
+              "Perfect for living rooms and bedrooms where you want a clean, flush look against the wall",
           },
         },
         {
@@ -96,7 +98,8 @@ export default function TVMountingPage() {
           itemOffered: {
             "@type": "Service",
             name: "Tilt Mounts",
-            description: "Ideal for mounting above fireplaces or in rooms where you need to angle the TV downward",
+            description:
+              "Ideal for mounting above fireplaces or in rooms where you need to angle the TV downward",
           },
         },
         {
@@ -104,7 +107,8 @@ export default function TVMountingPage() {
           itemOffered: {
             "@type": "Service",
             name: "Full Motion Mounts",
-            description: "Extend, tilt, and swivel your TV for the perfect viewing angle from anywhere in the room",
+            description:
+              "Extend, tilt, and swivel your TV for the perfect viewing angle from anywhere in the room",
           },
         },
         {
@@ -112,7 +116,8 @@ export default function TVMountingPage() {
           itemOffered: {
             "@type": "Service",
             name: "Ceiling Mounts",
-            description: "Great for commercial spaces or rooms where wall mounting isn't possible",
+            description:
+              "Great for commercial spaces or rooms where wall mounting isn't possible",
           },
         },
       ],
@@ -187,6 +192,12 @@ export default function TVMountingPage() {
                 and wall types. Our experienced technicians ensure your TV is
                 mounted safely with clean cable management.
               </p>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                Serving Shelby NC homeowners for over 30 years, we understand the unique challenges of mounting TVs in Carolina homes. From historic brick walls in downtown Shelby to modern drywall in newer developments, our team uses professional-grade tools and techniques to ensure your investment is protected.
+              </p>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                Our commitment to quality means we never cut corners. We use stud finders, level lasers, and proper mounting hardware for every installation. Whether you're upgrading to a larger screen or mounting your first flat-panel TV, we'll make sure the job is done right the first time.
+              </p>
             </div>
           </div>
         </section>
@@ -211,6 +222,12 @@ export default function TVMountingPage() {
                     a full-motion articulating mount for your bedroom, we ensure
                     your TV is securely mounted with professional cable
                     management.
+                  </p>
+                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                    Our Shelby-based team brings local knowledge to every project. We're familiar with the common wall materials found in Cleveland County homes and know how to work around electrical outlets, HVAC vents, and other obstacles that can complicate TV mounting. This local expertise saves you time and ensures a cleaner installation.
+                  </p>
+                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                    Trust is everything in our business. That's why we provide detailed explanations of our process, show you exactly where we'll mount your TV, and clean up thoroughly when we're done. We also offer our lifetime warranty on all mounting work, giving you peace of mind that your TV installation will last for years to come.
                   </p>
                   <div className="space-y-4">
                     <div className="flex items-start">
@@ -344,9 +361,12 @@ export default function TVMountingPage() {
                 <h2 className="text-3xl font-bold text-gray-900 mb-4">
                   TV Mounting on All Wall Types in Shelby
                 </h2>
-                <p className="text-xl text-gray-600">
+                <p className="text-xl text-gray-600 mb-6">
                   Our experienced technicians can mount TVs on any wall surface
                   commonly found in Shelby homes.
+                </p>
+                <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                  We also handle <Link href="/services/lighting-installation" className="text-primary-600 hover:text-primary-700 font-medium">lighting installation</Link> across <Link href="/service-areas/gastonia-nc" className="text-primary-600 hover:text-primary-700 font-medium">Gastonia</Link> and surrounding areas, making us your one-stop solution for complete home entertainment setups.
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -486,10 +506,13 @@ export default function TVMountingPage() {
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Why Choose Install It Guy for TV Mounting in Shelby?
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
                 We're Shelby's trusted choice for professional TV mounting
-                services, with over 5 years of experience serving local
+                services, with over 30 years of experience serving local
                 homeowners and businesses.
+              </p>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Our family-owned approach means you're not just another customer to us. We take the time to understand your specific needs, whether you're mounting a TV above a fireplace, in a corner, or creating a home theater setup. Our affordable pricing and flexible scheduling make professional TV mounting accessible to every Shelby homeowner.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
