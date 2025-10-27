@@ -265,7 +265,7 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 py-4">
+          <div className="md:hidden border-t border-gray-200 py-4 bg-white relative z-50">
             <nav className="flex flex-col space-y-4">
               <Link
                 href="/"
@@ -303,16 +303,19 @@ export default function Header() {
                       <Link
                         key={service.slug}
                         href={`/services/${service.slug}`}
-                        className="block text-sm text-gray-600 hover:text-primary-600 transition-colors"
-                        onClick={() => {
+                        className="block text-sm text-gray-600 hover:text-primary-600 transition-colors py-2 px-2"
+                        onClick={(e) => {
                           console.log(
                             "Mobile service clicked:",
                             service.slug,
                             "URL:",
                             `/services/${service.slug}`
                           );
+                          e.preventDefault();
                           setIsServicesOpen(false);
                           setIsMenuOpen(false);
+                          // Force navigation
+                          window.location.href = `/services/${service.slug}`;
                         }}
                       >
                         {service.name}
@@ -351,10 +354,19 @@ export default function Header() {
                       <Link
                         key={area.slug}
                         href={`/service-areas/${area.slug}`}
-                        className="block text-sm text-gray-600 hover:text-primary-600 transition-colors"
-                        onClick={() => {
+                        className="block text-sm text-gray-600 hover:text-primary-600 transition-colors py-2 px-2"
+                        onClick={(e) => {
+                          console.log(
+                            "Mobile service area clicked:",
+                            area.slug,
+                            "URL:",
+                            `/service-areas/${area.slug}`
+                          );
+                          e.preventDefault();
                           setIsServiceAreasOpen(false);
                           setIsMenuOpen(false);
+                          // Force navigation
+                          window.location.href = `/service-areas/${area.slug}`;
                         }}
                       >
                         {area.name}
