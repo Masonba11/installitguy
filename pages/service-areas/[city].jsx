@@ -84,6 +84,49 @@ export default function ServiceAreaPage() {
     return names[citySlug] || citySlug;
   };
 
+  const cityBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "Install It Guy",
+    description: cityData.meta_description,
+    url: cityData.url,
+    telephone: "+17044199799",
+    email: "info@installitguy.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "210 Joseph Ct",
+      addressLocality: "Shelby",
+      addressRegion: "NC",
+      postalCode: "28152",
+      addressCountry: "US",
+    },
+    areaServed: {
+      "@type": "City",
+      name: getCityName(city),
+    },
+    serviceType: [
+      "TV Mounting",
+      "Ceiling Fan Installation",
+      "Lighting Installation",
+      "Garage Door Opener Installation",
+      "Ring Doorbell Installation",
+      "Faucet & Toilet Installation",
+      "Appliance Installation",
+      "Blinds Installation",
+      "Mirror & Towel Bar Installation",
+      "Door Installation",
+      "Deck & Fence Repair",
+      "Water Leak Repair",
+      "Garbage Disposal Installation",
+      "Shelving Installation",
+      "Painting Services",
+      "Flooring Installation",
+      "Furniture Assembly",
+      "Fence Installation",
+      "Gutter Cleaning",
+    ],
+  };
+
   return (
     <>
       <NextSeo
@@ -102,6 +145,11 @@ export default function ServiceAreaPage() {
             content: cityData.primary_keyword,
           },
         ]}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(cityBusinessSchema) }}
       />
 
       <Header />

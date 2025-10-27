@@ -32,6 +32,28 @@ export default function ThankYou() {
     }
   }, []);
 
+  const thankYouPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Thank You",
+    description: "Thank you for your interest in our handyman services. We'll be in touch soon!",
+    url: "https://installitguy.com/thank-you",
+    mainEntity: {
+      "@type": "LocalBusiness",
+      name: "Install It Guy",
+      telephone: "+17044199799",
+      email: "info@installitguy.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "210 Joseph Ct",
+        addressLocality: "Shelby",
+        addressRegion: "NC",
+        postalCode: "28152",
+        addressCountry: "US",
+      },
+    },
+  };
+
   return (
     <>
       <NextSeo
@@ -39,6 +61,11 @@ export default function ThankYou() {
         description="Thank you for your interest in our handyman services. We'll be in touch soon!"
         noindex={true}
         nofollow={true}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(thankYouPageSchema) }}
       />
 
       <Header />

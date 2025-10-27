@@ -108,6 +108,39 @@ export default function ServiceAreaServicePage() {
     return serviceMap[serviceSlug] || serviceSlug;
   };
 
+  const cityServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `${getServiceName(service)} in ${getCityName(city)}`,
+    description: pageData.meta_description,
+    url: pageData.url,
+    provider: {
+      "@type": "LocalBusiness",
+      name: "Install It Guy",
+      telephone: "+17044199799",
+      email: "info@installitguy.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "210 Joseph Ct",
+        addressLocality: "Shelby",
+        addressRegion: "NC",
+        postalCode: "28152",
+        addressCountry: "US",
+      },
+      areaServed: {
+        "@type": "City",
+        name: getCityName(city),
+      },
+    },
+    serviceType: getServiceName(service),
+    category: "Home Improvement",
+    offers: {
+      "@type": "Offer",
+      description: `Professional ${getServiceName(service).toLowerCase()} service in ${getCityName(city)}`,
+      availability: "https://schema.org/InStock",
+    },
+  };
+
   return (
     <>
       <NextSeo
@@ -126,6 +159,11 @@ export default function ServiceAreaServicePage() {
             content: pageData.primary_keyword,
           },
         ]}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(cityServiceSchema) }}
       />
 
       <Header />

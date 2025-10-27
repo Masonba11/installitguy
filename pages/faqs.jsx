@@ -88,6 +88,22 @@ export default function FAQs() {
     },
   ];
 
+  const faqPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    name: "Handyman FAQs",
+    description: "Common handyman questions for Shelby NC homeowners",
+    url: "https://installitguy.com/faqs",
+    mainEntity: faqs.map(faq => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   const toggleFAQ = (index) => {
     setOpenFAQ(openFAQ === index ? null : index);
   };
@@ -105,6 +121,11 @@ export default function FAQs() {
             "Common handyman questions for Shelby NC homeowners. Fast, local answers.",
           siteName: "Install It Guy",
         }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }}
       />
 
       <Header />

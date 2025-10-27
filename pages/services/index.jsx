@@ -29,6 +29,37 @@ const services = [
 ];
 
 export default function ServicesIndex() {
+  const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Handyman Services",
+    description: "Professional handyman services including TV mounting, ceiling fan installation, lighting installation, and more",
+    numberOfItems: services.length,
+    itemListElement: services.map((service, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Service",
+        name: service.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+        url: `https://installitguy.com/services/${service}`,
+        provider: {
+          "@type": "LocalBusiness",
+          name: "Install It Guy",
+          telephone: "+17044199799",
+          email: "info@installitguy.com",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "210 Joseph Ct",
+            addressLocality: "Shelby",
+            addressRegion: "NC",
+            postalCode: "28152",
+            addressCountry: "US",
+          },
+        },
+      },
+    })),
+  };
+
   return (
     <>
       <NextSeo
@@ -49,6 +80,11 @@ export default function ServicesIndex() {
               "handyman services, tv mounting, ceiling fan installation, lighting installation, appliance installation",
           },
         ]}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
       />
 
       <Header />

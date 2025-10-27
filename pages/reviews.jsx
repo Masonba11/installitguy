@@ -6,6 +6,33 @@ import ContextualFAQs from "../components/ContextualFAQs";
 import Link from "next/link";
 
 export default function ReviewsPage() {
+  const reviewsPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Customer Reviews",
+    description: "See real reviews from Shelby NC homeowners who trust Install It Guy for quality handyman services",
+    url: "https://installitguy.com/reviews",
+    mainEntity: {
+      "@type": "LocalBusiness",
+      name: "Install It Guy",
+      telephone: "+17044199799",
+      email: "info@installitguy.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "210 Joseph Ct",
+        addressLocality: "Shelby",
+        addressRegion: "NC",
+        postalCode: "28152",
+        addressCountry: "US",
+      },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: "127",
+      },
+    },
+  };
+
   return (
     <>
       <NextSeo
@@ -26,6 +53,11 @@ export default function ReviewsPage() {
               "install it guy reviews, handyman reviews shelby nc, tv mounting reviews, home repair reviews",
           },
         ]}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewsPageSchema) }}
       />
 
       <Header />

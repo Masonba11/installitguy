@@ -20,6 +20,27 @@ const serviceAreas = [
 ];
 
 export default function ServiceAreasIndex() {
+  const serviceAreasSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Service Areas",
+    description: "We proudly serve Charlotte, Concord, Rock Hill, Gastonia, Hickory, Shelby, and surrounding areas in North and South Carolina",
+    numberOfItems: serviceAreas.length,
+    itemListElement: serviceAreas.map((area, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Place",
+        name: area.name,
+        url: `https://installitguy.com/service-areas/${area.slug}`,
+        containedInPlace: {
+          "@type": "State",
+          name: area.name.includes("NC") ? "North Carolina" : "South Carolina",
+        },
+      },
+    })),
+  };
+
   return (
     <>
       <NextSeo
@@ -40,6 +61,11 @@ export default function ServiceAreasIndex() {
               "handyman charlotte nc, handyman concord nc, handyman rock hill sc, handyman gastonia nc, handyman hickory nc, handyman shelby nc",
           },
         ]}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceAreasSchema) }}
       />
 
       <Header />

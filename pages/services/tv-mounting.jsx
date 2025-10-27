@@ -41,6 +41,84 @@ export default function TVMountingPage() {
     return "TV Mounting";
   };
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "TV Wall Mounting Service",
+    description: "Professional TV mounting services with clean cable management and secure installation in Shelby, NC",
+    provider: {
+      "@type": "LocalBusiness",
+      name: "Install It Guy",
+      telephone: "+17044199799",
+      email: "info@installitguy.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "210 Joseph Ct",
+        addressLocality: "Shelby",
+        addressRegion: "NC",
+        postalCode: "28152",
+        addressCountry: "US",
+      },
+      areaServed: [
+        "Shelby, NC",
+        "Charlotte, NC",
+        "Concord, NC",
+        "Rock Hill, SC",
+        "Gastonia, NC",
+        "Hickory, NC",
+        "Lincolnton, NC",
+        "Gaffney, SC",
+        "Kings Mountain, NC",
+        "Forest City, NC",
+      ],
+    },
+    serviceType: "TV Mounting",
+    category: "Home Improvement",
+    offers: {
+      "@type": "Offer",
+      description: "Professional TV mounting service",
+      availability: "https://schema.org/InStock",
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "TV Mounting Services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Fixed Wall Mounts",
+            description: "Perfect for living rooms and bedrooms where you want a clean, flush look against the wall",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Tilt Mounts",
+            description: "Ideal for mounting above fireplaces or in rooms where you need to angle the TV downward",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Full Motion Mounts",
+            description: "Extend, tilt, and swivel your TV for the perfect viewing angle from anywhere in the room",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Ceiling Mounts",
+            description: "Great for commercial spaces or rooms where wall mounting isn't possible",
+          },
+        },
+      ],
+    },
+  };
+
   return (
     <>
       <NextSeo
@@ -59,6 +137,11 @@ export default function TVMountingPage() {
             content: pageData.primary_keyword,
           },
         ]}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
 
       <Header />

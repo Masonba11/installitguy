@@ -10,6 +10,40 @@ import { WEB3FORMS_CONFIG } from "../config/web3forms";
 export default function ContactUs() {
   const router = useRouter();
 
+  const contactPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact Install It Guy",
+    description: "Reach Install It Guy in Shelby NC. Call or message for fast handyman service.",
+    url: "https://installitguy.com/contact-us",
+    mainEntity: {
+      "@type": "LocalBusiness",
+      name: "Install It Guy",
+      telephone: "+17044199799",
+      email: "info@installitguy.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "210 Joseph Ct",
+        addressLocality: "Shelby",
+        addressRegion: "NC",
+        postalCode: "28152",
+        addressCountry: "US",
+      },
+      areaServed: [
+        "Shelby, NC",
+        "Charlotte, NC",
+        "Concord, NC",
+        "Rock Hill, SC",
+        "Gastonia, NC",
+        "Hickory, NC",
+        "Lincolnton, NC",
+        "Gaffney, SC",
+        "Kings Mountain, NC",
+        "Forest City, NC",
+      ],
+    },
+  };
+
   const handleContactFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -68,6 +102,11 @@ export default function ContactUs() {
             "Reach Install It Guy in Shelby NC. Call or message for fast handyman service.",
           siteName: "Install It Guy",
         }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
       />
 
       <Header />
