@@ -411,9 +411,9 @@ export default function ServicePage() {
         <section className="section-padding bg-gray-50">
           <div className="container-custom">
             <div className="text-center mb-16">
-               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                 Complete {getServiceName(service)} Solutions in Shelby NC
-               </h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Complete {getServiceName(service)} Solutions in Shelby NC
+              </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 We offer comprehensive {getServiceName(service).toLowerCase()}{" "}
                 services throughout Shelby and Cleveland County.

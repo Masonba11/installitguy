@@ -156,31 +156,21 @@ export default function ServiceAreaPage() {
 
       <main className="min-h-screen bg-gray-50">
         {/* Hero Section */}
-        <section
-          className={`${
-            city === "shelby-nc"
-              ? "relative text-white overflow-hidden"
-              : "bg-gradient-to-br from-primary-600 to-primary-800 text-white"
-          }`}
-        >
-          {/* Background Video - Only for Shelby */}
-          {city === "shelby-nc" && (
-            <>
-              <div className="absolute inset-0">
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover opacity-95"
-                >
-                  <source src="/shelby-background.mp4" type="video/mp4" />
-                </video>
-              </div>
-              {/* Subtle Dark Overlay for Text Readability */}
-              <div className="absolute inset-0 bg-black/30" />
-            </>
-          )}
+        <section className="relative text-white overflow-hidden">
+          {/* Background Video for All Cities */}
+          <div className="absolute inset-0">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-95"
+            >
+              <source src="/shelby-background.mp4" type="video/mp4" />
+            </video>
+          </div>
+          {/* Subtle Dark Overlay for Text Readability */}
+          <div className="absolute inset-0 bg-black/30" />
           {/* Content */}
           <div
             className={`${
