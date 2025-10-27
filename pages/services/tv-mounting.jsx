@@ -21,7 +21,7 @@ export default function TVMountingPage() {
   };
 
   const serviceContent = {
-    h1: "Professional TV Wall Mounting in Shelby",
+    h1: "Expert TV Wall Mounting in Shelby NC",
     description:
       "Expert TV mounting services with clean cable management and secure installation.",
     h3: "Why Choose Our TV Mounting Service",
@@ -205,7 +205,7 @@ export default function TVMountingPage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                    Professional TV Mounting Services in Shelby NC
+                    Trusted TV Mounting Company in Shelby NC
                   </h2>
                   <p className="text-lg text-gray-600 mb-6">
                     We specialize in secure, professional TV mounting for all
@@ -422,7 +422,7 @@ export default function TVMountingPage() {
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                  TV Mounting on All Wall Types in Shelby NC
+                  Complete TV Mounting Solutions in Shelby NC
                 </h2>
                 <p className="text-xl text-gray-600 mb-6">
                   Our experienced Shelby technicians can mount TVs on any wall

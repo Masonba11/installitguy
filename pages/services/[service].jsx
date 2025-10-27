@@ -157,11 +157,12 @@ export default function ServicePage() {
           <div className="relative container-custom section-padding">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Professional {getServiceName(service)} Services in Shelby NC
+                Expert {getServiceName(service)} in Shelby NC
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-primary-100">
-                Professional {getServiceName(service).toLowerCase()} services in Shelby NC
-                with 30+ years of local experience and lifetime warranty.
+                Professional {getServiceName(service).toLowerCase()} services in
+                Shelby NC with 30+ years of local experience and lifetime
+                warranty.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
@@ -188,7 +189,7 @@ export default function ServicePage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                    Professional {getServiceName(service)} Services in Shelby NC
+                    Trusted {getServiceName(service)} Company in Shelby NC
                   </h2>
                   <p className="text-lg text-gray-600 mb-6">
                     Our family-owned business has been serving Shelby and
@@ -410,9 +411,9 @@ export default function ServicePage() {
         <section className="section-padding bg-gray-50">
           <div className="container-custom">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Our {getServiceName(service)} Services in Shelby NC
-              </h2>
+               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                 Complete {getServiceName(service)} Solutions in Shelby NC
+               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 We offer comprehensive {getServiceName(service).toLowerCase()}{" "}
                 services throughout Shelby and Cleveland County.
