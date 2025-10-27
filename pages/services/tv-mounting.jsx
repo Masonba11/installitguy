@@ -343,44 +343,86 @@ export default function TVMountingPage() {
                 </div>
                 <div className="bg-white rounded-2xl shadow-lg p-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                    TV Mounting Services We Offer
+                    Why Choose Us for TV Mounting
                   </h3>
+                  <p className="text-gray-600 mb-6">
+                    We've been serving the Carolinas for over 30 years with
+                    dedication, integrity, and a commitment to excellence. Our
+                    family-owned business brings expertise, reliability, and
+                    quality workmanship to every project.
+                  </p>
                   <div className="space-y-4">
-                    <div className="border-l-4 border-primary-600 pl-4">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                        Fixed Wall Mounts
-                      </h4>
-                      <p className="text-gray-600">
-                        Perfect for living rooms and bedrooms where you want a
-                        clean, flush look against the wall.
-                      </p>
+                    <div className="flex items-center">
+                      <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
+                        <svg
+                          className="w-4 h-4"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-gray-700">
+                        Licensed and insured professionals
+                      </span>
                     </div>
-                    <div className="border-l-4 border-primary-600 pl-4">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                        Tilt Mounts
-                      </h4>
-                      <p className="text-gray-600">
-                        Ideal for mounting above fireplaces or in rooms where
-                        you need to angle the TV downward.
-                      </p>
+                    <div className="flex items-center">
+                      <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
+                        <svg
+                          className="w-4 h-4"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-gray-700">
+                        Same-day service available
+                      </span>
                     </div>
-                    <div className="border-l-4 border-primary-600 pl-4">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                        Full Motion Mounts
-                      </h4>
-                      <p className="text-gray-600">
-                        Extend, tilt, and swivel your TV for the perfect viewing
-                        angle from anywhere in the room.
-                      </p>
+                    <div className="flex items-center">
+                      <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
+                        <svg
+                          className="w-4 h-4"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-gray-700">
+                        Competitive pricing with no hidden fees
+                      </span>
                     </div>
-                    <div className="border-l-4 border-primary-600 pl-4">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                        Ceiling Mounts
-                      </h4>
-                      <p className="text-gray-600">
-                        Great for commercial spaces or rooms where wall mounting
-                        isn't possible.
-                      </p>
+                    <div className="flex items-center">
+                      <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
+                        <svg
+                          className="w-4 h-4"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-gray-700">
+                        Clean, professional work every time
+                      </span>
                     </div>
                   </div>
               </div>
