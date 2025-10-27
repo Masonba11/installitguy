@@ -178,6 +178,9 @@ export default function ServiceAreaPage() {
             } container-custom section-padding`}
           >
             <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6">
+                Handyman Services in {getCityName(city)}
+              </h1>
               <p className="text-xl md:text-2xl mb-8 text-primary-100">
                 Professional handyman services for {getCityName(city)} and
                 surrounding areas. Quality work guaranteed.
