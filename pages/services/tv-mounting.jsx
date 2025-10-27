@@ -153,8 +153,23 @@ export default function TVMountingPage() {
 
       <main className="min-h-screen bg-gray-50">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary-600 to-primary-800 text-white">
-          <div className="container-custom section-padding">
+        <section className="relative text-white overflow-hidden">
+          {/* Background Video */}
+          <div className="absolute inset-0">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-95"
+            >
+              <source src="/shelby-background.mp4" type="video/mp4" />
+            </video>
+          </div>
+          {/* Subtle Dark Overlay for Text Readability */}
+          <div className="absolute inset-0 bg-black/30" />
+          {/* Content */}
+          <div className="relative container-custom section-padding">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 {serviceContent.h1}

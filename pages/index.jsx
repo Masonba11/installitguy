@@ -126,7 +126,7 @@ export default function Home() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-primary-600 to-primary-800 text-white overflow-hidden">
+        <section className="relative text-white overflow-hidden">
           {/* Background Video */}
           <div className="absolute inset-0">
             <video
@@ -134,13 +134,13 @@ export default function Home() {
               muted
               loop
               playsInline
-              className="absolute inset-0 w-full h-full object-cover opacity-50"
+              className="absolute inset-0 w-full h-full object-cover opacity-95"
             >
               <source src="/shelby-background.mp4" type="video/mp4" />
             </video>
           </div>
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-600/80 to-primary-800/80" />
+          {/* Subtle Dark Overlay for Text Readability */}
+          <div className="absolute inset-0 bg-black/30" />
           {/* Content */}
           <div className="relative container-custom section-padding">
             <div className="max-w-4xl mx-auto text-center">
