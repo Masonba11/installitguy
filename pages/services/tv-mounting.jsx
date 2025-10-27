@@ -193,10 +193,18 @@ export default function TVMountingPage() {
                 mounted safely with clean cable management.
               </p>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Serving Shelby NC homeowners for over 30 years, we understand the unique challenges of mounting TVs in Carolina homes. From historic brick walls in downtown Shelby to modern drywall in newer developments, our team uses professional-grade tools and techniques to ensure your investment is protected.
+                Serving Shelby NC homeowners for over 30 years, we understand
+                the unique challenges of mounting TVs in Carolina homes. From
+                historic brick walls in downtown Shelby to modern drywall in
+                newer developments, our team uses professional-grade tools and
+                techniques to ensure your investment is protected.
               </p>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Our commitment to quality means we never cut corners. We use stud finders, level lasers, and proper mounting hardware for every installation. Whether you're upgrading to a larger screen or mounting your first flat-panel TV, we'll make sure the job is done right the first time.
+                Our commitment to quality means we never cut corners. We use
+                stud finders, level lasers, and proper mounting hardware for
+                every installation. Whether you're upgrading to a larger screen
+                or mounting your first flat-panel TV, we'll make sure the job is
+                done right the first time.
               </p>
             </div>
           </div>
@@ -224,10 +232,20 @@ export default function TVMountingPage() {
                     management.
                   </p>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    Our Shelby-based team brings local knowledge to every project. We're familiar with the common wall materials found in Cleveland County homes and know how to work around electrical outlets, HVAC vents, and other obstacles that can complicate TV mounting. This local expertise saves you time and ensures a cleaner installation.
+                    Our Shelby-based team brings local knowledge to every
+                    project. We're familiar with the common wall materials found
+                    in Cleveland County homes and know how to work around
+                    electrical outlets, HVAC vents, and other obstacles that can
+                    complicate TV mounting. This local expertise saves you time
+                    and ensures a cleaner installation.
                   </p>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    Trust is everything in our business. That's why we provide detailed explanations of our process, show you exactly where we'll mount your TV, and clean up thoroughly when we're done. We also offer our lifetime warranty on all mounting work, giving you peace of mind that your TV installation will last for years to come.
+                    Trust is everything in our business. That's why we provide
+                    detailed explanations of our process, show you exactly where
+                    we'll mount your TV, and clean up thoroughly when we're
+                    done. We also offer our lifetime warranty on all mounting
+                    work, giving you peace of mind that your TV installation
+                    will last for years to come.
                   </p>
                   <div className="space-y-4">
                     <div className="flex items-start">
@@ -366,7 +384,22 @@ export default function TVMountingPage() {
                   commonly found in Shelby homes.
                 </p>
                 <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                  We also handle <Link href="/services/lighting-installation" className="text-primary-600 hover:text-primary-700 font-medium">lighting installation</Link> across <Link href="/service-areas/gastonia-nc" className="text-primary-600 hover:text-primary-700 font-medium">Gastonia</Link> and surrounding areas, making us your one-stop solution for complete home entertainment setups.
+                  We also handle{" "}
+                  <Link
+                    href="/services/lighting-installation"
+                    className="text-primary-600 hover:text-primary-700 font-medium"
+                  >
+                    lighting installation
+                  </Link>{" "}
+                  across{" "}
+                  <Link
+                    href="/service-areas/gastonia-nc"
+                    className="text-primary-600 hover:text-primary-700 font-medium"
+                  >
+                    Gastonia
+                  </Link>{" "}
+                  and surrounding areas, making us your one-stop solution for
+                  complete home entertainment setups.
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -512,7 +545,12 @@ export default function TVMountingPage() {
                 homeowners and businesses.
               </p>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Our family-owned approach means you're not just another customer to us. We take the time to understand your specific needs, whether you're mounting a TV above a fireplace, in a corner, or creating a home theater setup. Our affordable pricing and flexible scheduling make professional TV mounting accessible to every Shelby homeowner.
+                Our family-owned approach means you're not just another customer
+                to us. We take the time to understand your specific needs,
+                whether you're mounting a TV above a fireplace, in a corner, or
+                creating a home theater setup. Our affordable pricing and
+                flexible scheduling make professional TV mounting accessible to
+                every Shelby homeowner.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

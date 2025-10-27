@@ -197,10 +197,29 @@ export default function ServiceAreaPage() {
                 expertise.
               </p>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-6 leading-relaxed">
-                As a family-owned business serving {getCityName(city)} for over 30 years, we've built our reputation on reliability, quality workmanship, and fair pricing. Our local team understands the unique characteristics of homes in this area, from historic properties to modern developments.
+                As a family-owned business serving {getCityName(city)} for over
+                30 years, we've built our reputation on reliability, quality
+                workmanship, and fair pricing. Our local team understands the
+                unique characteristics of homes in this area, from historic
+                properties to modern developments.
               </p>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                We also provide <Link href="/services/tv-mounting" className="text-primary-600 hover:text-primary-700 font-medium">TV mounting</Link> services across <Link href="/service-areas/shelby-nc" className="text-primary-600 hover:text-primary-700 font-medium">Shelby</Link> and surrounding areas, making us your trusted partner for all home improvement needs.
+                We also provide{" "}
+                <Link
+                  href="/services/tv-mounting"
+                  className="text-primary-600 hover:text-primary-700 font-medium"
+                >
+                  TV mounting
+                </Link>{" "}
+                services across{" "}
+                <Link
+                  href="/service-areas/shelby-nc"
+                  className="text-primary-600 hover:text-primary-700 font-medium"
+                >
+                  Shelby
+                </Link>{" "}
+                and surrounding areas, making us your trusted partner for all
+                home improvement needs.
               </p>
             </div>
 

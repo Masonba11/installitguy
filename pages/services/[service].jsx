@@ -201,10 +201,21 @@ export default function ServicePage() {
                     {getServiceName(service).toLowerCase()} project.
                   </p>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    When you choose Install It Guy for {getServiceName(service).toLowerCase()}, you're getting more than just a service provider – you're getting a trusted partner who understands the unique needs of Carolina homeowners. Our Shelby-based team knows the local building codes, common home styles, and weather considerations that affect installations in our area.
+                    When you choose Install It Guy for{" "}
+                    {getServiceName(service).toLowerCase()}, you're getting more
+                    than just a service provider – you're getting a trusted
+                    partner who understands the unique needs of Carolina
+                    homeowners. Our Shelby-based team knows the local building
+                    codes, common home styles, and weather considerations that
+                    affect installations in our area.
                   </p>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    We believe in transparent communication and fair pricing. Before we start any {getServiceName(service).toLowerCase()} project, we'll explain exactly what we plan to do, how long it will take, and what it will cost. No surprises, no hidden fees – just honest, professional service that you can count on.
+                    We believe in transparent communication and fair pricing.
+                    Before we start any {getServiceName(service).toLowerCase()}{" "}
+                    project, we'll explain exactly what we plan to do, how long
+                    it will take, and what it will cost. No surprises, no hidden
+                    fees – just honest, professional service that you can count
+                    on.
                   </p>
                   <div className="space-y-4">
                     <div className="flex items-start">
@@ -433,7 +444,23 @@ export default function ServicePage() {
                 customer satisfaction.
               </p>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Our comprehensive approach to {getServiceName(service).toLowerCase()} means we also provide <Link href="/services/appliance-installation" className="text-primary-600 hover:text-primary-700 font-medium">appliance installation</Link> services throughout <Link href="/service-areas/charlotte-nc" className="text-primary-600 hover:text-primary-700 font-medium">Charlotte</Link> and surrounding communities, ensuring your entire home runs smoothly.
+                Our comprehensive approach to{" "}
+                {getServiceName(service).toLowerCase()} means we also provide{" "}
+                <Link
+                  href="/services/appliance-installation"
+                  className="text-primary-600 hover:text-primary-700 font-medium"
+                >
+                  appliance installation
+                </Link>{" "}
+                services throughout{" "}
+                <Link
+                  href="/service-areas/charlotte-nc"
+                  className="text-primary-600 hover:text-primary-700 font-medium"
+                >
+                  Charlotte
+                </Link>{" "}
+                and surrounding communities, ensuring your entire home runs
+                smoothly.
               </p>
             </div>
 
