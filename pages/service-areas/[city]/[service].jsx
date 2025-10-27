@@ -83,99 +83,6 @@ export default function ServiceAreaServicePage() {
     return cityMap[citySlug] || citySlug;
   };
 
-  const getCitySpecificContent = (citySlug, serviceSlug) => {
-    const cityContent = {
-      "charlotte-nc": {
-        neighborhoods: "SouthPark, Myers Park, Dilworth, and Plaza Midwood",
-        characteristics: "modern high-rises, historic bungalows, and contemporary townhomes",
-        challenges: "complex electrical systems and multi-story installations",
-        localRef: "Queen City",
-        relatedService: "lighting installation",
-        relatedCity: "concord-nc"
-      },
-      "concord-nc": {
-        neighborhoods: "Concord Mills area, downtown Concord, and surrounding suburbs",
-        characteristics: "family homes, newer developments, and established neighborhoods",
-        challenges: "open floor plans and vaulted ceilings",
-        localRef: "Cabarrus County",
-        relatedService: "ceiling fan installation",
-        relatedCity: "charlotte-nc"
-      },
-      "rock-hill-sc": {
-        neighborhoods: "Winthrop University area, downtown Rock Hill, and suburban communities",
-        characteristics: "college town charm, historic districts, and growing subdivisions",
-        challenges: "student housing and mixed-use properties",
-        localRef: "York County",
-        relatedService: "appliance installation",
-        relatedCity: "charlotte-nc"
-      },
-      "gastonia-nc": {
-        neighborhoods: "downtown Gastonia, Highland community, and surrounding areas",
-        characteristics: "industrial heritage homes, modern subdivisions, and rural properties",
-        challenges: "older construction and unique architectural features",
-        localRef: "Gaston County",
-        relatedService: "door installation",
-        relatedCity: "charlotte-nc"
-      },
-      "hickory-nc": {
-        neighborhoods: "downtown Hickory, Lenoir-Rhyne University area, and suburban communities",
-        characteristics: "furniture industry heritage, mountain views, and family neighborhoods",
-        challenges: "sloped properties and mountain terrain considerations",
-        localRef: "Catawba County",
-        relatedService: "shelving installation",
-        relatedCity: "shelby-nc"
-      },
-      "shelby-nc": {
-        neighborhoods: "downtown Shelby, uptown district, and Cleveland County communities",
-        characteristics: "historic courthouse square, traditional homes, and rural properties",
-        challenges: "historic preservation requirements and older electrical systems",
-        localRef: "Cleveland County",
-        relatedService: "painting services",
-        relatedCity: "gastonia-nc"
-      },
-      "lincolnton-nc": {
-        neighborhoods: "downtown Lincolnton, historic district, and surrounding rural areas",
-        characteristics: "small-town charm, historic homes, and agricultural properties",
-        challenges: "rural electrical systems and historic building constraints",
-        localRef: "Lincoln County",
-        relatedService: "fence installation",
-        relatedCity: "hickory-nc"
-      },
-      "gaffney-sc": {
-        neighborhoods: "downtown Gaffney, Peach Festival area, and suburban communities",
-        characteristics: "peach farming heritage, small-town atmosphere, and growing developments",
-        challenges: "agricultural properties and seasonal considerations",
-        localRef: "Cherokee County",
-        relatedService: "gutter cleaning",
-        relatedCity: "rock-hill-sc"
-      },
-      "kings-mountain-nc": {
-        neighborhoods: "downtown Kings Mountain, historic district, and surrounding areas",
-        characteristics: "Revolutionary War history, mountain views, and traditional homes",
-        challenges: "mountain terrain and historic preservation guidelines",
-        localRef: "Cleveland County",
-        relatedService: "deck fence repair",
-        relatedCity: "shelby-nc"
-      },
-      "forest-city-nc": {
-        neighborhoods: "downtown Forest City, textile mill district, and surrounding communities",
-        characteristics: "textile industry heritage, historic mill homes, and rural charm",
-        challenges: "older mill construction and unique architectural elements",
-        localRef: "Rutherford County",
-        relatedService: "water leak repair",
-        relatedCity: "hickory-nc"
-      }
-    };
-
-    return cityContent[citySlug] || {
-      neighborhoods: "local neighborhoods",
-      characteristics: "diverse home styles",
-      challenges: "unique local considerations",
-      localRef: "the area",
-      relatedService: "related services",
-      relatedCity: "nearby cities"
-    };
-  };
 
   const getServiceName = (serviceSlug) => {
     const serviceMap = {
@@ -316,17 +223,17 @@ export default function ServiceAreaServicePage() {
                     {getServiceName(service).toLowerCase()} in{" "}
                     {getCityName(city)}, you're getting more than just a service
                     provider. Our local team understands the specific challenges
-                    of working in {getCitySpecificContent(city, service).neighborhoods}, 
-                    where we regularly encounter {getCitySpecificContent(city, service).challenges} 
-                    that require specialized expertise.
+                    and opportunities that come with working in this area, from
+                    weather considerations to local building codes and common
+                    home styles.
                   </p>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                     We believe in building lasting relationships with our{" "}
-                    {getCitySpecificContent(city, service).localRef} neighbors. 
-                    That's why we offer transparent pricing, detailed explanations 
-                    of our work, and our signature lifetime warranty. Whether you're 
-                    working with {getCitySpecificContent(city, service).characteristics}, 
-                    we'll treat your property with the same care we'd give our own.
+                    {getCityName(city)} neighbors. That's why we offer
+                    transparent pricing, detailed explanations of our work, and
+                    our signature lifetime warranty. Whether you're updating an
+                    older home or working on a new construction project, we'll
+                    treat your property with the same care we'd give our own.
                   </p>
                   <div className="space-y-4">
                     <div className="flex items-start">
@@ -410,11 +317,10 @@ export default function ServiceAreaServicePage() {
                     {getCityName(city)}
                   </h3>
                   <p className="text-gray-600 mb-6">
-                    We've been serving {getCitySpecificContent(city, service).localRef} 
-                    for over 30 years with dedication, integrity, and a commitment 
-                    to excellence. Our family-owned business brings expertise in 
-                    {getCitySpecificContent(city, service).characteristics}, 
-                    ensuring reliable, quality workmanship for every project.
+                    We've been serving {getCityName(city)} for over 30 years
+                    with dedication, integrity, and a commitment to excellence.
+                    Our family-owned business brings expertise, reliability, and
+                    quality workmanship to every project.
                   </p>
                   <div className="space-y-4">
                     <div className="flex items-center">
@@ -511,17 +417,17 @@ export default function ServiceAreaServicePage() {
                 Beyond {getServiceName(service).toLowerCase()}, we also
                 specialize in{" "}
                 <Link
-                  href={`/services/${getCitySpecificContent(city, service).relatedService}`}
+                  href="/services/ceiling-fan-installation"
                   className="text-primary-600 hover:text-primary-700 font-medium"
                 >
-                  {getCitySpecificContent(city, service).relatedService.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
+                  ceiling fan installation
                 </Link>{" "}
                 throughout{" "}
                 <Link
-                  href={`/service-areas/${getCitySpecificContent(city, service).relatedCity}`}
+                  href="/service-areas/concord-nc"
                   className="text-primary-600 hover:text-primary-700 font-medium"
                 >
-                  {getCityName(getCitySpecificContent(city, service).relatedCity)}
+                  Concord
                 </Link>{" "}
                 and surrounding areas, providing comprehensive home improvement
                 solutions.
