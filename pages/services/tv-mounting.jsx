@@ -129,12 +129,12 @@ export default function TVMountingPage() {
   return (
     <>
       <NextSeo
-        title={pageData.page_title}
+        title="Professional TV Mounting Services in Shelby NC | Install It Guy"
         description={pageData.meta_description}
         canonical={pageData.url}
         openGraph={{
           url: pageData.url,
-          title: pageData.page_title,
+          title: "Professional TV Mounting Services in Shelby NC | Install It Guy",
           description: pageData.meta_description,
           siteName: "Install It Guy",
         }}
@@ -208,23 +208,25 @@ export default function TVMountingPage() {
                   </h2>
                   <p className="text-lg text-gray-600 mb-6">
                     We specialize in secure, professional TV mounting for all
-                    sizes and wall types throughout Shelby and Cleveland County. Our experienced technicians ensure
-                    your TV is mounted safely with clean cable management.
+                    sizes and wall types throughout Shelby and Cleveland County.
+                    Our experienced technicians ensure your TV is mounted safely
+                    with clean cable management.
                   </p>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                     Serving Shelby NC homeowners for over 30 years, we
                     understand the unique challenges of mounting TVs in Shelby
                     homes. From historic brick walls in downtown Shelby to
-                    modern drywall in West Shelby and Kings Mountain developments, our team uses
-                    professional-grade tools and techniques to ensure your
-                    investment is protected.
+                    modern drywall in West Shelby and Kings Mountain
+                    developments, our team uses professional-grade tools and
+                    techniques to ensure your investment is protected.
                   </p>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                     Our commitment to quality means we never cut corners. We use
                     stud finders, level lasers, and proper mounting hardware for
-                    every installation throughout Cleveland County. Whether you're upgrading to a larger
-                    screen or mounting your first flat-panel TV in your Shelby home, we'll make sure
-                    the job is done right the first time.
+                    every installation throughout Cleveland County. Whether
+                    you're upgrading to a larger screen or mounting your first
+                    flat-panel TV in your Shelby home, we'll make sure the job
+                    is done right the first time.
                   </p>
 
                   {/* Service Gallery */}
@@ -259,15 +261,15 @@ export default function TVMountingPage() {
                           />
                         </svg>
                       </div>
-                        <div>
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                            30+ Years Serving Shelby
-                          </h3>
-                          <p className="text-gray-600">
-                            Three decades of expertise in TV mounting throughout Cleveland County with
-                            dedication and local knowledge.
-                          </p>
-                        </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                          30+ Years Serving Shelby
+                        </h3>
+                        <p className="text-gray-600">
+                          Three decades of expertise in TV mounting throughout
+                          Cleveland County with dedication and local knowledge.
+                        </p>
+                      </div>
                     </div>
                     <div className="flex items-start">
                       <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mr-3 mt-1">
@@ -307,15 +309,16 @@ export default function TVMountingPage() {
                           />
                         </svg>
                       </div>
-                        <div>
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                            Shelby Local Expertise
-                          </h3>
-                          <p className="text-gray-600">
-                            Deep knowledge of Shelby homes, Cleveland County building codes, and local weather patterns for
-                            TV mounting.
-                          </p>
-                        </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                          Shelby Local Expertise
+                        </h3>
+                        <p className="text-gray-600">
+                          Deep knowledge of Shelby homes, Cleveland County
+                          building codes, and local weather patterns for TV
+                          mounting.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -325,10 +328,11 @@ export default function TVMountingPage() {
                       Why Choose Us for TV Mounting in Shelby
                     </h3>
                     <p className="text-gray-600 mb-6">
-                      We've been serving Shelby and Cleveland County for over 30 years with
-                      dedication, integrity, and a commitment to excellence. Our
-                      family-owned business brings expertise, reliability, and
-                      quality workmanship to every project throughout our community.
+                      We've been serving Shelby and Cleveland County for over 30
+                      years with dedication, integrity, and a commitment to
+                      excellence. Our family-owned business brings expertise,
+                      reliability, and quality workmanship to every project
+                      throughout our community.
                     </p>
                     <div className="space-y-4">
                       <div className="flex items-center">
@@ -420,8 +424,8 @@ export default function TVMountingPage() {
                   TV Mounting on All Wall Types in Shelby NC
                 </h2>
                 <p className="text-xl text-gray-600 mb-6">
-                  Our experienced Shelby technicians can mount TVs on any wall surface
-                  throughout Cleveland County safely and securely.
+                  Our experienced Shelby technicians can mount TVs on any wall
+                  surface throughout Cleveland County safely and securely.
                 </p>
                 <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                   We also handle{" "}

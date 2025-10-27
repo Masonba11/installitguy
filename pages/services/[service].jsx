@@ -63,31 +63,6 @@ export default function ServicePage() {
     return <div>Page not found</div>;
   }
 
-  const getServiceName = (serviceSlug) => {
-    const names = {
-      "tv-mounting": "TV Mounting",
-      "ceiling-fan-installation": "Ceiling Fan Installation",
-      "lighting-installation": "Lighting Installation",
-      "garage-door-opener-installation": "Garage Door Opener Installation",
-      "ring-doorbell-installation": "Ring Doorbell Installation",
-      "faucet-toilet-installation": "Faucet & Toilet Installation",
-      "appliance-installation": "Appliance Installation",
-      "blinds-installation": "Blinds Installation",
-      "mirror-towel-bar-installation": "Mirror & Towel Bar Installation",
-      "door-installation": "Door Installation",
-      "deck-fence-repair": "Deck & Fence Repair",
-      "water-leak-repair": "Water Leak Repair",
-      "garbage-disposal-installation": "Garbage Disposal Installation",
-      "shelving-installation": "Shelving Installation",
-      "painting-services": "Painting Services",
-      "flooring-installation": "Flooring Installation",
-      "furniture-assembly": "Furniture Assembly",
-      "fence-installation": "Fence Installation",
-      "gutter-cleaning": "Gutter Cleaning",
-    };
-    return names[serviceSlug] || serviceSlug;
-  };
-
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -133,12 +108,12 @@ export default function ServicePage() {
   return (
     <>
       <NextSeo
-        title={pageData.page_title}
+        title={`Professional ${getServiceName(service)} Services in Shelby NC | Install It Guy`}
         description={pageData.meta_description}
         canonical={pageData.url}
         openGraph={{
           url: pageData.url,
-          title: pageData.page_title,
+          title: `Professional ${getServiceName(service)} Services in Shelby NC | Install It Guy`,
           description: pageData.meta_description,
           siteName: "Install It Guy",
         }}
@@ -212,24 +187,31 @@ export default function ServicePage() {
                     Professional {getServiceName(service)} Services in Shelby NC
                   </h2>
                   <p className="text-lg text-gray-600 mb-6">
-                    Our family-owned business has been serving Shelby and Cleveland County for
-                    over 30 years. We bring expertise, reliability, and a
-                    commitment to excellence to every{" "}
-                    {getServiceName(service).toLowerCase()} project throughout our community.
+                    Our family-owned business has been serving Shelby and
+                    Cleveland County for over 30 years. We bring expertise,
+                    reliability, and a commitment to excellence to every{" "}
+                    {getServiceName(service).toLowerCase()} project throughout
+                    our community.
                   </p>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                     When you choose Install It Guy for{" "}
-                    {getServiceName(service).toLowerCase()} in Shelby, you're getting more
-                    than just a service provider – you're getting a trusted
-                    partner who understands the unique needs of Shelby homeowners. From historic homes in downtown Shelby to newer developments in West Shelby and Kings Mountain, our team knows the local building codes, common home styles, and weather considerations that affect installations throughout Cleveland County.
+                    {getServiceName(service).toLowerCase()} in Shelby, you're
+                    getting more than just a service provider – you're getting a
+                    trusted partner who understands the unique needs of Shelby
+                    homeowners. From historic homes in downtown Shelby to newer
+                    developments in West Shelby and Kings Mountain, our team
+                    knows the local building codes, common home styles, and
+                    weather considerations that affect installations throughout
+                    Cleveland County.
                   </p>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    We believe in transparent communication and fair pricing for Shelby residents.
-                    Before we start any {getServiceName(service).toLowerCase()}{" "}
-                    project in your Shelby home, we'll explain exactly what we plan to do, how long
-                    it will take, and what it will cost. No surprises, no hidden
-                    fees – just honest, professional service that you can count
-                    on from your local Shelby experts.
+                    We believe in transparent communication and fair pricing for
+                    Shelby residents. Before we start any{" "}
+                    {getServiceName(service).toLowerCase()} project in your
+                    Shelby home, we'll explain exactly what we plan to do, how
+                    long it will take, and what it will cost. No surprises, no
+                    hidden fees – just honest, professional service that you can
+                    count on from your local Shelby experts.
                   </p>
 
                   {/* Service Gallery */}
@@ -264,16 +246,16 @@ export default function ServicePage() {
                           />
                         </svg>
                       </div>
-                        <div>
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                            30+ Years Serving Shelby
-                          </h3>
-                          <p className="text-gray-600">
-                            Three decades of expertise in{" "}
-                            {getServiceName(service).toLowerCase()} throughout Cleveland County with
-                            dedication and local knowledge.
-                          </p>
-                        </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                          30+ Years Serving Shelby
+                        </h3>
+                        <p className="text-gray-600">
+                          Three decades of expertise in{" "}
+                          {getServiceName(service).toLowerCase()} throughout
+                          Cleveland County with dedication and local knowledge.
+                        </p>
+                      </div>
                     </div>
                     <div className="flex items-start">
                       <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mr-3 mt-1">
@@ -314,15 +296,16 @@ export default function ServicePage() {
                           />
                         </svg>
                       </div>
-                        <div>
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                            Shelby Local Expertise
-                          </h3>
-                          <p className="text-gray-600">
-                            Deep knowledge of Shelby homes, Cleveland County building codes, and local weather patterns for{" "}
-                            {getServiceName(service).toLowerCase()}.
-                          </p>
-                        </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                          Shelby Local Expertise
+                        </h3>
+                        <p className="text-gray-600">
+                          Deep knowledge of Shelby homes, Cleveland County
+                          building codes, and local weather patterns for{" "}
+                          {getServiceName(service).toLowerCase()}.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -332,10 +315,11 @@ export default function ServicePage() {
                       Why Choose Us for {getServiceName(service)} in Shelby
                     </h3>
                     <p className="text-gray-600 mb-6">
-                      We've been serving Shelby and Cleveland County for over 30 years with
-                      dedication, integrity, and a commitment to excellence. Our
-                      family-owned business brings expertise, reliability, and
-                      quality workmanship to every project throughout our community.
+                      We've been serving Shelby and Cleveland County for over 30
+                      years with dedication, integrity, and a commitment to
+                      excellence. Our family-owned business brings expertise,
+                      reliability, and quality workmanship to every project
+                      throughout our community.
                     </p>
                     <div className="space-y-4">
                       <div className="flex items-center">
@@ -421,15 +405,15 @@ export default function ServicePage() {
         {/* Services Section */}
         <section className="section-padding bg-gray-50">
           <div className="container-custom">
-              <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                  Our {getServiceName(service)} Services in Shelby NC
-                </h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                  We offer comprehensive {getServiceName(service).toLowerCase()}{" "}
-                  services throughout Shelby and Cleveland County.
-                </p>
-              </div>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Our {getServiceName(service)} Services in Shelby NC
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                We offer comprehensive {getServiceName(service).toLowerCase()}{" "}
+                services throughout Shelby and Cleveland County.
+              </p>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 p-6">
