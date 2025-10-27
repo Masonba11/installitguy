@@ -30,7 +30,10 @@ export default function Header() {
     const handleClickOutside = (event) => {
       // Only handle desktop dropdowns, not mobile menu
       if (window.innerWidth >= 768) {
-        if (servicesRef.current && !servicesRef.current.contains(event.target)) {
+        if (
+          servicesRef.current &&
+          !servicesRef.current.contains(event.target)
+        ) {
           setIsServicesOpen(false);
         }
         if (
@@ -393,17 +396,6 @@ export default function Header() {
               <Link href="tel:+17041234567" className="btn-primary text-center">
                 Call Now
               </Link>
-              
-              {/* Debug button */}
-              <button
-                onClick={() => {
-                  console.log("DEBUG BUTTON CLICKED!");
-                  alert("Mobile menu clicks work!");
-                }}
-                className="bg-red-500 text-white p-2 rounded"
-              >
-                TEST CLICK
-              </button>
             </nav>
           </div>
         )}
