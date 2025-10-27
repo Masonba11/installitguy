@@ -196,73 +196,33 @@ export default function TVMountingPage() {
           </div>
         </section>
 
-
         {/* Service Overview */}
         <section className="section-padding">
-          <div className="container-custom">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Professional TV Mounting Services in Shelby NC
-              </h2>
-              <p className="text-xl text-gray-600 mb-8">
-                We specialize in secure, professional TV mounting for all sizes
-                and wall types. Our experienced technicians ensure your TV is
-                mounted safely with clean cable management.
-              </p>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Serving Shelby NC homeowners for over 30 years, we understand
-                the unique challenges of mounting TVs in Carolina homes. From
-                historic brick walls in downtown Shelby to modern drywall in
-                newer developments, our team uses professional-grade tools and
-                techniques to ensure your investment is protected.
-              </p>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Our commitment to quality means we never cut corners. We use
-                stud finders, level lasers, and proper mounting hardware for
-                every installation. Whether you're upgrading to a larger screen
-                or mounting your first flat-panel TV, we'll make sure the job is
-                done right the first time.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* TV Mounting Expertise */}
-        <section className="section-padding bg-gray-50">
           <div className="container-custom">
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                    Expert TV Wall Mounting in Shelby
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                    Professional TV Mounting Services in Shelby NC
                   </h2>
                   <p className="text-lg text-gray-600 mb-6">
-                    Our certified technicians have years of experience mounting
-                    TVs of all sizes, from compact 32-inch models to massive
-                    85-inch displays. We understand the unique challenges of
-                    different wall types and TV weights.
-                  </p>
-                  <p className="text-lg text-gray-600 mb-6">
-                    Whether you need a simple tilt mount for your living room or
-                    a full-motion articulating mount for your bedroom, we ensure
-                    your TV is securely mounted with professional cable
-                    management.
+                    We specialize in secure, professional TV mounting for all sizes
+                    and wall types. Our experienced technicians ensure your TV is
+                    mounted safely with clean cable management.
                   </p>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    Our Shelby-based team brings local knowledge to every
-                    project. We're familiar with the common wall materials found
-                    in Cleveland County homes and know how to work around
-                    electrical outlets, HVAC vents, and other obstacles that can
-                    complicate TV mounting. This local expertise saves you time
-                    and ensures a cleaner installation.
+                    Serving Shelby NC homeowners for over 30 years, we understand
+                    the unique challenges of mounting TVs in Carolina homes. From
+                    historic brick walls in downtown Shelby to modern drywall in
+                    newer developments, our team uses professional-grade tools and
+                    techniques to ensure your investment is protected.
                   </p>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    Trust is everything in our business. That's why we provide
-                    detailed explanations of our process, show you exactly where
-                    we'll mount your TV, and clean up thoroughly when we're
-                    done. We also offer our lifetime warranty on all mounting
-                    work, giving you peace of mind that your TV installation
-                    will last for years to come.
+                    Our commitment to quality means we never cut corners. We use
+                    stud finders, level lasers, and proper mounting hardware for
+                    every installation. Whether you're upgrading to a larger screen
+                    or mounting your first flat-panel TV, we'll make sure the job is
+                    done right the first time.
                   </p>
                   <div className="space-y-4">
                     <div className="flex items-start">
@@ -281,11 +241,11 @@ export default function TVMountingPage() {
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                          Secure Wall Assessment
+                          30+ Years Experience
                         </h3>
                         <p className="text-gray-600">
-                          We evaluate your wall structure to determine the best
-                          mounting solution and hardware requirements.
+                          Three decades of expertise in TV mounting with
+                          dedication and skill.
                         </p>
                       </div>
                     </div>
@@ -305,11 +265,11 @@ export default function TVMountingPage() {
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                          Professional Cable Management
+                          Lifetime Warranty
                         </h3>
                         <p className="text-gray-600">
-                          Hide unsightly cables with our professional cable
-                          management solutions for a clean, organized look.
+                          We proudly back our TV mounting work with a
+                          lifetime customer satisfaction guarantee.
                         </p>
                       </div>
                     </div>
@@ -329,102 +289,103 @@ export default function TVMountingPage() {
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                          Optimal Viewing Height
+                          Local Expertise
                         </h3>
                         <p className="text-gray-600">
-                          We position your TV at the perfect height for
-                          comfortable viewing, whether you're sitting or
-                          standing.
+                          Deep knowledge of local homes and building codes for
+                          TV mounting.
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
-                </div>
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                    Why Choose Us for TV Mounting
-                  </h3>
-                  <p className="text-gray-600 mb-6">
-                    We've been serving the Carolinas for over 30 years with
-                    dedication, integrity, and a commitment to excellence. Our
-                    family-owned business brings expertise, reliability, and
-                    quality workmanship to every project.
-                  </p>
-                  <div className="space-y-4">
-                    <div className="flex items-center">
-                      <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
-                        <svg
-                          className="w-4 h-4"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
+                <div className="lg:col-span-1">
+                  <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                      Why Choose Us for TV Mounting
+                    </h3>
+                    <p className="text-gray-600 mb-6">
+                      We've been serving the Carolinas for over 30 years with
+                      dedication, integrity, and a commitment to excellence. Our
+                      family-owned business brings expertise, reliability, and
+                      quality workmanship to every project.
+                    </p>
+                    <div className="space-y-4">
+                      <div className="flex items-center">
+                        <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
+                          <svg
+                            className="w-4 h-4"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-gray-700">
+                          Licensed and insured professionals
+                        </span>
                       </div>
-                      <span className="text-gray-700">
-                        Licensed and insured professionals
-                      </span>
-                    </div>
-                    <div className="flex items-center">
-                      <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
-                        <svg
-                          className="w-4 h-4"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
+                      <div className="flex items-center">
+                        <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
+                          <svg
+                            className="w-4 h-4"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-gray-700">
+                          Same-day service available
+                        </span>
                       </div>
-                      <span className="text-gray-700">
-                        Same-day service available
-                      </span>
-                    </div>
-                    <div className="flex items-center">
-                      <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
-                        <svg
-                          className="w-4 h-4"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
+                      <div className="flex items-center">
+                        <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
+                          <svg
+                            className="w-4 h-4"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-gray-700">
+                          Competitive pricing with no hidden fees
+                        </span>
                       </div>
-                      <span className="text-gray-700">
-                        Competitive pricing with no hidden fees
-                      </span>
-                    </div>
-                    <div className="flex items-center">
-                      <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
-                        <svg
-                          className="w-4 h-4"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
+                      <div className="flex items-center">
+                        <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
+                          <svg
+                            className="w-4 h-4"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-gray-700">
+                          Clean, professional work every time
+                        </span>
                       </div>
-                      <span className="text-gray-700">
-                        Clean, professional work every time
-                      </span>
                     </div>
                   </div>
+                </div>
               </div>
             </div>
           </div>
