@@ -205,9 +205,7 @@ export default function ServicePage() {
         {/* About Our Company */}
         <section className="section-padding">
           <div className="container-custom">
-            <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
+            <div className="max-w-4xl mx-auto text-center">
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                     Professional {getServiceName(service)} Services
                   </h2>
@@ -234,11 +232,11 @@ export default function ServicePage() {
                     fees – just honest, professional service that you can count
                     on.
                   </p>
-                  <div className="space-y-4">
-                    <div className="flex items-start">
-                      <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mr-3 mt-1">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <div className="flex flex-col items-center">
+                      <div className="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center mb-4">
                         <svg
-                          className="w-4 h-4 text-white"
+                          className="w-6 h-6 text-white"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -249,21 +247,19 @@ export default function ServicePage() {
                           />
                         </svg>
                       </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                          30+ Years Experience
-                        </h3>
-                        <p className="text-gray-600">
-                          Three decades of expertise in{" "}
-                          {getServiceName(service).toLowerCase()} with
-                          dedication and skill.
-                        </p>
-                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                        30+ Years Experience
+                      </h3>
+                      <p className="text-gray-600 text-center">
+                        Three decades of expertise in{" "}
+                        {getServiceName(service).toLowerCase()} with dedication
+                        and skill.
+                      </p>
                     </div>
-                    <div className="flex items-start">
-                      <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <div className="flex flex-col items-center">
+                      <div className="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center mb-4">
                         <svg
-                          className="w-4 h-4 text-white"
+                          className="w-6 h-6 text-white"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -274,21 +270,19 @@ export default function ServicePage() {
                           />
                         </svg>
                       </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                          Lifetime Warranty
-                        </h3>
-                        <p className="text-gray-600">
-                          We proudly back our{" "}
-                          {getServiceName(service).toLowerCase()} work with a
-                          lifetime customer satisfaction guarantee.
-                        </p>
-                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                        Lifetime Warranty
+                      </h3>
+                      <p className="text-gray-600 text-center">
+                        We proudly back our{" "}
+                        {getServiceName(service).toLowerCase()} work with a
+                        lifetime customer satisfaction guarantee.
+                      </p>
                     </div>
-                    <div className="flex items-start">
-                      <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <div className="flex flex-col items-center">
+                      <div className="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center mb-4">
                         <svg
-                          className="w-4 h-4 text-white"
+                          className="w-6 h-6 text-white"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -299,122 +293,133 @@ export default function ServicePage() {
                           />
                         </svg>
                       </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                          Local Expertise
-                        </h3>
-                        <p className="text-gray-600">
-                          Deep knowledge of local homes and building codes for{" "}
-                          {getServiceName(service).toLowerCase()}.
-                        </p>
-                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                        Local Expertise
+                      </h3>
+                      <p className="text-gray-600 text-center">
+                        Deep knowledge of local homes and building codes for{" "}
+                        {getServiceName(service).toLowerCase()}.
+                      </p>
                     </div>
                   </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Service Images Section */}
+        <section className="section-padding bg-gray-50">
+          <div className="container-custom">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
+                Our {getServiceName(service)} Work
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {getServiceImages(service)
+                  .slice(0, 2)
+                  .map((image, index) => (
+                    <div
+                      key={index}
+                      className="relative rounded-lg overflow-hidden shadow-lg"
+                    >
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        width={600}
+                        height={400}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us Section */}
+        <section className="section-padding">
+          <div className="container-custom">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                Why Choose Us for {getServiceName(service)}
+              </h2>
+              <p className="text-lg text-gray-600 mb-8">
+                We've been serving the Carolinas for over 30 years with
+                dedication, integrity, and a commitment to excellence. Our
+                family-owned business brings expertise, reliability, and
+                quality workmanship to every project.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="flex flex-col items-center">
+                  <div className="w-12 h-12 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mb-4">
+                    <svg
+                      className="w-6 h-6"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <span className="text-gray-700 font-medium text-center">
+                    Licensed and insured professionals
+                  </span>
                 </div>
-                <div className="lg:col-span-1">
-                  <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                      Why Choose Us for {getServiceName(service)}
-                    </h3>
-                    <p className="text-gray-600 mb-6">
-                      We've been serving the Carolinas for over 30 years with
-                      dedication, integrity, and a commitment to excellence. Our
-                      family-owned business brings expertise, reliability, and
-                      quality workmanship to every project.
-                    </p>
-                    <div className="space-y-4">
-                      <div className="flex items-center">
-                        <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
-                          <svg
-                            className="w-4 h-4"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </div>
-                        <span className="text-gray-700">
-                          Licensed and insured professionals
-                        </span>
-                      </div>
-                      <div className="flex items-center">
-                        <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
-                          <svg
-                            className="w-4 h-4"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </div>
-                        <span className="text-gray-700">
-                          Same-day service available
-                        </span>
-                      </div>
-                      <div className="flex items-center">
-                        <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
-                          <svg
-                            className="w-4 h-4"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </div>
-                        <span className="text-gray-700">
-                          Competitive pricing with no hidden fees
-                        </span>
-                      </div>
-                      <div className="flex items-center">
-                        <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
-                          <svg
-                            className="w-4 h-4"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </div>
-                        <span className="text-gray-700">
-                          Clean, professional work every time
-                        </span>
-                      </div>
-                    </div>
+                <div className="flex flex-col items-center">
+                  <div className="w-12 h-12 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mb-4">
+                    <svg
+                      className="w-6 h-6"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
                   </div>
-                  <div className="space-y-3">
-                    {getServiceImages(service)
-                      .slice(0, 2)
-                      .map((image, index) => (
-                        <div
-                          key={index}
-                          className="relative rounded-lg overflow-hidden shadow-sm"
-                        >
-                          <Image
-                            src={image.src}
-                            alt={image.alt}
-                            width={300}
-                            height={225}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      ))}
+                  <span className="text-gray-700 font-medium text-center">
+                    Same-day service available
+                  </span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="w-12 h-12 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mb-4">
+                    <svg
+                      className="w-6 h-6"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
                   </div>
+                  <span className="text-gray-700 font-medium text-center">
+                    Competitive pricing with no hidden fees
+                  </span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="w-12 h-12 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mb-4">
+                    <svg
+                      className="w-6 h-6"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <span className="text-gray-700 font-medium text-center">
+                    Clean, professional work every time
+                  </span>
                 </div>
               </div>
             </div>
