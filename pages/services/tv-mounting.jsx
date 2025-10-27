@@ -7,7 +7,6 @@ import ContextualReviews from "../../components/ContextualReviews";
 import ContextualFAQs from "../../components/ContextualFAQs";
 import QuoteForm from "../../components/QuoteForm";
 import Link from "next/link";
-import { getServiceImages } from "../../utils/serviceImages";
 
 export default function TVMountingPage() {
   const service = "tv-mounting";
@@ -197,29 +196,6 @@ export default function TVMountingPage() {
           </div>
         </section>
 
-        {/* Service Images */}
-        <section className="section-padding bg-white">
-          <div className="container-custom">
-            <div className="service-gallery">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                {getServiceImages(service).map((image, index) => (
-                  <div
-                    key={index}
-                    className="relative rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
-                  >
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      width={400}
-                      height={300}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Service Overview */}
         <section className="section-padding">
@@ -364,23 +340,6 @@ export default function TVMountingPage() {
                     </div>
                   </div>
                 </div>
-                <div className="space-y-3">
-                  {getServiceImages(service)
-                    .slice(0, 2)
-                    .map((image, index) => (
-                      <div
-                        key={index}
-                        className="relative rounded-lg overflow-hidden shadow-sm"
-                      >
-                        <Image
-                          src={image.src}
-                          alt={image.alt}
-                          width={150}
-                          height={100}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    ))}
                 </div>
                 <div className="bg-white rounded-2xl shadow-lg p-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">
@@ -424,7 +383,6 @@ export default function TVMountingPage() {
                       </p>
                     </div>
                   </div>
-                </div>
               </div>
             </div>
           </div>
