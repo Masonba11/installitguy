@@ -28,14 +28,17 @@ export default function Header() {
   // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (servicesRef.current && !servicesRef.current.contains(event.target)) {
-        setIsServicesOpen(false);
-      }
-      if (
-        serviceAreasRef.current &&
-        !serviceAreasRef.current.contains(event.target)
-      ) {
-        setIsServiceAreasOpen(false);
+      // Only handle desktop dropdowns, not mobile menu
+      if (window.innerWidth >= 768) {
+        if (servicesRef.current && !servicesRef.current.contains(event.target)) {
+          setIsServicesOpen(false);
+        }
+        if (
+          serviceAreasRef.current &&
+          !serviceAreasRef.current.contains(event.target)
+        ) {
+          setIsServiceAreasOpen(false);
+        }
       }
     };
 
@@ -272,6 +275,10 @@ export default function Header() {
               <Link
                 href="/"
                 className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+                onClick={() => {
+                  console.log("Mobile Home clicked");
+                  setIsMenuOpen(false);
+                }}
               >
                 Home
               </Link>
@@ -350,7 +357,10 @@ export default function Header() {
                         href={`/service-areas/${area.slug}`}
                         className="block text-sm text-gray-600 hover:text-primary-600 transition-colors py-2 px-2"
                         onClick={() => {
-                          console.log("Mobile service area clicked:", area.slug);
+                          console.log(
+                            "Mobile service area clicked:",
+                            area.slug
+                          );
                           setIsServiceAreasOpen(false);
                           setIsMenuOpen(false);
                         }}
@@ -383,6 +393,17 @@ export default function Header() {
               <Link href="tel:+17041234567" className="btn-primary text-center">
                 Call Now
               </Link>
+              
+              {/* Debug button */}
+              <button
+                onClick={() => {
+                  console.log("DEBUG BUTTON CLICKED!");
+                  alert("Mobile menu clicks work!");
+                }}
+                className="bg-red-500 text-white p-2 rounded"
+              >
+                TEST CLICK
+              </button>
             </nav>
           </div>
         )}
