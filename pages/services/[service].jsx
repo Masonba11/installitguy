@@ -34,18 +34,15 @@ const services = [
   "gutter-cleaning",
 ];
 
-export default function ServicePage() {
+export default function ServicePage({ service }) {
   const router = useRouter();
-  const [service, setService] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (router.isReady) {
-      const { service: serviceParam } = router.query;
-      setService(serviceParam);
       setLoading(false);
     }
-  }, [router.isReady, router.query]);
+  }, [router.isReady]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -108,16 +105,12 @@ export default function ServicePage() {
   return (
     <>
       <NextSeo
-        title={`Professional ${getServiceName(
-          service
-        )} Services in Shelby NC | Install It Guy`}
+        title={pageData.page_title}
         description={pageData.meta_description}
         canonical={pageData.url}
         openGraph={{
           url: pageData.url,
-          title: `Professional ${getServiceName(
-            service
-          )} Services in Shelby NC | Install It Guy`,
+          title: pageData.page_title,
           description: pageData.meta_description,
           siteName: "Install It Guy",
         }}
@@ -715,4 +708,14 @@ export default function ServicePage() {
       <Footer />
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { service } = context.params;
+
+  return {
+    props: {
+      service,
+    },
+  };
 }

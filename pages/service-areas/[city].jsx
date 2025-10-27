@@ -1,6 +1,4 @@
 import { NextSeo } from "next-seo";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ServiceCard from "../../components/ServiceCard";
@@ -45,27 +43,18 @@ const services = [
   "gutter-cleaning",
 ];
 
-export default function ServiceAreaPage() {
-  const router = useRouter();
-  const { city } = router.query;
-  const [cityData, setCityData] = useState(null);
-
-  useEffect(() => {
-    if (city && serviceAreas.includes(city)) {
-      // Get city data from metadata
-      const cityMetaData = metaData.find(
-        (page) => page.url === `https://installitguy.com/service-areas/${city}/`
-      );
-      setCityData(cityMetaData);
-    }
-  }, [city]);
+export default function ServiceAreaPage({ city }) {
+  // Get city data from metadata directly
+  const cityData = metaData.find(
+    (page) => page.url === `https://installitguy.com/service-areas/${city}/`
+  );
 
   if (!city || !serviceAreas.includes(city)) {
-    return <div>Loading...</div>;
+    return <div>City not found</div>;
   }
 
   if (!cityData) {
-    return <div>Loading...</div>;
+    return <div>City data not found</div>;
   }
 
   const getCityName = (citySlug) => {
@@ -273,4 +262,14 @@ export default function ServiceAreaPage() {
       <Footer />
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { city } = context.params;
+
+  return {
+    props: {
+      city,
+    },
+  };
 }

@@ -23,6 +23,13 @@ export const serviceImageMap = {
   ],
   "furniture-assembly": ["bedframe.jpg", "dresserinstall.jpg"],
   "gutter-cleaning": ["rooftopinstall.jpg"],
+  "blinds-installation": [],
+  "door-installation": [],
+  "water-leak-repair": [],
+  "painting-services": [],
+  "flooring-installation": [],
+  "fence-installation": [],
+  "mirror-towel-bar-installation": ["mirorinstall.jpg"],
 };
 
 // Helper function to get images for a service
@@ -50,6 +57,11 @@ export function getServiceName(serviceSlug) {
     "flooring-installation": "Flooring Installation",
     "furniture-assembly": "Furniture Assembly",
     "gutter-cleaning": "Gutter Cleaning",
+    "blinds-installation": "Blinds Installation",
+    "door-installation": "Door Installation",
+    "water-leak-repair": "Water Leak Repair",
+    "fence-installation": "Fence Installation",
+    "mirror-towel-bar-installation": "Mirror & Towel Bar Installation",
   };
 
   return (

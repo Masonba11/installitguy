@@ -3,7 +3,14 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["installitguy.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "installitguy.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
   async rewrites() {
     return [

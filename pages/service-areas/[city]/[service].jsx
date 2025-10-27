@@ -1,6 +1,4 @@
 import { NextSeo } from "next-seo";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import ServiceCard from "../../../components/ServiceCard";
@@ -46,24 +44,12 @@ const services = [
   "gutter-cleaning",
 ];
 
-export default function ServiceAreaServicePage() {
-  const router = useRouter();
-  const { city, service } = router.query;
-  const [pageData, setPageData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (city && service) {
-      const url = `https://installitguy.com/service-areas/${city}/${service}/`;
-      const data = metaData.find((item) => item.url === url);
-      setPageData(data);
-      setLoading(false);
-    }
-  }, [city, service]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+export default function ServiceAreaServicePage({ city, service }) {
+  // Get page data from metadata directly
+  const pageData = metaData.find(
+    (item) =>
+      item.url === `https://installitguy.com/service-areas/${city}/${service}/`
+  );
 
   if (!pageData) {
     return <div>Page not found</div>;
@@ -578,31 +564,33 @@ export default function ServiceAreaServicePage() {
           </div>
         </section>
 
-        {/* Service Areas */}
+        {/* Other Services in This City */}
         <section className="section-padding bg-gray-50">
           <div className="container-custom">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                We Serve {getCityName(city)} and Surrounding Areas
+                Other Services We Offer in {getCityName(city)}
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Our family-owned business proudly serves multiple cities across
-                North and South Carolina.
+                We provide comprehensive home improvement services throughout{" "}
+                {getCityName(city)} and surrounding areas.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              {serviceAreas.map((area) => (
-                <Link
-                  key={area}
-                  href={`/service-areas/${area}`}
-                  className="card text-center hover:shadow-lg transition-all duration-300 group"
-                >
-                  <div className="text-primary-600 group-hover:text-primary-700 font-semibold">
-                    {getCityName(area)}
-                  </div>
-                </Link>
-              ))}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {services
+                .filter((serviceName) => serviceName !== service)
+                .map((serviceName) => (
+                  <Link
+                    key={serviceName}
+                    href={`/service-areas/${city}/${serviceName}`}
+                    className="card text-center hover:shadow-lg transition-all duration-300 group"
+                  >
+                    <div className="text-primary-600 group-hover:text-primary-700 font-semibold">
+                      {getServiceName(serviceName)}
+                    </div>
+                  </Link>
+                ))}
             </div>
           </div>
         </section>
@@ -721,4 +709,15 @@ export default function ServiceAreaServicePage() {
       <Footer />
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { city, service } = context.params;
+
+  return {
+    props: {
+      city,
+      service,
+    },
+  };
 }

@@ -126,7 +126,7 @@ export default function Home() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative text-white overflow-hidden">
+        <section className="relative text-white overflow-hidden min-h-[80vh] flex items-center justify-center pt-40">
           {/* Background Video */}
           <div className="absolute inset-0">
             <video
@@ -134,34 +134,36 @@ export default function Home() {
               muted
               loop
               playsInline
-              className="absolute inset-0 w-full h-full object-cover opacity-95"
+              className="absolute inset-0 w-full h-full object-cover"
             >
               <source src="/shelby-background.mp4" type="video/mp4" />
             </video>
           </div>
-          {/* Subtle Dark Overlay for Text Readability */}
-          <div className="absolute inset-0 bg-black/30" />
-          {/* Content */}
-          <div className="relative container-custom section-padding">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
+
+          {/* Enhanced Overlay with Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60" />
+
+          {/* Hero Content */}
+          <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div className="text-center">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 Shelby's Family-Owned Handyman Team
               </h1>
-              <p className="text-xl md:text-2xl mb-8 text-primary-100">
+              <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-100 max-w-4xl mx-auto leading-relaxed">
                 Serving the Carolinas for 30+ years with expert installations,
                 repairs, and home maintenance. All work backed by our lifetime
                 warranty.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Link
                   href="tel:+17044199799"
-                  className="btn-primary bg-white text-primary-600 hover:bg-gray-100"
+                  className="btn-primary bg-white text-primary-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold shadow-lg"
                 >
                   Call Now: (704) 419-9799
                 </Link>
                 <a
                   href="#quote-form"
-                  className="btn-primary bg-white text-primary-600 hover:bg-gray-100"
+                  className="btn-primary bg-white text-primary-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold shadow-lg"
                 >
                   Get Free Quote
                 </a>
