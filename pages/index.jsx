@@ -134,6 +134,7 @@ export default function Home() {
               muted
               loop
               playsInline
+              preload="metadata"
               className="absolute inset-0 w-full h-full object-cover"
               onLoadStart={() => console.log("Video loading started")}
               onLoadedData={() => console.log("Video loaded successfully")}
