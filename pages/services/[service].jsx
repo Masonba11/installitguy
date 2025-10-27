@@ -108,12 +108,16 @@ export default function ServicePage() {
   return (
     <>
       <NextSeo
-        title={`Professional ${getServiceName(service)} Services in Shelby NC | Install It Guy`}
+        title={`Professional ${getServiceName(
+          service
+        )} Services in Shelby NC | Install It Guy`}
         description={pageData.meta_description}
         canonical={pageData.url}
         openGraph={{
           url: pageData.url,
-          title: `Professional ${getServiceName(service)} Services in Shelby NC | Install It Guy`,
+          title: `Professional ${getServiceName(
+            service
+          )} Services in Shelby NC | Install It Guy`,
           description: pageData.meta_description,
           siteName: "Install It Guy",
         }}
@@ -153,11 +157,11 @@ export default function ServicePage() {
           <div className="relative container-custom section-padding">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                {getServiceName(service)} Services
+                Professional {getServiceName(service)} Services in Shelby NC
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-primary-100">
-                Professional {getServiceName(service).toLowerCase()} services
-                with 30+ years of experience and lifetime warranty.
+                Professional {getServiceName(service).toLowerCase()} services in Shelby NC
+                with 30+ years of local experience and lifetime warranty.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link

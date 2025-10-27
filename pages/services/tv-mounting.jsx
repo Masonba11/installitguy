@@ -134,7 +134,8 @@ export default function TVMountingPage() {
         canonical={pageData.url}
         openGraph={{
           url: pageData.url,
-          title: "Professional TV Mounting Services in Shelby NC | Install It Guy",
+          title:
+            "Professional TV Mounting Services in Shelby NC | Install It Guy",
           description: pageData.meta_description,
           siteName: "Install It Guy",
         }}
