@@ -90,6 +90,86 @@ export default function ServicesIndex() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            name: "Handyman Services FAQs",
+            description:
+              "Common questions about our handyman services in Shelby NC",
+            url: "https://installitguy.com/services",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "What services do you offer?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "We provide expert home installation, handyman repairs, home maintenance, and custom storage solutions. Our services include TV mounting, ceiling fan installation, lighting installation, garage door opener installation, Ring doorbell installation, faucet and toilet installation, appliance installation, blinds installation, mirror and towel bar installation, door installation, deck and fence repair, water leak repair, garbage disposal installation, shelving installation, painting services, flooring installation, furniture assembly, fence installation, and gutter cleaning.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What areas do you serve?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "We serve Charlotte, Concord, Rock Hill, Gastonia, Hickory, Shelby, Lincolnton, Gaffney, Kings Mountain, Forest City, and surrounding areas in North and South Carolina.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How much do your services cost?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Our pricing varies depending on the specific service and project requirements. We provide free estimates for all projects. Contact us for a detailed quote based on your needs.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Do you provide free estimates?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, we provide free estimates for all our services. Contact us to schedule a consultation and receive a detailed quote for your project.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Are you licensed and insured?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, we are fully licensed and insured. As a family-owned business serving the Carolinas for over 30 years, we maintain all required licenses and comprehensive insurance coverage to protect both you and our team during any project we undertake.",
+                },
+              },
+            ],
+          }),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://installitguy.com",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Services",
+                item: "https://installitguy.com/services",
+              },
+            ],
+          }),
+        }}
+      />
+
       <Header />
 
       <main className="min-h-screen bg-gray-50">

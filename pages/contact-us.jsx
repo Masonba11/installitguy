@@ -110,6 +110,86 @@ export default function ContactUs() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            name: "Contact FAQs",
+            description:
+              "Common questions about contacting Install It Guy for handyman services",
+            url: "https://installitguy.com/contact-us",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "How can I contact Install It Guy?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "You can contact us by phone at (704) 419-9799, email at info@installitguy.com, or by filling out our contact form on this page. We typically respond within the same day.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Do you provide free estimates?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, we provide free estimates for all our services. Contact us to schedule a consultation and receive a detailed quote for your project.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What information should I include when contacting you?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Please include details about your project, your location, preferred contact method, and any specific requirements or questions you have. The more details you provide, the better we can assist you.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How quickly do you respond to inquiries?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "We typically respond to phone calls and emails within the same day. For urgent projects, we prioritize quick response times to help you get started as soon as possible.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Can I schedule a consultation?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, we offer free consultations for all projects. Contact us to schedule a convenient time for us to visit your location and discuss your project needs.",
+                },
+              },
+            ],
+          }),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://installitguy.com",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Contact Us",
+                item: "https://installitguy.com/contact-us",
+              },
+            ],
+          }),
+        }}
+      />
+
       <Header />
 
       <main className="min-h-screen bg-gray-50">

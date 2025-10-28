@@ -102,10 +102,17 @@ export default function ServiceAreaServicePage({ city, service }) {
     name: `${getServiceName(service)} in ${getCityName(city)}`,
     description: pageData.meta_description,
     url: pageData.url,
+    serviceType: getServiceName(service),
+    category: "Home Improvement",
+    areaServed: {
+      "@type": "Place",
+      name: getCityName(city),
+    },
     provider: {
       "@type": "LocalBusiness",
       name: "Install It Guy",
-      telephone: "+17044199799",
+      url: "https://installitguy.com",
+      telephone: "+1-704-419-9799",
       email: "info@installitguy.com",
       address: {
         "@type": "PostalAddress",
@@ -120,15 +127,47 @@ export default function ServiceAreaServicePage({ city, service }) {
         name: getCityName(city),
       },
     },
-    serviceType: getServiceName(service),
-    category: "Home Improvement",
     offers: {
       "@type": "Offer",
+      price: "99.00",
+      priceCurrency: "USD",
+      availability: "InStock",
+      url: pageData.url,
       description: `Professional ${getServiceName(
         service
       ).toLowerCase()} service in ${getCityName(city)}`,
-      availability: "https://schema.org/InStock",
     },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://installitguy.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Service Areas",
+        item: "https://installitguy.com/service-areas",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: getCityName(city),
+        item: `https://installitguy.com/service-areas/${city}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: getServiceName(service),
+        item: pageData.url,
+      },
+    ],
   };
 
   return (
@@ -154,6 +193,92 @@ export default function ServiceAreaServicePage({ city, service }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(cityServiceSchema) }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            name: `${getServiceName(service)} FAQs in ${getCityName(city)}`,
+            description: `Common questions about ${getServiceName(
+              service
+            ).toLowerCase()} services in ${getCityName(city)}`,
+            url: pageData.url,
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: `How much does ${getServiceName(
+                  service
+                ).toLowerCase()} cost in ${getCityName(city)}?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: `Our pricing varies based on the specific project requirements. We provide free, detailed quotes for all ${getServiceName(
+                    service
+                  ).toLowerCase()} projects in ${getCityName(
+                    city
+                  )}. Contact us for a personalized estimate.`,
+                },
+              },
+              {
+                "@type": "Question",
+                name: `Do you offer same-day service for ${getServiceName(
+                  service
+                ).toLowerCase()}?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: `Yes, we often provide same-day service for ${getServiceName(
+                    service
+                  ).toLowerCase()} in ${getCityName(
+                    city
+                  )}. Contact us to check availability and schedule your appointment.`,
+                },
+              },
+              {
+                "@type": "Question",
+                name: `Are you licensed and insured for ${getServiceName(
+                  service
+                ).toLowerCase()}?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: `Yes, we are fully licensed and insured for all ${getServiceName(
+                    service
+                  ).toLowerCase()} projects. We carry comprehensive liability insurance for your protection.`,
+                },
+              },
+              {
+                "@type": "Question",
+                name: `What areas do you serve for ${getServiceName(
+                  service
+                ).toLowerCase()}?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: `We serve ${getCityName(
+                    city
+                  )} and surrounding areas including Shelby, Charlotte, Concord, Rock Hill, Gastonia, Hickory, Lincolnton, Gaffney, Kings Mountain, Forest City, and other communities in North and South Carolina.`,
+                },
+              },
+              {
+                "@type": "Question",
+                name: `Do you provide warranties on ${getServiceName(
+                  service
+                ).toLowerCase()} work?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: `Yes! We proudly back our ${getServiceName(
+                    service
+                  ).toLowerCase()} work with a lifetime customer satisfaction guarantee. If you ever have a concern about our work, we'll make it right.`,
+                },
+              },
+            ],
+          }),
+        }}
       />
 
       <Header />
@@ -439,25 +564,6 @@ export default function ServiceAreaServicePage({ city, service }) {
                 We offer comprehensive {getServiceName(service).toLowerCase()}{" "}
                 services in {getCityName(city)} and surrounding areas.
               </p>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Beyond {getServiceName(service).toLowerCase()}, we also
-                specialize in{" "}
-                <Link
-                  href="/services/ceiling-fan-installation"
-                  className="text-primary-600 hover:text-primary-700 font-medium"
-                >
-                  ceiling fan installation
-                </Link>{" "}
-                throughout{" "}
-                <Link
-                  href="/service-areas/concord-nc"
-                  className="text-primary-600 hover:text-primary-700 font-medium"
-                >
-                  Concord
-                </Link>{" "}
-                and surrounding areas, providing comprehensive home improvement
-                solutions.
-              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -577,20 +683,22 @@ export default function ServiceAreaServicePage({ city, service }) {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {services
                 .filter((serviceName) => serviceName !== service)
                 .map((serviceName) => (
-                  <Link
+                  <ServiceCard
                     key={serviceName}
-                    href={`/service-areas/${city}/${serviceName}`}
-                    className="card text-center hover:shadow-lg transition-all duration-300 group"
-                  >
-                    <div className="text-primary-600 group-hover:text-primary-700 font-semibold">
-                      {getServiceName(serviceName)}
-                    </div>
-                  </Link>
+                    service={serviceName}
+                    city={city}
+                  />
                 ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Link href={`/service-areas/${city}`} className="btn-primary">
+                View All Services in {getCityName(city)}
+              </Link>
             </div>
           </div>
         </section>

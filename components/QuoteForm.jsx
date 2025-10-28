@@ -12,6 +12,7 @@ export default function QuoteForm({
     name: "",
     email: "",
     phone: "",
+    serviceArea: "",
     service: "",
     message: "",
   });
@@ -40,6 +41,7 @@ export default function QuoteForm({
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
+          serviceArea: formData.serviceArea,
           service: formData.service,
           message: formData.message,
           to: WEB3FORMS_CONFIG.emails.to,
@@ -132,6 +134,38 @@ export default function QuoteForm({
                 />
               </div>
 
+              <div>
+                <label
+                  htmlFor="serviceArea"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Service Area *
+                </label>
+                <select
+                  id="serviceArea"
+                  name="serviceArea"
+                  required
+                  value={formData.serviceArea}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                >
+                  <option value="">Select your area</option>
+                  <option value="Charlotte, NC">Charlotte, NC</option>
+                  <option value="Concord, NC">Concord, NC</option>
+                  <option value="Rock Hill, SC">Rock Hill, SC</option>
+                  <option value="Gastonia, NC">Gastonia, NC</option>
+                  <option value="Hickory, NC">Hickory, NC</option>
+                  <option value="Shelby, NC">Shelby, NC</option>
+                  <option value="Lincolnton, NC">Lincolnton, NC</option>
+                  <option value="Gaffney, SC">Gaffney, SC</option>
+                  <option value="Kings Mountain, NC">Kings Mountain, NC</option>
+                  <option value="Forest City, NC">Forest City, NC</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label
                   htmlFor="service"

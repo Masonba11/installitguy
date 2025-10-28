@@ -61,6 +61,30 @@ export default function ReviewsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewsPageSchema) }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://installitguy.com",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Reviews",
+                item: "https://installitguy.com/reviews",
+              },
+            ],
+          }),
+        }}
+      />
+
       <Header />
 
       <main className="min-h-screen bg-gray-50">

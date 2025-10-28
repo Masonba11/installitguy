@@ -4,6 +4,42 @@ import Footer from "../components/Footer";
 import Link from "next/link";
 
 export default function Custom404() {
+  const notFoundSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Page Not Found - Install It Guy",
+    description:
+      "The page you're looking for doesn't exist. Find the handyman services you need with Install It Guy.",
+    url: "https://installitguy.com/404",
+    mainEntity: {
+      "@type": "LocalBusiness",
+      name: "Install It Guy",
+      url: "https://installitguy.com",
+      telephone: "+1-704-419-9799",
+      email: "info@installitguy.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "210 Joseph Ct",
+        addressLocality: "Shelby",
+        addressRegion: "NC",
+        postalCode: "28152",
+        addressCountry: "US",
+      },
+      areaServed: [
+        "Shelby, NC",
+        "Charlotte, NC",
+        "Concord, NC",
+        "Rock Hill, SC",
+        "Gastonia, NC",
+        "Hickory, NC",
+        "Lincolnton, NC",
+        "Gaffney, SC",
+        "Kings Mountain, NC",
+        "Forest City, NC",
+      ],
+    },
+  };
+
   return (
     <>
       <NextSeo
@@ -11,6 +47,11 @@ export default function Custom404() {
         description="The page you're looking for doesn't exist. Find the handyman services you need with Install It Guy."
         noindex={true}
         nofollow={true}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(notFoundSchema) }}
       />
 
       <Header />

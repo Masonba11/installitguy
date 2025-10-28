@@ -35,14 +35,15 @@ export default function ThankYou() {
   const thankYouPageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "Thank You",
+    name: "Thank You - Install It Guy",
     description:
       "Thank you for your interest in our handyman services. We'll be in touch soon!",
     url: "https://installitguy.com/thank-you",
     mainEntity: {
       "@type": "LocalBusiness",
       name: "Install It Guy",
-      telephone: "+17044199799",
+      url: "https://installitguy.com",
+      telephone: "+1-704-419-9799",
       email: "info@installitguy.com",
       address: {
         "@type": "PostalAddress",
@@ -52,6 +53,84 @@ export default function ThankYou() {
         postalCode: "28152",
         addressCountry: "US",
       },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: "35.2921",
+        longitude: "-81.5357",
+      },
+      areaServed: [
+        {
+          "@type": "City",
+          name: "Charlotte, NC",
+        },
+        {
+          "@type": "City",
+          name: "Concord, NC",
+        },
+        {
+          "@type": "City",
+          name: "Rock Hill, SC",
+        },
+        {
+          "@type": "City",
+          name: "Gastonia, NC",
+        },
+        {
+          "@type": "City",
+          name: "Hickory, NC",
+        },
+        {
+          "@type": "City",
+          name: "Shelby, NC",
+        },
+        {
+          "@type": "City",
+          name: "Lincolnton, NC",
+        },
+        {
+          "@type": "City",
+          name: "Gaffney, SC",
+        },
+        {
+          "@type": "City",
+          name: "Kings Mountain, NC",
+        },
+        {
+          "@type": "City",
+          name: "Forest City, NC",
+        },
+      ],
+      serviceType: [
+        "TV Mounting",
+        "Ceiling Fan Installation",
+        "Lighting Installation",
+        "Garage Door Opener Installation",
+        "Ring Doorbell Installation",
+        "Faucet & Toilet Installation",
+        "Appliance Installation",
+        "Blinds Installation",
+        "Mirror & Towel Bar Installation",
+        "Door Installation",
+        "Deck & Fence Repair",
+        "Water Leak Repair",
+        "Garbage Disposal Installation",
+        "Shelving Installation",
+        "Painting Services",
+        "Flooring Installation",
+        "Furniture Assembly",
+        "Fence Installation",
+        "Gutter Cleaning",
+      ],
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.8",
+        reviewCount: "240",
+      },
+      sameAs: [
+        "https://www.facebook.com/installitguy",
+        "https://www.instagram.com/installitguy",
+        "https://www.yelp.com/biz/install-it-guy-shelby",
+      ],
     },
   };
 

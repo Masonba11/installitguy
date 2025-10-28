@@ -141,6 +141,107 @@ export default function ServiceAreaPage({ city }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(cityBusinessSchema) }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            name: `Handyman Services FAQs in ${getCityName(city)}`,
+            description: `Common questions about handyman services in ${getCityName(
+              city
+            )}`,
+            url: cityData.url,
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: `What services do you offer in ${getCityName(city)}?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: `We provide expert home installation, handyman repairs, home maintenance, and custom storage solutions in ${getCityName(
+                    city
+                  )}. Our services include TV mounting, ceiling fan installation, lighting installation, garage door opener installation, Ring doorbell installation, faucet and toilet installation, appliance installation, blinds installation, mirror and towel bar installation, door installation, deck and fence repair, water leak repair, garbage disposal installation, shelving installation, painting services, flooring installation, furniture assembly, fence installation, and gutter cleaning.`,
+                },
+              },
+              {
+                "@type": "Question",
+                name: `How much do your services cost in ${getCityName(city)}?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: `Our pricing varies depending on the specific service and project requirements. We provide free estimates for all projects in ${getCityName(
+                    city
+                  )}. Contact us for a detailed quote based on your needs.`,
+                },
+              },
+              {
+                "@type": "Question",
+                name: `Do you provide free estimates in ${getCityName(city)}?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: `Yes, we provide free estimates for all our services in ${getCityName(
+                    city
+                  )}. Contact us to schedule a consultation and receive a detailed quote for your project.`,
+                },
+              },
+              {
+                "@type": "Question",
+                name: `Are you licensed and insured for work in ${getCityName(
+                  city
+                )}?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: `Yes, we are fully licensed and insured for all work in ${getCityName(
+                    city
+                  )}. As a family-owned business serving the Carolinas for over 30 years, we maintain all required licenses and comprehensive insurance coverage.`,
+                },
+              },
+              {
+                "@type": "Question",
+                name: `Do you provide warranties on your work in ${getCityName(
+                  city
+                )}?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: `Yes! We proudly back our work with a lifetime customer satisfaction guarantee. If you ever have a concern about any project we've completed in ${getCityName(
+                    city
+                  )}, we'll make it right.`,
+                },
+              },
+            ],
+          }),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://installitguy.com",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Service Areas",
+                item: "https://installitguy.com/service-areas",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: getCityName(city),
+                item: cityData.url,
+              },
+            ],
+          }),
+        }}
+      />
+
       <Header />
 
       <main className="min-h-screen bg-gray-50">
@@ -206,24 +307,6 @@ export default function ServiceAreaPage({ city }) {
                 workmanship, and fair pricing. Our local team understands the
                 unique characteristics of homes in this area, from historic
                 properties to modern developments.
-              </p>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                We also provide{" "}
-                <Link
-                  href="/services/tv-mounting"
-                  className="text-primary-600 hover:text-primary-700 font-medium"
-                >
-                  TV mounting
-                </Link>{" "}
-                services across{" "}
-                <Link
-                  href="/service-areas/shelby-nc"
-                  className="text-primary-600 hover:text-primary-700 font-medium"
-                >
-                  Shelby
-                </Link>{" "}
-                and surrounding areas, making us your trusted partner for all
-                home improvement needs.
               </p>
             </div>
 

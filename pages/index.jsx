@@ -50,7 +50,7 @@ export default function Home() {
     description:
       "Family-owned handyman service in Shelby NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty.",
     url: "https://installitguy.com",
-    telephone: "+17044199799",
+    telephone: "+1-704-419-9799",
     email: "info@installitguy.com",
     address: {
       "@type": "PostalAddress",
@@ -60,17 +60,53 @@ export default function Home() {
       postalCode: "28152",
       addressCountry: "US",
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: "35.2921",
+      longitude: "-81.5357",
+    },
+    hasMap: "https://www.google.com/maps/place/Install+It+Guy/",
     areaServed: [
-      "Charlotte, NC",
-      "Concord, NC",
-      "Rock Hill, SC",
-      "Gastonia, NC",
-      "Hickory, NC",
-      "Shelby, NC",
-      "Lincolnton, NC",
-      "Gaffney, SC",
-      "Kings Mountain, NC",
-      "Forest City, NC",
+      {
+        "@type": "City",
+        name: "Charlotte, NC",
+      },
+      {
+        "@type": "City",
+        name: "Concord, NC",
+      },
+      {
+        "@type": "City",
+        name: "Rock Hill, SC",
+      },
+      {
+        "@type": "City",
+        name: "Gastonia, NC",
+      },
+      {
+        "@type": "City",
+        name: "Hickory, NC",
+      },
+      {
+        "@type": "City",
+        name: "Shelby, NC",
+      },
+      {
+        "@type": "City",
+        name: "Lincolnton, NC",
+      },
+      {
+        "@type": "City",
+        name: "Gaffney, SC",
+      },
+      {
+        "@type": "City",
+        name: "Kings Mountain, NC",
+      },
+      {
+        "@type": "City",
+        name: "Forest City, NC",
+      },
     ],
     serviceType: [
       "TV Mounting",
@@ -93,6 +129,37 @@ export default function Home() {
       "Fence Installation",
       "Gutter Cleaning",
     ],
+    openingHours: ["Mo-Fr 09:00-17:00", "Sa 10:00-14:00"],
+    paymentAccepted: "Cash, CreditCard, Check",
+    priceRange: "$$",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "240",
+    },
+    sameAs: [
+      "https://www.facebook.com/installitguy",
+      "https://www.instagram.com/installitguy",
+      "https://www.yelp.com/biz/install-it-guy-shelby",
+    ],
+    foundingDate: "1994",
+    numberOfEmployees: "1-10",
+    slogan: "Quality installs, fast repairs, fair prices",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Handyman Services",
+      itemListElement: services.map((service, index) => ({
+        "@type": "Offer",
+        position: index + 1,
+        itemOffered: {
+          "@type": "Service",
+          name: service
+            .replace(/-/g, " ")
+            .replace(/\b\w/g, (l) => l.toUpperCase()),
+          description: `Professional ${service.replace(/-/g, " ")} services`,
+        },
+      })),
+    },
   };
 
   return (
@@ -120,6 +187,127 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Install It Guy",
+            url: "https://installitguy.com",
+            logo: "https://installitguy.com/images/installit-guy/logo3.png",
+            description:
+              "Family-owned handyman service in Shelby NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty.",
+            foundingDate: "1994",
+            numberOfEmployees: "1-10",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "210 Joseph Ct",
+              addressLocality: "Shelby",
+              addressRegion: "NC",
+              postalCode: "28152",
+              addressCountry: "US",
+            },
+            contactPoint: {
+              "@type": "ContactPoint",
+              telephone: "+1-704-419-9799",
+              contactType: "customer service",
+              email: "info@installitguy.com",
+              availableLanguage: "English",
+            },
+            sameAs: [
+              "https://www.facebook.com/installitguy",
+              "https://www.instagram.com/installitguy",
+              "https://www.yelp.com/biz/install-it-guy-shelby",
+            ],
+          }),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Install It Guy",
+            url: "https://installitguy.com",
+            description:
+              "Family-owned handyman service in Shelby NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty.",
+            publisher: {
+              "@type": "Organization",
+              name: "Install It Guy",
+              url: "https://installitguy.com",
+            },
+            potentialAction: {
+              "@type": "SearchAction",
+              target: {
+                "@type": "EntryPoint",
+                urlTemplate:
+                  "https://installitguy.com/services?q={search_term_string}",
+              },
+              "query-input": "required name=search_term_string",
+            },
+          }),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            name: "Handyman Services FAQs",
+            description:
+              "Common questions about Install It Guy handyman services in Shelby NC",
+            url: "https://installitguy.com",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "What services do you offer?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "We provide expert home installation, handyman repairs, home maintenance, and custom storage solutions. Our services include TV mounting, ceiling fan installation, lighting installation, garage door opener installation, Ring doorbell installation, faucet and toilet installation, appliance installation, blinds installation, mirror and towel bar installation, door installation, deck and fence repair, water leak repair, garbage disposal installation, shelving installation, painting services, flooring installation, furniture assembly, fence installation, and gutter cleaning.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What areas do you serve?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "We serve Charlotte, Concord, Rock Hill, Gastonia, Hickory, Shelby, Lincolnton, Gaffney, Kings Mountain, Forest City, and surrounding areas in North and South Carolina.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How much do your services cost?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Our pricing varies depending on the specific service and project requirements. We provide free estimates for all projects. Contact us for a detailed quote based on your needs.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Do you provide free estimates?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, we provide free estimates for all our services. Contact us to schedule a consultation and receive a detailed quote for your project.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Are you licensed and insured?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, we are fully licensed and insured. As a family-owned business serving the Carolinas for over 30 years, we maintain all required licenses and comprehensive insurance coverage to protect both you and our team during any project we undertake.",
+                },
+              },
+            ],
+          }),
+        }}
       />
 
       <Header />

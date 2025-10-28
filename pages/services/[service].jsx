@@ -65,10 +65,18 @@ export default function ServicePage({ service }) {
     "@type": "Service",
     name: `${getServiceName(service)} Service`,
     description: pageData.meta_description,
+    url: pageData.url,
+    serviceType: getServiceName(service),
+    category: "Home Improvement",
+    areaServed: {
+      "@type": "Place",
+      name: "Shelby, NC",
+    },
     provider: {
       "@type": "LocalBusiness",
       name: "Install It Guy",
-      telephone: "+17044199799",
+      url: "https://installitguy.com",
+      telephone: "+1-704-419-9799",
       email: "info@installitguy.com",
       address: {
         "@type": "PostalAddress",
@@ -91,15 +99,41 @@ export default function ServicePage({ service }) {
         "Forest City, NC",
       ],
     },
-    serviceType: getServiceName(service),
-    category: "Home Improvement",
     offers: {
       "@type": "Offer",
+      price: "99.00",
+      priceCurrency: "USD",
+      availability: "InStock",
+      url: pageData.url,
       description: `Professional ${getServiceName(
         service
       ).toLowerCase()} service`,
-      availability: "https://schema.org/InStock",
     },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://installitguy.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: "https://installitguy.com/services",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: getServiceName(service),
+        item: pageData.url,
+      },
+    ],
   };
 
   return (
@@ -125,6 +159,86 @@ export default function ServicePage({ service }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            name: `${getServiceName(service)} FAQs`,
+            description: `Common questions about ${getServiceName(
+              service
+            ).toLowerCase()} services in Shelby NC`,
+            url: pageData.url,
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: `How much does ${getServiceName(
+                  service
+                ).toLowerCase()} cost?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: `Our ${getServiceName(
+                    service
+                  ).toLowerCase()} pricing varies based on the specific project requirements. We provide free, detailed quotes for all projects. Contact us for a personalized estimate.`,
+                },
+              },
+              {
+                "@type": "Question",
+                name: `Do you offer same-day service for ${getServiceName(
+                  service
+                ).toLowerCase()}?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: `Yes, we often provide same-day service for ${getServiceName(
+                    service
+                  ).toLowerCase()}. Contact us to check availability and schedule your appointment.`,
+                },
+              },
+              {
+                "@type": "Question",
+                name: `Are you licensed and insured for ${getServiceName(
+                  service
+                ).toLowerCase()}?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: `Yes, we are fully licensed and insured for all ${getServiceName(
+                    service
+                  ).toLowerCase()} projects. We carry comprehensive liability insurance for your protection.`,
+                },
+              },
+              {
+                "@type": "Question",
+                name: `What areas do you serve for ${getServiceName(
+                  service
+                ).toLowerCase()}?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: `We serve Shelby, Charlotte, Concord, Rock Hill, Gastonia, Hickory, Lincolnton, Gaffney, Kings Mountain, Forest City, and surrounding areas in North and South Carolina.`,
+                },
+              },
+              {
+                "@type": "Question",
+                name: `Do you provide warranties on ${getServiceName(
+                  service
+                ).toLowerCase()} work?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: `Yes! We proudly back our ${getServiceName(
+                    service
+                  ).toLowerCase()} work with a lifetime customer satisfaction guarantee. If you ever have a concern about our work, we'll make it right.`,
+                },
+              },
+            ],
+          }),
+        }}
       />
 
       <Header />
@@ -189,7 +303,28 @@ export default function ServicePage({ service }) {
                     Cleveland County for over 30 years. We bring expertise,
                     reliability, and a commitment to excellence to every{" "}
                     {getServiceName(service).toLowerCase()} project throughout
-                    our community.
+                    our community. We also provide{" "}
+                    <Link
+                      href="/services/ceiling-fan-installation"
+                      className="text-primary-600 hover:text-primary-700 font-medium"
+                    >
+                      ceiling fan installation
+                    </Link>
+                    ,{" "}
+                    <Link
+                      href="/services/lighting-installation"
+                      className="text-primary-600 hover:text-primary-700 font-medium"
+                    >
+                      lighting installation
+                    </Link>
+                    , and{" "}
+                    <Link
+                      href="/services/appliance-installation"
+                      className="text-primary-600 hover:text-primary-700 font-medium"
+                    >
+                      appliance installation
+                    </Link>{" "}
+                    services.
                   </p>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                     When you choose Install It Guy for{" "}
@@ -455,28 +590,9 @@ export default function ServicePage({ service }) {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Our {getServiceName(service)} Process
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 We follow a proven process to ensure quality results and
                 customer satisfaction.
-              </p>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Our comprehensive approach to{" "}
-                {getServiceName(service).toLowerCase()} means we also provide{" "}
-                <Link
-                  href="/services/appliance-installation"
-                  className="text-primary-600 hover:text-primary-700 font-medium"
-                >
-                  appliance installation
-                </Link>{" "}
-                services throughout{" "}
-                <Link
-                  href="/service-areas/charlotte-nc"
-                  className="text-primary-600 hover:text-primary-700 font-medium"
-                >
-                  Charlotte
-                </Link>{" "}
-                and surrounding communities, ensuring your entire home runs
-                smoothly.
               </p>
             </div>
 
@@ -536,59 +652,30 @@ export default function ServicePage({ service }) {
           </div>
         </section>
 
-        {/* Service Areas */}
-        <section className="section-padding bg-gray-50">
+        {/* Our Other Services Section */}
+        <section className="section-padding">
           <div className="container-custom">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                We Serve Multiple Cities
+                Other Services We Offer in Shelby, NC
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Our family-owned business proudly serves multiple cities across
-                North and South Carolina.
+                We provide comprehensive home improvement services throughout
+                Shelby, NC and surrounding areas.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              <Link
-                href="/service-areas/charlotte-nc"
-                className="card text-center hover:shadow-lg transition-all duration-300 group"
-              >
-                <div className="text-primary-600 group-hover:text-primary-700 font-semibold">
-                  Charlotte, NC
-                </div>
-              </Link>
-              <Link
-                href="/service-areas/concord-nc"
-                className="card text-center hover:shadow-lg transition-all duration-300 group"
-              >
-                <div className="text-primary-600 group-hover:text-primary-700 font-semibold">
-                  Concord, NC
-                </div>
-              </Link>
-              <Link
-                href="/service-areas/rock-hill-sc"
-                className="card text-center hover:shadow-lg transition-all duration-300 group"
-              >
-                <div className="text-primary-600 group-hover:text-primary-700 font-semibold">
-                  Rock Hill, SC
-                </div>
-              </Link>
-              <Link
-                href="/service-areas/gastonia-nc"
-                className="card text-center hover:shadow-lg transition-all duration-300 group"
-              >
-                <div className="text-primary-600 group-hover:text-primary-700 font-semibold">
-                  Gastonia, NC
-                </div>
-              </Link>
-              <Link
-                href="/service-areas/hickory-nc"
-                className="card text-center hover:shadow-lg transition-all duration-300 group"
-              >
-                <div className="text-primary-600 group-hover:text-primary-700 font-semibold">
-                  Hickory, NC
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {services
+                .filter((s) => s !== service)
+                .map((otherService) => (
+                  <ServiceCard key={otherService} service={otherService} />
+                ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Link href="/services" className="btn-primary">
+                View All Services
               </Link>
             </div>
           </div>

@@ -315,36 +315,37 @@ export default function ServiceCard({ service, city = null }) {
     : `/services/${service}`;
 
   return (
-    <div className="card group hover:shadow-xl transition-all duration-300">
-      <div className="flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-lg mb-4 group-hover:bg-primary-600 group-hover:text-white transition-colors duration-300">
-        {getServiceIcon(service)}
+    <Link href={href} className="block">
+      <div className="card group hover:shadow-xl transition-all duration-300 cursor-pointer">
+        <div className="flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-lg mb-4 group-hover:bg-primary-600 group-hover:text-white transition-colors duration-300">
+          {getServiceIcon(service)}
+        </div>
+
+        <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors duration-300">
+          {serviceName}
+        </h3>
+
+        <p className="text-gray-600 mb-4 leading-relaxed">
+          {serviceDescription}
+        </p>
+
+        <div className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium transition-colors duration-200">
+          Learn More
+          <svg
+            className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </div>
       </div>
-
-      <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors duration-300">
-        {serviceName}
-      </h3>
-
-      <p className="text-gray-600 mb-4 leading-relaxed">{serviceDescription}</p>
-
-      <Link
-        href={href}
-        className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium transition-colors duration-200"
-      >
-        Learn More
-        <svg
-          className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </Link>
-    </div>
+    </Link>
   );
 }

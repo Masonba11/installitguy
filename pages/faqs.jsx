@@ -128,6 +128,30 @@ export default function FAQs() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://installitguy.com",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "FAQs",
+                item: "https://installitguy.com/faqs",
+              },
+            ],
+          }),
+        }}
+      />
+
       <Header />
 
       <main className="min-h-screen bg-gray-50">

@@ -49,10 +49,18 @@ export default function TVMountingPage() {
     name: "TV Wall Mounting Service",
     description:
       "Professional TV mounting services with clean cable management and secure installation in Shelby, NC",
+    url: pageData.url,
+    serviceType: "TV Mounting",
+    category: "Home Improvement",
+    areaServed: {
+      "@type": "Place",
+      name: "Shelby, NC",
+    },
     provider: {
       "@type": "LocalBusiness",
       name: "Install It Guy",
-      telephone: "+17044199799",
+      url: "https://installitguy.com",
+      telephone: "+1-704-419-9799",
       email: "info@installitguy.com",
       address: {
         "@type": "PostalAddress",
@@ -75,12 +83,13 @@ export default function TVMountingPage() {
         "Forest City, NC",
       ],
     },
-    serviceType: "TV Mounting",
-    category: "Home Improvement",
     offers: {
       "@type": "Offer",
+      price: "99.00",
+      priceCurrency: "USD",
+      availability: "InStock",
+      url: pageData.url,
       description: "Professional TV mounting service",
-      availability: "https://schema.org/InStock",
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
@@ -126,6 +135,31 @@ export default function TVMountingPage() {
     },
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://installitguy.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: "https://installitguy.com/services",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "TV Mounting",
+        item: pageData.url,
+      },
+    ],
+  };
+
   return (
     <>
       <NextSeo
@@ -150,6 +184,67 @@ export default function TVMountingPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            name: "TV Mounting FAQs",
+            description:
+              "Common questions about TV mounting services in Shelby NC",
+            url: pageData.url,
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "How much does TV mounting cost?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "TV mounting typically costs $150-300 depending on TV size, wall type, and complexity. We provide free quotes for all projects.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What TV sizes can you mount?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: 'We mount all TV sizes from 32" to 85" and larger. Our team has experience with every major brand and model.',
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Do you hide the cables?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes! We offer cable management services to hide power cords and HDMI cables for a clean, professional look.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How long does TV mounting take?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Most TV mounting jobs take 1-2 hours, including cable management and cleanup.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Can you mount on any wall type?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "We can mount on drywall, brick, concrete, and other wall types. We'll assess your wall and use appropriate mounting hardware.",
+                },
+              },
+            ],
+          }),
+        }}
       />
 
       <Header />
@@ -427,24 +522,6 @@ export default function TVMountingPage() {
                 <p className="text-xl text-gray-600 mb-6">
                   Our experienced Shelby technicians can mount TVs on any wall
                   surface throughout Cleveland County safely and securely.
-                </p>
-                <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                  We also handle{" "}
-                  <Link
-                    href="/services/lighting-installation"
-                    className="text-primary-600 hover:text-primary-700 font-medium"
-                  >
-                    lighting installation
-                  </Link>{" "}
-                  across{" "}
-                  <Link
-                    href="/service-areas/gastonia-nc"
-                    className="text-primary-600 hover:text-primary-700 font-medium"
-                  >
-                    Gastonia
-                  </Link>{" "}
-                  and surrounding areas, making us your one-stop solution for
-                  complete home entertainment setups.
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -781,6 +858,48 @@ export default function TVMountingPage() {
                   Learn More →
                 </Link>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Other Services We Offer */}
+        <section className="section-padding">
+          <div className="container-custom">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Other Services We Offer in Shelby, NC
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                We provide comprehensive home improvement services throughout
+                Shelby, NC and surrounding areas.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <ServiceCard service="ceiling-fan-installation" />
+              <ServiceCard service="lighting-installation" />
+              <ServiceCard service="garage-door-opener-installation" />
+              <ServiceCard service="ring-doorbell-installation" />
+              <ServiceCard service="faucet-toilet-installation" />
+              <ServiceCard service="appliance-installation" />
+              <ServiceCard service="blinds-installation" />
+              <ServiceCard service="mirror-towel-bar-installation" />
+              <ServiceCard service="door-installation" />
+              <ServiceCard service="deck-fence-repair" />
+              <ServiceCard service="water-leak-repair" />
+              <ServiceCard service="garbage-disposal-installation" />
+              <ServiceCard service="shelving-installation" />
+              <ServiceCard service="painting-services" />
+              <ServiceCard service="flooring-installation" />
+              <ServiceCard service="furniture-assembly" />
+              <ServiceCard service="fence-installation" />
+              <ServiceCard service="gutter-cleaning" />
+            </div>
+
+            <div className="text-center mt-12">
+              <Link href="/services" className="btn-primary">
+                View All Services
+              </Link>
             </div>
           </div>
         </section>

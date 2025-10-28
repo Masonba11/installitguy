@@ -69,6 +69,86 @@ export default function ServiceAreasIndex() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceAreasSchema) }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            name: "Service Areas FAQs",
+            description:
+              "Common questions about our service areas in North and South Carolina",
+            url: "https://installitguy.com/service-areas",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "What areas do you serve?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "We serve Charlotte, Concord, Rock Hill, Gastonia, Hickory, Shelby, Lincolnton, Gaffney, Kings Mountain, Forest City, and surrounding areas in North and South Carolina.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Do you travel to all these areas?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, we travel throughout our service area to provide handyman services. Our main location is in Shelby, NC, but we regularly serve customers in all listed cities and surrounding communities.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Is there a travel fee for distant locations?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "We provide free estimates for all locations within our service area. Any travel considerations are factored into our project quotes, ensuring transparent pricing.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How quickly can you respond to calls in different areas?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "We typically respond to calls within the same day across our service area. Response times may vary slightly based on location and current schedule, but we prioritize quick response times for all customers.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Do you know local building codes in different areas?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, we're familiar with building codes and regulations across our service area. Our 30+ years of experience includes working with various local requirements throughout North and South Carolina.",
+                },
+              },
+            ],
+          }),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://installitguy.com",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Service Areas",
+                item: "https://installitguy.com/service-areas",
+              },
+            ],
+          }),
+        }}
+      />
+
       <Header />
 
       <main className="min-h-screen bg-gray-50">
