@@ -1,16 +1,7 @@
 {
   "headers": [
     {
-      "source": "/images/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/(.*\\.(mp4|webm|ogg))",
+      "source": "/shelby-background.mp4",
       "headers": [
         {
           "key": "Content-Type",
@@ -21,12 +12,19 @@
           "value": "public, max-age=31536000, immutable"
         }
       ]
-    }
-  ],
-  "rewrites": [
+    },
     {
-      "source": "/images/shelby-background.mp4",
-      "destination": "/images/shelby-background.mp4"
+      "source": "/shelby-background.webm",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "video/webm"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ]
 }
