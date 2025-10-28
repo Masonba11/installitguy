@@ -325,6 +325,7 @@ export default function Home() {
               loop
               playsInline
               preload="auto"
+              crossOrigin="anonymous"
               className="absolute inset-0 w-full h-full object-cover"
               style={{
                 opacity: videoLoaded ? 0.8 : 0,
@@ -337,7 +338,8 @@ export default function Home() {
               }}
               onError={(e) => {
                 console.log("Video error:", e);
-                console.log("Video src:", "/images/shelby-background.mp4");
+                console.log("Video src:", "/shelby-background.mp4");
+                console.log("Falling back to gradient background");
               }}
               onCanPlay={() => {
                 console.log("Video can play");
@@ -345,7 +347,7 @@ export default function Home() {
               }}
               onPlay={() => console.log("Video started playing")}
             >
-              <source src="/images/shelby-background.mp4" type="video/mp4" />
+              <source src="/shelby-background.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
