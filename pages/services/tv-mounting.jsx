@@ -251,23 +251,57 @@ export default function TVMountingPage() {
 
       <main className="min-h-screen bg-gray-50">
         {/* Hero Section */}
-        <section className="relative text-white overflow-hidden">
+        <section className="relative text-white overflow-hidden min-h-[80vh] flex items-center justify-center pt-40">
           {/* Background Video */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 hero-video-container">
             <video
               autoPlay
               muted
               loop
               playsInline
-              className="absolute inset-0 w-full h-full object-cover opacity-95"
+              preload="metadata"
+              crossOrigin="anonymous"
+              className="absolute inset-0 w-full h-full hero-video"
+              style={{
+                opacity: 0.8,
+                zIndex: 1,
+                filter: "brightness(0.9) contrast(1.1) saturate(1.1)",
+              }}
             >
+              {/* High quality source for desktop */}
+              <source
+                src="/shelby-background-original.mp4"
+                type="video/mp4"
+                media="(min-width: 1024px)"
+              />
+              {/* Compressed source for mobile */}
+              <source
+                src="/shelby-background-compressed.mp4"
+                type="video/mp4"
+                media="(max-width: 1023px)"
+              />
+              {/* WebM for better compression and quality */}
+              <source src="/shelby-background.webm" type="video/webm" />
+              {/* Fallback MP4 */}
               <source src="/shelby-background.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
             </video>
           </div>
-          {/* Subtle Dark Overlay for Text Readability */}
-          <div className="absolute inset-0 bg-black/30" />
+
+          {/* Fallback Background - Always visible */}
+          <div
+            className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700"
+            style={{ zIndex: 0 }}
+          />
+
+          {/* Enhanced Overlay with Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/40" />
+          
+          {/* Additional quality enhancement overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/10 via-transparent to-blue-900/10" />
+
           {/* Content */}
-          <div className="relative container-custom section-padding">
+          <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 {serviceContent.h1}
