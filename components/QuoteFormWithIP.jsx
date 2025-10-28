@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { WEB3FORMS_CONFIG } from "../config/web3forms";
 
-export default function QuoteForm({
+export default function QuoteFormWithIP({
   title = "Get Your Free Quote",
   subtitle = "Fill out the form below and we'll get back to you within 24 hours",
   className = "",
@@ -31,32 +30,20 @@ export default function QuoteForm({
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/submit-form", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          access_key: WEB3FORMS_CONFIG.accessKey,
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          serviceArea: formData.serviceArea,
-          service: formData.service,
-          message: formData.message,
-          to: WEB3FORMS_CONFIG.emails.to,
-          subject: WEB3FORMS_CONFIG.subjects.quote,
-          from_name: formData.name,
-          reply_to: formData.email,
-          // Enable IP address capture
-          ip_address: true,
-          // Add additional metadata
-          form_name: "Quote Request",
-          website: "Install It Guy",
+          ...formData,
+          formType: "quote",
         }),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (result.success) {
         // Redirect to thank you page for lead tracking
         router.push("/thank-you");
       } else {

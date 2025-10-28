@@ -74,6 +74,11 @@ export default function ContactUs() {
           subject: WEB3FORMS_CONFIG.subjects.contact,
           from_name: data.name,
           reply_to: data.email,
+          // Enable IP address capture
+          ip_address: true,
+          // Add additional metadata
+          form_name: "Contact Form",
+          website: "Install It Guy",
         }),
       });
 
