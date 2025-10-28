@@ -1,4 +1,5 @@
 import { NextSeo } from "next-seo";
+import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ServiceCard from "../components/ServiceCard";
@@ -43,6 +44,7 @@ const serviceAreas = [
 ];
 
 export default function Home() {
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -322,18 +324,30 @@ export default function Home() {
               muted
               loop
               playsInline
-              preload="metadata"
-              className="absolute inset-0 w-full h-full object-cover opacity-90"
+              preload="auto"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ opacity: videoLoaded ? 0.8 : 0 }}
               onLoadStart={() => console.log("Video loading started")}
-              onLoadedData={() => console.log("Video loaded successfully")}
+              onLoadedData={() => {
+                console.log("Video loaded successfully");
+                setVideoLoaded(true);
+              }}
               onError={(e) => console.log("Video error:", e)}
+              onCanPlay={() => {
+                console.log("Video can play");
+                setVideoLoaded(true);
+              }}
             >
               <source src="/shelby-background.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
             </video>
           </div>
 
+          {/* Fallback Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700" />
+
           {/* Enhanced Overlay with Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/40" />
 
           {/* Hero Content */}
           <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
