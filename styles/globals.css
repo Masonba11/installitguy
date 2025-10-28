@@ -84,9 +84,59 @@
     padding: 4rem 1rem;
   }
 
+  /* Video Quality Enhancements */
+  .hero-video {
+    object-fit: cover;
+    object-position: center;
+    will-change: transform;
+    transform: scale(1.01); /* Slight scale to prevent edge artifacts */
+  }
+
+  .hero-video-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-video-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      45deg,
+      rgba(59, 130, 246, 0.05) 0%,
+      transparent 25%,
+      transparent 75%,
+      rgba(59, 130, 246, 0.05) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Smooth video transitions */
+  .hero-video {
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  /* Enhanced video quality on high-DPI displays */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-video {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+  }
+
   @media (max-width: 768px) {
     .hero-section {
       min-height: 65vh;
+    }
+
+    .hero-video {
+      transform: scale(
+        1.02
+      ); /* Slightly more scale on mobile for better coverage */
     }
   }
 }

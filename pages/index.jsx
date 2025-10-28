@@ -318,18 +318,19 @@ export default function Home() {
         {/* Hero Section */}
         <section className="relative text-white overflow-hidden min-h-[80vh] flex items-center justify-center pt-40">
           {/* Background Video */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 hero-video-container">
             <video
               autoPlay
               muted
               loop
               playsInline
-              preload="auto"
+              preload="metadata"
               crossOrigin="anonymous"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full hero-video"
               style={{
                 opacity: videoLoaded ? 0.8 : 0,
                 zIndex: 1,
+                filter: "brightness(0.9) contrast(1.1) saturate(1.1)",
               }}
               onLoadStart={() => console.log("Video loading started")}
               onLoadedData={() => {
@@ -338,7 +339,7 @@ export default function Home() {
               }}
               onError={(e) => {
                 console.log("Video error:", e);
-                console.log("Video src:", "/shelby-background.mp4");
+                console.log("Video src:", "/shelby-background-original.mp4");
                 console.log("Falling back to gradient background");
               }}
               onCanPlay={() => {
@@ -347,8 +348,22 @@ export default function Home() {
               }}
               onPlay={() => console.log("Video started playing")}
             >
-              <source src="/shelby-background.mp4" type="video/mp4" />
+              {/* High quality source for desktop */}
+              <source
+                src="/shelby-background-original.mp4"
+                type="video/mp4"
+                media="(min-width: 1024px)"
+              />
+              {/* Compressed source for mobile */}
+              <source
+                src="/shelby-background-compressed.mp4"
+                type="video/mp4"
+                media="(max-width: 1023px)"
+              />
+              {/* WebM for better compression and quality */}
               <source src="/shelby-background.webm" type="video/webm" />
+              {/* Fallback MP4 */}
+              <source src="/shelby-background.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
@@ -361,6 +376,9 @@ export default function Home() {
 
           {/* Enhanced Overlay with Gradient */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/40" />
+
+          {/* Additional quality enhancement overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/10 via-transparent to-blue-900/10" />
 
           {/* Hero Content */}
           <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
