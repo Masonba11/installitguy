@@ -297,25 +297,25 @@ export default function ServiceAreaServicePage({ city, service }) {
               crossOrigin="anonymous"
               className="absolute inset-0 w-full h-full hero-video"
               style={{
-                opacity: 0.8,
+                opacity: 0.9,
                 zIndex: 1,
-                filter: "brightness(0.9) contrast(1.1) saturate(1.1)",
+                filter: "brightness(1.0) contrast(1.0) saturate(1.0)",
               }}
             >
-              {/* High quality source for desktop */}
+              {/* High quality source for desktop - prioritize original */}
               <source
                 src="/shelby-background-original.mp4"
                 type="video/mp4"
                 media="(min-width: 1024px)"
               />
+              {/* WebM for better compression and quality - prioritize this */}
+              <source src="/shelby-background.webm" type="video/webm" />
               {/* Compressed source for mobile */}
               <source
                 src="/shelby-background-compressed.mp4"
                 type="video/mp4"
                 media="(max-width: 1023px)"
               />
-              {/* WebM for better compression and quality */}
-              <source src="/shelby-background.webm" type="video/webm" />
               {/* Fallback MP4 */}
               <source src="/shelby-background.mp4" type="video/mp4" />
               Your browser does not support the video tag.
@@ -330,7 +330,7 @@ export default function ServiceAreaServicePage({ city, service }) {
 
           {/* Enhanced Overlay with Gradient */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/40" />
-          
+
           {/* Additional quality enhancement overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/10 via-transparent to-blue-900/10" />
 

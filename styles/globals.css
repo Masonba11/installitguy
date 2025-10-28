@@ -89,7 +89,13 @@
     object-fit: cover;
     object-position: center;
     will-change: transform;
-    transform: scale(1.01); /* Slight scale to prevent edge artifacts */
+    transform: scale(1.0); /* Remove scaling to prevent blur */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
   }
 
   .hero-video-container {
@@ -125,6 +131,7 @@
     .hero-video {
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
+      image-rendering: pixelated;
     }
   }
 
@@ -132,11 +139,9 @@
     .hero-section {
       min-height: 65vh;
     }
-
+    
     .hero-video {
-      transform: scale(
-        1.02
-      ); /* Slightly more scale on mobile for better coverage */
+      transform: scale(1.0); /* Keep consistent scaling */
     }
   }
 }

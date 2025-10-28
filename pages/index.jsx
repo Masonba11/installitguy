@@ -327,10 +327,12 @@ export default function Home() {
               preload="metadata"
               crossOrigin="anonymous"
               className="absolute inset-0 w-full h-full hero-video"
+              poster=""
+              disablePictureInPicture
               style={{
-                opacity: videoLoaded ? 0.8 : 0,
+                opacity: videoLoaded ? 0.9 : 0,
                 zIndex: 1,
-                filter: "brightness(0.9) contrast(1.1) saturate(1.1)",
+                filter: "brightness(1.0) contrast(1.0) saturate(1.0)",
               }}
               onLoadStart={() => console.log("Video loading started")}
               onLoadedData={() => {
@@ -348,20 +350,20 @@ export default function Home() {
               }}
               onPlay={() => console.log("Video started playing")}
             >
-              {/* High quality source for desktop */}
+              {/* High quality source for desktop - prioritize original */}
               <source
                 src="/shelby-background-original.mp4"
                 type="video/mp4"
                 media="(min-width: 1024px)"
               />
+              {/* WebM for better compression and quality - prioritize this */}
+              <source src="/shelby-background.webm" type="video/webm" />
               {/* Compressed source for mobile */}
               <source
                 src="/shelby-background-compressed.mp4"
                 type="video/mp4"
                 media="(max-width: 1023px)"
               />
-              {/* WebM for better compression and quality */}
-              <source src="/shelby-background.webm" type="video/webm" />
               {/* Fallback MP4 */}
               <source src="/shelby-background.mp4" type="video/mp4" />
               Your browser does not support the video tag.
