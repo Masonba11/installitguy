@@ -348,6 +348,7 @@ export default function Home() {
               onPlay={() => console.log("Video started playing")}
             >
               <source src="/shelby-background.mp4" type="video/mp4" />
+              <source src="/shelby-background.webm" type="video/webm" />
               Your browser does not support the video tag.
             </video>
           </div>
