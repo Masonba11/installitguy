@@ -326,9 +326,9 @@ export default function Home() {
               playsInline
               preload="auto"
               className="absolute inset-0 w-full h-full object-cover"
-              style={{ 
+              style={{
                 opacity: videoLoaded ? 0.8 : 0,
-                zIndex: 1
+                zIndex: 1,
               }}
               onLoadStart={() => console.log("Video loading started")}
               onLoadedData={() => {
@@ -337,7 +337,7 @@ export default function Home() {
               }}
               onError={(e) => {
                 console.log("Video error:", e);
-                console.log("Video src:", "/shelby-background.mp4");
+                console.log("Video src:", "/images/shelby-background.mp4");
               }}
               onCanPlay={() => {
                 console.log("Video can play");
@@ -345,13 +345,13 @@ export default function Home() {
               }}
               onPlay={() => console.log("Video started playing")}
             >
-              <source src="/shelby-background.mp4" type="video/mp4" />
+              <source src="/images/shelby-background.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
 
           {/* Fallback Background - Always visible */}
-          <div 
+          <div
             className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700"
             style={{ zIndex: 0 }}
           />
