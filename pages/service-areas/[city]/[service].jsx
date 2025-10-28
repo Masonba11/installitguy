@@ -302,6 +302,14 @@ export default function ServiceAreaServicePage({ city, service }) {
                 filter: "brightness(1.0) contrast(1.0) saturate(1.0)",
               }}
             >
+              {/* Ultra high quality source for desktop - 1080p */}
+              <source
+                src="/shelby-background-hq.mp4"
+                type="video/mp4"
+                media="(min-width: 1024px)"
+              />
+              {/* Ultra high quality WebM - 1080p */}
+              <source src="/shelby-background-hq.webm" type="video/webm" />
               {/* High quality source for desktop - prioritize original */}
               <source
                 src="/shelby-background-original.mp4"

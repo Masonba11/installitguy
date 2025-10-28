@@ -350,6 +350,14 @@ export default function Home() {
               }}
               onPlay={() => console.log("Video started playing")}
             >
+              {/* Ultra high quality source for desktop - 1080p */}
+              <source
+                src="/shelby-background-hq.mp4"
+                type="video/mp4"
+                media="(min-width: 1024px)"
+              />
+              {/* Ultra high quality WebM - 1080p */}
+              <source src="/shelby-background-hq.webm" type="video/webm" />
               {/* High quality source for desktop - prioritize original */}
               <source
                 src="/shelby-background-original.mp4"
