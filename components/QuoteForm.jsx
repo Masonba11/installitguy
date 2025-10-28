@@ -31,32 +31,60 @@ export default function QuoteForm({
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_CONFIG.accessKey,
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          serviceArea: formData.serviceArea,
-          service: formData.service,
-          message: formData.message,
-          to: WEB3FORMS_CONFIG.emails.to,
-          subject: WEB3FORMS_CONFIG.subjects.quote,
-          from_name: formData.name,
-          reply_to: formData.email,
-          // Enable IP address capture
-          ip_address: true,
-          // Add additional metadata
-          form_name: "Quote Request",
-          website: "Install It Guy",
+      // Submit to both Web3Forms accounts
+      const submissions = await Promise.allSettled([
+        // Submit to Mason's account
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_CONFIG.mason.accessKey,
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            serviceArea: formData.serviceArea,
+            service: formData.service,
+            message: formData.message,
+            to: WEB3FORMS_CONFIG.mason.email,
+            subject: WEB3FORMS_CONFIG.subjects.quote,
+            from_name: formData.name,
+            reply_to: formData.email,
+            ip_address: true,
+            form_name: "Quote Request",
+            website: "Install It Guy",
+          }),
         }),
-      });
+        // Submit to Scott's account
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_CONFIG.scott.accessKey,
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            serviceArea: formData.serviceArea,
+            service: formData.service,
+            message: formData.message,
+            to: WEB3FORMS_CONFIG.scott.email,
+            subject: WEB3FORMS_CONFIG.subjects.quote,
+            from_name: formData.name,
+            reply_to: formData.email,
+            ip_address: true,
+            form_name: "Quote Request",
+            website: "Install It Guy",
+          }),
+        }),
+      ]);
 
-      if (response.ok) {
+      // Check if at least one submission succeeded
+      const successfulSubmissions = submissions.filter(result => result.status === 'fulfilled' && result.value.ok);
+      
+      if (successfulSubmissions.length > 0) {
         // Redirect to thank you page for lead tracking
         router.push("/thank-you");
       } else {

@@ -58,31 +58,58 @@ export default function ContactUs() {
     };
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_CONFIG.accessKey,
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          service: data.service,
-          message: data.message,
-          to: WEB3FORMS_CONFIG.emails.to,
-          subject: WEB3FORMS_CONFIG.subjects.contact,
-          from_name: data.name,
-          reply_to: data.email,
-          // Enable IP address capture
-          ip_address: true,
-          // Add additional metadata
-          form_name: "Contact Form",
-          website: "Install It Guy",
+      // Submit to both Web3Forms accounts
+      const submissions = await Promise.allSettled([
+        // Submit to Mason's account
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_CONFIG.mason.accessKey,
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            service: data.service,
+            message: data.message,
+            to: WEB3FORMS_CONFIG.mason.email,
+            subject: WEB3FORMS_CONFIG.subjects.contact,
+            from_name: data.name,
+            reply_to: data.email,
+            ip_address: true,
+            form_name: "Contact Form",
+            website: "Install It Guy",
+          }),
         }),
-      });
+        // Submit to Scott's account
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_CONFIG.scott.accessKey,
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            service: data.service,
+            message: data.message,
+            to: WEB3FORMS_CONFIG.scott.email,
+            subject: WEB3FORMS_CONFIG.subjects.contact,
+            from_name: data.name,
+            reply_to: data.email,
+            ip_address: true,
+            form_name: "Contact Form",
+            website: "Install It Guy",
+          }),
+        }),
+      ]);
 
-      if (response.ok) {
+      // Check if at least one submission succeeded
+      const successfulSubmissions = submissions.filter(result => result.status === 'fulfilled' && result.value.ok);
+      
+      if (successfulSubmissions.length > 0) {
         // Redirect to thank you page for lead tracking
         router.push("/thank-you");
       } else {

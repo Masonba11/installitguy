@@ -11,33 +11,59 @@ export default function TestForm() {
     setResult("");
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_CONFIG.accessKey,
-          name: "Test User",
-          email: "test@example.com",
-          phone: "(704) 123-4567",
-          message: "This is a test form submission to verify Web3Forms is working correctly.",
-          to: WEB3FORMS_CONFIG.emails.to,
-          subject: "Test Form Submission - Install It Guy",
-          from_name: "Test User",
-          reply_to: "test@example.com",
-          ip_address: true,
-          form_name: "Test Form",
-          website: "Install It Guy",
+      // Submit to both Web3Forms accounts
+      const submissions = await Promise.allSettled([
+        // Submit to Mason's account
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_CONFIG.mason.accessKey,
+            name: "Test User",
+            email: "test@example.com",
+            phone: "(704) 123-4567",
+            message: "This is a test form submission to verify Web3Forms is working correctly.",
+            to: WEB3FORMS_CONFIG.mason.email,
+            subject: "Test Form Submission - Install It Guy",
+            from_name: "Test User",
+            reply_to: "test@example.com",
+            ip_address: true,
+            form_name: "Test Form",
+            website: "Install It Guy",
+          }),
         }),
-      });
+        // Submit to Scott's account
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_CONFIG.scott.accessKey,
+            name: "Test User",
+            email: "test@example.com",
+            phone: "(704) 123-4567",
+            message: "This is a test form submission to verify Web3Forms is working correctly.",
+            to: WEB3FORMS_CONFIG.scott.email,
+            subject: "Test Form Submission - Install It Guy",
+            from_name: "Test User",
+            reply_to: "test@example.com",
+            ip_address: true,
+            form_name: "Test Form",
+            website: "Install It Guy",
+          }),
+        }),
+      ]);
 
-      const data = await response.json();
+      const successfulSubmissions = submissions.filter(result => result.status === 'fulfilled' && result.value.ok);
+      const failedSubmissions = submissions.filter(result => result.status === 'rejected' || !result.value.ok);
       
-      if (response.ok) {
-        setResult("✅ Form submitted successfully! Check your email.");
+      if (successfulSubmissions.length > 0) {
+        setResult(`✅ Form submitted successfully! ${successfulSubmissions.length}/2 accounts received the email. Check both email addresses.`);
       } else {
-        setResult(`❌ Error: ${data.message || "Form submission failed"}`);
+        setResult(`❌ Error: All submissions failed`);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -51,7 +77,9 @@ export default function TestForm() {
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-4">Test Web3Forms</h2>
       <p className="text-sm text-gray-600 mb-4">
-        This form will send a test email to: <strong>{WEB3FORMS_CONFIG.emails.to}</strong>
+        This form will send test emails to both accounts:
+        <br />• <strong>{WEB3FORMS_CONFIG.mason.email}</strong> (Mason)
+        <br />• <strong>{WEB3FORMS_CONFIG.scott.email}</strong> (Scott)
       </p>
       
       <form onSubmit={handleSubmit}>

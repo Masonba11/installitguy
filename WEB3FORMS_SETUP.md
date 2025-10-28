@@ -2,10 +2,10 @@
 
 ## Overview
 
-All forms on the Install It Guy website are now configured to submit to Web3Forms, which will send emails to:
+All forms on the Install It Guy website are now configured to submit to **both** Web3Forms accounts simultaneously, ensuring both users receive emails:
 
-- installitguyco@gmail.com
-- mason@silverbackmarketing.com
+- **Mason's Account**: `mason@silverbackmarketing.com` (API: 0bac6866-4755-49c8-969e-6963e0a552a0)
+- **Scott's Account**: `installitguyco@gmail.com` (API: 0eca37dd-258a-4e4d-ae02-a1d6cb4953fe)
 
 ## Setup Steps
 
@@ -30,8 +30,10 @@ WEB3FORMS_ACCESS_KEY=0bac6866-4755-49c8-969e-6963e0a552a0
 
 The email addresses are configured in `config/web3forms.js`:
 
-- **To emails**: installitguyco@gmail.com, mason@silverbackmarketing.com
-- **Reply-to**: installitguyco@gmail.com, mason@silverbackmarketing.com
+- **Mason's Account**: `mason@silverbackmarketing.com` (API: 0bac6866-4755-49c8-969e-6963e0a552a0)
+- **Scott's Account**: `installitguyco@gmail.com` (API: 0eca37dd-258a-4e4d-ae02-a1d6cb4953fe)
+
+**How it works**: Each form submission is sent to both Web3Forms accounts simultaneously using `Promise.allSettled()`, ensuring both users receive the email even if one account fails.
 
 ## How It Works
 
