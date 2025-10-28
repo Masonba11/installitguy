@@ -21,8 +21,10 @@ All forms on the Install It Guy website are now configured to submit to Web3Form
 Create a `.env.local` file in the root directory with:
 
 ```env
-WEB3FORMS_ACCESS_KEY=your_actual_access_key_here
+WEB3FORMS_ACCESS_KEY=0eca37dd-258a-4e4d-ae02-a1d6cb4953fe
 ```
+
+**Note:** The API key is already configured in the code as a fallback, so forms will work even without the environment variable.
 
 ### 3. Update Configuration (if needed)
 
