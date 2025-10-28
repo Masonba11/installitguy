@@ -4,8 +4,8 @@ export const WEB3FORMS_CONFIG = {
   accessKey:
     process.env.WEB3FORMS_ACCESS_KEY || "0eca37dd-258a-4e4d-ae02-a1d6cb4953fe",
   emails: {
-    to: "mason@silverbackmarketing.com,Scottcompton552@yahoo.com",
-    replyTo: "mason@silverbackmarketing.com,Scottcompton552@yahoo.com",
+    to: "mason@silverbackmarketing.com,installitguyco@gmail.com",
+    replyTo: "mason@silverbackmarketing.com,installitguyco@gmail.com",
   },
   subjects: {
     quote: "New Quote Request from Install It Guy Website",

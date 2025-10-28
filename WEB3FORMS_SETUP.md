@@ -4,8 +4,8 @@
 
 All forms on the Install It Guy website are now configured to submit to Web3Forms, which will send emails to:
 
-- Scottcompton552@yahoo.com
-- mason@silverback.com
+- installitguyco@gmail.com
+- mason@silverbackmarketing.com
 
 ## Setup Steps
 
@@ -30,8 +30,8 @@ WEB3FORMS_ACCESS_KEY=0eca37dd-258a-4e4d-ae02-a1d6cb4953fe
 
 The email addresses are configured in `config/web3forms.js`:
 
-- **To emails**: Scottcompton552@yahoo.com, mason@silverback.com
-- **Reply-to**: Scottcompton552@yahoo.com
+- **To emails**: installitguyco@gmail.com, mason@silverbackmarketing.com
+- **Reply-to**: installitguyco@gmail.com, mason@silverbackmarketing.com
 
 ## How It Works
 
