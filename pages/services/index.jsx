@@ -192,7 +192,7 @@ export default function ServicesIndex() {
 
       <main>
         {/* Hero */}
-        <section className="bg-brand-primary text-white py-24">
+        <section className="hero-background text-white py-24">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-start">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">

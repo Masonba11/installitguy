@@ -277,7 +277,7 @@ export default function ServiceAreaServicePage({ city, service }) {
       <Header />
 
       <main>
-        <section className="bg-brand-primary text-white py-24">
+        <section className="hero-background text-white py-24">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
               {cityFullName}

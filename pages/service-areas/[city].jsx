@@ -211,7 +211,7 @@ export default function ServiceAreaPage({ city }) {
 
       <main className="min-h-screen bg-gray-50">
         {/* Hero */}
-        <section className="bg-brand-primary text-white py-24">
+        <section className="hero-background text-white py-24">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
