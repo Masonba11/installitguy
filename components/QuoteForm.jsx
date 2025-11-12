@@ -1,4 +1,8 @@
-import ZenbookerEmbed from "./ZenbookerEmbed";
+import dynamic from "next/dynamic";
+
+const ZenbookerEmbed = dynamic(() => import("./ZenbookerEmbed"), {
+  ssr: false,
+});
 
 export default function QuoteForm({
   title = "Book Your Service",

@@ -4,7 +4,12 @@ import Footer from "../components/Footer";
 import ContextualReviews from "../components/ContextualReviews";
 import ContextualFAQs from "../components/ContextualFAQs";
 import QuoteForm from "../components/QuoteForm";
-import ZenbookerEmbed from "../components/ZenbookerEmbed";
+import dynamic from "next/dynamic";
+
+const ZenbookerEmbed = dynamic(
+  () => import("../components/ZenbookerEmbed"),
+  { ssr: false }
+);
 
 export default function ContactUs() {
   const contactPageSchema = {

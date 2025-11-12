@@ -1,4 +1,5 @@
-import Head from "next/head";
+import { useEffect } from "react";
+import Script from "next/script";
 
 const ZENBOOKER_STYLES = `
 .zen-wrapper {
@@ -20,16 +21,24 @@ const ZENBOOKER_STYLES = `
 `;
 
 const ZenbookerEmbed = () => {
+  useEffect(() => {
+    const cssId = "zenbooker-widget-css";
+    if (!document.getElementById(cssId)) {
+      const link = document.createElement("link");
+      link.id = cssId;
+      link.rel = "stylesheet";
+      link.href = "https://cdn.zenbooker.com/widget/latest/zenbooker.css";
+      document.head.appendChild(link);
+    }
+  }, []);
+
   return (
     <>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://cdn.zenbooker.com/widget/latest/zenbooker.css"
-        />
-        <script src="https://cdn.zenbooker.com/widget/latest/zenbooker.js" defer />
-        <style>{ZENBOOKER_STYLES}</style>
-      </Head>
+      <Script
+        src="https://cdn.zenbooker.com/widget/latest/zenbooker.js"
+        strategy="afterInteractive"
+      />
+      <style jsx global>{ZENBOOKER_STYLES}</style>
       <div className="zen-wrapper">
         <div
           className="zenbooker-inline-widget"
