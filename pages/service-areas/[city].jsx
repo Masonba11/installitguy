@@ -111,7 +111,9 @@ export default function ServiceAreaPage({ city }) {
         "@type": "Answer",
         text: `We regularly help homeowners in ${getCityName(
           city
-        )} with ${formatServiceList(serviceNames)} plus seasonal maintenance and punch list work.`,
+        )} with ${formatServiceList(
+          serviceNames
+        )} plus seasonal maintenance and punch list work.`,
       },
     },
     {
@@ -205,7 +207,9 @@ export default function ServiceAreaPage({ city }) {
                 Trusted handyman help in {getCityName(city)}
               </h1>
               <p className="mt-5 text-lg text-slate-200 leading-relaxed">
-                From new installs to punch-list repairs, our Shelby-based crew travels to {getCityName(city)} every week with 30+ years of craftsmanship.
+                From new installs to punch-list repairs, our Shelby-based crew
+                travels to {getCityName(city)} every week with 30+ years of
+                craftsmanship.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
@@ -252,7 +256,10 @@ export default function ServiceAreaPage({ city }) {
                 One team for installs, punch lists, and seasonal upkeep
               </h2>
               <p className="mt-4 text-lg text-gray-600 leading-relaxed">
-                Choose the projects you want off your plate—TV mounting, fixtures, smart upgrades, repairs, or home maintenance. We arrive prepared and finish everything on the same visit whenever possible.
+                Choose the projects you want off your plate—TV mounting,
+                fixtures, smart upgrades, repairs, or home maintenance. We
+                arrive prepared and finish everything on the same visit whenever
+                possible.
               </p>
             </div>
 
@@ -275,7 +282,9 @@ export default function ServiceAreaPage({ city }) {
                 Neighborhoods we visit around {getCityShortName(city)}
               </h2>
               <p className="mt-4 text-slate-600 leading-relaxed">
-                We’re on the road daily in Mecklenburg and the surrounding counties. Share your address and we’ll confirm availability right away.
+                We’re on the road daily in Mecklenburg and the surrounding
+                counties. Share your address and we’ll confirm availability
+                right away.
               </p>
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 {allServiceAreas

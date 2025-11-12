@@ -369,14 +369,18 @@ export default function ServiceAreaServicePage({ city, service }) {
               <p className="mt-4 text-slate-700 leading-relaxed">
                 {longDescription}
               </p>
-              <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-                {otherServices.slice(0, 6).map((slug) => (
+              <p className="mt-4 text-slate-600">
+                Looking for something else in {cityName}? Jump straight to the
+                service you need:
+              </p>
+              <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {otherServices.map((slug) => (
                   <li key={slug}>
                     <Link
                       href={`/service-areas/${city}/${slug}`}
                       className="inline-flex items-center text-primary-600 hover:text-primary-500 font-medium"
                     >
-                      {getServiceName(slug)}
+                      {getServiceName(slug)} in {cityName}
                     </Link>
                   </li>
                 ))}
