@@ -30,6 +30,32 @@ const ZenbookerEmbed = () => {
       link.href = "https://cdn.zenbooker.com/widget/latest/zenbooker.css";
       document.head.appendChild(link);
     }
+
+    const initializeWidget = () => {
+      const api = window.Zenbooker;
+      if (!api) return false;
+
+      if (typeof api.load === "function") {
+        api.load();
+      } else if (typeof api.init === "function") {
+        api.init();
+      } else if (typeof api.render === "function") {
+        api.render();
+      }
+      return true;
+    };
+
+    if (!initializeWidget()) {
+      let attempts = 0;
+      const interval = setInterval(() => {
+        attempts += 1;
+        if (initializeWidget() || attempts > 10) {
+          clearInterval(interval);
+        }
+      }, 300);
+
+      return () => clearInterval(interval);
+    }
   }, []);
 
   return (
@@ -37,6 +63,18 @@ const ZenbookerEmbed = () => {
       <Script
         src="https://cdn.zenbooker.com/widget/latest/zenbooker.js"
         strategy="afterInteractive"
+        onLoad={() => {
+          const api = window.Zenbooker;
+          if (!api) return;
+          if (typeof api.load === "function") {
+            api.load();
+          } else if (typeof api.init === "function") {
+            api.init();
+          } else if (typeof api.render === "function") {
+            api.render();
+          }
+        }}
+        id="zenbooker-script"
       />
       <style jsx global>{ZENBOOKER_STYLES}</style>
       <div className="zen-wrapper">
