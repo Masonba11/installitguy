@@ -234,9 +234,12 @@
       rgba(28, 45, 63, 0.78) 0%,
       rgba(28, 45, 63, 0.88) 100%
     ),
-    url("/images/installit-guy/hero-ceiling-fan.jpg");
+    image-set(
+      url("/images/installit-guy/hero-ceiling-fan.webp") type("image/webp"),
+      url("/images/installit-guy/hero-ceiling-fan.jpg") type("image/jpeg")
+    );
   background-size: cover;
-  background-position: 50% 28%;
+  background-position: 50% 24%;
   background-repeat: no-repeat;
   color: #ffffff;
 }
@@ -261,13 +264,13 @@
 
 @media (min-width: 768px) {
   .hero-background {
-    background-position: 50% 35%;
+    background-position: 50% 32%;
   }
 }
 
 @media (min-width: 1280px) {
   .hero-background {
-    background-size: 110%;
-    background-position: 50% 42%;
+    background-size: 105%;
+    background-position: 50% 40%;
   }
 }
