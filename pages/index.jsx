@@ -11,7 +11,6 @@ import {
 } from "../data/serviceAreas";
 import dynamic from "next/dynamic";
 import HeroSection from "../components/HeroSection";
-import ZenbookWidget from "../components/ZenbookWidget";
 
 const Reviews = dynamic(() => import("../components/Reviews"), {
   ssr: false,
@@ -44,6 +43,23 @@ const displayServiceAreas = {
 
 export default function Home() {
   const featuredServices = services.slice(0, 6);
+  const highlights = [
+    {
+      title: "Right-sized visits",
+      description:
+        "Schedule a focused install or give us a punch list—we’ll plan the labor, materials, and timing for you.",
+    },
+    {
+      title: "Careful in every room",
+      description:
+        "Floors covered, fixtures protected, and a full cleanup before we leave. Your space feels ready the moment we wrap up.",
+    },
+    {
+      title: "Locally rooted",
+      description:
+        "Three decades serving the Charlotte area means we know the neighborhoods, builders, and expectations by heart.",
+    },
+  ];
   const stats = [
     { value: "30+", label: "years helping homeowners" },
     { value: "150+", label: "projects completed each year" },
@@ -330,16 +346,23 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            <div className="rounded-3xl bg-white shadow-2xl p-6 sm:p-8">
-              <h2 className="text-2xl font-semibold text-slate-900">
-                Book your project in minutes
+            <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 p-8">
+              <h2 className="text-xl font-semibold text-white">
+                What you can expect every time
               </h2>
-              <p className="mt-2 text-slate-600">
-                Pick a time that works for you and we’ll confirm the visit right away.
-              </p>
-              <div className="mt-4">
-                <ZenbookWidget loadStrategy="immediate" />
-              </div>
+              <ul className="mt-6 space-y-3 text-sm">
+                {highlights.map((item) => (
+                  <li key={item.title} className="flex items-start gap-2">
+                    <span className="mt-1 text-primary-200">•</span>
+                    <span>
+                      <span className="font-semibold text-white block">
+                        {item.title}
+                      </span>
+                      {item.description}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </HeroSection>
