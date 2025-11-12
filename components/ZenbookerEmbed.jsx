@@ -19,86 +19,42 @@ const ZENBOOKER_STYLES = `
 }
 `;
 
-const ZenbookerEmbed = () => {
+const ZenbookerEmbed = ({ ready = false }) => {
   useEffect(() => {
-    const cssId = "zenbooker-widget-css";
-    if (!document.getElementById(cssId)) {
-      const link = document.createElement("link");
-      link.id = cssId;
-      link.rel = "stylesheet";
-      link.href = "https://cdn.zenbooker.com/widget/latest/zenbooker.css";
-      document.head.appendChild(link);
-    }
+    if (!ready) return;
 
-    const loadZenbookerScript = () => {
-      if (typeof window === "undefined") return Promise.resolve();
+    const attemptRender = () => {
+      if (typeof window === "undefined") return false;
+      if (!window.ZenbookerWidget) return false;
 
-      if (window.__zenbookerReady) {
-        return Promise.resolve();
+      const widgetDiv = document.querySelector(".zenbooker-inline-widget");
+      if (!widgetDiv || widgetDiv.dataset.zenbookerRendered === "true") {
+        return !!widgetDiv;
       }
 
-      if (!window.__zenbookerScriptPromise) {
-        window.__zenbookerScriptPromise = new Promise((resolve, reject) => {
-          const existing = document.getElementById("zenbooker-script");
-
-          const handleReady = () => {
-            window.__zenbookerReady = true;
-            resolve();
-          };
-
-          if (existing) {
-            if (existing.getAttribute("data-loaded") === "true") {
-              handleReady();
-            } else {
-              existing.addEventListener("load", handleReady, { once: true });
-              existing.addEventListener("error", reject, { once: true });
-            }
-          } else {
-            const script = document.createElement("script");
-            script.id = "zenbooker-script";
-            script.src = "https://cdn.zenbooker.com/widget/latest/zenbooker.js";
-            script.async = true;
-            script.onload = () => {
-              script.setAttribute("data-loaded", "true");
-              handleReady();
-            };
-            script.onerror = reject;
-            document.body.appendChild(script);
-          }
-        });
-      }
-
-      return window.__zenbookerScriptPromise;
-    };
-
-    let isCancelled = false;
-
-    const initializeWidget = () => {
-      if (isCancelled || !window.Zenbooker) return;
-      const api = window.Zenbooker;
-      if (typeof api.load === "function") {
-        api.load();
-      } else if (typeof api.init === "function") {
-        api.init();
-      } else if (typeof api.render === "function") {
-        api.render();
+      try {
+        window.ZenbookerWidget.render(widgetDiv);
+        widgetDiv.dataset.zenbookerRendered = "true";
+        return true;
+      } catch (error) {
+        console.error("Zenbooker render failed", error);
+        return false;
       }
     };
 
-    loadZenbookerScript()
-      .then(() => {
-        if (isCancelled) return;
-        // Give the script a tick to attach helpers
-        setTimeout(initializeWidget, 0);
-      })
-      .catch((error) => {
-        console.error("Zenbooker script failed to load", error);
-      });
+    let attempts = 0;
+    const maxAttempts = 20;
+    const interval = setInterval(() => {
+      attempts += 1;
+      if (attemptRender() || attempts >= maxAttempts) {
+        clearInterval(interval);
+      }
+    }, 200);
 
     return () => {
-      isCancelled = true;
+      clearInterval(interval);
     };
-  }, []);
+  }, [ready]);
 
   return (
     <>
