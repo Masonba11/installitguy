@@ -324,7 +324,7 @@ export default function Header() {
               </button>
             </div>
 
-            <nav className="flex h-[calc(100%-56px)] flex-col overflow-y-auto px-5 py-6">
+            <nav className="flex h-[calc(100%-56px)] flex-col overflow-y-auto px-5 py-6 gap-6">
               <div className="flex flex-col gap-3 text-center">
                 <Link
                   href="/"
@@ -342,11 +342,10 @@ export default function Header() {
                 </Link>
               </div>
 
-              {/* Mobile Services Dropdown */}
-              <div className="mt-6 space-y-3">
+              <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
                 <button
                   onClick={toggleServices}
-                  className="flex w-full items-center justify-between rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-lg font-semibold text-gray-900"
+                  className="flex w-full items-center justify-between text-lg font-semibold text-gray-900"
                 >
                   <span>Services</span>
                   <svg
@@ -366,29 +365,27 @@ export default function Header() {
                   </svg>
                 </button>
                 {isServicesOpen && (
-                  <div className="space-y-2 rounded-lg border border-gray-100 bg-white p-3">
-                    <div className="space-y-2 max-h-64 overflow-y-auto">
-                      {(showAllMobileServices ? services : primaryServices).map(
-                        (service) => (
-                          <Link
-                            key={service.slug}
-                            href={`/services/${service.slug}`}
-                            className="block rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-primary-50 hover:text-primary-600"
-                            onClick={() => {
-                              setIsMenuOpen(false);
-                              setIsServicesOpen(false);
-                              setShowAllMobileServices(false);
-                            }}
-                          >
-                            {service.name}
-                          </Link>
-                        )
-                      )}
-                    </div>
+                  <div className="mt-3 space-y-2">
+                    {(showAllMobileServices ? services : primaryServices).map(
+                      (service) => (
+                        <Link
+                          key={service.slug}
+                          href={`/services/${service.slug}`}
+                          className="block rounded-lg border border-white bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:border-primary-200 hover:bg-primary-50 hover:text-primary-600"
+                          onClick={() => {
+                            setIsMenuOpen(false);
+                            setIsServicesOpen(false);
+                            setShowAllMobileServices(false);
+                          }}
+                        >
+                          {service.name}
+                        </Link>
+                      )
+                    )}
                     {remainingServices.length > 0 && (
                       <button
                         type="button"
-                        className="w-full rounded-md border border-transparent bg-primary-50 py-2 text-sm font-semibold text-primary-600 hover:bg-primary-100"
+                        className="w-full rounded-lg border border-transparent bg-primary-50 py-2 text-sm font-semibold text-primary-600 hover:bg-primary-100"
                         onClick={() =>
                           setShowAllMobileServices(!showAllMobileServices)
                         }
@@ -409,11 +406,10 @@ export default function Header() {
                 )}
               </div>
 
-              {/* Mobile Service Areas Dropdown */}
-              <div className="mt-5 space-y-3">
+              <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
                 <button
                   onClick={toggleServiceAreas}
-                  className="flex w-full items-center justify-between rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-lg font-semibold text-gray-900"
+                  className="flex w-full items-center justify-between text-lg font-semibold text-gray-900"
                 >
                   <span>Service Areas</span>
                   <svg
@@ -433,29 +429,27 @@ export default function Header() {
                   </svg>
                 </button>
                 {isServiceAreasOpen && (
-                  <div className="space-y-2 rounded-lg border border-gray-100 bg-white p-3">
-                    <div className="space-y-2 max-h-64 overflow-y-auto">
-                      {(showAllMobileAreas ? serviceAreas : primaryAreas).map(
-                        (area) => (
-                          <Link
-                            key={area.slug}
-                            href={`/service-areas/${area.slug}`}
-                            className="block rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-primary-50 hover:text-primary-600"
-                            onClick={() => {
-                              setIsMenuOpen(false);
-                              setIsServiceAreasOpen(false);
-                              setShowAllMobileAreas(false);
-                            }}
-                          >
-                            {area.name}
-                          </Link>
-                        )
-                      )}
-                    </div>
+                  <div className="mt-3 space-y-2">
+                    {(showAllMobileAreas ? serviceAreas : primaryAreas).map(
+                      (area) => (
+                        <Link
+                          key={area.slug}
+                          href={`/service-areas/${area.slug}`}
+                          className="block rounded-lg border border-white bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:border-primary-200 hover:bg-primary-50 hover:text-primary-600"
+                          onClick={() => {
+                            setIsMenuOpen(false);
+                            setIsServiceAreasOpen(false);
+                            setShowAllMobileAreas(false);
+                          }}
+                        >
+                          {area.name}
+                        </Link>
+                      )
+                    )}
                     {remainingAreas.length > 0 && (
                       <button
                         type="button"
-                        className="w-full rounded-md border border-transparent bg-primary-50 py-2 text-sm font-semibold text-primary-600 hover:bg-primary-100"
+                        className="w-full rounded-lg border border-transparent bg-primary-50 py-2 text-sm font-semibold text-primary-600 hover:bg-primary-100"
                         onClick={() =>
                           setShowAllMobileAreas(!showAllMobileAreas)
                         }
@@ -476,7 +470,7 @@ export default function Header() {
                 )}
               </div>
 
-              <div className="mt-auto flex flex-col gap-3 pt-8 text-center">
+              <div className="mt-auto flex flex-col gap-3 text-center">
                 <Link
                   href="/faqs"
                   onClick={() => setIsMenuOpen(false)}
