@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import Script from "next/script";
 
 const ZENBOOKER_STYLES = `
 .zen-wrapper {
@@ -31,10 +30,52 @@ const ZenbookerEmbed = () => {
       document.head.appendChild(link);
     }
 
-    const initializeWidget = () => {
-      const api = window.Zenbooker;
-      if (!api) return false;
+    const loadZenbookerScript = () => {
+      if (typeof window === "undefined") return Promise.resolve();
 
+      if (window.__zenbookerReady) {
+        return Promise.resolve();
+      }
+
+      if (!window.__zenbookerScriptPromise) {
+        window.__zenbookerScriptPromise = new Promise((resolve, reject) => {
+          const existing = document.getElementById("zenbooker-script");
+
+          const handleReady = () => {
+            window.__zenbookerReady = true;
+            resolve();
+          };
+
+          if (existing) {
+            if (existing.getAttribute("data-loaded") === "true") {
+              handleReady();
+            } else {
+              existing.addEventListener("load", handleReady, { once: true });
+              existing.addEventListener("error", reject, { once: true });
+            }
+          } else {
+            const script = document.createElement("script");
+            script.id = "zenbooker-script";
+            script.src = "https://cdn.zenbooker.com/widget/latest/zenbooker.js";
+            script.async = true;
+            script.onload = () => {
+              script.setAttribute("data-loaded", "true");
+              handleReady();
+            };
+            script.onerror = reject;
+            document.body.appendChild(script);
+          }
+        });
+      }
+
+      return window.__zenbookerScriptPromise;
+    };
+
+    let isCancelled = false;
+
+    const initializeWidget = () => {
+      if (isCancelled || !window.Zenbooker) return;
+      const api = window.Zenbooker;
       if (typeof api.load === "function") {
         api.load();
       } else if (typeof api.init === "function") {
@@ -42,40 +83,25 @@ const ZenbookerEmbed = () => {
       } else if (typeof api.render === "function") {
         api.render();
       }
-      return true;
     };
 
-    if (!initializeWidget()) {
-      let attempts = 0;
-      const interval = setInterval(() => {
-        attempts += 1;
-        if (initializeWidget() || attempts > 10) {
-          clearInterval(interval);
-        }
-      }, 300);
+    loadZenbookerScript()
+      .then(() => {
+        if (isCancelled) return;
+        // Give the script a tick to attach helpers
+        setTimeout(initializeWidget, 0);
+      })
+      .catch((error) => {
+        console.error("Zenbooker script failed to load", error);
+      });
 
-      return () => clearInterval(interval);
-    }
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
   return (
     <>
-      <Script
-        src="https://cdn.zenbooker.com/widget/latest/zenbooker.js"
-        strategy="afterInteractive"
-        onLoad={() => {
-          const api = window.Zenbooker;
-          if (!api) return;
-          if (typeof api.load === "function") {
-            api.load();
-          } else if (typeof api.init === "function") {
-            api.init();
-          } else if (typeof api.render === "function") {
-            api.render();
-          }
-        }}
-        id="zenbooker-script"
-      />
       <style jsx global>
         {ZENBOOKER_STYLES}
       </style>
