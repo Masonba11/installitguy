@@ -300,8 +300,13 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden fixed inset-0 z-50 bg-white">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+          <div
+            className="md:hidden fixed inset-0 z-50 bg-white/97 backdrop-blur animate-mobile-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation"
+          >
+            <div className="flex items-center justify-between px-5 py-3 border-b border-gray-200">
               <span className="text-lg font-semibold text-gray-900">Menu</span>
               <button
                 onClick={toggleMenu}
@@ -325,31 +330,32 @@ export default function Header() {
             </div>
 
             <nav className="flex h-[calc(100%-56px)] flex-col overflow-y-auto px-5 py-6 gap-6">
-              <div className="flex flex-col gap-3 text-center">
-                <Link
-                  href="/"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block text-lg font-semibold text-gray-900"
-                >
-                  Home
-                </Link>
-                <Link
-                  href="/contact-us"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block text-lg font-semibold text-gray-900"
-                >
-                  Contact
-                </Link>
+              <div className="rounded-2xl border border-gray-200 bg-white shadow-sm divide-y divide-gray-100">
+                {[
+                  { label: "Home", href: "/" },
+                  { label: "Contact", href: "/contact-us" },
+                ].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block px-5 py-4 text-lg font-semibold text-gray-900 hover:bg-primary-50 hover:text-primary-600"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
               </div>
 
-              <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
+              <div className="rounded-2xl border border-gray-200 bg-white shadow-sm">
                 <button
                   onClick={toggleServices}
-                  className="flex w-full items-center justify-between text-lg font-semibold text-gray-900"
+                  aria-expanded={isServicesOpen}
+                  aria-controls="mobile-services-panel"
+                  className="flex w-full items-center justify-between px-5 py-4 text-lg font-semibold text-gray-900"
                 >
                   <span>Services</span>
                   <svg
-                    className={`w-5 h-5 transition-transform ${
+                    className={`w-5 h-5 transition-transform duration-200 ${
                       isServicesOpen ? "rotate-180" : ""
                     }`}
                     fill="none"
@@ -364,14 +370,19 @@ export default function Header() {
                     />
                   </svg>
                 </button>
-                {isServicesOpen && (
-                  <div className="mt-3 space-y-2">
+                <div
+                  id="mobile-services-panel"
+                  className={`overflow-hidden transition-[max-height] duration-300 ease-out ${
+                    isServicesOpen ? "max-h-72" : "max-h-0"
+                  }`}
+                >
+                  <div className="space-y-2 bg-slate-50 px-5 py-4 border-t border-gray-200">
                     {(showAllMobileServices ? services : primaryServices).map(
                       (service) => (
                         <Link
                           key={service.slug}
                           href={`/services/${service.slug}`}
-                          className="block rounded-lg border border-white bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:border-primary-200 hover:bg-primary-50 hover:text-primary-600"
+                          className="block rounded-lg bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 shadow-sm"
                           onClick={() => {
                             setIsMenuOpen(false);
                             setIsServicesOpen(false);
@@ -385,7 +396,7 @@ export default function Header() {
                     {remainingServices.length > 0 && (
                       <button
                         type="button"
-                        className="w-full rounded-lg border border-transparent bg-primary-50 py-2 text-sm font-semibold text-primary-600 hover:bg-primary-100"
+                        className="w-full rounded-lg border border-primary-100 bg-white py-2 text-sm font-semibold text-primary-600 hover:bg-primary-50"
                         onClick={() =>
                           setShowAllMobileServices(!showAllMobileServices)
                         }
@@ -403,17 +414,19 @@ export default function Header() {
                       Browse full services page →
                     </Link>
                   </div>
-                )}
+                </div>
               </div>
 
-              <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
+              <div className="rounded-2xl border border-gray-200 bg-white shadow-sm">
                 <button
                   onClick={toggleServiceAreas}
-                  className="flex w-full items-center justify-between text-lg font-semibold text-gray-900"
+                  aria-expanded={isServiceAreasOpen}
+                  aria-controls="mobile-areas-panel"
+                  className="flex w-full items-center justify-between px-5 py-4 text-lg font-semibold text-gray-900"
                 >
                   <span>Service Areas</span>
                   <svg
-                    className={`w-5 h-5 transition-transform ${
+                    className={`w-5 h-5 transition-transform duration-200 ${
                       isServiceAreasOpen ? "rotate-180" : ""
                     }`}
                     fill="none"
@@ -428,14 +441,19 @@ export default function Header() {
                     />
                   </svg>
                 </button>
-                {isServiceAreasOpen && (
-                  <div className="mt-3 space-y-2">
+                <div
+                  id="mobile-areas-panel"
+                  className={`overflow-hidden transition-[max-height] duration-300 ease-out ${
+                    isServiceAreasOpen ? "max-h-72" : "max-h-0"
+                  }`}
+                >
+                  <div className="space-y-2 bg-slate-50 px-5 py-4 border-t border-gray-200">
                     {(showAllMobileAreas ? serviceAreas : primaryAreas).map(
                       (area) => (
                         <Link
                           key={area.slug}
                           href={`/service-areas/${area.slug}`}
-                          className="block rounded-lg border border-white bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:border-primary-200 hover:bg-primary-50 hover:text-primary-600"
+                          className="block rounded-lg bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 shadow-sm"
                           onClick={() => {
                             setIsMenuOpen(false);
                             setIsServiceAreasOpen(false);
@@ -449,7 +467,7 @@ export default function Header() {
                     {remainingAreas.length > 0 && (
                       <button
                         type="button"
-                        className="w-full rounded-lg border border-transparent bg-primary-50 py-2 text-sm font-semibold text-primary-600 hover:bg-primary-100"
+                        className="w-full rounded-lg border border-primary-100 bg-white py-2 text-sm font-semibold text-primary-600 hover:bg-primary-50"
                         onClick={() =>
                           setShowAllMobileAreas(!showAllMobileAreas)
                         }
@@ -467,28 +485,30 @@ export default function Header() {
                       View coverage map →
                     </Link>
                   </div>
-                )}
+                </div>
               </div>
 
-              <div className="mt-auto flex flex-col gap-3 text-center">
-                <Link
-                  href="/faqs"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block text-lg font-semibold text-gray-900"
-                >
-                  FAQs
-                </Link>
-                <Link
-                  href="/reviews"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block text-lg font-semibold text-gray-900"
-                >
-                  Reviews
-                </Link>
+              <div className="rounded-2xl border border-gray-200 bg-white shadow-sm divide-y divide-gray-100">
+                {[
+                  { label: "FAQs", href: "/faqs" },
+                  { label: "Reviews", href: "/reviews" },
+                ].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block px-5 py-4 text-lg font-semibold text-gray-900 hover:bg-primary-50 hover:text-primary-600"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="pb-4">
                 <Link
                   href="tel:+17041234567"
                   onClick={() => setIsMenuOpen(false)}
-                  className="btn-primary"
+                  className="btn-accent w-full text-center text-lg font-bold"
                 >
                   Call Now
                 </Link>
