@@ -63,6 +63,33 @@ export default function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setIsMenuOpen(false);
+      setIsServicesOpen(false);
+      setIsServiceAreasOpen(false);
+      setShowAllMobileServices(false);
+      setShowAllMobileAreas(false);
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
+
   const services = orderedServiceSlugs.map((slug) => ({
     slug,
     name: servicesContent[slug]?.name || slug,
@@ -273,28 +300,57 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 py-4 bg-white relative z-50">
-            <nav className="flex flex-col space-y-4">
-              <Link
-                href="/"
-                className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
-                onClick={() => {
-                  console.log("Mobile Home clicked");
-                  setIsMenuOpen(false);
-                }}
+          <div className="md:hidden fixed inset-0 z-50 bg-white overflow-y-auto">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+              <span className="text-lg font-semibold text-gray-900">Menu</span>
+              <button
+                onClick={toggleMenu}
+                className="p-2 rounded-lg text-gray-600 hover:bg-gray-100"
+                aria-label="Close menu"
               >
-                Home
-              </Link>
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <nav className="px-6 py-6 space-y-8">
+              <div className="space-y-3">
+                <Link
+                  href="/"
+                  className="block text-lg font-medium text-gray-900"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/contact-us"
+                  className="block text-lg font-medium text-gray-900"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Contact
+                </Link>
+              </div>
 
               {/* Mobile Services Dropdown */}
-              <div>
+              <div className="space-y-3">
                 <button
                   onClick={toggleServices}
-                  className="text-gray-700 hover:text-primary-600 font-medium transition-colors flex items-center justify-between w-full"
+                  className="flex w-full items-center justify-between text-lg font-semibold text-gray-900"
                 >
                   <span>Services</span>
                   <svg
-                    className={`w-4 h-4 transition-transform ${
+                    className={`w-5 h-5 transition-transform ${
                       isServicesOpen ? "rotate-180" : ""
                     }`}
                     fill="none"
@@ -310,20 +366,16 @@ export default function Header() {
                   </svg>
                 </button>
                 {isServicesOpen && (
-                  <div className="ml-4 mt-2 space-y-2">
+                  <div className="space-y-2">
                     {(showAllMobileServices ? services : primaryServices).map(
                       (service) => (
                         <Link
                           key={service.slug}
                           href={`/services/${service.slug}`}
-                          className="block text-sm text-gray-600 hover:text-primary-600 transition-colors py-2 px-2"
+                          className="block rounded-lg border border-gray-100 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-700 hover:border-primary-200 hover:bg-primary-50 hover:text-primary-600"
                           onClick={() => {
-                            console.log(
-                              "Mobile service clicked:",
-                              service.slug
-                            );
-                            setIsServicesOpen(false);
                             setIsMenuOpen(false);
+                            setIsServicesOpen(false);
                             setShowAllMobileServices(false);
                           }}
                         >
@@ -334,7 +386,7 @@ export default function Header() {
                     {remainingServices.length > 0 && (
                       <button
                         type="button"
-                        className="w-full text-left text-sm font-semibold text-primary-600 hover:text-primary-700 py-2"
+                        className="w-full text-left text-sm font-semibold text-primary-600 hover:text-primary-700"
                         onClick={() =>
                           setShowAllMobileServices(!showAllMobileServices)
                         }
@@ -346,12 +398,8 @@ export default function Header() {
                     )}
                     <Link
                       href="/services"
-                      className="block text-sm text-primary-600 hover:text-primary-700 font-semibold pt-1"
-                      onClick={() => {
-                        setIsServicesOpen(false);
-                        setIsMenuOpen(false);
-                        setShowAllMobileServices(false);
-                      }}
+                      className="block text-sm font-semibold text-primary-600 hover:text-primary-700"
+                      onClick={() => setIsMenuOpen(false)}
                     >
                       Browse full services page →
                     </Link>
@@ -360,14 +408,14 @@ export default function Header() {
               </div>
 
               {/* Mobile Service Areas Dropdown */}
-              <div>
+              <div className="space-y-3">
                 <button
                   onClick={toggleServiceAreas}
-                  className="text-gray-700 hover:text-primary-600 font-medium transition-colors flex items-center justify-between w-full"
+                  className="flex w-full items-center justify-between text-lg font-semibold text-gray-900"
                 >
                   <span>Service Areas</span>
                   <svg
-                    className={`w-4 h-4 transition-transform ${
+                    className={`w-5 h-5 transition-transform ${
                       isServiceAreasOpen ? "rotate-180" : ""
                     }`}
                     fill="none"
@@ -383,20 +431,16 @@ export default function Header() {
                   </svg>
                 </button>
                 {isServiceAreasOpen && (
-                  <div className="ml-4 mt-2 space-y-2">
+                  <div className="space-y-2">
                     {(showAllMobileAreas ? serviceAreas : primaryAreas).map(
                       (area) => (
                         <Link
                           key={area.slug}
                           href={`/service-areas/${area.slug}`}
-                          className="block text-sm text-gray-600 hover:text-primary-600 transition-colors py-2 px-2"
+                          className="block rounded-lg border border-gray-100 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-700 hover:border-primary-200 hover:bg-primary-50 hover:text-primary-600"
                           onClick={() => {
-                            console.log(
-                              "Mobile service area clicked:",
-                              area.slug
-                            );
-                            setIsServiceAreasOpen(false);
                             setIsMenuOpen(false);
+                            setIsServiceAreasOpen(false);
                             setShowAllMobileAreas(false);
                           }}
                         >
@@ -407,7 +451,7 @@ export default function Header() {
                     {remainingAreas.length > 0 && (
                       <button
                         type="button"
-                        className="w-full text-left text-sm font-semibold text-primary-600 hover:text-primary-700 py-2"
+                        className="w-full text-left text-sm font-semibold text-primary-600 hover:text-primary-700"
                         onClick={() =>
                           setShowAllMobileAreas(!showAllMobileAreas)
                         }
@@ -419,12 +463,8 @@ export default function Header() {
                     )}
                     <Link
                       href="/service-areas"
-                      className="block text-sm text-primary-600 hover:text-primary-700 font-semibold pt-1"
-                      onClick={() => {
-                        setIsServiceAreasOpen(false);
-                        setIsMenuOpen(false);
-                        setShowAllMobileAreas(false);
-                      }}
+                      className="block text-sm font-semibold text-primary-600 hover:text-primary-700"
+                      onClick={() => setIsMenuOpen(false)}
                     >
                       View coverage map →
                     </Link>
@@ -432,27 +472,29 @@ export default function Header() {
                 )}
               </div>
 
-              <Link
-                href="/contact-us"
-                className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
-              >
-                Contact
-              </Link>
-              <Link
-                href="/faqs"
-                className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
-              >
-                FAQs
-              </Link>
-              <Link
-                href="/reviews"
-                className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
-              >
-                Reviews
-              </Link>
-              <Link href="tel:+17041234567" className="btn-primary text-center">
-                Call Now
-              </Link>
+              <div className="space-y-3">
+                <Link
+                  href="/faqs"
+                  className="block text-lg font-medium text-gray-900"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  FAQs
+                </Link>
+                <Link
+                  href="/reviews"
+                  className="block text-lg font-medium text-gray-900"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Reviews
+                </Link>
+                <Link
+                  href="tel:+17041234567"
+                  className="btn-primary text-center"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Call Now
+                </Link>
+              </div>
             </nav>
           </div>
         )}

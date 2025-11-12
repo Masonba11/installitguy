@@ -76,7 +76,9 @@ const ZenbookerEmbed = () => {
         }}
         id="zenbooker-script"
       />
-      <style jsx global>{ZENBOOKER_STYLES}</style>
+      <style jsx global>
+        {ZENBOOKER_STYLES}
+      </style>
       <div className="zen-wrapper">
         <div
           className="zenbooker-inline-widget"
