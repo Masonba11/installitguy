@@ -42,6 +42,8 @@ const services = [
   "furniture-assembly",
   "fence-installation",
   "gutter-cleaning",
+  "home-maintenance",
+  "epoxy-flooring",
 ];
 
 export default function ServiceAreaServicePage({ city, service }) {
@@ -242,14 +244,16 @@ export default function ServiceAreaServicePage({ city, service }) {
               },
               {
                 "@type": "Question",
-                name: `Are you licensed and insured for ${getServiceName(
+                name: `What services do you offer for ${getServiceName(
                   service
-                ).toLowerCase()}?`,
+                )} in ${getCityName(city)}?`,
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: `Yes, we are fully licensed and insured for all ${getServiceName(
+                  text: `We provide expert ${getServiceName(
                     service
-                  ).toLowerCase()} projects. We carry comprehensive liability insurance for your protection.`,
+                  ).toLowerCase()} services in ${getCityName(
+                    city
+                  )} along with TV mounting, ceiling fan installation, lighting installation, garage door opener installation, Ring doorbell installation, faucet and toilet installation, appliance installation, blinds installation, mirror and towel bar installation, door installation, deck and fence repair, garbage disposal installation, shelving installation, painting services, flooring installation, furniture assembly, fence installation, and gutter cleaning throughout the area.`,
                 },
               },
               {
@@ -261,7 +265,7 @@ export default function ServiceAreaServicePage({ city, service }) {
                   "@type": "Answer",
                   text: `We serve ${getCityName(
                     city
-                  )} and surrounding areas including Shelby, Charlotte, Concord, Rock Hill, Gastonia, Hickory, Lincolnton, Gaffney, Kings Mountain, Forest City, and other communities in North and South Carolina.`,
+                  )} and surrounding counties including Cabarrus, Cleveland, Mecklenburg, and Union in North Carolina along with Lancaster, Richland, and York counties in South Carolina.`,
                 },
               },
               {

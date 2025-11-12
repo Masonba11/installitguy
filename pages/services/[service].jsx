@@ -11,6 +11,7 @@ import QuoteForm from "../../components/QuoteForm";
 import Link from "next/link";
 import metaData from "../../data/metaData.json";
 import { getServiceName, getServiceImages } from "../../utils/serviceImages";
+import { servicesContent } from "../../data/servicesContent";
 
 const services = [
   "tv-mounting",
@@ -32,6 +33,8 @@ const services = [
   "furniture-assembly",
   "fence-installation",
   "gutter-cleaning",
+  "home-maintenance",
+  "epoxy-flooring",
 ];
 
 export default function ServicePage({ service }) {
@@ -221,7 +224,7 @@ export default function ServicePage({ service }) {
                 ).toLowerCase()}?`,
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: `We serve Shelby, Charlotte, Concord, Rock Hill, Gastonia, Hickory, Lincolnton, Gaffney, Kings Mountain, Forest City, and surrounding areas in North and South Carolina.`,
+                  text: `Our service area coverage includes, but is not limited to, North Carolina counties of Cabarrus, Cleveland, Mecklenburg, and Union as well as Lancaster, Richland, and York counties in South Carolina.`,
                 },
               },
               {
@@ -309,9 +312,8 @@ export default function ServicePage({ service }) {
                 Expert {getServiceName(service)} in Shelby NC
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-primary-100">
-                Professional {getServiceName(service).toLowerCase()} services in
-                Shelby NC with 30+ years of local experience and lifetime
-                warranty.
+                {servicesContent[service]?.longDescription ||
+                  `Professional ${getServiceName(service).toLowerCase()} services in Shelby NC with 30+ years of local experience and lifetime warranty.`}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
@@ -324,7 +326,7 @@ export default function ServicePage({ service }) {
                   href="#quote-form"
                   className="btn-primary bg-white text-primary-600 hover:bg-gray-100"
                 >
-                  Get Free Quote
+                  {servicesContent[service]?.cta || "Get Free Quote"}
                 </a>
               </div>
             </div>

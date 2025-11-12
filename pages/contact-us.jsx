@@ -288,9 +288,7 @@ export default function ContactUs() {
                         210 Joseph Ct, Shelby, NC 28152
                       </p>
                       <p className="text-gray-600">
-                        Serving Charlotte, Concord, Rock Hill, Gastonia,
-                        Hickory, Shelby, Lincolnton, Gaffney, Kings Mountain,
-                        Forest City
+                        Serving Cabarrus, Cleveland, Mecklenburg, and Union counties in North Carolina plus Lancaster, Richland, and York counties in South Carolina.
                       </p>
                     </div>
                   </div>

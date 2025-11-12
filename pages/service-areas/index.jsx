@@ -19,13 +19,62 @@ const serviceAreas = [
   { name: "Forest City, NC", slug: "forest-city-nc" },
 ];
 
+const displayServiceAreas = {
+  northCarolina: [
+    "Charlotte",
+    "Shelby",
+    "Kings Mountain",
+    "Waxhaw",
+    "Monroe",
+    "Indian Trail",
+    "Concord",
+    "Harrisburg",
+    "Kannapolis",
+    "Gastonia",
+    "Matthews",
+    "Huntersville",
+    "Pineville",
+    "Belmont",
+    "Mt Holly",
+    "Mint Hill",
+    "Boiling Springs",
+    "Troutman",
+  ],
+  southCarolina: [
+    "Rock Hill",
+    "Fort Mill",
+    "York",
+    "Clover",
+    "Lake Wylie",
+    "Gaffney",
+    "Tega Cay",
+    "Indian Land",
+    "Lancaster",
+    "Blythewood",
+    "Winnsboro",
+    "Ridgeway",
+    "Camden",
+    "Columbia",
+    "Blacksburg",
+    "Richburg",
+    "Great Falls",
+    "McConnells",
+    "Hickory Grove",
+    "Sharon",
+  ],
+};
+
+const serviceAreaCoverageText =
+  "Our service area coverage includes, but is not limited to, North Carolina counties of Cabarrus, Cleveland, Mecklenburg, and Union as well as Lancaster, Richland, and York counties in South Carolina.";
+
+
 export default function ServiceAreasIndex() {
   const serviceAreasSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Service Areas",
     description:
-      "We proudly serve Charlotte, Concord, Rock Hill, Gastonia, Hickory, Shelby, and surrounding areas in North and South Carolina",
+      "We proudly serve homeowners across Cabarrus, Cleveland, Mecklenburg, and Union counties in North Carolina as well as Lancaster, Richland, and York counties in South Carolina",
     numberOfItems: serviceAreas.length,
     itemListElement: serviceAreas.map((area, index) => ({
       "@type": "ListItem",
@@ -46,13 +95,13 @@ export default function ServiceAreasIndex() {
     <>
       <NextSeo
         title="Service Areas | Install It Guy"
-        description="We proudly serve Charlotte, Concord, Rock Hill, Gastonia, Hickory, Shelby, and surrounding areas in North and South Carolina."
+        description="We proudly serve homeowners across Cabarrus, Cleveland, Mecklenburg, and Union counties in North Carolina as well as Lancaster, Richland, and York counties in South Carolina."
         canonical="https://installitguy.com/service-areas"
         openGraph={{
           url: "https://installitguy.com/service-areas",
           title: "Service Areas | Install It Guy",
           description:
-            "We proudly serve Charlotte, Concord, Rock Hill, Gastonia, Hickory, Shelby, and surrounding areas in North and South Carolina.",
+            "We proudly serve homeowners across Cabarrus, Cleveland, Mecklenburg, and Union counties in North Carolina as well as Lancaster, Richland, and York counties in South Carolina.",
           siteName: "Install It Guy",
         }}
         additionalMetaTags={[
@@ -85,7 +134,7 @@ export default function ServiceAreasIndex() {
                 name: "What areas do you serve?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "We serve Charlotte, Concord, Rock Hill, Gastonia, Hickory, Shelby, Lincolnton, Gaffney, Kings Mountain, Forest City, and surrounding areas in North and South Carolina.",
+                  text: "Our service area coverage includes, but is not limited to, North Carolina counties of Cabarrus, Cleveland, Mecklenburg, and Union as well as Lancaster, Richland, and York counties in South Carolina.",
                 },
               },
               {
@@ -160,8 +209,7 @@ export default function ServiceAreasIndex() {
                 Service Areas
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-primary-100">
-                We proudly serve multiple cities across North and South Carolina
-                with reliable handyman services.
+                We proudly serve Cabarrus, Cleveland, Mecklenburg, and Union counties in North Carolina along with Lancaster, Richland, and York counties in South Carolina.
               </p>
             </div>
           </div>
@@ -175,9 +223,27 @@ export default function ServiceAreasIndex() {
                 Where We Serve
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                We provide comprehensive handyman services to residents and
-                businesses across North and South Carolina.
+                {serviceAreaCoverageText}
               </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                  North Carolina Communities
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {displayServiceAreas.northCarolina.join(", ")}
+                </p>
+              </div>
+              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                  South Carolina Communities
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {displayServiceAreas.southCarolina.join(", ")}
+                </p>
+              </div>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">

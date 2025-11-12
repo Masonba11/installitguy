@@ -41,6 +41,8 @@ const services = [
   "furniture-assembly",
   "fence-installation",
   "gutter-cleaning",
+  "home-maintenance",
+  "epoxy-flooring",
 ];
 
 export default function ServiceAreaPage({ city }) {
@@ -160,7 +162,7 @@ export default function ServiceAreaPage({ city }) {
                   "@type": "Answer",
                   text: `We provide expert home installation, handyman repairs, home maintenance, and custom storage solutions in ${getCityName(
                     city
-                  )}. Our services include TV mounting, ceiling fan installation, lighting installation, garage door opener installation, Ring doorbell installation, faucet and toilet installation, appliance installation, blinds installation, mirror and towel bar installation, door installation, deck and fence repair, water leak repair, garbage disposal installation, shelving installation, painting services, flooring installation, furniture assembly, fence installation, and gutter cleaning.`,
+                  )}. Our services include TV mounting, ceiling fan installation, lighting installation, garage door opener installation, Ring doorbell installation, faucet and toilet installation, appliance installation, blinds installation, mirror and towel bar installation, door installation, deck and fence repair, garbage disposal installation, shelving installation, painting services, flooring installation, furniture assembly, fence installation, and gutter cleaning.`,
                 },
               },
               {
@@ -181,18 +183,6 @@ export default function ServiceAreaPage({ city }) {
                   text: `Yes, we provide free estimates for all our services in ${getCityName(
                     city
                   )}. Contact us to schedule a consultation and receive a detailed quote for your project.`,
-                },
-              },
-              {
-                "@type": "Question",
-                name: `Are you licensed and insured for work in ${getCityName(
-                  city
-                )}?`,
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: `Yes, we are fully licensed and insured for all work in ${getCityName(
-                    city
-                  )}. As a family-owned business serving the Carolinas for over 30 years, we maintain all required licenses and comprehensive insurance coverage.`,
                 },
               },
               {

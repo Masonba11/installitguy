@@ -18,7 +18,7 @@ export default function FAQs() {
     {
       question: "What areas do you serve?",
       answer:
-        "We serve Charlotte, Concord, Rock Hill, Gastonia, Hickory, Shelby, Lincolnton, Gaffney, Kings Mountain, Forest City, and surrounding areas in North and South Carolina.",
+        "Our service area coverage includes, but is not limited to, North Carolina counties of Cabarrus, Cleveland, Mecklenburg, and Union as well as Lancaster, Richland, and York counties in South Carolina.",
     },
     {
       question: "How much do your services cost?",
@@ -31,24 +31,9 @@ export default function FAQs() {
         "Yes, we provide free estimates for all our services. Contact us to schedule a consultation and receive a detailed quote for your project.",
     },
     {
-      question: "Are you licensed and insured?",
-      answer:
-        "Yes, we are fully licensed and insured. As a family-owned business serving the Carolinas for over 30 years, we maintain all required licenses and comprehensive insurance coverage to protect both you and our team during any project we undertake.",
-    },
-    {
       question: "How quickly can you complete a project?",
       answer:
         "Project timelines vary depending on the scope of work. Simple installations can often be completed the same day, while larger projects may take a few days. We'll provide a timeline estimate when we give you a quote.",
-    },
-    {
-      question: "Do you offer emergency services?",
-      answer:
-        "Yes, we offer emergency services for urgent repairs like water leaks and other critical issues. Contact us for emergency situations.",
-    },
-    {
-      question: "What payment methods do you accept?",
-      answer:
-        "We accept cash, check, and major credit cards. Payment is typically due upon completion of the work, unless other arrangements are made in advance.",
     },
     {
       question: "Do you provide warranties on your work?",
@@ -67,14 +52,9 @@ export default function FAQs() {
         "We combine professional installation, reliable handyman work, preventative maintenance, and custom storage solutions into one trusted service. As a family-owned business serving the Carolinas for over 30 years, homeowners choose us for our attention to detail, honest pricing, and ability to handle a wide range of home projects. We truly feel blessed to get to do what we love and offer a huge thank you to all of our customers for your continued business!",
     },
     {
-      question: "Do you provide emergency services?",
-      answer:
-        "Yes, we offer emergency services for urgent repairs like water leaks and other critical issues. As a family-owned business, we understand that emergencies don't wait for business hours. Contact us for emergency situations and we'll do our best to respond quickly to help resolve your urgent home repair needs.",
-    },
-    {
       question: "What is your service area coverage?",
       answer:
-        "We proudly serve Charlotte, Concord, Rock Hill, Gastonia, Hickory, Shelby, Lincolnton, Gaffney, Kings Mountain, Forest City, and surrounding areas in North and South Carolina. Our main business location is at 210 Joseph Ct, Shelby, NC 28152, but we travel throughout the region to serve our customers.",
+        "Our service area coverage includes, but is not limited to, North Carolina counties of Cabarrus, Cleveland, Mecklenburg, and Union as well as Lancaster, Richland, and York counties in South Carolina.",
     },
     {
       question: "How do you ensure quality workmanship?",

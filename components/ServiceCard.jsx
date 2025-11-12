@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { servicesContent } from "../data/servicesContent";
 
 export default function ServiceCard({ service, city = null }) {
   const getServiceIcon = (serviceName) => {
@@ -234,76 +235,15 @@ export default function ServiceCard({ service, city = null }) {
   };
 
   const getServiceName = (serviceSlug) => {
-    const names = {
-      "tv-mounting": "TV Mounting",
-      "ceiling-fan-installation": "Ceiling Fan Installation",
-      "lighting-installation": "Lighting Installation",
-      "garage-door-opener-installation": "Garage Door Opener",
-      "ring-doorbell-installation": "Ring Doorbell Installation",
-      "faucet-toilet-installation": "Faucet & Toilet Installation",
-      "appliance-installation": "Appliance Installation",
-      "blinds-installation": "Blinds Installation",
-      "mirror-towel-bar-installation": "Mirror & Towel Bar Installation",
-      "door-installation": "Door Installation",
-      "deck-fence-repair": "Deck & Fence Repair",
-      "water-leak-repair": "Water Leak Repair",
-      "garbage-disposal-installation": "Garbage Disposal Installation",
-      "shelving-installation": "Shelving Installation",
-      "painting-services": "Painting Services",
-      "flooring-installation": "Flooring Installation",
-      "furniture-assembly": "Furniture Assembly",
-      "fence-installation": "Fence Installation",
-      "gutter-cleaning": "Gutter Cleaning",
-    };
     return (
-      names[serviceSlug] ||
+      servicesContent[serviceSlug]?.name ||
       serviceSlug.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())
     );
   };
 
   const getServiceDescription = (serviceSlug) => {
-    const descriptions = {
-      "tv-mounting":
-        "Professional TV wall mounting with clean wire management and secure installation.",
-      "ceiling-fan-installation":
-        "Safe and balanced ceiling fan installations with proper electrical connections.",
-      "lighting-installation":
-        "Modern lighting fixtures installed with attention to detail and safety.",
-      "garage-door-opener-installation":
-        "Quiet and reliable garage door opener installations and repairs.",
-      "ring-doorbell-installation":
-        "Smart Ring doorbell setup with secure mounting and configuration.",
-      "faucet-toilet-installation":
-        "Leak-free faucet and toilet installations with professional plumbing.",
-      "appliance-installation":
-        "Washer, dryer, and dishwasher installations done right the first time.",
-      "blinds-installation":
-        "Custom blinds and shades mounted level and secure for every window.",
-      "mirror-towel-bar-installation":
-        "Secure mirror and bathroom hardware installations with clean finish.",
-      "door-installation":
-        "Interior and exterior door installations with perfect alignment.",
-      "deck-fence-repair":
-        "Durable deck and fence repairs built to last through all weather.",
-      "water-leak-repair":
-        "Fast leak detection and repair to protect your home from water damage.",
-      "garbage-disposal-installation":
-        "Clean and efficient garbage disposal installations for your kitchen.",
-      "shelving-installation":
-        "Custom shelving solutions for organized and stylish storage.",
-      "painting-services":
-        "Interior and exterior painting with quality materials and professional application.",
-      "flooring-installation":
-        "Hardwood, laminate, and tile flooring installation with precision and quality.",
-      "furniture-assembly":
-        "Expert furniture assembly and setup for all types of furniture.",
-      "fence-installation":
-        "Durable fence installation with secure mounting and quality materials.",
-      "gutter-cleaning":
-        "Thorough gutter cleaning and maintenance to protect your home from water damage.",
-    };
     return (
-      descriptions[serviceSlug] ||
+      servicesContent[serviceSlug]?.shortDescription ||
       "Professional installation and repair services."
     );
   };

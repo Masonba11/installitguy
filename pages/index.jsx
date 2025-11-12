@@ -28,6 +28,8 @@ const services = [
   "furniture-assembly",
   "fence-installation",
   "gutter-cleaning",
+  "home-maintenance",
+  "epoxy-flooring",
 ];
 
 const serviceAreas = [
@@ -42,6 +44,52 @@ const serviceAreas = [
   { name: "Kings Mountain, NC", slug: "kings-mountain-nc" },
   { name: "Forest City, NC", slug: "forest-city-nc" },
 ];
+
+const displayServiceAreas = {
+  northCarolina: [
+    "Charlotte",
+    "Shelby",
+    "Kings Mountain",
+    "Waxhaw",
+    "Monroe",
+    "Indian Trail",
+    "Concord",
+    "Harrisburg",
+    "Kannapolis",
+    "Gastonia",
+    "Matthews",
+    "Huntersville",
+    "Pineville",
+    "Belmont",
+    "Mt Holly",
+    "Mint Hill",
+    "Boiling Springs",
+    "Troutman",
+  ],
+  southCarolina: [
+    "Rock Hill",
+    "Fort Mill",
+    "York",
+    "Clover",
+    "Lake Wylie",
+    "Gaffney",
+    "Tega Cay",
+    "Indian Land",
+    "Lancaster",
+    "Blythewood",
+    "Winnsboro",
+    "Ridgeway",
+    "Camden",
+    "Columbia",
+    "Blacksburg",
+    "Richburg",
+    "Great Falls",
+    "McConnells",
+    "Hickory Grove",
+    "Sharon",
+  ],
+};
+
 
 export default function Home() {
   const [videoLoaded, setVideoLoaded] = useState(false);
@@ -280,7 +328,7 @@ export default function Home() {
                 name: "What areas do you serve?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "We serve Charlotte, Concord, Rock Hill, Gastonia, Hickory, Shelby, Lincolnton, Gaffney, Kings Mountain, Forest City, and surrounding areas in North and South Carolina.",
+                  text: "Our service area coverage includes, but is not limited to, North Carolina counties of Cabarrus, Cleveland, Mecklenburg, and Union as well as Lancaster, Richland, and York counties in South Carolina.",
                 },
               },
               {
@@ -297,14 +345,6 @@ export default function Home() {
                 acceptedAnswer: {
                   "@type": "Answer",
                   text: "Yes, we provide free estimates for all our services. Contact us to schedule a consultation and receive a detailed quote for your project.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Are you licensed and insured?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Yes, we are fully licensed and insured. As a family-owned business serving the Carolinas for over 30 years, we maintain all required licenses and comprehensive insurance coverage to protect both you and our team during any project we undertake.",
                 },
               },
             ],
@@ -534,8 +574,7 @@ export default function Home() {
                         North Carolina
                       </h4>
                       <p className="text-sm text-gray-600">
-                        Charlotte, Concord, Gastonia, Hickory, Shelby,
-                        Lincolnton, Kings Mountain, Forest City
+                        {displayServiceAreas.northCarolina.join(", ")}
                       </p>
                     </div>
                     <div className="text-center p-4 bg-gray-50 rounded-lg">
@@ -543,7 +582,7 @@ export default function Home() {
                         South Carolina
                       </h4>
                       <p className="text-sm text-gray-600">
-                        Rock Hill, Gaffney
+                        {displayServiceAreas.southCarolina.join(", ")}
                       </p>
                     </div>
                   </div>

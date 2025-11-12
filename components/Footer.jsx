@@ -30,8 +30,7 @@ export default function Footer() {
               </div>
               <p className="text-gray-300 mb-6 max-w-md">
                 Shelby's trusted handyman team. Quality installs, fast repairs,
-                fair prices. Serving Charlotte, Concord, Rock Hill, and
-                surrounding areas.
+                fair prices. Serving Cabarrus, Cleveland, Mecklenburg, and Union counties in North Carolina plus Lancaster, Richland, and York counties in South Carolina.
               </p>
 
               {/* Contact Information */}

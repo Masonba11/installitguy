@@ -8,21 +8,26 @@ import ContextualFAQs from "../../components/ContextualFAQs";
 import QuoteForm from "../../components/QuoteForm";
 import Link from "next/link";
 import { getServiceImages, getServiceName } from "../../utils/serviceImages";
+import { servicesContent } from "../../data/servicesContent";
 
 export default function TVMountingPage() {
   const service = "tv-mounting";
+
+  const content = servicesContent[service] || {};
 
   const pageData = {
     url: "https://installitguy.com/services/tv-mounting/",
     primary_keyword: "tv mounting shelby nc",
     page_title: "TV Wall Mounting Shelby NC | Install It Guy",
     meta_description:
+      content.longDescription ||
       "TV mounting in Shelby done right. Clean installs and safe wire concealment.",
   };
 
   const serviceContent = {
     h1: "Expert TV Wall Mounting in Shelby NC",
     description:
+      content.longDescription ||
       "Expert TV mounting services with clean cable management and secure installation.",
     h3: "Why Choose Our TV Mounting Service",
     process: [
@@ -37,6 +42,7 @@ export default function TVMountingPage() {
       "Hidden cable management",
       "Expert wall assessment",
     ],
+    cta: content.cta || "Get Free Quote",
   };
 
   const getServiceName = (serviceSlug) => {
@@ -328,7 +334,7 @@ export default function TVMountingPage() {
                   href="#quote-form"
                   className="btn-primary bg-white text-primary-600 hover:bg-gray-100"
                 >
-                  Get Free Quote
+                  {serviceContent.cta}
                 </a>
               </div>
             </div>

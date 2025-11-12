@@ -401,7 +401,7 @@ export default function ContextualFAQs({
       {
         question: "What areas do you serve?",
         answer:
-          "We serve Charlotte, Concord, Rock Hill, Gastonia, Hickory, Shelby, and surrounding areas.",
+          "Our service area coverage includes, but is not limited to, North Carolina counties of Cabarrus, Cleveland, Mecklenburg, and Union as well as Lancaster, Richland, and York counties in South Carolina.",
       },
       {
         question: "Do you provide free estimates?",
@@ -414,26 +414,12 @@ export default function ContextualFAQs({
           "We're available Monday-Friday 8AM-6PM and Saturday 9AM-4PM for estimates and service calls.",
       },
       {
-        question: "Do you offer emergency services?",
-        answer:
-          "Yes, we offer emergency repair services for urgent issues like water leaks and electrical problems.",
-      },
     ],
     faqs: [
-      {
-        question: "Are you licensed and insured?",
-        answer:
-          "Yes, we are fully licensed and insured for your protection and peace of mind.",
-      },
       {
         question: "Do you provide warranties on your work?",
         answer:
           "Yes, we provide warranties on all our work ranging from 1-3 years depending on the service.",
-      },
-      {
-        question: "What payment methods do you accept?",
-        answer:
-          "We accept cash, check, and all major credit cards for your convenience.",
       },
       {
         question: "Do you clean up after the job?",
