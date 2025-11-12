@@ -324,8 +324,8 @@ export default function Header() {
               </button>
             </div>
 
-            <nav className="flex h-[calc(100%-56px)] flex-col overflow-y-auto px-5 py-6 space-y-6">
-              <div className="space-y-3 text-center">
+            <nav className="flex h-[calc(100%-56px)] flex-col overflow-y-auto px-5 py-6">
+              <div className="flex flex-col gap-3 text-center">
                 <Link
                   href="/"
                   onClick={() => setIsMenuOpen(false)}
@@ -343,7 +343,7 @@ export default function Header() {
               </div>
 
               {/* Mobile Services Dropdown */}
-              <div className="space-y-3">
+              <div className="mt-6 space-y-3">
                 <button
                   onClick={toggleServices}
                   className="flex w-full items-center justify-between rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-lg font-semibold text-gray-900"
@@ -410,7 +410,7 @@ export default function Header() {
               </div>
 
               {/* Mobile Service Areas Dropdown */}
-              <div className="space-y-3">
+              <div className="mt-5 space-y-3">
                 <button
                   onClick={toggleServiceAreas}
                   className="flex w-full items-center justify-between rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-lg font-semibold text-gray-900"
@@ -476,7 +476,7 @@ export default function Header() {
                 )}
               </div>
 
-              <div className="space-y-3 text-center">
+              <div className="mt-auto flex flex-col gap-3 pt-8 text-center">
                 <Link
                   href="/faqs"
                   onClick={() => setIsMenuOpen(false)}
