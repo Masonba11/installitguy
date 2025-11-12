@@ -388,7 +388,7 @@ export default function ServiceAreaServicePage({ city, service }) {
                         ? "Cable concealment, in-wall power kits, and sound bar setup."
                         : service === "garbage-disposal-installation"
                         ? "Switch installation, drain adjustments, and old unit haul-away."
-                        : "Custom upgrades tailored to your {cityName} project."}
+                        : `Custom upgrades tailored to your ${cityName} project.`}
                     </p>
                   </div>
                   <div className="bg-white rounded-xl border border-slate-200 p-4">
@@ -397,12 +397,12 @@ export default function ServiceAreaServicePage({ city, service }) {
                     </h4>
                     <p className="mt-2 text-sm text-slate-600">
                       {service === "ceiling-fan-installation"
-                        ? "Bedrooms, bonus rooms, porches, and outdoor living spaces around {cityShortName}."
+                        ? `Bedrooms, bonus rooms, porches, and outdoor living spaces around ${cityName}.`
                         : service === "tv-mounting"
                         ? "Living rooms, media dens, and outdoor patios that need a clean, secure install."
                         : service === "garbage-disposal-installation"
                         ? "Kitchen upgrades, home flips, and busy households wanting faster cleanup."
-                        : `Homes and businesses in ${cityShortName} looking for reliable ${getServiceName(
+                        : `Homes and businesses in ${cityName} looking for reliable ${getServiceName(
                             service
                           ).toLowerCase()} support.`}
                     </p>
