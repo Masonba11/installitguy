@@ -300,8 +300,8 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden fixed inset-0 z-50 bg-white overflow-y-auto">
-            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
+          <div className="md:hidden fixed inset-0 z-50 bg-white">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
               <span className="text-lg font-semibold text-gray-900">Menu</span>
               <button
                 onClick={toggleMenu}
@@ -324,177 +324,56 @@ export default function Header() {
               </button>
             </div>
 
-            <nav className="px-4 py-6 space-y-6">
-              <div className="space-y-2 text-center">
-                <Link
-                  href="/"
-                  className="block text-lg font-medium text-gray-900"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Home
-                </Link>
-                <Link
-                  href="/contact-us"
-                  className="block text-lg font-medium text-gray-900"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Contact
-                </Link>
-              </div>
-
-              {/* Mobile Services Dropdown */}
-              <div className="space-y-3 text-center">
-                <button
-                  onClick={toggleServices}
-                  className="flex w-full items-center justify-center gap-2 text-lg font-semibold text-gray-900"
-                >
-                  <span>Services</span>
-                  <svg
-                    className={`w-5 h-5 transition-transform ${
-                      isServicesOpen ? "rotate-180" : ""
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-                {isServicesOpen && (
-                  <div className="space-y-2">
-                    {(showAllMobileServices ? services : primaryServices).map(
-                      (service) => (
-                        <Link
-                          key={service.slug}
-                          href={`/services/${service.slug}`}
-                          className="block rounded-lg border border-gray-100 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-700 hover:border-primary-200 hover:bg-primary-50 hover:text-primary-600"
-                          onClick={() => {
-                            setIsMenuOpen(false);
-                            setIsServicesOpen(false);
-                            setShowAllMobileServices(false);
-                          }}
-                        >
-                          {service.name}
-                        </Link>
-                      )
-                    )}
-                    {remainingServices.length > 0 && (
-                      <button
-                        type="button"
-                        className="w-full text-center text-sm font-semibold text-primary-600 hover:text-primary-700"
-                        onClick={() =>
-                          setShowAllMobileServices(!showAllMobileServices)
-                        }
-                      >
-                        {showAllMobileServices
-                          ? "Show fewer services"
-                          : `View all ${services.length} services`}
-                      </button>
-                    )}
-                    <Link
-                      href="/services"
-                      className="block text-sm font-semibold text-primary-600 hover:text-primary-700"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Browse full services page →
-                    </Link>
-                  </div>
-                )}
-              </div>
-
-              {/* Mobile Service Areas Dropdown */}
-              <div className="space-y-3 text-center">
-                <button
-                  onClick={toggleServiceAreas}
-                  className="flex w-full items-center justify-center gap-2 text-lg font-semibold text-gray-900"
-                >
-                  <span>Service Areas</span>
-                  <svg
-                    className={`w-5 h-5 transition-transform ${
-                      isServiceAreasOpen ? "rotate-180" : ""
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-                {isServiceAreasOpen && (
-                  <div className="space-y-2">
-                    {(showAllMobileAreas ? serviceAreas : primaryAreas).map(
-                      (area) => (
-                        <Link
-                          key={area.slug}
-                          href={`/service-areas/${area.slug}`}
-                          className="block rounded-lg border border-gray-100 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-700 hover:border-primary-200 hover:bg-primary-50 hover:text-primary-600"
-                          onClick={() => {
-                            setIsMenuOpen(false);
-                            setIsServiceAreasOpen(false);
-                            setShowAllMobileAreas(false);
-                          }}
-                        >
-                          {area.name}
-                        </Link>
-                      )
-                    )}
-                    {remainingAreas.length > 0 && (
-                      <button
-                        type="button"
-                        className="w-full text-center text-sm font-semibold text-primary-600 hover:text-primary-700"
-                        onClick={() =>
-                          setShowAllMobileAreas(!showAllMobileAreas)
-                        }
-                      >
-                        {showAllMobileAreas
-                          ? "Show fewer locations"
-                          : `View all ${serviceAreas.length} locations`}
-                      </button>
-                    )}
-                    <Link
-                      href="/service-areas"
-                      className="block text-sm font-semibold text-primary-600 hover:text-primary-700"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      View coverage map →
-                    </Link>
-                  </div>
-                )}
-              </div>
-
-              <div className="space-y-3 text-center">
-                <Link
-                  href="/faqs"
-                  className="block text-lg font-medium text-gray-900"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  FAQs
-                </Link>
-                <Link
-                  href="/reviews"
-                  className="block text-lg font-medium text-gray-900"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Reviews
-                </Link>
-                <Link
-                  href="tel:+17041234567"
-                  className="btn-primary"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Call Now
-                </Link>
-              </div>
+            <nav className="flex flex-col items-center justify-evenly h-full py-6 text-center">
+              <Link
+                href="/"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-lg font-semibold text-gray-900"
+              >
+                Home
+              </Link>
+              <Link
+                href="/contact-us"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-lg font-semibold text-gray-900"
+              >
+                Contact
+              </Link>
+              <Link
+                href="/services"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-lg font-semibold text-gray-900"
+              >
+                Services
+              </Link>
+              <Link
+                href="/service-areas"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-lg font-semibold text-gray-900"
+              >
+                Service Areas
+              </Link>
+              <Link
+                href="/faqs"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-lg font-semibold text-gray-900"
+              >
+                FAQs
+              </Link>
+              <Link
+                href="/reviews"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-lg font-semibold text-gray-900"
+              >
+                Reviews
+              </Link>
+              <Link
+                href="tel:+17041234567"
+                onClick={() => setIsMenuOpen(false)}
+                className="btn-primary mt-2"
+              >
+                Call Now
+              </Link>
             </nav>
           </div>
         )}
