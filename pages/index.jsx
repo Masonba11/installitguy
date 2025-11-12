@@ -11,6 +11,7 @@ import {
 } from "../data/serviceAreas";
 import dynamic from "next/dynamic";
 import HeroSection from "../components/HeroSection";
+import ZenbookWidget from "../components/ZenbookWidget";
 
 const Reviews = dynamic(() => import("../components/Reviews"), {
   ssr: false,
@@ -43,23 +44,6 @@ const displayServiceAreas = {
 
 export default function Home() {
   const featuredServices = services.slice(0, 6);
-  const highlights = [
-    {
-      title: "Right-sized visits",
-      description:
-        "Schedule a focused install or give us a punch list—we’ll plan the labor, materials, and timing for you.",
-    },
-    {
-      title: "Careful in every room",
-      description:
-        "Floors covered, fixtures protected, and a full cleanup before we leave. Your space feels ready the moment we wrap up.",
-    },
-    {
-      title: "Locally rooted",
-      description:
-        "Three decades serving the Charlotte area means we know the neighborhoods, builders, and expectations by heart.",
-    },
-  ];
   const stats = [
     { value: "30+", label: "years helping homeowners" },
     { value: "150+", label: "projects completed each year" },
@@ -307,7 +291,13 @@ export default function Home() {
 
       <main>
         {/* Hero */}
-        <HeroSection className="py-24">
+        <HeroSection
+          imageSrc="/images/installit-guy/hero-home.webp"
+          imageAlt="Living room with mounted TV and new ceiling fan"
+          priority
+          className="py-24"
+          objectPosition="50% 42%"
+        >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-start">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
@@ -340,23 +330,16 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 p-8">
-              <h2 className="text-xl font-semibold text-white">
-                What you can expect every time
+            <div className="rounded-3xl bg-white shadow-2xl p-6 sm:p-8">
+              <h2 className="text-2xl font-semibold text-slate-900">
+                Book your project in minutes
               </h2>
-              <ul className="mt-6 space-y-3 text-sm">
-                {highlights.map((item) => (
-                  <li key={item.title} className="flex items-start gap-2">
-                    <span className="mt-1 text-primary-200">•</span>
-                    <span>
-                      <span className="font-semibold text-white block">
-                        {item.title}
-                      </span>
-                      {item.description}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <p className="mt-2 text-slate-600">
+                Pick a time that works for you and we’ll confirm the visit right away.
+              </p>
+              <div className="mt-4">
+                <ZenbookWidget loadStrategy="immediate" />
+              </div>
             </div>
           </div>
         </HeroSection>
@@ -442,19 +425,40 @@ export default function Home() {
             </div>
 
             <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {highlights.map((item) => (
+              {/* highlights.map((item) => ( */}
                 <div
-                  key={item.title}
+                  key="right-sized-visits"
                   className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm"
                 >
                   <h3 className="text-xl font-semibold text-gray-900">
-                    {item.title}
+                    Right-sized visits
                   </h3>
                   <p className="mt-3 text-gray-600 leading-relaxed">
-                    {item.description}
+                    Schedule a focused install or give us a punch list—we’ll plan the labor, materials, and timing for you.
                   </p>
                 </div>
-              ))}
+                <div
+                  key="careful-in-every-room"
+                  className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm"
+                >
+                  <h3 className="text-xl font-semibold text-gray-900">
+                    Careful in every room
+                  </h3>
+                  <p className="mt-3 text-gray-600 leading-relaxed">
+                    Floors covered, fixtures protected, and a full cleanup before we leave. Your space feels ready the moment we wrap up.
+                  </p>
+                </div>
+                <div
+                  key="locally-rooted"
+                  className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm"
+                >
+                  <h3 className="text-xl font-semibold text-gray-900">
+                    Locally rooted
+                  </h3>
+                  <p className="mt-3 text-gray-600 leading-relaxed">
+                    Three decades serving the Charlotte area means we know the neighborhoods, builders, and expectations by heart.
+                  </p>
+                </div>
             </div>
           </div>
         </section>
