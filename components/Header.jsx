@@ -301,7 +301,7 @@ export default function Header() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden fixed inset-0 z-50 bg-white overflow-y-auto">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
               <span className="text-lg font-semibold text-gray-900">Menu</span>
               <button
                 onClick={toggleMenu}
@@ -324,8 +324,8 @@ export default function Header() {
               </button>
             </div>
 
-            <nav className="px-6 py-6 space-y-8">
-              <div className="space-y-3">
+            <nav className="px-4 py-6 space-y-6">
+              <div className="space-y-2 text-center">
                 <Link
                   href="/"
                   className="block text-lg font-medium text-gray-900"
@@ -343,10 +343,10 @@ export default function Header() {
               </div>
 
               {/* Mobile Services Dropdown */}
-              <div className="space-y-3">
+              <div className="space-y-3 text-center">
                 <button
                   onClick={toggleServices}
-                  className="flex w-full items-center justify-between text-lg font-semibold text-gray-900"
+                  className="flex w-full items-center justify-center gap-2 text-lg font-semibold text-gray-900"
                 >
                   <span>Services</span>
                   <svg
@@ -386,7 +386,7 @@ export default function Header() {
                     {remainingServices.length > 0 && (
                       <button
                         type="button"
-                        className="w-full text-left text-sm font-semibold text-primary-600 hover:text-primary-700"
+                        className="w-full text-center text-sm font-semibold text-primary-600 hover:text-primary-700"
                         onClick={() =>
                           setShowAllMobileServices(!showAllMobileServices)
                         }
@@ -408,10 +408,10 @@ export default function Header() {
               </div>
 
               {/* Mobile Service Areas Dropdown */}
-              <div className="space-y-3">
+              <div className="space-y-3 text-center">
                 <button
                   onClick={toggleServiceAreas}
-                  className="flex w-full items-center justify-between text-lg font-semibold text-gray-900"
+                  className="flex w-full items-center justify-center gap-2 text-lg font-semibold text-gray-900"
                 >
                   <span>Service Areas</span>
                   <svg
@@ -451,7 +451,7 @@ export default function Header() {
                     {remainingAreas.length > 0 && (
                       <button
                         type="button"
-                        className="w-full text-left text-sm font-semibold text-primary-600 hover:text-primary-700"
+                        className="w-full text-center text-sm font-semibold text-primary-600 hover:text-primary-700"
                         onClick={() =>
                           setShowAllMobileAreas(!showAllMobileAreas)
                         }
@@ -472,7 +472,7 @@ export default function Header() {
                 )}
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-3 text-center">
                 <Link
                   href="/faqs"
                   className="block text-lg font-medium text-gray-900"
@@ -489,7 +489,7 @@ export default function Header() {
                 </Link>
                 <Link
                   href="tel:+17041234567"
-                  className="btn-primary text-center"
+                  className="btn-primary"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Call Now
