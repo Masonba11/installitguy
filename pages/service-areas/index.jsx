@@ -195,13 +195,7 @@ export default function ServiceAreasIndex() {
 
       <main>
         {/* Hero */}
-        <HeroSection
-          imageSrc="/images/installit-guy/hero-ceiling-fan.webp"
-          imageAlt="Homeowner reviewing service areas"
-          priority
-          className="py-24"
-          objectPosition="50% 38%"
-        >
+        <HeroSection className="py-24">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-start">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">

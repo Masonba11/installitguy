@@ -259,13 +259,7 @@ export default function ServicePage({ service }) {
       <Header />
 
       <main>
-        <HeroSection
-          imageSrc="/images/installit-guy/hero-ceiling-fan.webp"
-          imageAlt={`${getServiceName(service)} in Shelby, NC`}
-          priority
-          className="py-24"
-          objectPosition="50% 34%"
-        >
+        <HeroSection className="py-24">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
