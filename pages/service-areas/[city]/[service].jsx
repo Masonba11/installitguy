@@ -369,6 +369,60 @@ export default function ServiceAreaServicePage({ city, service }) {
               <p className="mt-4 text-slate-700 leading-relaxed">
                 {longDescription}
               </p>
+              <div className="mt-8 rounded-2xl border border-slate-200 bg-gray-50 p-6 shadow-sm">
+                <h3 className="text-xl font-semibold text-slate-900">
+                  What’s included when we handle {getServiceName(service)}
+                </h3>
+                <p className="mt-3 text-slate-600 leading-relaxed">
+                  {servicesContent[service]?.longDescription}
+                </p>
+                <div className="mt-6 grid gap-4 sm:grid-cols-3">
+                  <div className="bg-white rounded-xl border border-slate-200 p-4">
+                    <h4 className="font-semibold text-slate-900 text-sm uppercase tracking-wide">
+                      Add-ons available
+                    </h4>
+                    <p className="mt-2 text-sm text-slate-600">
+                      {service === "ceiling-fan-installation"
+                        ? "Remote controls, light kits, and fresh wiring for vaulted ceilings."
+                        : service === "tv-mounting"
+                        ? "Cable concealment, in-wall power kits, and sound bar setup."
+                        : service === "garbage-disposal-installation"
+                        ? "Switch installation, drain adjustments, and old unit haul-away."
+                        : "Custom upgrades tailored to your {cityName} project."}
+                    </p>
+                  </div>
+                  <div className="bg-white rounded-xl border border-slate-200 p-4">
+                    <h4 className="font-semibold text-slate-900 text-sm uppercase tracking-wide">
+                      Ideal for
+                    </h4>
+                    <p className="mt-2 text-sm text-slate-600">
+                      {service === "ceiling-fan-installation"
+                        ? "Bedrooms, bonus rooms, porches, and outdoor living spaces around {cityShortName}."
+                        : service === "tv-mounting"
+                        ? "Living rooms, media dens, and outdoor patios that need a clean, secure install."
+                        : service === "garbage-disposal-installation"
+                        ? "Kitchen upgrades, home flips, and busy households wanting faster cleanup."
+                        : `Homes and businesses in ${cityShortName} looking for reliable ${getServiceName(
+                            service
+                          ).toLowerCase()} support.`}
+                    </p>
+                  </div>
+                  <div className="bg-white rounded-xl border border-slate-200 p-4">
+                    <h4 className="font-semibold text-slate-900 text-sm uppercase tracking-wide">
+                      Why locals choose us
+                    </h4>
+                    <p className="mt-2 text-sm text-slate-600">
+                      {service === "ceiling-fan-installation"
+                        ? "We balance every blade, test every control, and leave the space spotless."
+                        : service === "tv-mounting"
+                        ? "We arrive with anchors for any wall type and hide wires so the room looks finished."
+                        : service === "garbage-disposal-installation"
+                        ? "We handle plumbing and electrical checks so your new disposal runs quietly and safely."
+                        : "We show up prepared, protect your home, and stay until everything works perfectly."}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="rounded-2xl bg-slate-900 text-white p-6 shadow-lg">
               <h3 className="text-lg font-semibold">Need another service?</h3>
@@ -436,7 +490,9 @@ export default function ServiceAreaServicePage({ city, service }) {
                   href={`/service-areas/${city}/${slug}`}
                   className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-primary-600 hover:border-primary-200 hover:text-primary-500 transition"
                 >
-                  <span>{getServiceName(slug)} in {cityName}</span>
+                  <span>
+                    {getServiceName(slug)} in {cityName}
+                  </span>
                   <svg
                     className="h-4 w-4"
                     fill="none"
