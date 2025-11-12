@@ -23,11 +23,9 @@
   @apply rounded-xl shadow-md w-full h-auto;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
-
 @layer base {
   html {
-    font-family: "Inter", system-ui, sans-serif;
+    color: #1c2d3f;
   }
 
   body {
@@ -178,12 +176,6 @@
   border-color: var(--primary-blue);
 }
 
-.brand-overlay-card {
-  background-color: rgba(28, 45, 63, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.92);
-}
-
 .brand-surface-card {
   background-color: #f4f6f9;
   border: 1px solid rgba(28, 45, 63, 0.18);
@@ -225,52 +217,4 @@
 
 .animate-mobile-menu {
   animation: mobile-menu-slide-in 0.25s ease-out forwards;
-}
-
-.hero-background {
-  position: relative;
-  background-image: linear-gradient(
-      180deg,
-      rgba(28, 45, 63, 0.78) 0%,
-      rgba(28, 45, 63, 0.88) 100%
-    ),
-    image-set(
-      url("/images/installit-guy/hero-ceiling-fan.webp") type("image/webp"),
-      url("/images/installit-guy/hero-ceiling-fan.jpg") type("image/jpeg")
-    );
-  background-size: cover;
-  background-position: 50% 24%;
-  background-repeat: no-repeat;
-  color: #ffffff;
-}
-
-.hero-background::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(12, 22, 34, 0.32) 0%,
-    rgba(12, 22, 34, 0.12) 45%,
-    rgba(54, 69, 83, 0.2) 100%
-  );
-  pointer-events: none;
-}
-
-.hero-background > * {
-  position: relative;
-  z-index: 1;
-}
-
-@media (min-width: 768px) {
-  .hero-background {
-    background-position: 50% 32%;
-  }
-}
-
-@media (min-width: 1280px) {
-  .hero-background {
-    background-size: 105%;
-    background-position: 50% 40%;
-  }
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function ContextualReviews({
   context = "general",
@@ -219,24 +220,16 @@ export default function ContextualReviews({
             >
               {/* Header with profile photo and name */}
               <div className="flex items-center mb-3">
-                <div className="w-10 h-10 rounded-full overflow-hidden mr-3">
+                <div className="w-10 h-10 rounded-full overflow-hidden mr-3 bg-blue-100 text-blue-600 flex items-center justify-center">
                   {review.profile_photo_url ? (
-                    <img
+                    <Image
                       src={review.profile_photo_url}
                       alt={review.author_name}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        e.target.style.display = "none";
-                        e.target.nextElementSibling.style.display = "flex";
-                      }}
+                      width={40}
+                      height={40}
+                      className="object-cover w-full h-full"
                     />
-                  ) : null}
-                  <div
-                    className="w-full h-full bg-blue-100 text-blue-600 rounded-full flex items-center justify-center"
-                    style={{
-                      display: review.profile_photo_url ? "none" : "flex",
-                    }}
-                  >
+                  ) : (
                     <span className="text-xs font-semibold">
                       {review.author_name
                         .split(" ")
@@ -244,7 +237,7 @@ export default function ContextualReviews({
                         .join("")
                         .toUpperCase()}
                     </span>
-                  </div>
+                  )}
                 </div>
                 <div className="flex-1">
                   <h4 className="font-semibold text-gray-900 text-sm">

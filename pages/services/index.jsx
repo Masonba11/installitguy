@@ -2,14 +2,30 @@ import { NextSeo } from "next-seo";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ServiceCard from "../../components/ServiceCard";
-import Reviews from "../../components/Reviews";
-import ContextualFAQs from "../../components/ContextualFAQs";
 import QuoteForm from "../../components/QuoteForm";
 import {
   orderedServiceSlugs,
   servicesContent,
 } from "../../data/servicesContent";
 import LocalBusinessSchema from "../../components/LocalBusinessSchema";
+import dynamic from "next/dynamic";
+import HeroSection from "../../components/HeroSection";
+
+const Reviews = dynamic(() => import("../../components/Reviews"), {
+  ssr: false,
+  loading: () => (
+    <div className="py-16 text-center text-gray-500">Loading reviews...</div>
+  ),
+});
+
+const ContextualFAQs = dynamic(
+  () => import("../../components/ContextualFAQs"),
+  {
+    loading: () => (
+      <div className="py-16 text-center text-gray-500">Loading FAQs...</div>
+    ),
+  }
+);
 
 const services = orderedServiceSlugs;
 const serviceNames = services.map((slug) => servicesContent[slug].name);
@@ -84,6 +100,7 @@ export default function ServicesIndex() {
       ],
     },
   ];
+  const primaryServices = services.slice(0, 6);
 
   return (
     <>
@@ -192,13 +209,19 @@ export default function ServicesIndex() {
 
       <main>
         {/* Hero */}
-        <section className="hero-background text-white py-24">
+        <HeroSection
+          imageSrc="/images/installit-guy/hero-ceiling-fan.webp"
+          imageAlt="Ceiling fan installed in living room"
+          priority
+          className="py-24"
+          objectPosition="50% 35%"
+        >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-start">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
                 What we handle
               </p>
-              <h1 className="mt-4 text-3xl md:text-5xl font-bold">
+              <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight">
                 Professional installs, repairs, and upkeep in one place
               </h1>
               <p className="mt-6 text-lg text-slate-200 leading-relaxed">
@@ -207,24 +230,18 @@ export default function ServicesIndex() {
                 with care.
               </p>
             </div>
-            <div className="rounded-2xl brand-overlay-card p-8">
+            <div className="rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm p-8 text-slate-200">
               <h2 className="text-xl font-semibold text-white">
                 Most-requested services
               </h2>
-              <ol className="mt-6 space-y-4">
-                {[
-                  "Share your project or punch list",
-                  "Pick a visit window",
-                  "We arrive prepared and leave things tidy",
-                ].map((step, index) => (
-                  <li key={step} className="flex items-start gap-3">
-                    <span className="mt-1 inline-flex h-7 w-7 items-center justify-center rounded-full bg-primary-500/20 text-primary-200 font-semibold">
-                      {index + 1}
-                    </span>
-                    <span>{step}</span>
+              <ul className="mt-6 space-y-3 text-sm">
+                {primaryServices.map((service) => (
+                  <li key={service.slug} className="flex items-start gap-2">
+                    <span className="mt-1 text-primary-200">•</span>
+                    <span>{service.name}</span>
                   </li>
                 ))}
-              </ol>
+              </ul>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a
                   href="#quote-form"
@@ -244,7 +261,7 @@ export default function ServicesIndex() {
               </div>
             </div>
           </div>
-        </section>
+        </HeroSection>
 
         {/* Services Grid */}
         <section className="py-20 bg-white">

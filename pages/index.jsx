@@ -1,10 +1,7 @@
 import { NextSeo } from "next-seo";
-import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ServiceCard from "../components/ServiceCard";
-import Reviews from "../components/Reviews";
-import ContextualFAQs from "../components/ContextualFAQs";
 import QuoteForm from "../components/QuoteForm";
 import Link from "next/link";
 import { orderedServiceSlugs, servicesContent } from "../data/servicesContent";
@@ -12,6 +9,21 @@ import {
   serviceAreas as allServiceAreas,
   serviceAreasByState,
 } from "../data/serviceAreas";
+import dynamic from "next/dynamic";
+import HeroSection from "../components/HeroSection";
+
+const Reviews = dynamic(() => import("../components/Reviews"), {
+  ssr: false,
+  loading: () => (
+    <div className="py-16 text-center text-gray-500">Loading reviews...</div>
+  ),
+});
+
+const ContextualFAQs = dynamic(() => import("../components/ContextualFAQs"), {
+  loading: () => (
+    <div className="py-16 text-center text-gray-500">Loading FAQs...</div>
+  ),
+});
 
 const services = orderedServiceSlugs;
 const serviceNames = services.map((slug) => servicesContent[slug].name);
@@ -30,7 +42,6 @@ const displayServiceAreas = {
 };
 
 export default function Home() {
-  const [videoLoaded, setVideoLoaded] = useState(false);
   const featuredServices = services.slice(0, 6);
   const highlights = [
     {
@@ -296,7 +307,13 @@ export default function Home() {
 
       <main>
         {/* Hero */}
-        <section className="hero-background text-white py-24">
+        <HeroSection
+          imageSrc="/images/installit-guy/hero-ceiling-fan.webp"
+          imageAlt="Installed ceiling fan in living room"
+          priority
+          className="py-24"
+          objectPosition="50% 32%"
+        >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-start">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
@@ -329,7 +346,7 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            <div className="rounded-2xl brand-overlay-card p-8">
+            <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 p-8">
               <h2 className="text-xl font-semibold text-white">
                 What you can expect every time
               </h2>
@@ -348,7 +365,7 @@ export default function Home() {
               </ul>
             </div>
           </div>
-        </section>
+        </HeroSection>
 
         {/* Why neighbors choose us */}
         <section className="py-20 bg-white">
@@ -449,7 +466,12 @@ export default function Home() {
         </section>
 
         {/* Service Areas */}
-        <section className="py-20 hero-background text-white">
+        <HeroSection
+          imageSrc="/images/installit-guy/hero-ceiling-fan.webp"
+          imageAlt="Ceiling fan installation"
+          className="py-20"
+          objectPosition="50% 45%"
+        >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
@@ -464,7 +486,7 @@ export default function Home() {
                 refreshing a lake house in Tega Cay, we’re nearby.
               </p>
               <div className="mt-8 grid gap-6 md:grid-cols-2">
-                <div className="rounded-2xl brand-overlay-card p-6">
+                <div className="rounded-2xl bg-white/10 border border-white/20 p-6 backdrop-blur-sm">
                   <h3 className="text-xl font-semibold text-white">
                     North Carolina
                   </h3>
@@ -472,7 +494,7 @@ export default function Home() {
                     {displayServiceAreas.northCarolina.join(" • ")}
                   </p>
                 </div>
-                <div className="rounded-2xl brand-overlay-card p-6">
+                <div className="rounded-2xl bg-white/10 border border-white/20 p-6 backdrop-blur-sm">
                   <h3 className="text-xl font-semibold text-white">
                     South Carolina
                   </h3>
@@ -482,24 +504,19 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="rounded-2xl brand-overlay-card p-8">
+            <div className="rounded-2xl bg-white/10 border border-white/20 p-8 backdrop-blur-sm">
               <h3 className="text-2xl font-semibold text-white">
                 Need a different town?
               </h3>
               <p className="mt-4 text-slate-200">
-                We routinely travel for repeat clients and referrals. Share your
-                address and we’ll confirm availability right away.
+                We routinely travel for repeat clients and referrals. Share your address and we’ll confirm availability right away.
               </p>
             </div>
           </div>
-        </section>
+        </HeroSection>
 
         {/* Reviews */}
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Reviews />
-          </div>
-        </section>
+        <Reviews />
 
         {/* Quote Form */}
         <section className="py-20 bg-white" id="quote-form">
@@ -512,18 +529,14 @@ export default function Home() {
         </section>
 
         {/* FAQs */}
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ContextualFAQs
-              context="general"
-              maxFAQs={5}
-              showTitle
-              title="Frequently asked questions"
-              cityName="Shelby, NC"
-              serviceLabel="handyman services"
-            />
-          </div>
-        </section>
+        <ContextualFAQs
+          context="general"
+          maxFAQs={5}
+          showTitle
+          title="Frequently asked questions"
+          cityName="Shelby, NC"
+          serviceLabel="handyman services"
+        />
       </main>
 
       <Footer />

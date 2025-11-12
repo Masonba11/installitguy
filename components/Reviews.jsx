@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function Reviews() {
   const [reviews, setReviews] = useState([]);
@@ -123,24 +124,16 @@ export default function Reviews() {
               >
                 {/* Header with profile photo and name */}
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 rounded-full overflow-hidden mr-3">
+                  <div className="w-12 h-12 rounded-full overflow-hidden mr-3 bg-blue-100 text-blue-600 flex items-center justify-center">
                     {review.profile_photo_url ? (
-                      <img
+                      <Image
                         src={review.profile_photo_url}
                         alt={review.author_name}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.target.style.display = "none";
-                          e.target.nextElementSibling.style.display = "flex";
-                        }}
+                        width={48}
+                        height={48}
+                        className="object-cover w-full h-full"
                       />
-                    ) : null}
-                    <div
-                      className="w-full h-full bg-blue-100 text-blue-600 rounded-full flex items-center justify-center"
-                      style={{
-                        display: review.profile_photo_url ? "none" : "flex",
-                      }}
-                    >
+                    ) : (
                       <span className="text-sm font-semibold">
                         {review.author_name
                           .split(" ")
@@ -148,7 +141,7 @@ export default function Reviews() {
                           .join("")
                           .toUpperCase()}
                       </span>
-                    </div>
+                    )}
                   </div>
                   <div className="flex-1">
                     <h3 className="font-semibold text-gray-900">

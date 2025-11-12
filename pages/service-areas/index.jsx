@@ -2,8 +2,6 @@ import { NextSeo } from "next-seo";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ServiceCard from "../../components/ServiceCard";
-import Reviews from "../../components/Reviews";
-import ContextualFAQs from "../../components/ContextualFAQs";
 import QuoteForm from "../../components/QuoteForm";
 import {
   orderedServiceSlugs,
@@ -15,6 +13,24 @@ import {
 } from "../../data/serviceAreas";
 import LocalBusinessSchema from "../../components/LocalBusinessSchema";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+import HeroSection from "../../components/HeroSection";
+
+const Reviews = dynamic(() => import("../../components/Reviews"), {
+  ssr: false,
+  loading: () => (
+    <div className="py-16 text-center text-gray-500">Loading reviews...</div>
+  ),
+});
+
+const ContextualFAQs = dynamic(
+  () => import("../../components/ContextualFAQs"),
+  {
+    loading: () => (
+      <div className="py-16 text-center text-gray-500">Loading FAQs...</div>
+    ),
+  }
+);
 
 const services = orderedServiceSlugs;
 
@@ -179,13 +195,19 @@ export default function ServiceAreasIndex() {
 
       <main>
         {/* Hero */}
-        <section className="hero-background text-white py-24">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
+        <HeroSection
+          imageSrc="/images/installit-guy/hero-ceiling-fan.webp"
+          imageAlt="Homeowner reviewing service areas"
+          priority
+          className="py-24"
+          objectPosition="50% 38%"
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-start">
+            <div>
               <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
-                Local & nearby
+                Shelby handyman coverage map
               </p>
-              <h1 className="mt-3 text-3xl md:text-5xl font-bold">
+              <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight">
                 One team taking care of homes across the Carolinas
               </h1>
               <p className="mt-5 text-lg text-slate-200 leading-relaxed">
@@ -193,8 +215,61 @@ export default function ServiceAreasIndex() {
                 travel—just ask.
               </p>
             </div>
+            <div className="rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm p-8 text-slate-100">
+              <h2 className="text-xl font-semibold text-white">
+                Quick snapshot
+              </h2>
+              <ul className="mt-6 space-y-3 text-sm">
+                <li className="flex items-start gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>
+                    We proudly serve North Carolina communities including
+                    Charlotte, Shelby, Kings Mountain, Waxhaw, Monroe, Indian
+                    Trail, Concord, Harrisburg, Kannapolis, Gastonia, Matthews,
+                    Huntersville, Pineville, Belmont, Mt Holly, Mint Hill,
+                    Boiling Springs, and Troutman.
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>
+                    We also serve South Carolina communities including Rock
+                    Hill, Fort Mill, York, Clover, Lake Wylie, Gaffney, Tega
+                    Cay, Indian Land, Lancaster, Blythewood, Winnsboro, Ridgeway,
+                    Camden, Columbia, Blacksburg, Richburg, Great Falls, McConnells,
+                    Hickory Grove, and Sharon.
+                  </span>
+                </li>
+              </ul>
+            </div>
           </div>
-        </section>
+        </HeroSection>
 
         {/* Areas we cover */}
         <section className="py-20 bg-white">

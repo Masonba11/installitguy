@@ -1,10 +1,6 @@
 import { NextSeo } from "next-seo";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import ContextualReviews from "../../components/ContextualReviews";
-import ContextualFAQs from "../../components/ContextualFAQs";
 import QuoteForm from "../../components/QuoteForm";
 import LocalBusinessSchema from "../../components/LocalBusinessSchema";
 import metaData from "../../data/metaData.json";
@@ -14,23 +10,31 @@ import {
   servicesContent,
 } from "../../data/servicesContent";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+import HeroSection from "../../components/HeroSection";
+
+const ContextualReviews = dynamic(
+  () => import("../../components/ContextualReviews"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="py-16 text-center text-gray-500">Loading reviews...</div>
+    ),
+  }
+);
+
+const ContextualFAQs = dynamic(
+  () => import("../../components/ContextualFAQs"),
+  {
+    loading: () => (
+      <div className="py-16 text-center text-gray-500">Loading FAQs...</div>
+    ),
+  }
+);
 
 const services = orderedServiceSlugs;
 
 export default function ServicePage({ service }) {
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (router.isReady) {
-      setLoading(false);
-    }
-  }, [router.isReady]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   if (!service || !services.includes(service)) {
     return <div>Page not found</div>;
   }
@@ -59,7 +63,7 @@ export default function ServicePage({ service }) {
 
   const serviceOverview = servicesContent[service];
   const standardAssurances = [
-    "Licensed, insured, and uniformed technicians",
+    "Veteran technicians focused on precision work",
     "Straightforward quotes before we begin",
     "Protective prep, tidy cleanup, and lifetime satisfaction support",
   ];
@@ -71,6 +75,14 @@ export default function ServicePage({ service }) {
   const relatedServices = services
     .filter((slug) => slug !== service)
     .slice(0, 6);
+  const shortDescription =
+    serviceOverview?.shortDescription ||
+    `Professional ${getServiceName(
+      service
+    ).toLowerCase()} services handled by a local crew with 30 years of experience.`;
+  const longDescription =
+    serviceOverview?.longDescription ||
+    `Every project begins with a quick check-in so we understand the hardware, finish, and placement you want. We arrive with the right anchors, fasteners, and protective gear, then double-check alignment before final cleanup—always with Shelby homes and building styles in mind.`;
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -247,43 +259,71 @@ export default function ServicePage({ service }) {
       <Header />
 
       <main>
-        {/* Hero */}
-        <section className="hero-background text-white py-24">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
+        <HeroSection
+          imageSrc="/images/installit-guy/hero-ceiling-fan.webp"
+          imageAlt={`${getServiceName(service)} in Shelby, NC`}
+          priority
+          className="py-24"
+          objectPosition="50% 34%"
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
+            <div>
               <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
                 Shelby handyman service
               </p>
               <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight">
-                {getServiceName(service)} in Shelby, NC done right the first
-                time
+                {getServiceName(service)} in Shelby, NC done right the first time
               </h1>
-              <p className="mt-5 text-lg text-slate-200 leading-relaxed">
-                {serviceOverview?.longDescription ||
-                  `Professional ${getServiceName(
-                    service
-                  ).toLowerCase()} services handled by a local crew with 30 years of experience.`}
+              <p className="mt-5 text-lg text-slate-100/90 leading-relaxed">
+                {shortDescription}
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <a
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link
                   href="#quote-form"
-                  className="btn-primary inline-flex justify-center"
+                  className="inline-flex items-center px-5 py-3 rounded-lg font-semibold bg-white text-slate-900 shadow-md hover:bg-slate-100 transition-colors"
                 >
-                  Schedule Shelby handyman help
-                </a>
-                <span className="text-sm text-slate-200 sm:ml-4">
-                  Questions? Call{" "}
-                  <a
-                    href="tel:+17044199799"
-                    className="font-semibold text-white"
-                  >
-                    (704) 419-9799
-                  </a>
-                </span>
+                  Schedule your project
+                </Link>
+                <Link
+                  href="tel:+17044199799"
+                  className="inline-flex items-center px-5 py-3 rounded-lg font-semibold border border-white/40 text-white hover:bg-white/10 transition-colors"
+                >
+                  Call 704-419-9799
+                </Link>
+              </div>
+            </div>
+            <div className="grid gap-6">
+              <div className="rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm p-6 text-slate-100">
+                <h2 className="text-lg font-semibold text-white">
+                  How the visit flows
+                </h2>
+                <ol className="mt-4 space-y-3 text-sm text-slate-200">
+                  {processSteps.map((item, idx) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-white text-sm font-semibold">
+                        {idx + 1}
+                      </span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              <div className="rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm p-6 text-slate-100">
+                <h2 className="text-lg font-semibold text-white">
+                  Every appointment includes
+                </h2>
+                <ul className="mt-4 space-y-3 text-sm text-slate-200">
+                  {standardAssurances.map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <span className="mt-1 text-primary-200">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
-        </section>
+        </HeroSection>
 
         {/* Service overview */}
         <section className="py-20 bg-white">
@@ -292,15 +332,9 @@ export default function ServicePage({ service }) {
               <h2 className="text-3xl font-bold text-gray-900">
                 What’s included when we handle {getServiceName(service)}
               </h2>
-              <p className="mt-4 text-lg leading-relaxed">
-                {serviceOverview?.shortDescription ||
-                  `Every project begins with a quick check-in so we understand the hardware, finish, and placement you want. We arrive with the right anchors, fasteners, and protective gear, then double-check alignment before final cleanup—always with Shelby homes and building styles in mind.`}
-              </p>
+              <p className="mt-4 text-lg leading-relaxed">{shortDescription}</p>
               <p className="mt-4 text-gray-600">
-                Have add-ons in mind—like routing cables, installing new
-                fixtures, or upgrading hardware? Mention it when you schedule
-                and we’ll include it in the quote. We’re local to Shelby, so
-                sourcing parts and scheduling follow-ups is simple.
+                {longDescription}
               </p>
             </div>
             <div>
