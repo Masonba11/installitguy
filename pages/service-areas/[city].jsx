@@ -15,6 +15,7 @@ import {
   serviceAreaSlugs,
   cityNameMap,
   cityShortNameMap,
+  resolveCitySlug,
 } from "../../data/serviceAreas";
 import dynamic from "next/dynamic";
 import HeroSection from "../../components/HeroSection";
@@ -192,4 +193,28 @@ export default function ServiceAreaPage({ city }) {
       />
     </>
   );
+}
+
+export async function getServerSideProps({ params }) {
+  const { city } = params || {};
+  const resolvedSlug = resolveCitySlug(city);
+
+  if (!serviceAreaSlugs.includes(resolvedSlug)) {
+    return { notFound: true };
+  }
+
+  if (resolvedSlug !== city) {
+    return {
+      redirect: {
+        destination: `/service-areas/${resolvedSlug}`,
+        permanent: true,
+      },
+    };
+  }
+
+  return {
+    props: {
+      city: resolvedSlug,
+    },
+  };
 }

@@ -14,6 +14,7 @@ import {
   serviceAreaSlugs,
   cityNameMap,
   cityShortNameMap,
+  resolveCitySlug,
 } from "../../../data/serviceAreas";
 import dynamic from "next/dynamic";
 import HeroSection from "../../../components/HeroSection";
@@ -436,10 +437,24 @@ export default function ServiceAreaServicePage({ city, service }) {
 
 export async function getServerSideProps(context) {
   const { city, service } = context.params;
+  const resolvedCity = resolveCitySlug(city);
+
+  if (!serviceAreaSlugs.includes(resolvedCity) || !services.includes(service)) {
+    return { notFound: true };
+  }
+
+  if (resolvedCity !== city) {
+    return {
+      redirect: {
+        destination: `/service-areas/${resolvedCity}/${service}`,
+        permanent: true,
+      },
+    };
+  }
 
   return {
     props: {
-      city,
+      city: resolvedCity,
       service,
     },
   };

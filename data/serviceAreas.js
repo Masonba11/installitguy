@@ -58,3 +58,18 @@ export const serviceAreasByState = {
   NC: serviceAreas.filter((area) => area.state === "NC"),
   SC: serviceAreas.filter((area) => area.state === "SC"),
 };
+
+const baseSlugMap = serviceAreas.reduce((map, area) => {
+  map[area.slug] = area.slug;
+  const base = area.slug.replace(/-(nc|sc)$/i, "");
+  if (!map[base]) {
+    map[base] = area.slug;
+  }
+  return map;
+}, {});
+
+export const resolveCitySlug = (slug) => {
+  if (!slug) return slug;
+  const normalized = slug.toLowerCase();
+  return baseSlugMap[normalized] || normalized;
+};
