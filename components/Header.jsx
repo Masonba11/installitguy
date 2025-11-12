@@ -376,7 +376,7 @@ export default function Header() {
                     isServicesOpen ? "max-h-[420px]" : "max-h-0"
                   }`}
                 >
-                  <div className="space-y-2 bg-slate-50 px-5 py-4 border-t border-gray-200">
+                  <div className="space-y-2 bg-slate-50 px-5 py-4 border-t border-gray-200 overflow-y-auto max-h-[360px] pr-1">
                     {(showAllMobileServices ? services : primaryServices).map(
                       (service) => (
                         <Link
@@ -447,7 +447,7 @@ export default function Header() {
                     isServiceAreasOpen ? "max-h-[420px]" : "max-h-0"
                   }`}
                 >
-                  <div className="space-y-2 bg-slate-50 px-5 py-4 border-t border-gray-200">
+                  <div className="space-y-2 bg-slate-50 px-5 py-4 border-t border-gray-200 overflow-y-auto max-h-[360px] pr-1">
                     {(showAllMobileAreas ? serviceAreas : primaryAreas).map(
                       (area) => (
                         <Link
