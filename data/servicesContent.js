@@ -143,31 +143,28 @@ export const servicesContent = {
       "Transform your garage with durable, sleek epoxy flooring. We use high-quality materials for a long-lasting finish. Custom options include color flakes, high-gloss finishes, and anti-slip coatings.",
     cta: "Contact us for professional epoxy flooring installation!",
   },
-  "water-leak-repair": {
-    name: "Water Leak Repair",
-    shortDescription:
-      "Fast leak detection and repair to protect your home from damage.",
-    longDescription:
-      "We locate and repair water leaks quickly to prevent costly damage. From minor drips to major leaks, our team restores your plumbing with durable, long-lasting fixes.",
-    cta: "Call today for reliable leak repair!",
-  },
-  "fence-installation": {
-    name: "Fence Installation",
-    shortDescription:
-      "Durable fence installation with secure mounting and quality materials.",
-    longDescription:
-      "Enhance your property with expert fence installation. We use quality materials, precise craftsmanship, and can include gates, privacy panels, or decorative accents.",
-    cta: "Schedule your fence installation today!",
-  },
-  "gutter-cleaning": {
-    name: "Gutter Cleaning",
-    shortDescription:
-      "Thorough gutter cleaning and maintenance to protect your home.",
-    longDescription:
-      "Keep water flowing away from your home with thorough gutter cleaning and downspout flushing. We remove debris, check for damage, and ensure your system works properly.",
-    cta: "Book your gutter cleaning service now!",
-  },
 };
 
 export const serviceSlugs = Object.keys(servicesContent);
+
+export const orderedServiceSlugs = [
+  "tv-mounting",
+  "ceiling-fan-installation",
+  "lighting-installation",
+  "garage-door-opener-installation",
+  "ring-doorbell-installation",
+  "faucet-toilet-installation",
+  "appliance-installation",
+  "blinds-installation",
+  "mirror-towel-bar-installation",
+  "door-installation",
+  "deck-fence-repair",
+  "garbage-disposal-installation",
+  "shelving-installation",
+  "painting-services",
+  "flooring-installation",
+  "furniture-assembly",
+  "home-maintenance",
+  "epoxy-flooring",
+];
 

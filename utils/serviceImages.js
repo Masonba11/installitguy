@@ -24,15 +24,10 @@ export const serviceImageMap = {
     "organize5installitguy.webp",
   ],
   "furniture-assembly": ["bedframe.jpg", "dresserinstall.jpg"],
-  "gutter-cleaning": ["rooftopinstall.jpg"],
-  "home-maintenance": [],
-  "epoxy-flooring": [],
   "blinds-installation": [],
   "door-installation": [],
-  "water-leak-repair": [],
   "painting-services": [],
   "flooring-installation": [],
-  "fence-installation": [],
   "mirror-towel-bar-installation": ["mirorinstall.jpg"],
 };
 

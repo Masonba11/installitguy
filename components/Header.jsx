@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState, useEffect, useRef } from "react";
+import { orderedServiceSlugs, servicesContent } from "../data/servicesContent";
+import { serviceAreas as allServiceAreas } from "../data/serviceAreas";
 
 export default function Header() {
   const router = useRouter();
@@ -51,52 +53,15 @@ export default function Header() {
     };
   }, []);
 
-  const services = [
-    { name: "TV Mounting", slug: "tv-mounting" },
-    { name: "Ceiling Fan Installation", slug: "ceiling-fan-installation" },
-    { name: "Lighting Installation", slug: "lighting-installation" },
-    {
-      name: "Garage Door Opener Installation",
-      slug: "garage-door-opener-installation",
-    },
-    { name: "Ring Doorbell Installation", slug: "ring-doorbell-installation" },
-    {
-      name: "Faucet & Toilet Installation",
-      slug: "faucet-toilet-installation",
-    },
-    { name: "Appliance Installation", slug: "appliance-installation" },
-    { name: "Blinds Installation", slug: "blinds-installation" },
-    {
-      name: "Mirror & Towel Bar Installation",
-      slug: "mirror-towel-bar-installation",
-    },
-    { name: "Door Installation", slug: "door-installation" },
-    { name: "Deck & Fence Repair", slug: "deck-fence-repair" },
-    { name: "Water Leak Repair", slug: "water-leak-repair" },
-    {
-      name: "Garbage Disposal Installation",
-      slug: "garbage-disposal-installation",
-    },
-    { name: "Shelving Installation", slug: "shelving-installation" },
-    { name: "Painting Services", slug: "painting-services" },
-    { name: "Flooring Installation", slug: "flooring-installation" },
-    { name: "Furniture Assembly", slug: "furniture-assembly" },
-    { name: "Fence Installation", slug: "fence-installation" },
-    { name: "Gutter Cleaning", slug: "gutter-cleaning" },
-  ];
+  const services = orderedServiceSlugs.map((slug) => ({
+    slug,
+    name: servicesContent[slug]?.name || slug,
+  }));
 
-  const serviceAreas = [
-    { name: "Charlotte, NC", slug: "charlotte-nc" },
-    { name: "Concord, NC", slug: "concord-nc" },
-    { name: "Rock Hill, SC", slug: "rock-hill-sc" },
-    { name: "Gastonia, NC", slug: "gastonia-nc" },
-    { name: "Hickory, NC", slug: "hickory-nc" },
-    { name: "Shelby, NC", slug: "shelby-nc" },
-    { name: "Lincolnton, NC", slug: "lincolnton-nc" },
-    { name: "Gaffney, SC", slug: "gaffney-sc" },
-    { name: "Kings Mountain, NC", slug: "kings-mountain-nc" },
-    { name: "Forest City, NC", slug: "forest-city-nc" },
-  ];
+  const serviceAreas = allServiceAreas.map(({ name, slug }) => ({
+    name,
+    slug,
+  }));
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
@@ -105,10 +70,10 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
-              src="/images/installit-guy/installitguylogo2.png"
-              alt="Install It Guy Co Logo"
-              width={64}
-              height={64}
+              src="/images/installit-guy/Screenshot%202025-11-12%20at%2012.46.13%E2%80%AFAM.png"
+              alt="Install It Guy Logo"
+              width={72}
+              height={72}
               priority
               className="logo-image"
             />

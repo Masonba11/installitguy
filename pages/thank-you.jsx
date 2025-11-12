@@ -239,16 +239,10 @@ export default function ThankYou() {
                   For urgent repairs or same-day service, call us directly:
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link
-                    href="tel:+17044199799"
-                    className="btn-primary bg-primary-600 text-white hover:bg-primary-700"
-                  >
+                  <Link href="tel:+17044199799" className="btn-primary">
                     Call Now: (704) 419-9799
                   </Link>
-                  <Link
-                    href="/"
-                    className="btn-primary bg-white text-primary-600 border-2 border-primary-600 hover:bg-primary-50"
-                  >
+                  <Link href="/" className="btn-secondary">
                     Back to Homepage
                   </Link>
                 </div>

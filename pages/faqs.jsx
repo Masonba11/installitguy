@@ -5,6 +5,19 @@ import ContextualReviews from "../components/ContextualReviews";
 import ContextualFAQs from "../components/ContextualFAQs";
 import QuoteForm from "../components/QuoteForm";
 import { useState } from "react";
+import { orderedServiceSlugs, servicesContent } from "../data/servicesContent";
+
+const serviceNames = orderedServiceSlugs.map(
+  (slug) => servicesContent[slug].name
+);
+
+const formatServiceList = (list) => {
+  if (list.length === 1) return list[0];
+  if (list.length === 2) return `${list[0]} and ${list[1]}`;
+  return `${list.slice(0, -1).join(", ")}, and ${list[list.length - 1]}`;
+};
+
+const serviceSummary = formatServiceList(serviceNames);
 
 export default function FAQs() {
   const [openFAQ, setOpenFAQ] = useState(null);
@@ -12,8 +25,7 @@ export default function FAQs() {
   const faqs = [
     {
       question: "What services do you offer?",
-      answer:
-        "We provide expert home installation, handyman repairs, home maintenance, and custom storage solutions. Our services include TV mounting, ceiling fan installation, lighting installation, garage door opener installation, Ring doorbell installation, faucet and toilet installation, appliance installation, blinds installation, mirror and towel bar installation, door installation, deck and fence repair, water leak repair, garbage disposal installation, shelving installation, painting services, flooring installation, furniture assembly, fence installation, and gutter cleaning.",
+      answer: `We provide expert home installation, handyman repairs, home maintenance, and custom storage solutions. Our services include ${serviceSummary}.`,
     },
     {
       question: "What areas do you serve?",

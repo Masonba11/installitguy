@@ -100,15 +100,12 @@ export default function ReviewsPage() {
                 services in Shelby and surrounding areas.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="tel:+17041234567"
-                  className="btn-primary bg-white text-primary-600 hover:bg-gray-100"
-                >
+                <Link href="tel:+17041234567" className="btn-secondary">
                   Call (704) 123-4567
                 </Link>
                 <Link
                   href="/contact-us"
-                  className="btn-secondary border-white text-white hover:bg-white hover:text-primary-600"
+                  className="btn-secondary bg-white text-brand-primary border-white hover:bg-brand-primary hover:text-white"
                 >
                   Get Free Quote
                 </Link>

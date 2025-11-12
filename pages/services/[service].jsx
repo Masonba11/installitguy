@@ -1,41 +1,21 @@
 import { NextSeo } from "next-seo";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import ServiceCard from "../../components/ServiceCard";
 import ContextualReviews from "../../components/ContextualReviews";
 import ContextualFAQs from "../../components/ContextualFAQs";
 import QuoteForm from "../../components/QuoteForm";
-import Link from "next/link";
+import LocalBusinessSchema from "../../components/LocalBusinessSchema";
 import metaData from "../../data/metaData.json";
-import { getServiceName, getServiceImages } from "../../utils/serviceImages";
-import { servicesContent } from "../../data/servicesContent";
+import { getServiceName } from "../../utils/serviceImages";
+import {
+  orderedServiceSlugs,
+  servicesContent,
+} from "../../data/servicesContent";
+import Link from "next/link";
 
-const services = [
-  "tv-mounting",
-  "ceiling-fan-installation",
-  "lighting-installation",
-  "garage-door-opener-installation",
-  "ring-doorbell-installation",
-  "faucet-toilet-installation",
-  "appliance-installation",
-  "blinds-installation",
-  "mirror-towel-bar-installation",
-  "door-installation",
-  "deck-fence-repair",
-  "water-leak-repair",
-  "garbage-disposal-installation",
-  "shelving-installation",
-  "painting-services",
-  "flooring-installation",
-  "furniture-assembly",
-  "fence-installation",
-  "gutter-cleaning",
-  "home-maintenance",
-  "epoxy-flooring",
-];
+const services = orderedServiceSlugs;
 
 export default function ServicePage({ service }) {
   const router = useRouter();
@@ -59,16 +39,45 @@ export default function ServicePage({ service }) {
     (page) => page.url === `https://installitguy.com/services/${service}/`
   );
 
-  if (!pageData) {
+  const canonicalUrl = `https://installitguy.com/services/${service}/`;
+  const fallbackMeta = servicesContent[service]
+    ? {
+        url: canonicalUrl,
+        page_title: `${servicesContent[service].name} in Shelby NC | Install It Guy`,
+        meta_description: servicesContent[service].longDescription,
+        primary_keyword: `${servicesContent[
+          service
+        ].name.toLowerCase()} shelby nc`,
+      }
+    : null;
+
+  const metaInfo = pageData || fallbackMeta;
+
+  if (!metaInfo) {
     return <div>Page not found</div>;
   }
+
+  const serviceOverview = servicesContent[service];
+  const standardAssurances = [
+    "Licensed, insured, and uniformed technicians",
+    "Straightforward quotes before we begin",
+    "Protective prep, tidy cleanup, and lifetime satisfaction support",
+  ];
+  const processSteps = [
+    "Share a few details about the space and desired finish",
+    "We confirm measurements, materials, and schedule",
+    "Our Shelby crew completes the install, tests it, and tidies up",
+  ];
+  const relatedServices = services
+    .filter((slug) => slug !== service)
+    .slice(0, 6);
 
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: `${getServiceName(service)} Service`,
-    description: pageData.meta_description,
-    url: pageData.url,
+    description: metaInfo.meta_description,
+    url: metaInfo.url,
     serviceType: getServiceName(service),
     category: "Home Improvement",
     areaServed: {
@@ -107,10 +116,8 @@ export default function ServicePage({ service }) {
       price: "99.00",
       priceCurrency: "USD",
       availability: "InStock",
-      url: pageData.url,
-      description: `Professional ${getServiceName(
-        service
-      ).toLowerCase()} service`,
+      url: metaInfo.url,
+      description: servicesContent[service]?.longDescription,
     },
   };
 
@@ -134,7 +141,7 @@ export default function ServicePage({ service }) {
         "@type": "ListItem",
         position: 3,
         name: getServiceName(service),
-        item: pageData.url,
+        item: metaInfo.url,
       },
     ],
   };
@@ -142,21 +149,26 @@ export default function ServicePage({ service }) {
   return (
     <>
       <NextSeo
-        title={pageData.page_title}
-        description={pageData.meta_description}
-        canonical={pageData.url}
+        title={metaInfo.page_title}
+        description={metaInfo.meta_description}
+        canonical={metaInfo.url}
         openGraph={{
-          url: pageData.url,
-          title: pageData.page_title,
-          description: pageData.meta_description,
+          url: metaInfo.url,
+          title: metaInfo.page_title,
+          description: metaInfo.meta_description,
           siteName: "Install It Guy",
         }}
         additionalMetaTags={[
           {
             name: "keywords",
-            content: pageData.primary_keyword,
+            content: metaInfo.primary_keyword,
           },
         ]}
+      />
+
+      <LocalBusinessSchema
+        serviceName={getServiceName(service)}
+        description={metaInfo.meta_description}
       />
 
       <script
@@ -179,7 +191,7 @@ export default function ServicePage({ service }) {
             description: `Common questions about ${getServiceName(
               service
             ).toLowerCase()} services in Shelby NC`,
-            url: pageData.url,
+            url: metaInfo.url,
             mainEntity: [
               {
                 "@type": "Question",
@@ -203,18 +215,6 @@ export default function ServicePage({ service }) {
                   text: `Yes, we often provide same-day service for ${getServiceName(
                     service
                   ).toLowerCase()}. Contact us to check availability and schedule your appointment.`,
-                },
-              },
-              {
-                "@type": "Question",
-                name: `Are you licensed and insured for ${getServiceName(
-                  service
-                ).toLowerCase()}?`,
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: `Yes, we are fully licensed and insured for all ${getServiceName(
-                    service
-                  ).toLowerCase()} projects. We carry comprehensive liability insurance for your protection.`,
                 },
               },
               {
@@ -246,592 +246,160 @@ export default function ServicePage({ service }) {
 
       <Header />
 
-      <main className="min-h-screen bg-gray-50">
-        {/* Hero Section */}
-        <section className="relative text-white overflow-hidden min-h-[80vh] flex items-center justify-center pt-40">
-          {/* Background Video */}
-          <div className="absolute inset-0 hero-video-container">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              crossOrigin="anonymous"
-              className="absolute inset-0 w-full h-full hero-video"
-              style={{
-                opacity: 0.9,
-                zIndex: 1,
-                filter: "brightness(1.0) contrast(1.0) saturate(1.0)",
-              }}
-            >
-              {/* Ultra high quality source for desktop - 1080p */}
-              <source
-                src="/shelby-background-hq.mp4"
-                type="video/mp4"
-                media="(min-width: 1024px)"
-              />
-              {/* Ultra high quality WebM - 1080p */}
-              <source src="/shelby-background-hq.webm" type="video/webm" />
-              {/* High quality source for desktop - prioritize original */}
-              <source
-                src="/shelby-background-original.mp4"
-                type="video/mp4"
-                media="(min-width: 1024px)"
-              />
-              {/* WebM for better compression and quality - prioritize this */}
-              <source src="/shelby-background.webm" type="video/webm" />
-              {/* Compressed source for mobile */}
-              <source
-                src="/shelby-background-compressed.mp4"
-                type="video/mp4"
-                media="(max-width: 1023px)"
-              />
-              {/* Fallback MP4 */}
-              <source src="/shelby-background.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-
-          {/* Fallback Background - Always visible */}
-          <div
-            className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700"
-            style={{ zIndex: 0 }}
-          />
-
-          {/* Enhanced Overlay with Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/40" />
-
-          {/* Additional quality enhancement overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/10 via-transparent to-blue-900/10" />
-
-          {/* Content */}
-          <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Expert {getServiceName(service)} in Shelby NC
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 text-primary-100">
-                {servicesContent[service]?.longDescription ||
-                  `Professional ${getServiceName(service).toLowerCase()} services in Shelby NC with 30+ years of local experience and lifetime warranty.`}
+      <main>
+        {/* Hero */}
+        <section className="bg-brand-primary text-white py-24">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
+                Shelby handyman service
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="tel:+17044199799"
-                  className="btn-primary bg-white text-primary-600 hover:bg-gray-100"
-                >
-                  Call Now: (704) 419-9799
-                </Link>
+              <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight">
+                {getServiceName(service)} in Shelby, NC done right the first
+                time
+              </h1>
+              <p className="mt-5 text-lg text-slate-200 leading-relaxed">
+                {serviceOverview?.longDescription ||
+                  `Professional ${getServiceName(
+                    service
+                  ).toLowerCase()} services handled by a local crew with 30 years of experience.`}
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a
                   href="#quote-form"
-                  className="btn-primary bg-white text-primary-600 hover:bg-gray-100"
+                  className="btn-primary inline-flex justify-center"
                 >
-                  {servicesContent[service]?.cta || "Get Free Quote"}
+                  Schedule Shelby handyman help
                 </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* About Our Company */}
-        <section className="section-padding">
-          <div className="container-custom">
-            <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                    Trusted {getServiceName(service)} Company in Shelby NC
-                  </h2>
-                  <p className="text-lg text-gray-600 mb-6">
-                    Our family-owned business has been serving Shelby and
-                    Cleveland County for over 30 years. We bring expertise,
-                    reliability, and a commitment to excellence to every{" "}
-                    {getServiceName(service).toLowerCase()} project throughout
-                    our community. We also provide{" "}
-                    <Link
-                      href="/services/ceiling-fan-installation"
-                      className="text-primary-600 hover:text-primary-700 font-medium"
-                    >
-                      ceiling fan installation
-                    </Link>
-                    ,{" "}
-                    <Link
-                      href="/services/lighting-installation"
-                      className="text-primary-600 hover:text-primary-700 font-medium"
-                    >
-                      lighting installation
-                    </Link>
-                    , and{" "}
-                    <Link
-                      href="/services/appliance-installation"
-                      className="text-primary-600 hover:text-primary-700 font-medium"
-                    >
-                      appliance installation
-                    </Link>{" "}
-                    services.
-                  </p>
-                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    When you choose Install It Guy for{" "}
-                    {getServiceName(service).toLowerCase()} in Shelby, you're
-                    getting more than just a service provider – you're getting a
-                    trusted partner who understands the unique needs of Shelby
-                    homeowners. From historic homes in downtown Shelby to newer
-                    developments in West Shelby and Kings Mountain, our team
-                    knows the local building codes, common home styles, and
-                    weather considerations that affect installations throughout
-                    Cleveland County.
-                  </p>
-                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    We believe in transparent communication and fair pricing for
-                    Shelby residents. Before we start any{" "}
-                    {getServiceName(service).toLowerCase()} project in your
-                    Shelby home, we'll explain exactly what we plan to do, how
-                    long it will take, and what it will cost. No surprises, no
-                    hidden fees – just honest, professional service that you can
-                    count on from your local Shelby experts.
-                  </p>
-
-                  {/* Service Gallery */}
-                  {getServiceImages(service).length > 0 && (
-                    <div className="service-gallery">
-                      {getServiceImages(service).map((imageSrc) => (
-                        <div key={imageSrc} className="service-gallery-item">
-                          <Image
-                            src={`/images/installit-guy/${imageSrc}`}
-                            alt={`${getServiceName(service)} by Install It Guy`}
-                            width={900}
-                            height={600}
-                            className="service-gallery-img"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  <div className="space-y-4">
-                    <div className="flex items-start">
-                      <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mr-3 mt-1">
-                        <svg
-                          className="w-4 h-4 text-white"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                          30+ Years Serving Shelby
-                        </h3>
-                        <p className="text-gray-600">
-                          Three decades of expertise in{" "}
-                          {getServiceName(service).toLowerCase()} throughout
-                          Cleveland County with dedication and local knowledge.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start">
-                      <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mr-3 mt-1">
-                        <svg
-                          className="w-4 h-4 text-white"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                          Lifetime Warranty
-                        </h3>
-                        <p className="text-gray-600">
-                          We proudly back our{" "}
-                          {getServiceName(service).toLowerCase()} work with a
-                          lifetime customer satisfaction guarantee.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start">
-                      <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mr-3 mt-1">
-                        <svg
-                          className="w-4 h-4 text-white"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                          Shelby Local Expertise
-                        </h3>
-                        <p className="text-gray-600">
-                          Deep knowledge of Shelby homes, Cleveland County
-                          building codes, and local weather patterns for{" "}
-                          {getServiceName(service).toLowerCase()}.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="lg:col-span-1">
-                  <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                      Why Choose Us for {getServiceName(service)} in Shelby
-                    </h3>
-                    <p className="text-gray-600 mb-6">
-                      We've been serving Shelby and Cleveland County for over 30
-                      years with dedication, integrity, and a commitment to
-                      excellence. Our family-owned business brings expertise,
-                      reliability, and quality workmanship to every project
-                      throughout our community.
-                    </p>
-                    <div className="space-y-4">
-                      <div className="flex items-center">
-                        <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
-                          <svg
-                            className="w-4 h-4"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </div>
-                        <span className="text-gray-700">
-                          Licensed and insured professionals
-                        </span>
-                      </div>
-                      <div className="flex items-center">
-                        <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
-                          <svg
-                            className="w-4 h-4"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </div>
-                        <span className="text-gray-700">
-                          Same-day service available
-                        </span>
-                      </div>
-                      <div className="flex items-center">
-                        <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
-                          <svg
-                            className="w-4 h-4"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </div>
-                        <span className="text-gray-700">
-                          Competitive pricing with no hidden fees
-                        </span>
-                      </div>
-                      <div className="flex items-center">
-                        <div className="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mr-3">
-                          <svg
-                            className="w-4 h-4"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </div>
-                        <span className="text-gray-700">
-                          Clean, professional work every time
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Services Section */}
-        <section className="section-padding bg-gray-50">
-          <div className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Complete {getServiceName(service)} Solutions in Shelby NC
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                We offer comprehensive {getServiceName(service).toLowerCase()}{" "}
-                services throughout Shelby and Cleveland County.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 p-6">
-                <div className="w-12 h-12 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center mb-4">
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                <span className="text-sm text-slate-200 sm:ml-4">
+                  Questions? Call{" "}
+                  <a
+                    href="tel:+17044199799"
+                    className="font-semibold text-white"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  {getServiceName(service)} Installation
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Professional {getServiceName(service).toLowerCase()}{" "}
-                  installation services across the Carolinas.
-                </p>
-                <ul className="text-sm text-gray-500 space-y-1">
-                  <li>• Expert installation</li>
-                  <li>• Quality materials</li>
-                  <li>• Lifetime warranty</li>
-                  <li>• Local expertise</li>
-                </ul>
+                    (704) 419-9799
+                  </a>
+                </span>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Process Section */}
-        <section className="section-padding">
-          <div className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Our {getServiceName(service)} Process
+        {/* Service overview */}
+        <section className="py-20 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-gray-700">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900">
+                What’s included when we handle {getServiceName(service)}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                We follow a proven process to ensure quality results and
-                customer satisfaction.
+              <p className="mt-4 text-lg leading-relaxed">
+                {serviceOverview?.shortDescription ||
+                  `Every project begins with a quick check-in so we understand the hardware, finish, and placement you want. We arrive with the right anchors, fasteners, and protective gear, then double-check alignment before final cleanup—always with Shelby homes and building styles in mind.`}
+              </p>
+              <p className="mt-4 text-gray-600">
+                Have add-ons in mind—like routing cables, installing new
+                fixtures, or upgrading hardware? Mention it when you schedule
+                and we’ll include it in the quote. We’re local to Shelby, so
+                sourcing parts and scheduling follow-ups is simple.
               </p>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">1</span>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Free Consultation
-                </h3>
-                <p className="text-gray-600">
-                  We assess your needs and provide a detailed quote with no
-                  obligation.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">2</span>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Professional Installation
-                </h3>
-                <p className="text-gray-600">
-                  Our experienced team handles the installation with precision
-                  and care.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">3</span>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Quality Inspection
-                </h3>
-                <p className="text-gray-600">
-                  We thoroughly test and inspect our work to ensure everything
-                  meets our standards.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">4</span>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Lifetime Warranty
-                </h3>
-                <p className="text-gray-600">
-                  We stand behind our work with a lifetime customer satisfaction
-                  guarantee.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Our Other Services Section */}
-        <section className="section-padding">
-          <div className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Other Services We Offer in Shelby, NC
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                We provide comprehensive home improvement services throughout
-                Shelby, NC and surrounding areas.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {services
-                .filter((s) => s !== service)
-                .map((otherService) => (
-                  <ServiceCard key={otherService} service={otherService} />
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900">
+                How the visit flows
+              </h3>
+              <ol className="mt-4 space-y-3 text-gray-600">
+                {processSteps.map((item, idx) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary-100 text-primary-600 text-sm font-semibold">
+                      {idx + 1}
+                    </span>
+                    <span>{item}</span>
+                  </li>
                 ))}
+              </ol>
             </div>
-
-            <div className="text-center mt-12">
-              <Link href="/services" className="btn-primary">
-                View All Services
-              </Link>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900">
+                Every appointment includes
+              </h3>
+              <ul className="mt-4 space-y-2 text-gray-600">
+                {standardAssurances.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <span className="mt-1 text-primary-500">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
 
-        {/* Customer Reviews */}
-        <ContextualReviews
-          context={service}
-          maxReviews={4}
-          showTitle={true}
-          title="Customer Reviews"
-        />
+        {/* Related services */}
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-gray-900">
+              Shelby clients often pair this with
+            </h2>
+            <p className="mt-4 text-gray-600">
+              Need help with a few more items? We can add them to the same visit
+              so everything is handled at once and keep your Shelby project
+              moving.
+            </p>
+            <ul className="mt-6 grid gap-3 text-gray-700 md:grid-cols-2">
+              {relatedServices.map((slug) => (
+                <li
+                  key={slug}
+                  className="rounded-xl border border-gray-200 bg-white px-5 py-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                >
+                  <Link href={`/services/${slug}`} className="block">
+                    <span className="font-semibold text-gray-900">
+                      {servicesContent[slug]?.name || getServiceName(slug)}
+                    </span>
+                    <span className="block text-sm text-gray-500 mt-1">
+                      {servicesContent[slug]?.shortDescription}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
 
-        {/* Quote Form */}
-        <QuoteForm
-          title={`Get Your Free ${getServiceName(service)} Quote`}
-          subtitle={`Tell us about your ${getServiceName(
-            service
-          ).toLowerCase()} project and we'll provide a detailed quote within 24 hours`}
-        />
+        {/* Reviews */}
+        <section className="py-20 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ContextualReviews
+              context={service}
+              maxReviews={3}
+              showTitle
+              title={`${getServiceName(service)} client feedback`}
+            />
+          </div>
+        </section>
 
-        {/* FAQ Section */}
-        <section className="section-padding">
-          <div className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Frequently Asked Questions
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Common questions about our{" "}
-                {getServiceName(service).toLowerCase()} services.
-              </p>
-            </div>
+        {/* Quote form */}
+        <section className="py-20 bg-gray-50" id="quote-form">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <QuoteForm
+              title={`Ready to schedule ${getServiceName(
+                service
+              ).toLowerCase()} in Shelby?`}
+              subtitle="Share the details and we’ll respond with availability and pricing within one business day."
+            />
+          </div>
+        </section>
 
-            <div className="max-w-4xl mx-auto">
-              <div className="space-y-6">
-                <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-                  <button
-                    className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
-                    onClick={() => {
-                      const faqElement = document.getElementById("faq-1");
-                      if (faqElement) {
-                        faqElement.classList.toggle("hidden");
-                      }
-                    }}
-                  >
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      How much does {getServiceName(service).toLowerCase()}{" "}
-                      cost?
-                    </h3>
-                    <svg
-                      className="w-5 h-5 text-gray-500 transform transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
-                  <div id="faq-1" className="px-6 pb-4 text-gray-600 hidden">
-                    <p>
-                      Our pricing varies based on the specific project
-                      requirements. We provide free, detailed quotes for all{" "}
-                      {getServiceName(service).toLowerCase()} projects. Contact
-                      us for a personalized estimate.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-                  <button
-                    className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
-                    onClick={() => {
-                      const faqElement = document.getElementById("faq-2");
-                      if (faqElement) {
-                        faqElement.classList.toggle("hidden");
-                      }
-                    }}
-                  >
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      Do you offer same-day service for{" "}
-                      {getServiceName(service).toLowerCase()}?
-                    </h3>
-                    <svg
-                      className="w-5 h-5 text-gray-500 transform transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
-                  <div id="faq-2" className="px-6 pb-4 text-gray-600 hidden">
-                    <p>
-                      Yes, we often provide same-day service for{" "}
-                      {getServiceName(service).toLowerCase()}. Contact us to
-                      check availability and schedule your appointment.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        {/* FAQs */}
+        <section className="py-20 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ContextualFAQs
+              context={service}
+              maxFAQs={5}
+              showTitle
+              title={`${getServiceName(service)} FAQs`}
+              cityName="Shelby, NC"
+              serviceLabel={`${getServiceName(service)} services`}
+            />
           </div>
         </section>
       </main>

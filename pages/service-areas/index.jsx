@@ -1,80 +1,42 @@
 import { NextSeo } from "next-seo";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import ContextualReviews from "../../components/ContextualReviews";
+import ServiceCard from "../../components/ServiceCard";
+import Reviews from "../../components/Reviews";
 import ContextualFAQs from "../../components/ContextualFAQs";
 import QuoteForm from "../../components/QuoteForm";
+import {
+  orderedServiceSlugs,
+  servicesContent,
+} from "../../data/servicesContent";
+import {
+  serviceAreas as allServiceAreas,
+  serviceAreasByState,
+} from "../../data/serviceAreas";
+import LocalBusinessSchema from "../../components/LocalBusinessSchema";
 import Link from "next/link";
 
-const serviceAreas = [
-  { name: "Charlotte, NC", slug: "charlotte-nc" },
-  { name: "Concord, NC", slug: "concord-nc" },
-  { name: "Rock Hill, SC", slug: "rock-hill-sc" },
-  { name: "Gastonia, NC", slug: "gastonia-nc" },
-  { name: "Hickory, NC", slug: "hickory-nc" },
-  { name: "Shelby, NC", slug: "shelby-nc" },
-  { name: "Lincolnton, NC", slug: "lincolnton-nc" },
-  { name: "Gaffney, SC", slug: "gaffney-sc" },
-  { name: "Kings Mountain, NC", slug: "kings-mountain-nc" },
-  { name: "Forest City, NC", slug: "forest-city-nc" },
-];
+const services = orderedServiceSlugs;
+
+const serviceAreas = allServiceAreas;
 
 const displayServiceAreas = {
-  northCarolina: [
-    "Charlotte",
-    "Shelby",
-    "Kings Mountain",
-    "Waxhaw",
-    "Monroe",
-    "Indian Trail",
-    "Concord",
-    "Harrisburg",
-    "Kannapolis",
-    "Gastonia",
-    "Matthews",
-    "Huntersville",
-    "Pineville",
-    "Belmont",
-    "Mt Holly",
-    "Mint Hill",
-    "Boiling Springs",
-    "Troutman",
-  ],
-  southCarolina: [
-    "Rock Hill",
-    "Fort Mill",
-    "York",
-    "Clover",
-    "Lake Wylie",
-    "Gaffney",
-    "Tega Cay",
-    "Indian Land",
-    "Lancaster",
-    "Blythewood",
-    "Winnsboro",
-    "Ridgeway",
-    "Camden",
-    "Columbia",
-    "Blacksburg",
-    "Richburg",
-    "Great Falls",
-    "McConnells",
-    "Hickory Grove",
-    "Sharon",
-  ],
+  northCarolina: serviceAreasByState.NC.map((area) => area.shortName),
+  southCarolina: serviceAreasByState.SC.map((area) => area.shortName),
 };
 
-const serviceAreaCoverageText =
-  "Our service area coverage includes, but is not limited to, North Carolina counties of Cabarrus, Cleveland, Mecklenburg, and Union as well as Lancaster, Richland, and York counties in South Carolina.";
-
+const serviceAreaCoverageText = `We proudly serve North Carolina communities including ${displayServiceAreas.northCarolina.join(
+  ", "
+)} and South Carolina communities including ${displayServiceAreas.southCarolina.join(
+  ", "
+)}.`;
 
 export default function ServiceAreasIndex() {
   const serviceAreasSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Service Areas",
-    description:
-      "We proudly serve homeowners across Cabarrus, Cleveland, Mecklenburg, and Union counties in North Carolina as well as Lancaster, Richland, and York counties in South Carolina",
+    description: serviceAreaCoverageText,
     numberOfItems: serviceAreas.length,
     itemListElement: serviceAreas.map((area, index) => ({
       "@type": "ListItem",
@@ -85,33 +47,48 @@ export default function ServiceAreasIndex() {
         url: `https://installitguy.com/service-areas/${area.slug}`,
         containedInPlace: {
           "@type": "State",
-          name: area.name.includes("NC") ? "North Carolina" : "South Carolina",
+          name: area.state === "NC" ? "North Carolina" : "South Carolina",
         },
       },
     })),
   };
+  const regionSummaries = [
+    {
+      name: "North Carolina",
+      description:
+        "Charlotte metro, Cleveland County, Lake Norman, and surrounding communities.",
+      items: serviceAreasByState.NC.map((area) => area.shortName),
+    },
+    {
+      name: "South Carolina",
+      description:
+        "York, Lancaster, and Richland counties plus nearby lake towns.",
+      items: serviceAreasByState.SC.map((area) => area.shortName),
+    },
+  ];
 
   return (
     <>
       <NextSeo
         title="Service Areas | Install It Guy"
-        description="We proudly serve homeowners across Cabarrus, Cleveland, Mecklenburg, and Union counties in North Carolina as well as Lancaster, Richland, and York counties in South Carolina."
+        description="Install It Guy proudly serves homeowners across North and South Carolina. Explore the towns and neighborhoods we visit every week."
         canonical="https://installitguy.com/service-areas"
         openGraph={{
           url: "https://installitguy.com/service-areas",
           title: "Service Areas | Install It Guy",
-          description:
-            "We proudly serve homeowners across Cabarrus, Cleveland, Mecklenburg, and Union counties in North Carolina as well as Lancaster, Richland, and York counties in South Carolina.",
+          description: serviceAreaCoverageText,
           siteName: "Install It Guy",
         }}
         additionalMetaTags={[
           {
             name: "keywords",
             content:
-              "handyman charlotte nc, handyman concord nc, handyman rock hill sc, handyman gastonia nc, handyman hickory nc, handyman shelby nc",
+              "handyman charlotte nc, handyman shelby nc, handyman rock hill sc, handyman fort mill sc, handyman waxhaw nc, handyman indian trail nc",
           },
         ]}
       />
+
+      <LocalBusinessSchema />
 
       <script
         type="application/ld+json"
@@ -134,7 +111,7 @@ export default function ServiceAreasIndex() {
                 name: "What areas do you serve?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Our service area coverage includes, but is not limited to, North Carolina counties of Cabarrus, Cleveland, Mecklenburg, and Union as well as Lancaster, Richland, and York counties in South Carolina.",
+                  text: "Our service area coverage includes North Carolina communities such as Charlotte, Shelby, Kings Mountain, Waxhaw, Monroe, Indian Trail, Concord, Harrisburg, Kannapolis, Gastonia, Matthews, Huntersville, Pineville, Belmont, Mt Holly, Mint Hill, Boiling Springs, and Troutman along with South Carolina communities including Rock Hill, Fort Mill, York, Clover, Lake Wylie, Gaffney, Tega Cay, Indian Land, Lancaster, Blythewood, Winnsboro, Ridgeway, Camden, Columbia, Blacksburg, Richburg, Great Falls, McConnells, Hickory Grove, and Sharon.",
                 },
               },
               {
@@ -200,186 +177,177 @@ export default function ServiceAreasIndex() {
 
       <Header />
 
-      <main className="min-h-screen bg-gray-50">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary-600 to-primary-800 text-white">
-          <div className="container-custom section-padding">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Service Areas
+      <main>
+        {/* Hero */}
+        <section className="bg-brand-primary text-white py-24">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
+                Local & nearby
+              </p>
+              <h1 className="mt-3 text-3xl md:text-5xl font-bold">
+                One team taking care of homes across the Carolinas
               </h1>
-              <p className="text-xl md:text-2xl mb-8 text-primary-100">
-                We proudly serve Cabarrus, Cleveland, Mecklenburg, and Union counties in North Carolina along with Lancaster, Richland, and York counties in South Carolina.
+              <p className="mt-5 text-lg text-slate-200 leading-relaxed">
+                {serviceAreaCoverageText} If you’re close by, we’re happy to
+                travel—just ask.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Service Areas Grid */}
-        <section className="section-padding">
-          <div className="container-custom">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Where We Serve
+        {/* Areas we cover */}
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary-600">
+                Coverage map
+              </p>
+              <h2 className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">
+                North and South Carolina communities we visit every week
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                {serviceAreaCoverageText}
+              <p className="mt-4 text-lg text-gray-600">
+                We schedule projects in these neighborhoods daily. Don’t see
+                your town? Let us know—we frequently expand for existing clients
+                and referrals.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                  North Carolina Communities
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {displayServiceAreas.northCarolina.join(", ")}
-                </p>
-              </div>
-              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                  South Carolina Communities
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {displayServiceAreas.southCarolina.join(", ")}
-                </p>
-              </div>
+            <div className="mt-12 grid gap-8 md:grid-cols-2">
+              {regionSummaries.map((region) => (
+                <div
+                  key={region.name}
+                  className="rounded-2xl border border-gray-200 bg-gray-50 p-8 shadow-sm"
+                >
+                  <h3 className="text-xl font-semibold text-gray-900">
+                    {region.name}
+                  </h3>
+                  <p className="mt-2 text-gray-600">{region.description}</p>
+                  <div className="mt-6 columns-1 sm:columns-2 gap-4 text-sm text-gray-500">
+                    {region.items.map((item) => (
+                      <div key={item} className="py-1">
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {serviceAreas.map((area) => (
                 <Link
                   key={area.slug}
                   href={`/service-areas/${area.slug}`}
-                  className="card text-center hover:shadow-lg transition-all duration-300 group"
+                  className="rounded-xl border border-gray-200 bg-white px-4 py-5 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
                 >
-                  <div className="text-primary-600 group-hover:text-primary-700 font-semibold text-lg">
-                    {area.name}
-                  </div>
-                  <p className="text-gray-500 text-sm mt-2">
-                    Click to view services
+                  <p className="text-sm font-semibold text-primary-600">
+                    {area.state === "NC" ? "NC" : "SC"}
                   </p>
+                  <p className="mt-1 text-lg font-semibold text-gray-900">
+                    {area.shortName}
+                  </p>
+                  <span className="mt-3 inline-flex items-center text-sm font-medium text-primary-600">
+                    View services →
+                  </span>
                 </Link>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Why Choose Us */}
-        <section className="section-padding bg-gray-50">
-          <div className="container-custom">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Why Choose Install It Guy?
+        {/* How we support each visit */}
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary-600">
+                White-glove service
+              </p>
+              <h2 className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">
+                Same crew, clear communication, and predictable schedules
               </h2>
+              <p className="mt-4 text-lg text-gray-600">
+                We manage the full experience—from the first call to the final
+                tidy-up. Expect proactive reminders, text updates when we’re on
+                the way, and respectful technicians in your home.
+              </p>
+              <ul className="mt-8 space-y-4 text-gray-600">
+                {[
+                  "Project snapshots after each visit so you can see progress—even if you’re off-site",
+                  "Flexible arrival windows for property managers and out-of-town owners",
+                  "Same-day availability reserved for urgent repairs in our core routes",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary-100 text-primary-600">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Local Expertise
-                </h3>
-                <p className="text-gray-600">
-                  We know the Carolinas and understand the unique needs of local
-                  homeowners and businesses.
-                </p>
+            <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+              <h3 className="text-xl font-semibold text-gray-900">
+                Popular requests in your area
+              </h3>
+              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {services.slice(0, 6).map((service) => (
+                  <ServiceCard key={service} service={service} />
+                ))}
               </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Quick Response
-                </h3>
-                <p className="text-gray-600">
-                  Fast response times across all our service areas. We're here
-                  when you need us most.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Quality Guarantee
-                </h3>
-                <p className="text-gray-600">
-                  We stand behind our work with warranties and satisfaction
-                  guarantees for all projects.
-                </p>
+              <div className="mt-6 text-right">
+                <Link
+                  href="/services"
+                  className="text-sm font-semibold text-primary-600 hover:text-primary-700"
+                >
+                  View full services →
+                </Link>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Quote Form */}
-        <QuoteForm
-          title="Get Your Free Quote"
-          subtitle="Tell us about your project and we'll provide a detailed quote within 24 hours"
-        />
+        {/* Reviews */}
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Reviews />
+          </div>
+        </section>
 
-        {/* Customer Reviews */}
-        <ContextualReviews
-          context="general"
-          maxReviews={4}
-          showTitle={true}
-          title="Customer Reviews"
-        />
+        {/* Quote Form */}
+        <section className="py-20 bg-gray-50" id="quote-form">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <QuoteForm
+              title="Let’s coordinate your visit"
+              subtitle="Share your address and project details—we’ll confirm availability and pricing within one business day."
+            />
+          </div>
+        </section>
 
         {/* FAQs */}
-        <ContextualFAQs
-          context="general"
-          maxFAQs={5}
-          showTitle={true}
-          title="Service Area FAQs"
-        />
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ContextualFAQs
+              context="general"
+              maxFAQs={5}
+              showTitle
+              title="Service area FAQs"
+            />
+          </div>
+        </section>
       </main>
 
       <Footer />

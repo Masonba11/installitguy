@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary-blue: #1c2d3f;
+  --accent-green: #9bcb76;
+  --secondary-teal: #3ba394;
+  --text-dark: #1b1b1b;
+  --background: #ffffff;
+}
+
 /* Service Gallery Styles */
 .service-gallery {
   @apply my-10 flex flex-wrap justify-center gap-6;
@@ -23,21 +31,38 @@
   }
 
   body {
-    @apply text-gray-900 bg-white;
+    color: var(--text-dark);
+    background-color: var(--background);
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    @apply text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    background-color: var(--primary-blue);
+    --tw-ring-color: rgba(42, 110, 160, 0.4);
+  }
+
+  .btn-primary:hover {
+    background-color: #245f8b;
   }
 
   .btn-secondary {
-    @apply bg-white hover:bg-gray-50 text-primary-600 font-semibold py-3 px-6 rounded-lg border-2 border-primary-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    @apply font-semibold py-3 px-6 rounded-lg border-2 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    background-color: var(--background);
+    color: var(--primary-blue);
+    border-color: var(--primary-blue);
+    --tw-ring-color: rgba(42, 110, 160, 0.35);
+  }
+
+  .btn-secondary:hover {
+    background-color: #f5f8fb;
   }
 
   .card {
-    @apply bg-white rounded-lg shadow-md border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200;
+    @apply rounded-lg shadow-md border p-6 hover:shadow-lg transition-shadow duration-200;
+    background-color: var(--background);
+    border-color: rgba(42, 110, 160, 0.12);
   }
 
   .section-padding {
@@ -89,7 +114,7 @@
     object-fit: cover;
     object-position: center;
     will-change: transform;
-    transform: scale(1.0); /* Remove scaling to prevent blur */
+    transform: scale(1);
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
     image-rendering: pixelated;
@@ -112,36 +137,63 @@
     bottom: 0;
     background: linear-gradient(
       45deg,
-      rgba(59, 130, 246, 0.05) 0%,
+      rgba(42, 110, 160, 0.08) 0%,
       transparent 25%,
       transparent 75%,
-      rgba(59, 130, 246, 0.05) 100%
+      rgba(42, 110, 160, 0.08) 100%
     );
     z-index: 1;
     pointer-events: none;
   }
+}
 
-  /* Smooth video transitions */
-  .hero-video {
-    transition: opacity 0.5s ease-in-out;
-  }
+.bg-brand-primary {
+  background-color: var(--primary-blue);
+}
 
-  /* Enhanced video quality on high-DPI displays */
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .hero-video {
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
-      image-rendering: pixelated;
-    }
-  }
+.bg-brand-secondary {
+  background-color: var(--secondary-teal);
+}
 
-  @media (max-width: 768px) {
-    .hero-section {
-      min-height: 65vh;
-    }
-    
-    .hero-video {
-      transform: scale(1.0); /* Keep consistent scaling */
-    }
-  }
+.bg-brand-accent {
+  background-color: var(--accent-green);
+}
+
+.text-brand-primary {
+  color: var(--primary-blue);
+}
+
+.text-brand-secondary {
+  color: var(--secondary-teal);
+}
+
+.text-brand-dark {
+  color: var(--text-dark);
+}
+
+.border-brand-primary {
+  border-color: var(--primary-blue);
+}
+
+.brand-overlay-card {
+  background-color: rgba(28, 45, 63, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.brand-surface-card {
+  background-color: #f4f6f9;
+  border: 1px solid rgba(28, 45, 63, 0.18);
+}
+
+.brand-subtle-border {
+  border-color: rgba(28, 45, 63, 0.2);
+}
+
+.brand-accent-text {
+  color: var(--accent-green);
+}
+
+.brand-secondary-text {
+  color: var(--secondary-teal);
 }

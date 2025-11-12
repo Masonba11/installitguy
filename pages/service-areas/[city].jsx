@@ -6,42 +6,35 @@ import Reviews from "../../components/Reviews";
 import ContextualFAQs from "../../components/ContextualFAQs";
 import QuoteForm from "../../components/QuoteForm";
 import Link from "next/link";
+import LocalBusinessSchema from "../../components/LocalBusinessSchema";
 import metaData from "../../data/metaData.json";
+import {
+  orderedServiceSlugs,
+  servicesContent,
+} from "../../data/servicesContent";
+import {
+  serviceAreas as allServiceAreas,
+  serviceAreaSlugs,
+  cityNameMap,
+  cityShortNameMap,
+} from "../../data/serviceAreas";
 
-const serviceAreas = [
-  "charlotte-nc",
-  "concord-nc",
-  "rock-hill-sc",
-  "gastonia-nc",
-  "hickory-nc",
-  "shelby-nc",
-  "lincolnton-nc",
-  "gaffney-sc",
-  "kings-mountain-nc",
-  "forest-city-nc",
-];
+const services = orderedServiceSlugs;
 
-const services = [
-  "tv-mounting",
-  "ceiling-fan-installation",
-  "lighting-installation",
-  "garage-door-opener-installation",
-  "ring-doorbell-installation",
-  "faucet-toilet-installation",
-  "appliance-installation",
-  "blinds-installation",
-  "mirror-towel-bar-installation",
-  "door-installation",
-  "deck-fence-repair",
-  "water-leak-repair",
-  "garbage-disposal-installation",
-  "shelving-installation",
-  "painting-services",
-  "flooring-installation",
-  "furniture-assembly",
-  "fence-installation",
-  "gutter-cleaning",
-];
+const serviceAreaList = serviceAreaSlugs;
+
+const formatServiceList = (list) => {
+  if (list.length === 1) return list[0];
+  if (list.length === 2) return `${list[0]} and ${list[1]}`;
+  return `${list.slice(0, -1).join(", ")}, and ${list[list.length - 1]}`;
+};
+
+const serviceNames = services.map((slug) => servicesContent[slug].name);
+
+const getCityName = (citySlug) => cityNameMap[citySlug] || citySlug;
+
+const getCityShortName = (citySlug) =>
+  cityShortNameMap[citySlug] || getCityName(citySlug);
 
 export default function ServiceAreaPage({ city }) {
   // Get city data from metadata directly
@@ -49,36 +42,33 @@ export default function ServiceAreaPage({ city }) {
     (page) => page.url === `https://installitguy.com/service-areas/${city}/`
   );
 
-  if (!city || !serviceAreas.includes(city)) {
+  const cityEntry = allServiceAreas.find((area) => area.slug === city);
+
+  if (!cityEntry || !serviceAreaList.includes(city)) {
     return <div>City not found</div>;
   }
 
-  if (!cityData) {
-    return <div>City data not found</div>;
-  }
+  const canonicalUrl = `https://installitguy.com/service-areas/${city}/`;
 
-  const getCityName = (citySlug) => {
-    const names = {
-      "charlotte-nc": "Charlotte, NC",
-      "concord-nc": "Concord, NC",
-      "rock-hill-sc": "Rock Hill, SC",
-      "gastonia-nc": "Gastonia, NC",
-      "hickory-nc": "Hickory, NC",
-      "shelby-nc": "Shelby, NC",
-      "lincolnton-nc": "Lincolnton, NC",
-      "gaffney-sc": "Gaffney, SC",
-      "kings-mountain-nc": "Kings Mountain, NC",
-      "forest-city-nc": "Forest City, NC",
-    };
-    return names[citySlug] || citySlug;
+  const fallbackMeta = {
+    url: canonicalUrl,
+    page_title: `Handyman Services in ${cityEntry.name} | Install It Guy`,
+    meta_description: `Professional handyman services in ${
+      cityEntry.name
+    }. We provide ${formatServiceList(
+      serviceNames
+    )} with 30+ years of experience and a lifetime warranty.`,
+    primary_keyword: `handyman services ${cityEntry.shortName.toLowerCase()} ${cityEntry.state.toLowerCase()}`,
   };
+
+  const metaInfo = cityData || fallbackMeta;
 
   const cityBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "Install It Guy",
-    description: cityData.meta_description,
-    url: cityData.url,
+    description: metaInfo.meta_description,
+    url: metaInfo.url,
     telephone: "+17044199799",
     email: "info@installitguy.com",
     address: {
@@ -93,47 +83,32 @@ export default function ServiceAreaPage({ city }) {
       "@type": "City",
       name: getCityName(city),
     },
-    serviceType: [
-      "TV Mounting",
-      "Ceiling Fan Installation",
-      "Lighting Installation",
-      "Garage Door Opener Installation",
-      "Ring Doorbell Installation",
-      "Faucet & Toilet Installation",
-      "Appliance Installation",
-      "Blinds Installation",
-      "Mirror & Towel Bar Installation",
-      "Door Installation",
-      "Deck & Fence Repair",
-      "Water Leak Repair",
-      "Garbage Disposal Installation",
-      "Shelving Installation",
-      "Painting Services",
-      "Flooring Installation",
-      "Furniture Assembly",
-      "Fence Installation",
-      "Gutter Cleaning",
-    ],
+    serviceType: services.map((slug) => servicesContent[slug].name),
   };
 
   return (
     <>
       <NextSeo
-        title={cityData.page_title}
-        description={cityData.meta_description}
-        canonical={cityData.url}
+        title={metaInfo.page_title}
+        description={metaInfo.meta_description}
+        canonical={metaInfo.url}
         openGraph={{
-          url: cityData.url,
-          title: cityData.page_title,
-          description: cityData.meta_description,
+          url: metaInfo.url,
+          title: metaInfo.page_title,
+          description: metaInfo.meta_description,
           siteName: "Install It Guy",
         }}
         additionalMetaTags={[
           {
             name: "keywords",
-            content: cityData.primary_keyword,
+            content: metaInfo.primary_keyword,
           },
         ]}
+      />
+
+      <LocalBusinessSchema
+        areaName={getCityName(city)}
+        description={metaInfo.meta_description}
       />
 
       <script
@@ -151,7 +126,7 @@ export default function ServiceAreaPage({ city }) {
             description: `Common questions about handyman services in ${getCityName(
               city
             )}`,
-            url: cityData.url,
+            url: metaInfo.url,
             mainEntity: [
               {
                 "@type": "Question",
@@ -160,7 +135,9 @@ export default function ServiceAreaPage({ city }) {
                   "@type": "Answer",
                   text: `We provide expert home installation, handyman repairs, home maintenance, and custom storage solutions in ${getCityName(
                     city
-                  )}. Our services include TV mounting, ceiling fan installation, lighting installation, garage door opener installation, Ring doorbell installation, faucet and toilet installation, appliance installation, blinds installation, mirror and towel bar installation, door installation, deck and fence repair, garbage disposal installation, shelving installation, painting services, flooring installation, furniture assembly, fence installation, and gutter cleaning.`,
+                  )}. Our services include ${services
+                    .map((slug) => servicesContent[slug].name)
+                    .join(", ")}.`,
                 },
               },
               {
@@ -223,7 +200,7 @@ export default function ServiceAreaPage({ city }) {
                 "@type": "ListItem",
                 position: 3,
                 name: getCityName(city),
-                item: cityData.url,
+                item: metaInfo.url,
               },
             ],
           }),
@@ -233,88 +210,46 @@ export default function ServiceAreaPage({ city }) {
       <Header />
 
       <main className="min-h-screen bg-gray-50">
-        {/* Hero Section */}
-        <section className="relative text-white overflow-hidden min-h-[80vh] flex items-center justify-center pt-40">
-          {/* Background Video for All Cities */}
-          <div className="absolute inset-0 hero-video-container">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              crossOrigin="anonymous"
-              className="absolute inset-0 w-full h-full hero-video"
-              style={{
-                opacity: 0.9,
-                zIndex: 1,
-                filter: "brightness(1.0) contrast(1.0) saturate(1.0)",
-              }}
-            >
-              {/* Ultra high quality source for desktop - 1080p */}
-              <source
-                src="/shelby-background-hq.mp4"
-                type="video/mp4"
-                media="(min-width: 1024px)"
-              />
-              {/* Ultra high quality WebM - 1080p */}
-              <source src="/shelby-background-hq.webm" type="video/webm" />
-              {/* High quality source for desktop - prioritize original */}
-              <source
-                src="/shelby-background-original.mp4"
-                type="video/mp4"
-                media="(min-width: 1024px)"
-              />
-              {/* WebM for better compression and quality - prioritize this */}
-              <source src="/shelby-background.webm" type="video/webm" />
-              {/* Compressed source for mobile */}
-              <source
-                src="/shelby-background-compressed.mp4"
-                type="video/mp4"
-                media="(max-width: 1023px)"
-              />
-              {/* Fallback MP4 */}
-              <source src="/shelby-background.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-
-          {/* Fallback Background - Always visible */}
-          <div
-            className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700"
-            style={{ zIndex: 0 }}
-          />
-
-          {/* Enhanced Overlay with Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/40" />
-
-          {/* Additional quality enhancement overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/10 via-transparent to-blue-900/10" />
-
-          {/* Content */}
-          <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
-                Handyman Services in {getCityName(city)}
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 text-primary-100">
-                Professional handyman services for {getCityName(city)} and
-                surrounding areas. Quality work guaranteed.
+        {/* Hero */}
+        <section className="bg-brand-primary text-white py-24">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
+                Serving {getCityShortName(city)}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="tel:+17041234567"
-                  className="btn-primary bg-white text-primary-600 hover:bg-gray-100"
-                >
-                  Call (704) 123-4567
-                </Link>
+              <h1 className="mt-3 text-3xl md:text-5xl font-bold">
+                Reliable handyman support in {getCityName(city)}
+              </h1>
+              <p className="mt-5 text-lg text-slate-200 leading-relaxed">
+                From installations to seasonal upkeep, we bring 30+ years of
+                craftsmanship to homes throughout {getCityName(city)} and the
+                surrounding neighborhoods.
+              </p>
+              <div className="mt-8">
                 <a
                   href="#quote-form"
-                  className="btn-primary bg-white text-primary-600 hover:bg-gray-100"
+                  className="inline-flex items-center justify-center rounded-lg border border-white/70 px-6 py-3 font-semibold text-white hover:bg-white/10"
                 >
-                  Get Free Quote
+                  Request a visit
                 </a>
               </div>
+            </div>
+            <div className="rounded-2xl brand-overlay-card p-8">
+              <h2 className="text-xl font-semibold text-white">
+                What local homeowners schedule most
+              </h2>
+              <ul className="mt-6 space-y-3 text-sm">
+                {[
+                  "TV mounting, lighting, and smart device installs",
+                  "Ceiling fans, fixtures, and custom hardware",
+                  "Seasonal maintenance checks and small repairs",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <span className="mt-1 text-primary-200">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
@@ -369,6 +304,8 @@ export default function ServiceAreaPage({ city }) {
           maxFAQs={5}
           showTitle={true}
           title={`Handyman Service FAQs for ${getCityName(city)}`}
+          cityName={getCityName(city)}
+          serviceLabel="handyman services"
         />
       </main>
 

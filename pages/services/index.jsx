@@ -5,30 +5,20 @@ import ServiceCard from "../../components/ServiceCard";
 import Reviews from "../../components/Reviews";
 import ContextualFAQs from "../../components/ContextualFAQs";
 import QuoteForm from "../../components/QuoteForm";
+import {
+  orderedServiceSlugs,
+  servicesContent,
+} from "../../data/servicesContent";
+import LocalBusinessSchema from "../../components/LocalBusinessSchema";
 
-const services = [
-  "tv-mounting",
-  "ceiling-fan-installation",
-  "lighting-installation",
-  "garage-door-opener-installation",
-  "ring-doorbell-installation",
-  "faucet-toilet-installation",
-  "appliance-installation",
-  "blinds-installation",
-  "mirror-towel-bar-installation",
-  "door-installation",
-  "deck-fence-repair",
-  "water-leak-repair",
-  "garbage-disposal-installation",
-  "shelving-installation",
-  "painting-services",
-  "flooring-installation",
-  "furniture-assembly",
-  "fence-installation",
-  "gutter-cleaning",
-  "home-maintenance",
-  "epoxy-flooring",
-];
+const services = orderedServiceSlugs;
+const serviceNames = services.map((slug) => servicesContent[slug].name);
+
+const formatServiceList = (list) => {
+  if (list.length === 1) return list[0];
+  if (list.length === 2) return `${list[0]} and ${list[1]}`;
+  return `${list.slice(0, -1).join(", ")}, and ${list[list.length - 1]}`;
+};
 
 export default function ServicesIndex() {
   const servicesSchema = {
@@ -36,16 +26,14 @@ export default function ServicesIndex() {
     "@type": "ItemList",
     name: "Handyman Services",
     description:
-      "Professional handyman services including TV mounting, ceiling fan installation, lighting installation, and more",
+      "Professional handyman services including TV mounting, ceiling fan installation, lighting installation, epoxy flooring, and more",
     numberOfItems: services.length,
     itemListElement: services.map((service, index) => ({
       "@type": "ListItem",
       position: index + 1,
       item: {
         "@type": "Service",
-        name: service
-          .replace(/-/g, " ")
-          .replace(/\b\w/g, (l) => l.toUpperCase()),
+        name: servicesContent[service].name,
         url: `https://installitguy.com/services/${service}`,
         provider: {
           "@type": "LocalBusiness",
@@ -64,18 +52,50 @@ export default function ServicesIndex() {
       },
     })),
   };
+  const serviceHighlights = [
+    {
+      title: "Installations that stay put",
+      description:
+        "Mounting TVs, hanging fixtures, wiring smart devices—we make sure everything is centered, secure, and code compliant.",
+      items: [
+        "TV mounting & cable concealment",
+        "Ceiling fans & lighting",
+        "Smart home & appliance setup",
+      ],
+    },
+    {
+      title: "Refresh & repair projects",
+      description:
+        "Tackle the nagging tasks in one visit. We handle drywall touch-ups, hardware swaps, painting, and detailed finish work.",
+      items: [
+        "Trim & drywall repairs",
+        "Mirror, blind, and hardware installs",
+        "Interior painting touch-ups",
+      ],
+    },
+    {
+      title: "Whole-home upkeep",
+      description:
+        "Seasonal maintenance keeps your home ready for anything—filters, detectors, exterior checks, and more.",
+      items: [
+        "Filter & detector maintenance",
+        "Deck & exterior repairs",
+        "Preventative home inspections",
+      ],
+    },
+  ];
 
   return (
     <>
       <NextSeo
-        title="Our Services | Install It Guy"
-        description="Professional handyman services including TV mounting, ceiling fan installation, lighting installation, and more. Quality work guaranteed."
+        title="Handyman Services in Shelby, NC | Install It Guy"
+        description="Explore our full list of handyman services in Shelby NC. From installations to repairs, Install It Guy delivers professional results."
         canonical="https://installitguy.com/services"
         openGraph={{
           url: "https://installitguy.com/services",
           title: "Our Services | Install It Guy",
           description:
-            "Professional handyman services including TV mounting, ceiling fan installation, lighting installation, and more. Quality work guaranteed.",
+            "Professional handyman services including TV mounting, ceiling fan installation, lighting installation, epoxy flooring, and more. Quality work guaranteed.",
           siteName: "Install It Guy",
         }}
         additionalMetaTags={[
@@ -86,6 +106,8 @@ export default function ServicesIndex() {
           },
         ]}
       />
+
+      <LocalBusinessSchema />
 
       <script
         type="application/ld+json"
@@ -108,7 +130,9 @@ export default function ServicesIndex() {
                 name: "What services do you offer?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "We provide expert home installation, handyman repairs, home maintenance, and custom storage solutions. Our services include TV mounting, ceiling fan installation, lighting installation, garage door opener installation, Ring doorbell installation, faucet and toilet installation, appliance installation, blinds installation, mirror and towel bar installation, door installation, deck and fence repair, water leak repair, garbage disposal installation, shelving installation, painting services, flooring installation, furniture assembly, fence installation, and gutter cleaning.",
+                  text: `We provide expert home installation, handyman repairs, home maintenance, and custom storage solutions. Our services include ${formatServiceList(
+                    serviceNames
+                  )}.`,
                 },
               },
               {
@@ -166,93 +190,80 @@ export default function ServicesIndex() {
 
       <Header />
 
-      <main className="min-h-screen bg-gray-50">
-        {/* Hero Section */}
-        <section className="relative text-white overflow-hidden min-h-[80vh] flex items-center justify-center pt-40">
-          {/* Background Video */}
-          <div className="absolute inset-0 hero-video-container">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              crossOrigin="anonymous"
-              className="absolute inset-0 w-full h-full hero-video"
-              style={{
-                opacity: 0.9,
-                zIndex: 1,
-                filter: "brightness(1.0) contrast(1.0) saturate(1.0)",
-              }}
-            >
-              {/* Ultra high quality source for desktop - 1080p */}
-              <source
-                src="/shelby-background-hq.mp4"
-                type="video/mp4"
-                media="(min-width: 1024px)"
-              />
-              {/* Ultra high quality WebM - 1080p */}
-              <source src="/shelby-background-hq.webm" type="video/webm" />
-              {/* High quality source for desktop - prioritize original */}
-              <source
-                src="/shelby-background-original.mp4"
-                type="video/mp4"
-                media="(min-width: 1024px)"
-              />
-              {/* WebM for better compression and quality - prioritize this */}
-              <source src="/shelby-background.webm" type="video/webm" />
-              {/* Compressed source for mobile */}
-              <source
-                src="/shelby-background-compressed.mp4"
-                type="video/mp4"
-                media="(max-width: 1023px)"
-              />
-              {/* Fallback MP4 */}
-              <source src="/shelby-background.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-
-          {/* Fallback Background - Always visible */}
-          <div
-            className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700"
-            style={{ zIndex: 0 }}
-          />
-
-          {/* Enhanced Overlay with Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/40" />
-
-          {/* Additional quality enhancement overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/10 via-transparent to-blue-900/10" />
-
-          {/* Content */}
-          <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Our Services
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 text-primary-100">
-                Professional handyman services for all your home improvement
-                needs. Quality work guaranteed.
+      <main>
+        {/* Hero */}
+        <section className="bg-brand-primary text-white py-24">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-start">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
+                What we handle
               </p>
+              <h1 className="mt-4 text-3xl md:text-5xl font-bold">
+                Professional installs, repairs, and upkeep in one place
+              </h1>
+              <p className="mt-6 text-lg text-slate-200 leading-relaxed">
+                Choose the services you need and we’ll coordinate the rest. No
+                juggling vendors—just one reliable crew handling the details
+                with care.
+              </p>
+            </div>
+            <div className="rounded-2xl brand-overlay-card p-8">
+              <h2 className="text-xl font-semibold text-white">
+                Most-requested services
+              </h2>
+              <ol className="mt-6 space-y-4">
+                {[
+                  "Share your project or punch list",
+                  "Pick a visit window",
+                  "We arrive prepared and leave things tidy",
+                ].map((step, index) => (
+                  <li key={step} className="flex items-start gap-3">
+                    <span className="mt-1 inline-flex h-7 w-7 items-center justify-center rounded-full bg-primary-500/20 text-primary-200 font-semibold">
+                      {index + 1}
+                    </span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ol>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <a
+                  href="#quote-form"
+                  className="btn-primary inline-flex justify-center"
+                >
+                  Plan your project
+                </a>
+                <span className="text-sm text-slate-200 sm:ml-4">
+                  Prefer to talk? Call{" "}
+                  <a
+                    href="tel:+17044199799"
+                    className="underline hover:text-slate-100"
+                  >
+                    (704) 419-9799
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Services Grid */}
-        <section className="section-padding">
-          <div className="container-custom">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                What We Do
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary-600">
+                Service menu
+              </p>
+              <h2 className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">
+                Every service is performed by our in-house team—no outsourcing
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                From simple repairs to complex installations, we handle all your
-                home improvement needs with professional expertise.
+              <p className="mt-4 text-lg text-gray-600">
+                Browse the full list below or filter down to the project you
+                have in mind. All services include prep, cleanup, and a lifetime
+                satisfaction guarantee.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {services.map((service) => (
                 <ServiceCard key={service} service={service} />
               ))}
@@ -260,22 +271,72 @@ export default function ServicesIndex() {
           </div>
         </section>
 
-        {/* Customer Reviews */}
-        <Reviews />
+        {/* How We Help */}
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary-600">
+                Built for real homes
+              </p>
+              <h2 className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">
+                Spruce up one room—or schedule a whole-home punch list
+              </h2>
+              <p className="mt-4 text-lg text-gray-600">
+                Mix and match the services that make sense. We can dedicate an
+                afternoon to a single install or spend the day handling your
+                priority list.
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-8 md:grid-cols-3">
+              {serviceHighlights.map((group) => (
+                <div
+                  key={group.title}
+                  className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm"
+                >
+                  <h3 className="text-xl font-semibold text-gray-900">
+                    {group.title}
+                  </h3>
+                  <p className="mt-3 text-gray-600 leading-relaxed">
+                    {group.description}
+                  </p>
+                  <p className="mt-4 text-sm text-gray-500">
+                    {group.items.join(" • ")}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Reviews */}
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Reviews />
+          </div>
+        </section>
 
         {/* Quote Form */}
-        <QuoteForm
-          title="Get Your Free Quote"
-          subtitle="Tell us about your project and we'll provide a detailed quote within 24 hours"
-        />
+        <section className="py-20 bg-gray-50" id="quote-form">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <QuoteForm
+              title="Tell us what you need"
+              subtitle="Share your project list and we’ll send back availability and pricing within one business day."
+            />
+          </div>
+        </section>
 
         {/* FAQs */}
-        <ContextualFAQs
-          context="general"
-          maxFAQs={5}
-          showTitle={true}
-          title="Handyman Service FAQs"
-        />
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ContextualFAQs
+              context="general"
+              maxFAQs={5}
+              showTitle
+              title="Handyman service FAQs"
+            />
+          </div>
+        </section>
       </main>
 
       <Footer />

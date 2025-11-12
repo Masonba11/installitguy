@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { servicesContent } from "../data/servicesContent";
 
 export default function ContextualFAQs({
   context = "general",
+  cityName = "",
+  serviceLabel = "",
   maxFAQs = 5,
   showTitle = true,
   title = "Frequently Asked Questions",
@@ -78,7 +81,7 @@ export default function ContextualFAQs({
       {
         question: "Do you handle electrical wiring for new fixtures?",
         answer:
-          "Yes, we're licensed to handle electrical work including new wiring, switches, and dimmer installations.",
+          "Yes, we take care of the electrical work including new wiring, switches, and dimmer installations.",
       },
       {
         question: "Can you install outdoor lighting?",
@@ -311,33 +314,6 @@ export default function ContextualFAQs({
           "Most deck repairs take 1-3 days depending on the extent of damage and repairs needed.",
       },
     ],
-    "water-leak-repair": [
-      {
-        question: "What types of water leaks do you repair?",
-        answer:
-          "We repair pipe leaks, faucet leaks, toilet leaks, water heater leaks, and all plumbing leaks.",
-      },
-      {
-        question: "Do you provide emergency leak repair?",
-        answer:
-          "Yes, we offer emergency leak repair services to prevent water damage to your home.",
-      },
-      {
-        question: "How much does leak repair cost?",
-        answer:
-          "Leak repair costs vary by location and complexity, typically ranging from $150-500.",
-      },
-      {
-        question: "Do you provide warranty on leak repairs?",
-        answer:
-          "Yes, we provide a 1-year warranty on all leak repairs and plumbing work.",
-      },
-      {
-        question: "How quickly can you respond to leaks?",
-        answer:
-          "We typically respond to emergency leaks within 2-4 hours during business hours.",
-      },
-    ],
     "garbage-disposal-installation": [
       {
         question: "What garbage disposal models do you install?",
@@ -390,6 +366,60 @@ export default function ContextualFAQs({
         question: "How long does shelving installation take?",
         answer:
           "Most shelving installations take 2-4 hours depending on the complexity and number of units.",
+      },
+    ],
+    "home-maintenance": [
+      {
+        question: "What does your home maintenance service include?",
+        answer:
+          "We handle filter changes, smoke and CO detector checks, gutter cleaning, seasonal inspections, and custom maintenance punch lists.",
+      },
+      {
+        question: "Can I set up recurring maintenance visits?",
+        answer:
+          "Yes, we offer seasonal and quarterly maintenance plans so your home stays in top shape year-round.",
+      },
+      {
+        question: "Do you provide reports or checklists after each visit?",
+        answer:
+          "Absolutely. We document the tasks performed, note any issues we find, and share recommended next steps with you.",
+      },
+      {
+        question: "Can you restock filters and batteries for us?",
+        answer:
+          "Yes, we can purchase and replace HVAC filters, smoke detector batteries, and other consumables for added convenience.",
+      },
+      {
+        question: "How long does a maintenance visit take?",
+        answer:
+          "Most maintenance visits take 1-2 hours depending on the size of your home and the tasks requested.",
+      },
+    ],
+    "epoxy-flooring": [
+      {
+        question: "What surfaces can you coat with epoxy?",
+        answer:
+          "We install epoxy on garage floors, basements, workshops, and utility rooms with proper concrete preparation.",
+      },
+      {
+        question: "How long does the epoxy installation process take?",
+        answer:
+          "Most epoxy flooring projects take 2-3 days including surface prep, coating, and curing time before you can drive on it.",
+      },
+      {
+        question: "What customization options are available?",
+        answer:
+          "You can choose color flakes, metallic finishes, high-gloss topcoats, and anti-slip additives to match your style and usage needs.",
+      },
+      {
+        question: "How durable is your epoxy flooring?",
+        answer:
+          "We use high-quality, industrial-grade epoxy designed to resist hot tire pickup, chemicals, and heavy traffic.",
+      },
+      {
+        question: "Do you repair cracks before coating?",
+        answer:
+          "Yes, we fill cracks, grind uneven areas, and properly prep the concrete to ensure a long-lasting epoxy bond.",
       },
     ],
     contact: [
@@ -477,9 +507,42 @@ export default function ContextualFAQs({
     return uniqueFAQs.slice(0, maxFAQs);
   };
 
-  const faqs = getContextualFAQs(context);
+  const derivedServiceLabel = serviceLabel
+    ? serviceLabel
+    : context !== "general" && servicesContent[context]
+    ? `${servicesContent[context].name} services`
+    : "handyman services";
 
-  if (faqs.length === 0) {
+  const citySentence = cityName
+    ? `We support homeowners across ${cityName} with ${derivedServiceLabel}.`
+    : "";
+
+  const appendCityDetails = (answer) => {
+    if (!citySentence) return answer;
+    const trimmed = answer.trim();
+    const hasPunctuation = /[.!?]$/.test(trimmed);
+    const separator = hasPunctuation ? " " : ". ";
+    return `${trimmed}${separator}${citySentence}`;
+  };
+
+  const localizeQuestion = (question) => {
+    if (!cityName) return question;
+    const trimmed = question.trim();
+    const lower = trimmed.toLowerCase();
+    if (lower.includes(cityName.toLowerCase())) {
+      return trimmed;
+    }
+    return `${trimmed.replace(/\?$/, "")} in ${cityName}?`;
+  };
+
+  const faqs = getContextualFAQs(context).map((faq) => ({
+    question: localizeQuestion(faq.question),
+    answer: appendCityDetails(faq.answer),
+  }));
+
+  const displayedFAQs = faqs.slice(0, maxFAQs);
+
+  if (displayedFAQs.length === 0) {
     return null;
   }
 
@@ -499,7 +562,7 @@ export default function ContextualFAQs({
         )}
 
         <div className="space-y-4">
-          {faqs.map((faq, index) => (
+          {displayedFAQs.map((faq, index) => (
             <div
               key={index}
               className="bg-gray-50 rounded-lg border border-gray-200"
