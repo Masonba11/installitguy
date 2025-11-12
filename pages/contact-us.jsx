@@ -1,15 +1,12 @@
 import { NextSeo } from "next-seo";
-import { useRouter } from "next/router";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ContextualReviews from "../components/ContextualReviews";
 import ContextualFAQs from "../components/ContextualFAQs";
 import QuoteForm from "../components/QuoteForm";
-import { WEB3FORMS_CONFIG } from "../config/web3forms";
+import ZenbookerEmbed from "../components/ZenbookerEmbed";
 
 export default function ContactUs() {
-  const router = useRouter();
-
   const contactPageSchema = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
@@ -43,83 +40,6 @@ export default function ContactUs() {
         "Forest City, NC",
       ],
     },
-  };
-
-  const handleContactFormSubmit = async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.target);
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      phone: formData.get("phone"),
-      service: formData.get("service"),
-      message: formData.get("message"),
-    };
-
-    try {
-      // Submit to both Web3Forms accounts
-      const submissions = await Promise.allSettled([
-        // Submit to Mason's account
-        fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            access_key: WEB3FORMS_CONFIG.mason.accessKey,
-            name: data.name,
-            email: data.email,
-            phone: data.phone,
-            service: data.service,
-            message: data.message,
-            to: WEB3FORMS_CONFIG.mason.email,
-            subject: WEB3FORMS_CONFIG.subjects.contact,
-            from_name: data.name,
-            reply_to: data.email,
-            ip_address: true,
-            form_name: "Contact Form",
-            website: "Install It Guy",
-          }),
-        }),
-        // Submit to Scott's account
-        fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            access_key: WEB3FORMS_CONFIG.scott.accessKey,
-            name: data.name,
-            email: data.email,
-            phone: data.phone,
-            service: data.service,
-            message: data.message,
-            to: WEB3FORMS_CONFIG.scott.email,
-            subject: WEB3FORMS_CONFIG.subjects.contact,
-            from_name: data.name,
-            reply_to: data.email,
-            ip_address: true,
-            form_name: "Contact Form",
-            website: "Install It Guy",
-          }),
-        }),
-      ]);
-
-      // Check if at least one submission succeeded
-      const successfulSubmissions = submissions.filter(result => result.status === 'fulfilled' && result.value.ok);
-      
-      if (successfulSubmissions.length > 0) {
-        // Redirect to thank you page for lead tracking
-        router.push("/thank-you");
-      } else {
-        throw new Error("Form submission failed");
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      // Still redirect to thank you page even if submission fails
-      router.push("/thank-you");
-    }
   };
 
   return (
@@ -411,135 +331,7 @@ export default function ContactUs() {
                   Send Us a Message
                 </h2>
 
-                <form onSubmit={handleContactFormSubmit} className="space-y-6">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
-                      placeholder="Your full name"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="phone"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
-                      placeholder="(704) 123-4567"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="service"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Service Needed
-                    </label>
-                    <select
-                      id="service"
-                      name="service"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
-                    >
-                      <option value="">Select a service</option>
-                      <option value="tv-mounting">TV Mounting</option>
-                      <option value="ceiling-fan-installation">
-                        Ceiling Fan Installation
-                      </option>
-                      <option value="lighting-installation">
-                        Lighting Installation
-                      </option>
-                      <option value="garage-door-opener-installation">
-                        Garage Door Opener Installation
-                      </option>
-                      <option value="ring-doorbell-installation">
-                        Ring Doorbell Installation
-                      </option>
-                      <option value="faucet-toilet-installation">
-                        Faucet & Toilet Installation
-                      </option>
-                      <option value="appliance-installation">
-                        Appliance Installation
-                      </option>
-                      <option value="blinds-installation">
-                        Blinds Installation
-                      </option>
-                      <option value="mirror-towel-bar-installation">
-                        Mirror & Towel Bar Installation
-                      </option>
-                      <option value="door-installation">
-                        Door Installation
-                      </option>
-                      <option value="deck-fence-repair">
-                        Deck & Fence Repair
-                      </option>
-                      <option value="water-leak-repair">
-                        Water Leak Repair
-                      </option>
-                      <option value="garbage-disposal-installation">
-                        Garbage Disposal Installation
-                      </option>
-                      <option value="shelving-installation">
-                        Shelving Installation
-                      </option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={4}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
-                      placeholder="Tell us about your project..."
-                    />
-                  </div>
-
-                  <button type="submit" className="w-full btn-primary">
-                    Send Message
-                  </button>
-                </form>
+                                <ZenbookerEmbed />
               </div>
             </div>
           </div>
