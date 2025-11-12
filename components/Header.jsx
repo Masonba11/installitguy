@@ -372,8 +372,8 @@ export default function Header() {
                 </button>
                 <div
                   id="mobile-services-panel"
-                  className={`overflow-hidden transition-[max-height] duration-300 ease-out ${
-                    isServicesOpen ? "max-h-72" : "max-h-0"
+                  className={`overflow-hidden transition-[max-height] duration-300 ease-in-out ${
+                    isServicesOpen ? "max-h-[420px]" : "max-h-0"
                   }`}
                 >
                   <div className="space-y-2 bg-slate-50 px-5 py-4 border-t border-gray-200">
@@ -443,8 +443,8 @@ export default function Header() {
                 </button>
                 <div
                   id="mobile-areas-panel"
-                  className={`overflow-hidden transition-[max-height] duration-300 ease-out ${
-                    isServiceAreasOpen ? "max-h-72" : "max-h-0"
+                  className={`overflow-hidden transition-[max-height] duration-300 ease-in-out ${
+                    isServiceAreasOpen ? "max-h-[420px]" : "max-h-0"
                   }`}
                 >
                   <div className="space-y-2 bg-slate-50 px-5 py-4 border-t border-gray-200">
