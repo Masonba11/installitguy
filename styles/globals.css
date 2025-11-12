@@ -38,13 +38,16 @@
 
 @layer components {
   .btn-primary {
-    @apply text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
-    background-color: var(--primary-blue);
-    --tw-ring-color: rgba(42, 110, 160, 0.4);
+    @apply font-semibold py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    background-color: #ffffff;
+    color: var(--primary-blue);
+    border: 2px solid var(--primary-blue);
+    --tw-ring-color: rgba(28, 45, 63, 0.35);
   }
 
   .btn-primary:hover {
-    background-color: #245f8b;
+    background-color: var(--primary-blue);
+    color: #ffffff;
   }
 
   .btn-secondary {
