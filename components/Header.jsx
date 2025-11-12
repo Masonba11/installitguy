@@ -112,26 +112,31 @@ export default function Header() {
                 </svg>
               </button>
               {isServicesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                  <div className="max-h-80 overflow-y-auto">
-                    {services.map((service) => (
-                      <Link
-                        key={service.slug}
-                        href={`/services/${service.slug}`}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
-                        onClick={() => {
-                          console.log(
-                            "Service clicked:",
-                            service.slug,
-                            "URL:",
-                            `/services/${service.slug}`
-                          );
-                          setIsServicesOpen(false);
-                        }}
-                      >
-                        {service.name}
-                      </Link>
-                    ))}
+                <div className="absolute top-full left-0 mt-2 w-[420px] bg-white rounded-lg shadow-lg border border-gray-200 py-3 z-50">
+                  <div className="max-h-80 overflow-y-auto px-2">
+                    <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
+                      {services.map((service) => (
+                        <Link
+                          key={service.slug}
+                          href={`/services/${service.slug}`}
+                          className="px-3 py-2 text-sm text-gray-700 rounded-md hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                          onClick={() => {
+                            setIsServicesOpen(false);
+                          }}
+                        >
+                          {service.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="mt-2 border-t border-gray-100 pt-2 text-center">
+                    <Link
+                      href="/services"
+                      className="text-sm font-semibold text-primary-600 hover:text-primary-700"
+                      onClick={() => setIsServicesOpen(false)}
+                    >
+                      View all services →
+                    </Link>
                   </div>
                 </div>
               )}
@@ -161,18 +166,29 @@ export default function Header() {
                 </svg>
               </button>
               {isServiceAreasOpen && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                  <div className="max-h-80 overflow-y-auto">
-                    {serviceAreas.map((area) => (
-                      <Link
-                        key={area.slug}
-                        href={`/service-areas/${area.slug}`}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
-                        onClick={() => setIsServiceAreasOpen(false)}
-                      >
-                        {area.name}
-                      </Link>
-                    ))}
+                <div className="absolute top-full left-0 mt-2 w-[420px] bg-white rounded-lg shadow-lg border border-gray-200 py-3 z-50">
+                  <div className="max-h-80 overflow-y-auto px-2">
+                    <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
+                      {serviceAreas.map((area) => (
+                        <Link
+                          key={area.slug}
+                          href={`/service-areas/${area.slug}`}
+                          className="px-3 py-2 text-sm text-gray-700 rounded-md hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                          onClick={() => setIsServiceAreasOpen(false)}
+                        >
+                          {area.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="mt-2 border-t border-gray-100 pt-2 text-center">
+                    <Link
+                      href="/service-areas"
+                      className="text-sm font-semibold text-primary-600 hover:text-primary-700"
+                      onClick={() => setIsServiceAreasOpen(false)}
+                    >
+                      View all service areas →
+                    </Link>
                   </div>
                 </div>
               )}
