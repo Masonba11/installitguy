@@ -41,8 +41,6 @@ const services = [
   "furniture-assembly",
   "fence-installation",
   "gutter-cleaning",
-  "home-maintenance",
-  "epoxy-flooring",
 ];
 
 export default function ServiceAreaPage({ city }) {

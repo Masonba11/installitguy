@@ -413,7 +413,6 @@ export default function ContextualFAQs({
         answer:
           "We're available Monday-Friday 8AM-6PM and Saturday 9AM-4PM for estimates and service calls.",
       },
-      {
     ],
     faqs: [
       {
