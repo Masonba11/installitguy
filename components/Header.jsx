@@ -10,21 +10,31 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isServiceAreasOpen, setIsServiceAreasOpen] = useState(false);
+  const [showAllMobileServices, setShowAllMobileServices] = useState(false);
+  const [showAllMobileAreas, setShowAllMobileAreas] = useState(false);
   const servicesRef = useRef(null);
   const serviceAreasRef = useRef(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    if (!isMenuOpen) {
+      setIsServicesOpen(false);
+      setIsServiceAreasOpen(false);
+      setShowAllMobileServices(false);
+      setShowAllMobileAreas(false);
+    }
   };
 
   const toggleServices = () => {
     setIsServicesOpen(!isServicesOpen);
     setIsServiceAreasOpen(false);
+    setShowAllMobileServices(false);
   };
 
   const toggleServiceAreas = () => {
     setIsServiceAreasOpen(!isServiceAreasOpen);
     setIsServicesOpen(false);
+    setShowAllMobileAreas(false);
   };
 
   // Close dropdowns when clicking outside
@@ -62,6 +72,15 @@ export default function Header() {
     name,
     slug,
   }));
+
+  const PRIMARY_SERVICE_COUNT = 6;
+  const PRIMARY_AREA_COUNT = 8;
+
+  const primaryServices = services.slice(0, PRIMARY_SERVICE_COUNT);
+  const remainingServices = services.slice(PRIMARY_SERVICE_COUNT);
+
+  const primaryAreas = serviceAreas.slice(0, PRIMARY_AREA_COUNT);
+  const remainingAreas = serviceAreas.slice(PRIMARY_AREA_COUNT);
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
@@ -292,20 +311,50 @@ export default function Header() {
                 </button>
                 {isServicesOpen && (
                   <div className="ml-4 mt-2 space-y-2">
-                    {services.map((service) => (
-                      <Link
-                        key={service.slug}
-                        href={`/services/${service.slug}`}
-                        className="block text-sm text-gray-600 hover:text-primary-600 transition-colors py-2 px-2"
-                        onClick={() => {
-                          console.log("Mobile service clicked:", service.slug);
-                          setIsServicesOpen(false);
-                          setIsMenuOpen(false);
-                        }}
+                    {(showAllMobileServices ? services : primaryServices).map(
+                      (service) => (
+                        <Link
+                          key={service.slug}
+                          href={`/services/${service.slug}`}
+                          className="block text-sm text-gray-600 hover:text-primary-600 transition-colors py-2 px-2"
+                          onClick={() => {
+                            console.log(
+                              "Mobile service clicked:",
+                              service.slug
+                            );
+                            setIsServicesOpen(false);
+                            setIsMenuOpen(false);
+                            setShowAllMobileServices(false);
+                          }}
+                        >
+                          {service.name}
+                        </Link>
+                      )
+                    )}
+                    {remainingServices.length > 0 && (
+                      <button
+                        type="button"
+                        className="w-full text-left text-sm font-semibold text-primary-600 hover:text-primary-700 py-2"
+                        onClick={() =>
+                          setShowAllMobileServices(!showAllMobileServices)
+                        }
                       >
-                        {service.name}
-                      </Link>
-                    ))}
+                        {showAllMobileServices
+                          ? "Show fewer services"
+                          : `View all ${services.length} services`}
+                      </button>
+                    )}
+                    <Link
+                      href="/services"
+                      className="block text-sm text-primary-600 hover:text-primary-700 font-semibold pt-1"
+                      onClick={() => {
+                        setIsServicesOpen(false);
+                        setIsMenuOpen(false);
+                        setShowAllMobileServices(false);
+                      }}
+                    >
+                      Browse full services page →
+                    </Link>
                   </div>
                 )}
               </div>
@@ -335,23 +384,50 @@ export default function Header() {
                 </button>
                 {isServiceAreasOpen && (
                   <div className="ml-4 mt-2 space-y-2">
-                    {serviceAreas.map((area) => (
-                      <Link
-                        key={area.slug}
-                        href={`/service-areas/${area.slug}`}
-                        className="block text-sm text-gray-600 hover:text-primary-600 transition-colors py-2 px-2"
-                        onClick={() => {
-                          console.log(
-                            "Mobile service area clicked:",
-                            area.slug
-                          );
-                          setIsServiceAreasOpen(false);
-                          setIsMenuOpen(false);
-                        }}
+                    {(showAllMobileAreas ? serviceAreas : primaryAreas).map(
+                      (area) => (
+                        <Link
+                          key={area.slug}
+                          href={`/service-areas/${area.slug}`}
+                          className="block text-sm text-gray-600 hover:text-primary-600 transition-colors py-2 px-2"
+                          onClick={() => {
+                            console.log(
+                              "Mobile service area clicked:",
+                              area.slug
+                            );
+                            setIsServiceAreasOpen(false);
+                            setIsMenuOpen(false);
+                            setShowAllMobileAreas(false);
+                          }}
+                        >
+                          {area.name}
+                        </Link>
+                      )
+                    )}
+                    {remainingAreas.length > 0 && (
+                      <button
+                        type="button"
+                        className="w-full text-left text-sm font-semibold text-primary-600 hover:text-primary-700 py-2"
+                        onClick={() =>
+                          setShowAllMobileAreas(!showAllMobileAreas)
+                        }
                       >
-                        {area.name}
-                      </Link>
-                    ))}
+                        {showAllMobileAreas
+                          ? "Show fewer locations"
+                          : `View all ${serviceAreas.length} locations`}
+                      </button>
+                    )}
+                    <Link
+                      href="/service-areas"
+                      className="block text-sm text-primary-600 hover:text-primary-700 font-semibold pt-1"
+                      onClick={() => {
+                        setIsServiceAreasOpen(false);
+                        setIsMenuOpen(false);
+                        setShowAllMobileAreas(false);
+                      }}
+                    >
+                      View coverage map →
+                    </Link>
                   </div>
                 )}
               </div>
