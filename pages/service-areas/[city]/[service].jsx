@@ -369,27 +369,13 @@ export default function ServiceAreaServicePage({ city, service }) {
               <p className="mt-4 text-slate-700 leading-relaxed">
                 {longDescription}
               </p>
-              <p className="mt-4 text-slate-600">
-                Looking for something else in {cityName}? Jump straight to the
-                service you need:
-              </p>
-              <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {otherServices.map((slug) => (
-                  <li key={slug}>
-                    <Link
-                      href={`/service-areas/${city}/${slug}`}
-                      className="inline-flex items-center text-primary-600 hover:text-primary-500 font-medium"
-                    >
-                      {getServiceName(slug)} in {cityName}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
             </div>
             <div className="rounded-2xl bg-slate-900 text-white p-6 shadow-lg">
               <h3 className="text-lg font-semibold">Need another service?</h3>
               <p className="mt-3 text-slate-200 text-sm leading-relaxed">
-                We bring the same crew to handle multiple punch list items while we’re in {cityName}. Bundle tasks and we’ll map the visit around your priorities.
+                We bring the same crew to handle multiple punch list items while
+                we’re in {cityName}. Bundle tasks and we’ll map the visit around
+                your priorities.
               </p>
               <div className="mt-5">
                 <Link
@@ -430,6 +416,43 @@ export default function ServiceAreaServicePage({ city, service }) {
               cityName={cityFullName}
               serviceLabel={`${getServiceName(service)} services`}
             />
+          </div>
+        </section>
+
+        <section className="py-20 bg-gray-50 border-t border-slate-100">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-semibold text-slate-900">
+              Other services we offer in {cityFullName}
+            </h2>
+            <p className="mt-3 text-slate-600 max-w-3xl">
+              Need help with something else while we’re in {cityName}? Explore
+              more ways we support homeowners in the area and keep projects
+              moving without calling another crew.
+            </p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {otherServices.map((slug) => (
+                <Link
+                  key={slug}
+                  href={`/service-areas/${city}/${slug}`}
+                  className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-primary-600 hover:border-primary-200 hover:text-primary-500 transition"
+                >
+                  <span>{getServiceName(slug)} in {cityName}</span>
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
       </main>
