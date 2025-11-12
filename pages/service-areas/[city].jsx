@@ -191,6 +191,159 @@ export default function ServiceAreaPage({ city }) {
           }),
         }}
       />
+
+      <Header />
+
+      <main>
+        <HeroSection className="py-24">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-start">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
+                Serving {getCityShortName(city)} and nearby neighborhoods
+              </p>
+              <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight">
+                Trusted handyman help in {getCityName(city)}
+              </h1>
+              <p className="mt-5 text-lg text-slate-200 leading-relaxed">
+                From new installs to punch-list repairs, our Shelby-based crew travels to {getCityName(city)} every week with 30+ years of craftsmanship.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href="#quote-form"
+                  className="inline-flex items-center rounded-lg bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-100"
+                >
+                  Request a visit
+                </a>
+                <Link
+                  href="/service-areas"
+                  className="inline-flex items-center rounded-lg border border-white/40 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+                >
+                  View all coverage
+                </Link>
+              </div>
+            </div>
+            <div className="rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm p-8 text-slate-100">
+              <h2 className="text-xl font-semibold text-white">
+                Why locals call Install It Guy
+              </h2>
+              <ul className="mt-6 space-y-3 text-sm">
+                {[
+                  "Flexible scheduling for installs, repairs, and maintenance",
+                  "Protective prep, tidy cleanup, and lifetime workmanship support",
+                  "Locally rooted technicians who know Charlotte-area homes",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <span className="mt-1 text-primary-200">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </HeroSection>
+
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary-600">
+                What we handle in {getCityShortName(city)}
+              </p>
+              <h2 className="mt-3 text-3xl md:text-4xl font-bold text-gray-900">
+                One team for installs, punch lists, and seasonal upkeep
+              </h2>
+              <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+                Choose the projects you want off your plate—TV mounting, fixtures, smart upgrades, repairs, or home maintenance. We arrive prepared and finish everything on the same visit whenever possible.
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {services.map((service) => (
+                <ServiceCard
+                  key={service}
+                  service={service}
+                  city={city === "shelby-nc" ? null : city}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
+            <div>
+              <h2 className="text-2xl font-semibold text-slate-900">
+                Neighborhoods we visit around {getCityShortName(city)}
+              </h2>
+              <p className="mt-4 text-slate-600 leading-relaxed">
+                We’re on the road daily in Mecklenburg and the surrounding counties. Share your address and we’ll confirm availability right away.
+              </p>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {allServiceAreas
+                  .filter((area) => area.slug !== city)
+                  .slice(0, 8)
+                  .map((area) => (
+                    <Link
+                      key={area.slug}
+                      href={`/service-areas/${area.slug}`}
+                      className="inline-flex items-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:text-primary-600 hover:border-primary-200"
+                    >
+                      {area.name}
+                    </Link>
+                  ))}
+              </div>
+            </div>
+            <div className="rounded-2xl bg-white p-8 shadow-sm border border-slate-200">
+              <h3 className="text-lg font-semibold text-slate-900">
+                What to expect on your visit
+              </h3>
+              <ol className="mt-4 space-y-3 text-sm text-slate-600">
+                {[
+                  "Tell us about the project and any add-ons you’d like handled",
+                  "We confirm timing, materials, and arrival details",
+                  "Technicians complete the work, test it, and tidy the space",
+                ].map((step, index) => (
+                  <li key={step} className="flex items-start gap-3">
+                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary-100 text-primary-600 text-xs font-semibold">
+                      {index + 1}
+                    </span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-white" id="quote-form">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <QuoteForm
+              title={`Request ${getCityName(city)} handyman help`}
+              subtitle="Share the details, and our team will confirm pricing and scheduling within one business day."
+            />
+          </div>
+        </section>
+
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Reviews />
+          </div>
+        </section>
+
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ContextualFAQs
+              context="general"
+              maxFAQs={5}
+              showTitle
+              title={`${getCityName(city)} handyman FAQs`}
+              cityName={getCityName(city)}
+              serviceLabel="handyman services"
+            />
+          </div>
+        </section>
+      </main>
+
+      <Footer />
     </>
   );
 }
