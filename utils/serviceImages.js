@@ -10,7 +10,7 @@ export const serviceImageMap = {
     "lightinginstall.JPG",
   ],
   "garage-door-opener-installation": ["garagedoor.jpg"],
-  "ring-doorbell-installation": ["securitycamera.JPG"],
+  "ring-doorbell-installation": ["securitycamera.jpg"],
   "faucet-toilet-installation": [
     "tolietinstall.jpg",
     "sinkinstall.jpg",
@@ -27,11 +27,7 @@ export const serviceImageMap = {
     "blindsinstall2.JPG",
     "blinds3.JPG",
   ],
-  "mirror-towel-bar-installation": [
-    "mirorinstall.jpg",
-    "towelbar.jpeg",
-    "mirror2.JPG",
-  ],
+  "mirror-towel-bar-installation": ["mirror2.JPG", "towelbar.jpeg"],
   "door-installation": ["doorinstallation.JPG", "dogdoorinstall.jpg"],
   "deck-fence-repair": ["deck.JPG", "outdoorinstall.jpg"],
   "garbage-disposal-installation": [
