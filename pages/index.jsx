@@ -434,18 +434,18 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-8 rounded-2xl border border-white/20 bg-white/5 p-6 text-white">
-                <dl className="grid grid-cols-2 gap-6 text-xs uppercase tracking-wide text-white/80 sm:grid-cols-4">
+              <div className="mt-8 rounded-2xl border border-white/20 bg-white/5 p-8 text-white">
+                <dl className="grid grid-cols-2 gap-y-8 gap-x-6 text-xs uppercase tracking-wide text-white/80 sm:grid-cols-4 md:gap-x-10 md:gap-y-10">
                   {stats.map((stat) => (
-                    <div key={stat.label} className="text-left">
-                      <dt className="text-white text-2xl font-semibold md:text-3xl">
+                    <div key={stat.label} className="text-left space-y-3">
+                      <dt className="text-white text-3xl font-semibold md:text-4xl">
                         <AnimatedStat
                           value={stat.value}
                           suffix={stat.suffix}
                           prefix={stat.prefix}
                         />
                       </dt>
-                      <dd className="mt-1 text-white/70 normal-case text-sm font-medium">
+                      <dd className="text-white/70 normal-case text-sm font-medium leading-relaxed">
                         {stat.label}
                       </dd>
                     </div>
