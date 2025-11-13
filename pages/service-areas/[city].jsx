@@ -2,6 +2,7 @@ import { NextSeo } from "next-seo";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import QuoteForm from "../../components/QuoteForm";
+import ServiceCard from "../../components/ServiceCard";
 import Link from "next/link";
 import Image from "next/image";
 import LocalBusinessSchema from "../../components/LocalBusinessSchema";
@@ -277,39 +278,9 @@ export default function ServiceAreaPage({ city }) {
             </div>
 
             <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {services.map((service) => {
-                const serviceData = servicesContent[service];
-                const href =
-                  city === "shelby-nc"
-                    ? `/services/${service}`
-                    : `/service-areas/${city}/${service}`;
-
-                return (
-                  <Link
-                    key={service}
-                    href={href}
-                    className="group flex h-full flex-col rounded-2xl border border-gray-200 bg-gray-50 p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#8BCB6B] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#8BCB6B]"
-                  >
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-[#0f2135] transition-colors group-hover:text-[#8BCB6B]">
-                        {serviceData.name}
-                      </h3>
-                      <p className="mt-3 text-sm text-gray-600 leading-relaxed">
-                        {serviceData.shortDescription}
-                      </p>
-                    </div>
-                    <div className="mt-5 inline-flex items-center text-sm font-semibold text-[#8BCB6B]">
-                      Learn More
-                      <span
-                        aria-hidden="true"
-                        className="ml-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-[#8BCB6B] text-[#8BCB6B] transition-transform group-hover:translate-x-1"
-                      >
-                        →
-                      </span>
-                    </div>
-                  </Link>
-                );
-              })}
+              {services.map((service) => (
+                <ServiceCard key={service} service={service} city={city} />
+              ))}
             </div>
           </div>
         </section>
