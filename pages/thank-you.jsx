@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
+import HeroSection from "../components/HeroSection";
 
 export default function ThankYou() {
   const router = useRouter();
@@ -151,43 +152,62 @@ export default function ThankYou() {
       <Header />
 
       <main className="min-h-screen bg-gray-50">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary-600 to-primary-800 text-white">
-          <div className="container-custom section-padding">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg
-                  className="w-10 h-10 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              </div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Thank You!
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 text-primary-100">
-                We've received your request and will be in touch within 24
-                hours.
-              </p>
+        <HeroSection
+          className="py-24"
+          imageSrc="/images/installit-guy/hero-home.webp"
+          imageAlt="Install It Guy handshake with homeowner"
+          objectPosition="50% 42%"
+        >
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white/15">
+              <svg
+                className="h-8 w-8 text-[#8BCB6B]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </div>
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#8BCB6B]">
+              Request received
+            </p>
+            <h1 className="text-3xl md:text-5xl font-bold">
+              Thank you! We’ll be in touch within 24 hours.
+            </h1>
+            <p className="text-lg md:text-xl text-white/80">
+              In the meantime, feel free to call us for immediate assistance or
+              browse the latest projects below.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link
+                href="tel:+17044199799"
+                className="inline-flex items-center rounded-full bg-[#8BCB6B] px-6 py-3 text-sm font-semibold text-[#0f2135] shadow hover:bg-[#7bb65f] transition"
+              >
+                Call (704) 419-9799
+              </Link>
+              <Link
+                href="/gallery"
+                className="inline-flex items-center rounded-full border border-white/60 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
+              >
+                View recent projects
+              </Link>
             </div>
           </div>
-        </section>
+        </HeroSection>
 
         {/* Main Content */}
         <section className="section-padding">
           <div className="container-custom">
             <div className="max-w-4xl mx-auto text-center">
               <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  What Happens Next?
+                <h2 className="text-3xl font-bold text-[#0f2135] mb-6">
+                  <span className="text-[#8BCB6B]">What Happens Next?</span>
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div className="text-center">
@@ -232,8 +252,8 @@ export default function ThankYou() {
               </div>
 
               <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                  Need Immediate Assistance?
+                <h2 className="text-2xl font-bold text-[#0f2135] mb-4">
+                  <span className="text-[#8BCB6B]">Need Immediate Assistance?</span>
                 </h2>
                 <p className="text-gray-600 mb-6">
                   For urgent repairs or same-day service, call us directly:

@@ -3,10 +3,10 @@ import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import QuoteForm from "../../../components/QuoteForm";
 import Link from "next/link";
+import Image from "next/image";
 import LocalBusinessSchema from "../../../components/LocalBusinessSchema";
 import metaData from "../../../data/metaData.json";
-import { getServiceName } from "../../../utils/serviceImages";
-import { buildMetaDescription } from "../../../utils/seo";
+import { getServiceName, getServiceImages } from "../../../utils/serviceImages";
 import {
   orderedServiceSlugs,
   servicesContent,
@@ -75,6 +75,7 @@ export default function ServiceAreaServicePage({ city, service }) {
     "Protective prep, tidy cleanup, and lifetime satisfaction support",
   ];
   const otherServices = services.filter((slug) => slug !== service);
+  const serviceImages = getServiceImages(service).slice(0, 3);
   const shortDescription =
     serviceOverview?.shortDescription ||
     `Reliable ${getServiceName(
@@ -105,16 +106,11 @@ export default function ServiceAreaServicePage({ city, service }) {
     return <div>Page not found</div>;
   }
 
-  const metaDescription = buildMetaDescription(
-    metaInfo.meta_description,
-    shortDescription
-  );
-
   const cityServiceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: `${getServiceName(service)} in ${cityFullName}`,
-    description: metaDescription,
+    description: metaInfo.meta_description,
     url: metaInfo.url,
     serviceType: getServiceName(service),
     category: "Home Improvement",
@@ -186,12 +182,12 @@ export default function ServiceAreaServicePage({ city, service }) {
     <>
       <NextSeo
         title={metaInfo.page_title}
-        description={metaDescription}
+        description={metaInfo.meta_description}
         canonical={metaInfo.url}
         openGraph={{
           url: metaInfo.url,
           title: metaInfo.page_title,
-          description: metaDescription,
+          description: metaInfo.meta_description,
           siteName: "Install It Guy",
         }}
         additionalMetaTags={[
@@ -205,14 +201,12 @@ export default function ServiceAreaServicePage({ city, service }) {
       <LocalBusinessSchema
         serviceName={getServiceName(service)}
         areaName={cityFullName}
-        description={metaDescription}
+        description={metaInfo.meta_description}
       />
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(cityServiceSchema),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(cityServiceSchema) }}
       />
 
       <script
@@ -310,10 +304,15 @@ export default function ServiceAreaServicePage({ city, service }) {
       <Header />
 
       <main>
-        <HeroSection className="py-24">
+        <HeroSection
+          className="py-24"
+          imageSrc="/images/installit-guy/hero-home.webp"
+          imageAlt={`${getServiceName(service)} in ${cityFullName}`}
+          objectPosition="50% 42%"
+        >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#8BCB6B]">
                 {cityFullName} {getServiceName(service).toLowerCase()}
               </p>
               <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight">
@@ -325,13 +324,13 @@ export default function ServiceAreaServicePage({ city, service }) {
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
                   href="#quote-form"
-                  className="inline-flex items-center px-5 py-3 rounded-lg font-semibold bg-white text-slate-900 shadow-md hover:bg-slate-100 transition-colors"
+                  className="inline-flex items-center px-5 py-3 rounded-full font-semibold bg-[#8BCB6B] text-[#0f2135] shadow-md hover:bg-[#7bb65f] transition"
                 >
                   Get a fast quote
                 </Link>
                 <Link
                   href="tel:+17044199799"
-                  className="inline-flex items-center px-5 py-3 rounded-lg font-semibold border border-white/40 text-white hover:bg-white/10 transition-colors"
+                  className="inline-flex items-center px-5 py-3 rounded-full font-semibold border border-white/60 text-white hover:bg-white/10 transition"
                 >
                   Call 704-419-9799
                 </Link>
@@ -367,6 +366,38 @@ export default function ServiceAreaServicePage({ city, service }) {
             </div>
           </div>
         </HeroSection>
+
+        {serviceImages.length > 0 && (
+          <section className="py-12 bg-gray-50">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-2xl font-semibold text-slate-900">
+                Recent {getServiceName(service)} work in {cityName}
+              </h2>
+              <p className="mt-2 text-slate-600 max-w-3xl">
+                Here’s a look at a few {getServiceName(service).toLowerCase()}{" "}
+                projects we’ve completed nearby. Every install gets the same
+                careful prep, alignment checks, and tidy finish you see below.
+              </p>
+              <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {serviceImages.map((image, index) => (
+                  <div
+                    key={`${service}-image-${image}-${index}`}
+                    className="relative overflow-hidden rounded-2xl bg-white shadow-sm border border-slate-200"
+                  >
+                    <Image
+                      src={`/images/installit-guy/${image}`}
+                      alt={`${getServiceName(service)} project in ${cityName}`}
+                      width={640}
+                      height={480}
+                      className="h-56 w-full object-cover"
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="py-16 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">

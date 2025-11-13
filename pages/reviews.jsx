@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Reviews from "../components/Reviews";
 import ContextualFAQs from "../components/ContextualFAQs";
+import HeroSection from "../components/HeroSection";
 import Link from "next/link";
 
 export default function ReviewsPage() {
@@ -88,120 +89,82 @@ export default function ReviewsPage() {
       <Header />
 
       <main className="min-h-screen bg-gray-50">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary-600 to-primary-800 text-white">
-          <div className="container-custom section-padding">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Customer Reviews
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 text-primary-100">
-                See what our customers say about Install It Guy's handyman
-                services in Shelby and surrounding areas.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="tel:+17041234567" className="btn-secondary">
-                  Call (704) 123-4567
-                </Link>
-                <Link
-                  href="/contact-us"
-                  className="btn-secondary bg-white text-brand-primary border-white hover:bg-brand-primary hover:text-white"
-                >
-                  Get Free Quote
-                </Link>
-              </div>
+        <HeroSection
+          className="py-24"
+          imageSrc="/images/installit-guy/hero-home.webp"
+          imageAlt="Handyman finishing a living room project"
+          objectPosition="50% 42%"
+        >
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#8BCB6B]">
+              4.9-star service
+            </p>
+            <h1 className="text-3xl md:text-5xl font-bold">
+              See what our customers say about Install It Guy
+            </h1>
+            <p className="text-lg md:text-xl text-white/80">
+              Homeowners across Shelby and the greater Charlotte region trust us
+              for installs, repairs, and maintenance that actually last.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link
+                href="tel:+17044199799"
+                className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-[#0f2135] bg-[#8BCB6B] shadow hover:bg-[#7bb65f] transition"
+              >
+                Call (704) 419-9799
+              </Link>
+              <Link
+                href="/contact-us"
+                className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white border border-white/60 hover:bg-white/10 transition"
+              >
+                Book your project
+              </Link>
             </div>
           </div>
-        </section>
+        </HeroSection>
 
         {/* Google Reviews Component */}
         <Reviews />
 
         {/* Why Customers Choose Us */}
-        <section className="section-padding bg-white">
+        <section className="py-20 bg-white">
           <div className="container-custom">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Why Customers Choose Install It Guy
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#0f2135]">
+                <span className="text-[#8BCB6B]">What our customers</span> highlight
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Our commitment to quality and customer satisfaction shows in
                 every review.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
+            <div className="grid gap-6 md:grid-cols-3 mt-12">
+              {[
+                {
+                  title: "Respectful crews",
+                  description:
+                    "Boot covers, floor protection, and a tidy workspace from start to finish—it's mentioned in almost every review.",
+                },
+                {
+                  title: "Transparent pricing",
+                  description:
+                    "Customers appreciate clear estimates, options for add-ons, and zero surprise fees when the job wraps.",
+                },
+                {
+                  title: "Work that lasts",
+                  description:
+                    "A lifetime workmanship guarantee means we come back if something isn't perfect—no arguments, no hassles.",
+                },
+              ].map((item) => (
+                <div key={item.title} className="card text-left">
+                  <h3 className="text-xl font-semibold text-[#8BCB6B] mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Quality Workmanship
-                </h3>
-                <p className="text-gray-600">
-                  Every project is completed to the highest standards with
-                  attention to detail and professional craftsmanship.
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Fast Service
-                </h3>
-                <p className="text-gray-600">
-                  Quick response times and efficient work to get your projects
-                  completed on schedule.
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Fair Pricing
-                </h3>
-                <p className="text-gray-600">
-                  Competitive pricing with no hidden fees. We believe in honest,
-                  transparent pricing for all our services.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </section>

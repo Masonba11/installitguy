@@ -4,12 +4,12 @@ import Footer from "../components/Footer";
 import ContextualReviews from "../components/ContextualReviews";
 import ContextualFAQs from "../components/ContextualFAQs";
 import QuoteForm from "../components/QuoteForm";
+import HeroSection from "../components/HeroSection";
 import dynamic from "next/dynamic";
 
-const ZenbookerEmbed = dynamic(
-  () => import("../components/ZenbookerEmbed"),
-  { ssr: false }
-);
+const ZenbookerEmbed = dynamic(() => import("../components/ZenbookerEmbed"), {
+  ssr: false,
+});
 
 export default function ContactUs() {
   const contactPageSchema = {
@@ -149,23 +149,51 @@ export default function ContactUs() {
 
       <Header />
 
+      <HeroSection
+        className="py-24"
+        imageSrc="/images/installit-guy/hero-home.webp"
+        imageAlt="Handyman speaking with homeowners in living room"
+        objectPosition="50% 42%"
+      >
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#8BCB6B]">
+            Get in touch
+          </p>
+          <h1 className="text-3xl md:text-5xl font-bold">
+            Contact Install It Guy
+          </h1>
+          <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto">
+            Ready to schedule your project or need a quick estimate? Call,
+            email, or send us a message and we’ll get right back to you.
+          </p>
+          <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <a
+              href="tel:+17044199799"
+              className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-[#0f2135] bg-[#8BCB6B] shadow hover:bg-[#7bb65f] transition"
+            >
+              Call (704) 419-9799
+            </a>
+            <a
+              href="#contact-form"
+              className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white border border-white/60 hover:bg-white/10 transition"
+            >
+              Send a message
+            </a>
+          </div>
+        </div>
+      </HeroSection>
+
       <main className="min-h-screen bg-gray-50">
         <div className="container-custom section-padding">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Contact Install It Guy
-              </h1>
-              <p className="text-xl text-gray-600 mb-6">
-                Ready to get started on your next project? We're here to help!
-              </p>
-              <div className="bg-primary-50 border border-primary-200 rounded-lg p-6 max-w-4xl mx-auto">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                  Why Choose Install It Guy?
+              <div className="bg-primary-50 border border-primary-200 rounded-lg p-6 max-w-4xl mx-auto text-left">
+                <h2 className="text-2xl font-bold text-[#0f2135] mb-4">
+                  <span className="text-[#8BCB6B]">Why Choose</span> Install It Guy?
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">
+                    <h3 className="font-semibold text-[#8BCB6B] mb-2">
                       30+ Years Experience
                     </h3>
                     <p className="text-gray-600 text-sm">
@@ -174,7 +202,7 @@ export default function ContactUs() {
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">
+                    <h3 className="font-semibold text-[#8BCB6B] mb-2">
                       Lifetime Warranty
                     </h3>
                     <p className="text-gray-600 text-sm">
@@ -183,7 +211,7 @@ export default function ContactUs() {
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">
+                    <h3 className="font-semibold text-[#8BCB6B] mb-2">
                       Family-Owned Business
                     </h3>
                     <p className="text-gray-600 text-sm">
@@ -199,7 +227,7 @@ export default function ContactUs() {
               {/* Contact Information */}
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  Get In Touch
+                  <span className="text-[#8BCB6B]">Get In Touch</span>
                 </h2>
 
                 <div className="space-y-6">
@@ -220,8 +248,8 @@ export default function ContactUs() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900">
-                        Phone
+                      <h3 className="text-lg font-semibold text-[#0f2135]">
+                        <span className="text-[#8BCB6B]">Phone</span>
                       </h3>
                       <p className="text-gray-600">(704) 419-9799</p>
                       <a
@@ -250,8 +278,8 @@ export default function ContactUs() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900">
-                        Email
+                      <h3 className="text-lg font-semibold text-[#0f2135]">
+                        <span className="text-[#8BCB6B]">Email</span>
                       </h3>
                       <p className="text-gray-600">info@installitguy.com</p>
                       <a
@@ -286,14 +314,16 @@ export default function ContactUs() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900">
-                        Service Areas
+                      <h3 className="text-lg font-semibold text-[#0f2135]">
+                        <span className="text-[#8BCB6B]">Service Area</span>
                       </h3>
                       <p className="text-gray-600">
                         210 Joseph Ct, Shelby, NC 28152
                       </p>
                       <p className="text-gray-600">
-                        Serving Cabarrus, Cleveland, Mecklenburg, and Union counties in North Carolina plus Lancaster, Richland, and York counties in South Carolina.
+                        Serving Cabarrus, Cleveland, Mecklenburg, and Union
+                        counties in North Carolina plus Lancaster, Richland, and
+                        York counties in South Carolina.
                       </p>
                     </div>
                   </div>
@@ -334,7 +364,7 @@ export default function ContactUs() {
                   Send Us a Message
                 </h2>
 
-                                <ZenbookerEmbed />
+                <ZenbookerEmbed />
               </div>
             </div>
           </div>

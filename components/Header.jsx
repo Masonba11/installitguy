@@ -247,6 +247,12 @@ export default function Header() {
               Contact
             </Link>
             <Link
+              href="/gallery"
+              className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+            >
+              Gallery
+            </Link>
+            <Link
               href="/faqs"
               className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
             >
@@ -334,6 +340,7 @@ export default function Header() {
                 {[
                   { label: "Home", href: "/" },
                   { label: "Contact", href: "/contact-us" },
+                  { label: "Gallery", href: "/gallery" },
                 ].map((item) => (
                   <Link
                     key={item.href}

@@ -10,6 +10,7 @@ import {
 import LocalBusinessSchema from "../../components/LocalBusinessSchema";
 import dynamic from "next/dynamic";
 import HeroSection from "../../components/HeroSection";
+import Link from "next/link";
 
 const Reviews = dynamic(() => import("../../components/Reviews"), {
   ssr: false,
@@ -209,20 +210,39 @@ export default function ServicesIndex() {
 
       <main>
         {/* Hero */}
-        <HeroSection className="py-24">
+        <HeroSection
+          className="py-24"
+          imageSrc="/images/installit-guy/hero-home.webp"
+          imageAlt="Install It Guy handyman services collage"
+          objectPosition="50% 42%"
+        >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-start">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
-                What we handle
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#8BCB6B]">
+                Installations • Repairs • Maintenance
               </p>
-              <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight">
-                Professional installs, repairs, and upkeep in one place
+              <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight text-white">
+                <span className="text-[#8BCB6B]">Handyman services</span> built around your punch list
               </h1>
-              <p className="mt-6 text-lg text-slate-200 leading-relaxed">
-                Choose the services you need and we’ll coordinate the rest. No
-                juggling vendors—just one reliable crew handling the details
-                with care.
+              <p className="mt-5 text-lg text-slate-200 leading-relaxed">
+                From single installs to multi-room refresh projects, we plan the
+                labor, materials, and schedule so you get polished results with
+                no surprises.
               </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  href="#quote-form"
+                  className="inline-flex items-center rounded-full bg-[#8BCB6B] px-5 py-3 text-sm font-semibold text-[#0f2135] shadow-sm hover:bg-[#7bb65f] transition"
+                >
+                  Book a project
+                </Link>
+                <Link
+                  href="tel:+17044199799"
+                  className="inline-flex items-center rounded-full border border-white/60 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
+                >
+                  Call (704) 419-9799
+                </Link>
+              </div>
             </div>
             <div className="rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm p-8 text-slate-200">
               <h2 className="text-xl font-semibold text-white">
@@ -261,11 +281,11 @@ export default function ServicesIndex() {
         <section className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
-              <p className="text-sm font-semibold uppercase tracking-wide text-primary-600">
-                Service menu
+              <p className="text-sm font-semibold uppercase tracking-wide text-[#8BCB6B]">
+                Services
               </p>
-              <h2 className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">
-                Every service is performed by our in-house team—no outsourcing
+              <h2 className="mt-2 text-3xl md:text-4xl font-bold text-[#0f2135]">
+                <span className="text-[#8BCB6B]">Everyday projects</span> we handle start to finish
               </h2>
               <p className="mt-4 text-lg text-gray-600">
                 Browse the full list below or filter down to the project you
@@ -286,11 +306,11 @@ export default function ServicesIndex() {
         <section className="py-20 bg-gray-50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
-              <p className="text-sm font-semibold uppercase tracking-wide text-primary-600">
-                Built for real homes
+              <p className="text-sm font-semibold uppercase tracking-wide text-[#8BCB6B]">
+                North and South Carolina communities we visit every week
               </p>
-              <h2 className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">
-                Spruce up one room—or schedule a whole-home punch list
+              <h2 className="mt-2 text-3xl md:text-4xl font-bold text-[#0f2135]">
+                <span className="text-[#8BCB6B]">Why homeowners</span> call Install It Guy
               </h2>
               <p className="mt-4 text-lg text-gray-600">
                 Mix and match the services that make sense. We can dedicate an

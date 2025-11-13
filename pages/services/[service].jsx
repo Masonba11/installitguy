@@ -4,8 +4,8 @@ import Footer from "../../components/Footer";
 import QuoteForm from "../../components/QuoteForm";
 import LocalBusinessSchema from "../../components/LocalBusinessSchema";
 import metaData from "../../data/metaData.json";
-import { getServiceName } from "../../utils/serviceImages";
-import { buildMetaDescription } from "../../utils/seo";
+import Image from "next/image";
+import { getServiceName, getServiceImages } from "../../utils/serviceImages";
 import {
   orderedServiceSlugs,
   servicesContent,
@@ -84,16 +84,13 @@ export default function ServicePage({ service }) {
   const longDescription =
     serviceOverview?.longDescription ||
     `Every project begins with a quick check-in so we understand the hardware, finish, and placement you want. We arrive with the right anchors, fasteners, and protective gear, then double-check alignment before final cleanup—always with Shelby homes and building styles in mind.`;
-  const metaDescription = buildMetaDescription(
-    metaInfo.meta_description,
-    shortDescription
-  );
+  const serviceImages = getServiceImages(service).slice(0, 3);
 
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: `${getServiceName(service)} Service`,
-    description: metaDescription,
+    description: metaInfo.meta_description,
     url: metaInfo.url,
     serviceType: getServiceName(service),
     category: "Home Improvement",
@@ -167,12 +164,12 @@ export default function ServicePage({ service }) {
     <>
       <NextSeo
         title={metaInfo.page_title}
-        description={metaDescription}
+        description={metaInfo.meta_description}
         canonical={metaInfo.url}
         openGraph={{
           url: metaInfo.url,
           title: metaInfo.page_title,
-          description: metaDescription,
+          description: metaInfo.meta_description,
           siteName: "Install It Guy",
         }}
         additionalMetaTags={[
@@ -185,7 +182,7 @@ export default function ServicePage({ service }) {
 
       <LocalBusinessSchema
         serviceName={getServiceName(service)}
-        description={metaDescription}
+        description={metaInfo.meta_description}
       />
 
       <script
@@ -264,14 +261,19 @@ export default function ServicePage({ service }) {
       <Header />
 
       <main>
-        <HeroSection className="py-24">
+        <HeroSection
+          className="py-24"
+          imageSrc="/images/installit-guy/hero-home.webp"
+          imageAlt={`${getServiceName(service)} by Install It Guy`}
+          objectPosition="50% 42%"
+        >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#8BCB6B]">
                 Shelby handyman service
               </p>
-              <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight">
-                {getServiceName(service)} in Shelby, NC done right the first time
+              <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight text-white">
+                <span className="text-[#8BCB6B]">{getServiceName(service)}</span> in Shelby, NC done right the first time
               </h1>
               <p className="mt-5 text-lg text-slate-100/90 leading-relaxed">
                 {shortDescription}
@@ -279,13 +281,13 @@ export default function ServicePage({ service }) {
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
                   href="#quote-form"
-                  className="inline-flex items-center px-5 py-3 rounded-lg font-semibold bg-white text-slate-900 shadow-md hover:bg-slate-100 transition-colors"
+                  className="inline-flex items-center px-5 py-3 rounded-full font-semibold bg-[#8BCB6B] text-[#0f2135] shadow-md hover:bg-[#7bb65f] transition"
                 >
                   Schedule your project
                 </Link>
                 <Link
                   href="tel:+17044199799"
-                  className="inline-flex items-center px-5 py-3 rounded-lg font-semibold border border-white/40 text-white hover:bg-white/10 transition-colors"
+                  className="inline-flex items-center px-5 py-3 rounded-full font-semibold border border-white/60 text-white hover:bg-white/10 transition"
                 >
                   Call 704-419-9799
                 </Link>
@@ -299,7 +301,7 @@ export default function ServicePage({ service }) {
                 <ol className="mt-4 space-y-3 text-sm text-slate-200">
                   {processSteps.map((item, idx) => (
                     <li key={item} className="flex items-start gap-3">
-                      <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-white text-sm font-semibold">
+                      <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#8BCB6B] text-[#0f2135] text-sm font-semibold">
                         {idx + 1}
                       </span>
                       <span>{item}</span>
@@ -314,7 +316,7 @@ export default function ServicePage({ service }) {
                 <ul className="mt-4 space-y-3 text-sm text-slate-200">
                   {standardAssurances.map((item) => (
                     <li key={item} className="flex items-start gap-2">
-                      <span className="mt-1 text-primary-200">•</span>
+                      <span className="mt-1 text-[#8BCB6B]">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -324,6 +326,40 @@ export default function ServicePage({ service }) {
           </div>
         </HeroSection>
 
+        {serviceImages.length > 0 && (
+          <section className="py-12 bg-gray-50">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-2xl font-semibold text-slate-900">
+                Recent {getServiceName(service)} work in the Shelby area
+              </h2>
+              <p className="mt-2 text-slate-600 max-w-3xl">
+                A quick look at a few {getServiceName(service).toLowerCase()}{" "}
+                projects completed by our crew. Every visit receives the same
+                careful prep, alignment checks, and tidy finish you see here.
+              </p>
+              <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {serviceImages.map((image, index) => (
+                  <div
+                    key={`${service}-primary-image-${image}-${index}`}
+                    className="relative overflow-hidden rounded-2xl bg-white shadow-sm border border-slate-200"
+                  >
+                    <Image
+                      src={`/images/installit-guy/${image}`}
+                      alt={`${getServiceName(
+                        service
+                      )} project by Install It Guy`}
+                      width={640}
+                      height={480}
+                      className="h-56 w-full object-cover"
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Service overview */}
         <section className="py-20 bg-white">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-gray-700">
@@ -331,9 +367,8 @@ export default function ServicePage({ service }) {
               <h2 className="text-3xl font-bold text-gray-900">
                 What’s included when we handle {getServiceName(service)}
               </h2>
-              <p className="mt-4 text-lg leading-relaxed">{shortDescription}</p>
-              <p className="mt-4 text-gray-600">
-                {longDescription}
+              <p className="mt-3 text-slate-600 leading-relaxed">
+                {servicesContent[service]?.longDescription}
               </p>
             </div>
             <div>

@@ -195,14 +195,19 @@ export default function ServiceAreasIndex() {
 
       <main>
         {/* Hero */}
-        <HeroSection className="py-24">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-start">
+        <HeroSection
+          className="py-24"
+          imageSrc="/images/installit-guy/hero-home.webp"
+          imageAlt="Install It Guy service areas map"
+          objectPosition="50% 42%"
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-start">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#8BCB6B]">
                 Shelby handyman coverage map
               </p>
-              <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight">
-                One team taking care of homes across the Carolinas
+              <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight text-white">
+                <span className="text-[#8BCB6B]">One team</span> taking care of homes across the Carolinas
               </h1>
               <p className="mt-5 text-lg text-slate-200 leading-relaxed">
                 {serviceAreaCoverageText} If you’re close by, we’re happy to
@@ -217,7 +222,7 @@ export default function ServiceAreasIndex() {
                 <li className="flex items-start gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 text-white"
+                    className="h-4 w-4 text-[#8BCB6B]"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -240,7 +245,7 @@ export default function ServiceAreasIndex() {
                 <li className="flex items-start gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 text-white"
+                    className="h-4 w-4 text-[#8BCB6B]"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

@@ -1,12 +1,11 @@
 import { NextSeo } from "next-seo";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import ServiceCard from "../../components/ServiceCard";
 import QuoteForm from "../../components/QuoteForm";
 import Link from "next/link";
+import Image from "next/image";
 import LocalBusinessSchema from "../../components/LocalBusinessSchema";
 import metaData from "../../data/metaData.json";
-import { buildMetaDescription } from "../../utils/seo";
 import {
   orderedServiceSlugs,
   servicesContent,
@@ -40,6 +39,13 @@ const ContextualFAQs = dynamic(
 const services = orderedServiceSlugs;
 
 const serviceAreaList = serviceAreaSlugs;
+
+const projectJourney = [
+  "project1.1.JPG",
+  "project1.2.JPG",
+  "project1.3.JPG",
+  "project1.4.JPG",
+];
 
 const formatServiceList = (list) => {
   if (list.length === 1) return list[0];
@@ -80,16 +86,12 @@ export default function ServiceAreaPage({ city }) {
   };
 
   const metaInfo = cityData || fallbackMeta;
-  const metaDescription = buildMetaDescription(
-    metaInfo.meta_description,
-    `Handyman services in ${cityEntry.name} for installs, repairs, and maintenance.`
-  );
 
   const cityBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "Install It Guy",
-    description: metaDescription,
+    description: metaInfo.meta_description,
     url: metaInfo.url,
     telephone: "+17044199799",
     email: "info@installitguy.com",
@@ -157,12 +159,12 @@ export default function ServiceAreaPage({ city }) {
     <>
       <NextSeo
         title={metaInfo.page_title}
-        description={metaDescription}
+        description={metaInfo.meta_description}
         canonical={metaInfo.url}
         openGraph={{
           url: metaInfo.url,
           title: metaInfo.page_title,
-          description: metaDescription,
+          description: metaInfo.meta_description,
           siteName: "Install It Guy",
         }}
         additionalMetaTags={[
@@ -175,7 +177,7 @@ export default function ServiceAreaPage({ city }) {
 
       <LocalBusinessSchema
         areaName={getCityName(city)}
-        description={metaDescription}
+        description={metaInfo.meta_description}
       />
 
       <script
@@ -202,14 +204,20 @@ export default function ServiceAreaPage({ city }) {
       <Header />
 
       <main>
-        <HeroSection className="py-24">
+        <HeroSection
+          className="py-24"
+          imageSrc="/images/installit-guy/hero-home.webp"
+          imageAlt={`Install It Guy serving ${getCityName(city)}`}
+          objectPosition="50% 42%"
+        >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-start">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#8BCB6B]">
                 Serving {getCityShortName(city)} and nearby neighborhoods
               </p>
-              <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight">
-                Trusted handyman help in {getCityName(city)}
+              <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight text-white">
+                <span className="text-[#8BCB6B]">Trusted handyman help</span> in{" "}
+                {getCityName(city)}
               </h1>
               <p className="mt-5 text-lg text-slate-200 leading-relaxed">
                 From new installs to punch-list repairs, our Shelby-based crew
@@ -219,13 +227,13 @@ export default function ServiceAreaPage({ city }) {
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href="#quote-form"
-                  className="inline-flex items-center rounded-lg bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-100"
+                  className="inline-flex items-center rounded-full bg-[#8BCB6B] px-5 py-3 text-sm font-semibold text-[#0f2135] shadow-sm hover:bg-[#7bb65f] transition"
                 >
                   Request a visit
                 </a>
                 <Link
                   href="/service-areas"
-                  className="inline-flex items-center rounded-lg border border-white/40 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+                  className="inline-flex items-center rounded-full border border-white/60 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
                 >
                   View all coverage
                 </Link>
@@ -242,7 +250,7 @@ export default function ServiceAreaPage({ city }) {
                   "Locally rooted technicians who know Charlotte-area homes",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <span className="mt-1 text-primary-200">•</span>
+                    <span className="mt-1 text-[#8BCB6B]">•</span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -269,12 +277,76 @@ export default function ServiceAreaPage({ city }) {
             </div>
 
             <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {services.map((service) => (
-                <ServiceCard
-                  key={service}
-                  service={service}
-                  city={city === "shelby-nc" ? null : city}
-                />
+              {services.map((service) => {
+                const serviceData = servicesContent[service];
+                const href =
+                  city === "shelby-nc"
+                    ? `/services/${service}`
+                    : `/service-areas/${city}/${service}`;
+
+                return (
+                  <Link
+                    key={service}
+                    href={href}
+                    className="group flex h-full flex-col rounded-2xl border border-gray-200 bg-gray-50 p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#8BCB6B] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#8BCB6B]"
+                  >
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-[#0f2135] transition-colors group-hover:text-[#8BCB6B]">
+                        {serviceData.name}
+                      </h3>
+                      <p className="mt-3 text-sm text-gray-600 leading-relaxed">
+                        {serviceData.shortDescription}
+                      </p>
+                    </div>
+                    <div className="mt-5 inline-flex items-center text-sm font-semibold text-[#8BCB6B]">
+                      Learn More
+                      <span
+                        aria-hidden="true"
+                        className="ml-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-[#8BCB6B] text-[#8BCB6B] transition-transform group-hover:translate-x-1"
+                      >
+                        →
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 bg-gray-900 text-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="md:flex md:items-start md:justify-between md:gap-12">
+              <div className="max-w-2xl">
+                <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
+                  Featured project
+                </p>
+                <h2 className="mt-3 text-3xl md:text-4xl font-bold">
+                  Accent wall transformation in {getCityName(city)}
+                </h2>
+                <p className="mt-4 text-slate-200 leading-relaxed">
+                  A recent living-room upgrade captured step-by-step—from first
+                  chalk line to final reveal.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {projectJourney.map((image, index) => (
+                <div
+                  key={`${image}-${index}`}
+                  className="relative h-48 w-full overflow-hidden rounded-2xl border border-white/15"
+                >
+                  <Image
+                    src={`/images/installit-guy/${image}`}
+                    alt={`Accent wall project photo ${
+                      index + 1
+                    } in ${getCityName(city)}`}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                </div>
               ))}
             </div>
           </div>

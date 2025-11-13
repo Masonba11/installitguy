@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import ServiceCard from "../components/ServiceCard";
 import QuoteForm from "../components/QuoteForm";
 import Link from "next/link";
+import Image from "next/image";
 import { orderedServiceSlugs, servicesContent } from "../data/servicesContent";
 import {
   serviceAreas as allServiceAreas,
@@ -40,6 +41,13 @@ const displayServiceAreas = {
   northCarolina: serviceAreasByState.NC.map((area) => area.shortName),
   southCarolina: serviceAreasByState.SC.map((area) => area.shortName),
 };
+
+const projectJourney = [
+  "project1.1.JPG",
+  "project1.2.JPG",
+  "project1.3.JPG",
+  "project1.4.JPG",
+];
 
 export default function Home() {
   const featuredServices = services.slice(0, 6);
@@ -316,7 +324,7 @@ export default function Home() {
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-start">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#8BCB6B]">
                 Shelby handyman experts
               </p>
               <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight">
@@ -331,7 +339,7 @@ export default function Home() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a
                   href="#quote-form"
-                  className="btn-primary inline-flex justify-center"
+                  className="inline-flex justify-center rounded-full bg-[#8BCB6B] px-6 py-3 text-sm font-semibold text-[#0f2135] shadow hover:bg-[#7bb65f] transition"
                 >
                   Book your handyman
                 </a>
@@ -353,7 +361,7 @@ export default function Home() {
               <ul className="mt-6 space-y-3 text-sm">
                 {highlights.map((item) => (
                   <li key={item.title} className="flex items-start gap-2">
-                    <span className="mt-1 text-primary-200">•</span>
+                    <span className="mt-1 text-[#8BCB6B]">•</span>
                     <span>
                       <span className="font-semibold text-white block">
                         {item.title}
@@ -363,6 +371,20 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
+              <div className="mt-8 rounded-2xl border border-white/20 bg-white/5 p-6 text-white">
+                <dl className="grid grid-cols-3 gap-4 text-xs uppercase tracking-wide text-white/80">
+                  {stats.map((stat) => (
+                    <div key={stat.label}>
+                      <dt className="text-white text-lg font-semibold">
+                        {stat.value}
+                      </dt>
+                      <dd className="mt-1 text-white/70 normal-case text-sm font-medium">
+                        {stat.label}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
             </div>
           </div>
         </HeroSection>
@@ -371,7 +393,7 @@ export default function Home() {
         <section className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wide text-primary-600">
+              <p className="text-sm font-semibold uppercase tracking-wide text-[#0f2135]">
                 Local since 1994
               </p>
               <h2 className="mt-3 text-3xl md:text-4xl font-bold text-gray-900">
@@ -383,18 +405,54 @@ export default function Home() {
                 technicians, and workmanship that lasts.
               </p>
             </div>
-            <dl className="rounded-2xl border border-gray-200 bg-gray-50 p-8 shadow-sm grid gap-6 sm:grid-cols-3">
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <dt className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-                    {stat.label}
-                  </dt>
-                  <dd className="mt-2 text-3xl font-semibold text-gray-900">
-                    {stat.value}
-                  </dd>
+            <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm flex items-center justify-center">
+              <Image
+                src="/images/installit-guy/Screenshot%202025-11-12%20at%2012.46.13%E2%80%AFAM.png"
+                alt="Install It Guy logo"
+                width={200}
+                height={100}
+                className="object-contain"
+                priority
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-gray-900 text-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="md:flex md:items-start md:justify-between md:gap-12">
+              <div className="max-w-2xl">
+                <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
+                  Project spotlight
+                </p>
+                <h2 className="mt-3 text-3xl md:text-4xl font-bold">
+                  Accent wall transformation from sketch to reveal
+                </h2>
+                <p className="mt-4 text-slate-200 leading-relaxed">
+                  This Shelby homeowner wanted a dramatic feature wall in the
+                  family room. Here’s how our crew handled it—from layout and
+                  lumber to the final coat of paint.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {projectJourney.map((image, index) => (
+                <div
+                  key={`${image}-${index}`}
+                  className="rounded-2xl bg-white/10 border border-white/10 backdrop-blur-sm p-5"
+                >
+                  <Image
+                    src={`/images/installit-guy/${image}`}
+                    alt={`Accent wall project photo ${index + 1}`}
+                    width={640}
+                    height={480}
+                    className="h-48 w-full rounded-xl object-cover"
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  />
                 </div>
               ))}
-            </dl>
+            </div>
           </div>
         </section>
 
@@ -449,45 +507,48 @@ export default function Home() {
 
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {/* highlights.map((item) => ( */}
-                <div
-                  key="right-sized-visits"
-                  className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm"
-                >
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    Right-sized visits
-                  </h3>
-                  <p className="mt-3 text-gray-600 leading-relaxed">
-                    Schedule a focused install or give us a punch list—we’ll plan the labor, materials, and timing for you.
-                  </p>
-                </div>
-                <div
-                  key="careful-in-every-room"
-                  className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm"
-                >
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    Careful in every room
-                  </h3>
-                  <p className="mt-3 text-gray-600 leading-relaxed">
-                    Floors covered, fixtures protected, and a full cleanup before we leave. Your space feels ready the moment we wrap up.
-                  </p>
-                </div>
-                <div
-                  key="locally-rooted"
-                  className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm"
-                >
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    Locally rooted
-                  </h3>
-                  <p className="mt-3 text-gray-600 leading-relaxed">
-                    Three decades serving the Charlotte area means we know the neighborhoods, builders, and expectations by heart.
-                  </p>
-                </div>
+              <div
+                key="right-sized-visits"
+                className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm"
+              >
+                <h3 className="text-xl font-semibold text-gray-900">
+                  Right-sized visits
+                </h3>
+                <p className="mt-3 text-gray-600 leading-relaxed">
+                  Schedule a focused install or give us a punch list—we’ll plan
+                  the labor, materials, and timing for you.
+                </p>
+              </div>
+              <div
+                key="careful-in-every-room"
+                className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm"
+              >
+                <h3 className="text-xl font-semibold text-gray-900">
+                  Careful in every room
+                </h3>
+                <p className="mt-3 text-gray-600 leading-relaxed">
+                  Floors covered, fixtures protected, and a full cleanup before
+                  we leave. Your space feels ready the moment we wrap up.
+                </p>
+              </div>
+              <div
+                key="locally-rooted"
+                className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm"
+              >
+                <h3 className="text-xl font-semibold text-gray-900">
+                  Locally rooted
+                </h3>
+                <p className="mt-3 text-gray-600 leading-relaxed">
+                  Three decades serving the Charlotte area means we know the
+                  neighborhoods, builders, and expectations by heart.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Service Areas */}
-        <HeroSection className="py-20">
+        <HeroSection className="py-20" imageSrc={null}>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wide text-primary-200">
@@ -525,7 +586,8 @@ export default function Home() {
                 Need a different town?
               </h3>
               <p className="mt-4 text-slate-200">
-                We routinely travel for repeat clients and referrals. Share your address and we’ll confirm availability right away.
+                We routinely travel for repeat clients and referrals. Share your
+                address and we’ll confirm availability right away.
               </p>
             </div>
           </div>

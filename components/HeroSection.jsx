@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 export default function HeroSection({
-  imageSrc = null,
+  imageSrc = "/images/installit-guy/hero-home.webp",
   imageAlt = "",
   priority = false,
   className = "py-24",

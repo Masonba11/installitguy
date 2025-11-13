@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import ContextualReviews from "../components/ContextualReviews";
 import ContextualFAQs from "../components/ContextualFAQs";
 import QuoteForm from "../components/QuoteForm";
+import HeroSection from "../components/HeroSection";
 import { useState } from "react";
 import { orderedServiceSlugs, servicesContent } from "../data/servicesContent";
 
@@ -146,111 +147,122 @@ export default function FAQs() {
 
       <Header />
 
-      <main className="min-h-screen bg-gray-50">
+      <HeroSection
+        className="py-24"
+        imageSrc="/images/installit-guy/hero-home.webp"
+        imageAlt="Handyman installing wall paneling"
+        objectPosition="50% 42%"
+      >
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#8BCB6B]">
+            Frequently asked questions
+          </p>
+          <h1 className="text-3xl md:text-5xl font-bold">
+            Answers before we visit your home
+          </h1>
+          <p className="text-lg md:text-xl text-white/80">
+            Everything you need to know about Install It Guy—services,
+            scheduling, coverage, and what to expect from our crew.
+          </p>
+        </div>
+      </HeroSection>
+
+      <main className="bg-gray-50">
         <div className="container-custom section-padding">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Frequently Asked Questions
-              </h1>
-              <p className="text-xl text-gray-600 mb-6">
-                Get answers to common questions about our handyman services.
-              </p>
-              <div className="bg-primary-50 border border-primary-200 rounded-lg p-6 max-w-4xl mx-auto">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                  About Install It Guy
-                </h2>
-                <p className="text-gray-600 mb-4">
-                  We're a family-owned business serving the Carolinas for over
-                  30 years. Founded and operated by Scott Compton, we've grown
-                  from a small local handyman service to a trusted name
-                  throughout North and South Carolina.
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <p className="text-lg text-gray-600">
+              We’ve gathered the questions homeowners ask before booking. Can’t
+              find what you’re looking for? Call (704) 419-9799 or send us a
+            </p>
+          </div>
+
+          <div className="bg-primary-50 border border-primary-200 rounded-lg p-6 max-w-4xl mx-auto text-left mb-12">
+            <h2 className="text-2xl font-bold text-[#0f2135] mb-4">
+              <span className="text-[#8BCB6B]">About</span> Install It Guy
+            </h2>
+            <p className="text-gray-600 mb-4">
+              We're a family-owned business serving the Carolinas for over 30 years. Founded and operated by Scott Compton, we've grown from a small local handyman service to a trusted name throughout North and South Carolina.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <h3 className="font-semibold text-[#8BCB6B] mb-2">
+                  30+ Years Experience
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Three decades of serving the Carolinas with expertise and dedication.
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      30+ Years Experience
-                    </h3>
-                    <p className="text-gray-600 text-sm">
-                      Three decades of serving the Carolinas with expertise and
-                      dedication.
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      Lifetime Warranty
-                    </h3>
-                    <p className="text-gray-600 text-sm">
-                      We proudly back our work with a lifetime customer
-                      satisfaction guarantee.
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      Family Values
-                    </h3>
-                    <p className="text-gray-600 text-sm">
-                      We work hard to provide for our family while serving yours
-                      with care.
-                    </p>
-                  </div>
-                </div>
+              </div>
+              <div>
+                <h3 className="font-semibold text-[#8BCB6B] mb-2">
+                  Lifetime Warranty
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  We proudly back our work with a lifetime customer satisfaction guarantee.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-[#8BCB6B] mb-2">
+                  Family Values
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  We work hard to provide for our family while serving yours with care.
+                </p>
               </div>
             </div>
+          </div>
 
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <div key={index} className="card">
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="w-full text-left flex justify-between items-center"
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div key={index} className="card">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full text-left flex justify-between items-center"
+                >
+                  <h3 className="text-lg font-semibold text-[#0f2135] pr-4">
+                    <span className="text-[#8BCB6B]">Q{index + 1}.</span> {faq.question}
+                  </h3>
+                  <svg
+                    className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${
+                      openFAQ === index ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    <h3 className="text-lg font-semibold text-gray-900 pr-4">
-                      {faq.question}
-                    </h3>
-                    <svg
-                      className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${
-                        openFAQ === index ? "rotate-180" : ""
-                      }`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
 
-                  {openFAQ === index && (
-                    <div className="mt-4 pt-4 border-t border-gray-200">
-                      <p className="text-gray-600 leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-12 text-center">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                Still Have Questions?
-              </h2>
-              <p className="text-gray-600 mb-6">
-                Can't find the answer you're looking for? We're here to help!
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tel:+17044199799" className="btn-primary">
-                  Call (704) 419-9799
-                </a>
-                <a href="#quote-form" className="btn-secondary">
-                  Get Free Quote
-                </a>
+                {openFAQ === index && (
+                  <div className="mt-4 pt-4 border-t border-gray-200">
+                    <p className="text-gray-600 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
+                )}
               </div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <h2 className="text-2xl font-bold text-[#0f2135] mb-4">
+              <span className="text-[#8BCB6B]">Still Have Questions?</span>
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Can't find the answer you're looking for? We're here to help!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="tel:+17044199799" className="btn-primary">
+                Call (704) 419-9799
+              </a>
+              <a href="#quote-form" className="btn-secondary">
+                Get Free Quote
+              </a>
             </div>
           </div>
         </div>
