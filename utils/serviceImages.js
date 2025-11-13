@@ -3,11 +3,7 @@ import { servicesContent } from "../data/servicesContent";
 // Service image mapping for Install It Guy
 export const serviceImageMap = {
   "tv-mounting": ["tvwallmount.webp", "tvwallmount2.webp", "tvwallmount3.webp"],
-  "ceiling-fan-installation": [
-    "ceilingfan.webp",
-    "ceilingfan.JPEG",
-    "lightinginstall.JPG",
-  ],
+  "ceiling-fan-installation": ["ceilingfan.webp"],
   "lighting-installation": [
     "chandlier.jpg",
     "lighting2.JPG",

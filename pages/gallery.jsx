@@ -136,7 +136,8 @@ export default function Gallery({ images }) {
               )}
 
               <p className="mt-6 text-sm text-gray-500 md:hidden">
-                <span className="font-semibold text-[#8BCB6B]">Tip:</span> Swipe left or right to flip through projects.
+                <span className="font-semibold text-[#8BCB6B]">Tip:</span> Swipe
+                left or right to flip through projects.
               </p>
             </div>
           </div>
