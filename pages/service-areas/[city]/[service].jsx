@@ -6,6 +6,7 @@ import Link from "next/link";
 import LocalBusinessSchema from "../../../components/LocalBusinessSchema";
 import metaData from "../../../data/metaData.json";
 import { getServiceName } from "../../../utils/serviceImages";
+import { buildMetaDescription } from "../../../utils/seo";
 import {
   orderedServiceSlugs,
   servicesContent,
@@ -104,11 +105,16 @@ export default function ServiceAreaServicePage({ city, service }) {
     return <div>Page not found</div>;
   }
 
+  const metaDescription = buildMetaDescription(
+    metaInfo.meta_description,
+    shortDescription
+  );
+
   const cityServiceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: `${getServiceName(service)} in ${cityFullName}`,
-    description: metaInfo.meta_description,
+    description: metaDescription,
     url: metaInfo.url,
     serviceType: getServiceName(service),
     category: "Home Improvement",
@@ -180,12 +186,12 @@ export default function ServiceAreaServicePage({ city, service }) {
     <>
       <NextSeo
         title={metaInfo.page_title}
-        description={metaInfo.meta_description}
+        description={metaDescription}
         canonical={metaInfo.url}
         openGraph={{
           url: metaInfo.url,
           title: metaInfo.page_title,
-          description: metaInfo.meta_description,
+          description: metaDescription,
           siteName: "Install It Guy",
         }}
         additionalMetaTags={[
@@ -199,12 +205,14 @@ export default function ServiceAreaServicePage({ city, service }) {
       <LocalBusinessSchema
         serviceName={getServiceName(service)}
         areaName={cityFullName}
-        description={metaInfo.meta_description}
+        description={metaDescription}
       />
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(cityServiceSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(cityServiceSchema),
+        }}
       />
 
       <script

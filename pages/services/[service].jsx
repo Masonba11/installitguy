@@ -5,6 +5,7 @@ import QuoteForm from "../../components/QuoteForm";
 import LocalBusinessSchema from "../../components/LocalBusinessSchema";
 import metaData from "../../data/metaData.json";
 import { getServiceName } from "../../utils/serviceImages";
+import { buildMetaDescription } from "../../utils/seo";
 import {
   orderedServiceSlugs,
   servicesContent,
@@ -83,12 +84,16 @@ export default function ServicePage({ service }) {
   const longDescription =
     serviceOverview?.longDescription ||
     `Every project begins with a quick check-in so we understand the hardware, finish, and placement you want. We arrive with the right anchors, fasteners, and protective gear, then double-check alignment before final cleanup—always with Shelby homes and building styles in mind.`;
+  const metaDescription = buildMetaDescription(
+    metaInfo.meta_description,
+    shortDescription
+  );
 
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: `${getServiceName(service)} Service`,
-    description: metaInfo.meta_description,
+    description: metaDescription,
     url: metaInfo.url,
     serviceType: getServiceName(service),
     category: "Home Improvement",
@@ -162,12 +167,12 @@ export default function ServicePage({ service }) {
     <>
       <NextSeo
         title={metaInfo.page_title}
-        description={metaInfo.meta_description}
+        description={metaDescription}
         canonical={metaInfo.url}
         openGraph={{
           url: metaInfo.url,
           title: metaInfo.page_title,
-          description: metaInfo.meta_description,
+          description: metaDescription,
           siteName: "Install It Guy",
         }}
         additionalMetaTags={[
@@ -180,7 +185,7 @@ export default function ServicePage({ service }) {
 
       <LocalBusinessSchema
         serviceName={getServiceName(service)}
-        description={metaInfo.meta_description}
+        description={metaDescription}
       />
 
       <script

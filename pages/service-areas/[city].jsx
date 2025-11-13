@@ -6,6 +6,7 @@ import QuoteForm from "../../components/QuoteForm";
 import Link from "next/link";
 import LocalBusinessSchema from "../../components/LocalBusinessSchema";
 import metaData from "../../data/metaData.json";
+import { buildMetaDescription } from "../../utils/seo";
 import {
   orderedServiceSlugs,
   servicesContent,
@@ -79,12 +80,16 @@ export default function ServiceAreaPage({ city }) {
   };
 
   const metaInfo = cityData || fallbackMeta;
+  const metaDescription = buildMetaDescription(
+    metaInfo.meta_description,
+    `Handyman services in ${cityEntry.name} for installs, repairs, and maintenance.`
+  );
 
   const cityBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "Install It Guy",
-    description: metaInfo.meta_description,
+    description: metaDescription,
     url: metaInfo.url,
     telephone: "+17044199799",
     email: "info@installitguy.com",
@@ -152,12 +157,12 @@ export default function ServiceAreaPage({ city }) {
     <>
       <NextSeo
         title={metaInfo.page_title}
-        description={metaInfo.meta_description}
+        description={metaDescription}
         canonical={metaInfo.url}
         openGraph={{
           url: metaInfo.url,
           title: metaInfo.page_title,
-          description: metaInfo.meta_description,
+          description: metaDescription,
           siteName: "Install It Guy",
         }}
         additionalMetaTags={[
@@ -170,7 +175,7 @@ export default function ServiceAreaPage({ city }) {
 
       <LocalBusinessSchema
         areaName={getCityName(city)}
-        description={metaInfo.meta_description}
+        description={metaDescription}
       />
 
       <script
