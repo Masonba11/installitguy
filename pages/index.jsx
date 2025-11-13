@@ -12,6 +12,7 @@ import {
 } from "../data/serviceAreas";
 import dynamic from "next/dynamic";
 import HeroSection from "../components/HeroSection";
+import { useEffect, useRef, useState } from "react";
 
 const Reviews = dynamic(() => import("../components/Reviews"), {
   ssr: false,
@@ -49,6 +50,67 @@ const projectJourney = [
   "project1.4.JPG",
 ];
 
+function AnimatedStat({ value, suffix = "", prefix = "", duration = 1500 }) {
+  const [displayValue, setDisplayValue] = useState(0);
+  const elementRef = useRef(null);
+  const hasAnimated = useRef(false);
+  const frameRef = useRef(null);
+
+  useEffect(() => {
+    const element = elementRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated.current) {
+            hasAnimated.current = true;
+            const startTime = performance.now();
+
+            const animate = (now) => {
+              const progress = Math.min((now - startTime) / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              const currentValue = Math.round(value * eased);
+              setDisplayValue(currentValue);
+
+              if (progress < 1) {
+                frameRef.current = requestAnimationFrame(animate);
+              } else {
+                setDisplayValue(value);
+              }
+            };
+
+            frameRef.current = requestAnimationFrame(animate);
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+      if (frameRef.current) {
+        cancelAnimationFrame(frameRef.current);
+      }
+    };
+  }, [value, duration]);
+
+  const formattedValue = new Intl.NumberFormat("en-US").format(displayValue);
+  const appliedPrefix = prefix && displayValue >= value ? prefix : "";
+  const appliedSuffix = suffix && displayValue >= value ? suffix : "";
+
+  return (
+    <span ref={elementRef}>
+      {appliedPrefix}
+      {formattedValue}
+      {appliedSuffix}
+    </span>
+  );
+}
+
 export default function Home() {
   const featuredServices = services.slice(0, 6);
   const highlights = [
@@ -69,9 +131,10 @@ export default function Home() {
     },
   ];
   const stats = [
-    { value: "30+", label: "years helping homeowners" },
-    { value: "150+", label: "projects completed each year" },
-    { value: "0", label: "hidden fees or surprise upsells" },
+    { value: 30, suffix: "+", label: "years helping homeowners" },
+    { value: 150, suffix: "+", label: "projects completed each month" },
+    { value: 60000, label: "homes served across the Carolinas" },
+    { value: 240, prefix: "Over ", label: "Google reviews" },
   ];
   const jsonLd = {
     "@context": "https://schema.org",
@@ -372,11 +435,15 @@ export default function Home() {
                 ))}
               </ul>
               <div className="mt-8 rounded-2xl border border-white/20 bg-white/5 p-6 text-white">
-                <dl className="grid grid-cols-3 gap-4 text-xs uppercase tracking-wide text-white/80">
+                <dl className="grid grid-cols-2 gap-6 text-xs uppercase tracking-wide text-white/80 sm:grid-cols-4">
                   {stats.map((stat) => (
-                    <div key={stat.label}>
-                      <dt className="text-white text-lg font-semibold">
-                        {stat.value}
+                    <div key={stat.label} className="text-left">
+                      <dt className="text-white text-2xl font-semibold md:text-3xl">
+                        <AnimatedStat
+                          value={stat.value}
+                          suffix={stat.suffix}
+                          prefix={stat.prefix}
+                        />
                       </dt>
                       <dd className="mt-1 text-white/70 normal-case text-sm font-medium">
                         {stat.label}
