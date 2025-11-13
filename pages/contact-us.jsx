@@ -5,11 +5,6 @@ import ContextualReviews from "../components/ContextualReviews";
 import ContextualFAQs from "../components/ContextualFAQs";
 import QuoteForm from "../components/QuoteForm";
 import HeroSection from "../components/HeroSection";
-import dynamic from "next/dynamic";
-
-const ZenbookerEmbed = dynamic(() => import("../components/ZenbookerEmbed"), {
-  ssr: false,
-});
 
 export default function ContactUs() {
   const contactPageSchema = {
@@ -189,7 +184,8 @@ export default function ContactUs() {
             <div className="text-center mb-12">
               <div className="bg-primary-50 border border-primary-200 rounded-lg p-6 max-w-4xl mx-auto text-left">
                 <h2 className="text-2xl font-bold text-[#0f2135] mb-4">
-                  <span className="text-[#8BCB6B]">Why Choose</span> Install It Guy?
+                  <span className="text-[#8BCB6B]">Why Choose</span> Install It
+                  Guy?
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
                   <div>
@@ -364,7 +360,21 @@ export default function ContactUs() {
                   Send Us a Message
                 </h2>
 
-                <ZenbookerEmbed />
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-10 text-center shadow-sm">
+                  <h3 className="text-2xl font-semibold text-[#0f2135] mb-4">
+                    Book online in moments
+                  </h3>
+                  <p className="text-gray-600 mb-6">
+                    Skip the back-and-forth and lock in a visit on our booking
+                    page.
+                  </p>
+                  <a
+                    href="/book-online.html"
+                    className="inline-flex items-center justify-center rounded-full bg-[#8BCB6B] px-6 py-3 text-base font-semibold text-[#0f2135] shadow-md transition hover:bg-[#7bb65f]"
+                  >
+                    Book Online
+                  </a>
+                </div>
               </div>
             </div>
           </div>

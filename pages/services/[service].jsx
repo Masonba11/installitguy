@@ -273,14 +273,17 @@ export default function ServicePage({ service }) {
                 Shelby handyman service
               </p>
               <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight text-white">
-                <span className="text-[#8BCB6B]">{getServiceName(service)}</span> in Shelby, NC done right the first time
+                <span className="text-[#8BCB6B]">
+                  {getServiceName(service)}
+                </span>{" "}
+                in Shelby, NC done right the first time
               </h1>
               <p className="mt-5 text-lg text-slate-100/90 leading-relaxed">
                 {shortDescription}
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
-                  href="#quote-form"
+                  href="/book-online.html"
                   className="inline-flex items-center px-5 py-3 rounded-full font-semibold bg-[#8BCB6B] text-[#0f2135] shadow-md hover:bg-[#7bb65f] transition"
                 >
                   Schedule your project

@@ -181,7 +181,10 @@ export default function FAQs() {
               <span className="text-[#8BCB6B]">About</span> Install It Guy
             </h2>
             <p className="text-gray-600 mb-4">
-              We're a family-owned business serving the Carolinas for over 30 years. Founded and operated by Scott Compton, we've grown from a small local handyman service to a trusted name throughout North and South Carolina.
+              We're a family-owned business serving the Carolinas for over 30
+              years. Founded and operated by Scott Compton, we've grown from a
+              small local handyman service to a trusted name throughout North
+              and South Carolina.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
@@ -189,7 +192,8 @@ export default function FAQs() {
                   30+ Years Experience
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Three decades of serving the Carolinas with expertise and dedication.
+                  Three decades of serving the Carolinas with expertise and
+                  dedication.
                 </p>
               </div>
               <div>
@@ -197,7 +201,8 @@ export default function FAQs() {
                   Lifetime Warranty
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  We proudly back our work with a lifetime customer satisfaction guarantee.
+                  We proudly back our work with a lifetime customer satisfaction
+                  guarantee.
                 </p>
               </div>
               <div>
@@ -205,7 +210,8 @@ export default function FAQs() {
                   Family Values
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  We work hard to provide for our family while serving yours with care.
+                  We work hard to provide for our family while serving yours
+                  with care.
                 </p>
               </div>
             </div>
@@ -219,7 +225,8 @@ export default function FAQs() {
                   className="w-full text-left flex justify-between items-center"
                 >
                   <h3 className="text-lg font-semibold text-[#0f2135] pr-4">
-                    <span className="text-[#8BCB6B]">Q{index + 1}.</span> {faq.question}
+                    <span className="text-[#8BCB6B]">Q{index + 1}.</span>{" "}
+                    {faq.question}
                   </h3>
                   <svg
                     className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${
@@ -260,8 +267,8 @@ export default function FAQs() {
               <a href="tel:+17044199799" className="btn-primary">
                 Call (704) 419-9799
               </a>
-              <a href="#quote-form" className="btn-secondary">
-                Get Free Quote
+              <a href="/book-online.html" className="btn-secondary">
+                Book Online
               </a>
             </div>
           </div>

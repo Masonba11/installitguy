@@ -222,7 +222,8 @@ export default function ServicesIndex() {
                 Installations • Repairs • Maintenance
               </p>
               <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight text-white">
-                <span className="text-[#8BCB6B]">Handyman services</span> built around your punch list
+                <span className="text-[#8BCB6B]">Handyman services</span> built
+                around your punch list
               </h1>
               <p className="mt-5 text-lg text-slate-200 leading-relaxed">
                 From single installs to multi-room refresh projects, we plan the
@@ -231,7 +232,7 @@ export default function ServicesIndex() {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
-                  href="#quote-form"
+                  href="/book-online.html"
                   className="inline-flex items-center rounded-full bg-[#8BCB6B] px-5 py-3 text-sm font-semibold text-[#0f2135] shadow-sm hover:bg-[#7bb65f] transition"
                 >
                   Book a project
@@ -257,12 +258,12 @@ export default function ServicesIndex() {
                 ))}
               </ul>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <a
-                  href="#quote-form"
-                  className="btn-primary inline-flex justify-center"
+                <Link
+                  href="/book-online.html"
+                  className="inline-flex justify-center rounded-full bg-white px-6 py-3 text-base font-semibold text-[#0f2135] shadow-sm transition hover:bg-slate-100"
                 >
-                  Plan your project
-                </a>
+                  Get scheduled →
+                </Link>
                 <span className="text-sm text-slate-200 sm:ml-4">
                   Prefer to talk? Call{" "}
                   <a
@@ -285,7 +286,8 @@ export default function ServicesIndex() {
                 Services
               </p>
               <h2 className="mt-2 text-3xl md:text-4xl font-bold text-[#0f2135]">
-                <span className="text-[#8BCB6B]">Everyday projects</span> we handle start to finish
+                <span className="text-[#8BCB6B]">Everyday projects</span> we
+                handle start to finish
               </h2>
               <p className="mt-4 text-lg text-gray-600">
                 Browse the full list below or filter down to the project you
@@ -310,7 +312,8 @@ export default function ServicesIndex() {
                 North and South Carolina communities we visit every week
               </p>
               <h2 className="mt-2 text-3xl md:text-4xl font-bold text-[#0f2135]">
-                <span className="text-[#8BCB6B]">Why homeowners</span> call Install It Guy
+                <span className="text-[#8BCB6B]">Why homeowners</span> call
+                Install It Guy
               </h2>
               <p className="mt-4 text-lg text-gray-600">
                 Mix and match the services that make sense. We can dedicate an

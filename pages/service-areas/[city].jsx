@@ -226,10 +226,10 @@ export default function ServiceAreaPage({ city }) {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
-                  href="#quote-form"
+                  href="/book-online.html"
                   className="inline-flex items-center rounded-full bg-[#8BCB6B] px-5 py-3 text-sm font-semibold text-[#0f2135] shadow-sm hover:bg-[#7bb65f] transition"
                 >
-                  Request a visit
+                  Book online
                 </a>
                 <Link
                   href="/service-areas"

@@ -323,10 +323,10 @@ export default function ServiceAreaServicePage({ city, service }) {
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
-                  href="#quote-form"
-                  className="inline-flex items-center px-5 py-3 rounded-full font-semibold bg-[#8BCB6B] text-[#0f2135] shadow-md hover:bg-[#7bb65f] transition"
+                  href="/book-online.html"
+                  className="inline-flex items-center rounded-full bg-[#8BCB6B] px-5 py-3 text-sm font-semibold text-[#0f2135] shadow-sm hover:bg-[#7bb65f] transition"
                 >
-                  Get a fast quote
+                  Book this service
                 </Link>
                 <Link
                   href="tel:+17044199799"
