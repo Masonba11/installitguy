@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import Script from "next/script";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 export default function QuoteForm({
@@ -9,7 +8,6 @@ export default function QuoteForm({
 }) {
   const sectionRef = useRef(null);
   const [shouldLoadWidget, setShouldLoadWidget] = useState(false);
-  const [scriptReady, setScriptReady] = useState(false);
 
   const ZenbookEmbed = useMemo(
     () =>
@@ -48,7 +46,10 @@ export default function QuoteForm({
 
     const events = ["pointerdown", "keydown", "scroll"]; // first interaction fallbacks
     events.forEach((event) => {
-      window.addEventListener(event, triggerLoad, { once: true, passive: true });
+      window.addEventListener(event, triggerLoad, {
+        once: true,
+        passive: true,
+      });
     });
 
     return () => {
@@ -57,22 +58,6 @@ export default function QuoteForm({
         window.removeEventListener(event, triggerLoad);
       });
     };
-  }, [shouldLoadWidget]);
-
-  useEffect(() => {
-    if (!shouldLoadWidget) return;
-    const cssId = "zenbooker-widget-css";
-    if (document.getElementById(cssId)) return;
-
-    const link = document.createElement("link");
-    link.id = cssId;
-    link.rel = "stylesheet";
-    link.href = "https://cdn.zenbooker.com/widget/latest/zenbooker.css";
-    link.media = "print";
-    link.onload = () => {
-      link.media = "all";
-    };
-    document.head.appendChild(link);
   }, [shouldLoadWidget]);
 
   return (
@@ -88,20 +73,14 @@ export default function QuoteForm({
         </div>
 
         {shouldLoadWidget ? (
-          <>
-            <Script
-              id="zenbooker-script"
-              src="https://cdn.zenbooker.com/widget/latest/zenbooker.js"
-              strategy="lazyOnload"
-              onLoad={() => setScriptReady(true)}
-            />
-            <ZenbookEmbed ready={scriptReady} />
-          </>
+          <ZenbookEmbed />
         ) : (
           <div className="mx-auto w-full max-w-3xl rounded-2xl border border-slate-200 bg-slate-50 p-10 text-slate-500 shadow-sm">
             <div className="flex h-[650px] flex-col items-center justify-center space-y-4 text-center">
               <span className="inline-flex h-10 w-10 animate-spin items-center justify-center rounded-full border-2 border-slate-300 border-t-primary-500" />
-              <p className="text-lg font-medium">Booking calendar loads once you reach this section.</p>
+              <p className="text-lg font-medium">
+                Booking calendar loads once you reach this section.
+              </p>
               <p className="text-sm text-slate-400">
                 Scroll a little further or tap anywhere to load the scheduler.
               </p>
