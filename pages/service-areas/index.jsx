@@ -99,7 +99,7 @@ export default function ServiceAreasIndex() {
           siteName: "Install It Guy",
           images: [
             {
-              url: "https://installitguy.com/images/installit-guy/herohandyman.png",
+              url: "https://installitguy.com/images/installit-guy/Screenshot%202025-11-12%20at%2012.46.13%E2%80%AFAM.png",
               width: 1200,
               height: 630,
               alt: "Install It Guy Service Areas",

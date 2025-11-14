@@ -148,7 +148,7 @@ export default function ServicePage({ service }) {
             {
               url: heroImage
                 ? `https://installitguy.com/images/installit-guy/${heroImage}`
-                : "https://installitguy.com/images/installit-guy/herohandyman.png",
+                : "https://installitguy.com/images/installit-guy/Screenshot%202025-11-12%20at%2012.46.13%E2%80%AFAM.png",
               width: 1200,
               height: 630,
               alt: `${getServiceName(service)} - Install It Guy`,
