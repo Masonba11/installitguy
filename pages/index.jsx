@@ -13,6 +13,7 @@ import {
 import dynamic from "next/dynamic";
 import HeroSection from "../components/HeroSection";
 import { generateLocalBusinessSchema } from "../utils/schemaHelpers";
+import { truncateMetaDescription } from "../utils/metaHelpers";
 
 const Reviews = dynamic(() => import("../components/Reviews"), {
   ssr: false,
@@ -89,13 +90,16 @@ export default function Home() {
     <>
       <NextSeo
         title="Shelby Handyman & Home Repairs | Install It Guy"
-        description="Family-owned handyman service in Shelby NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty."
+        description={truncateMetaDescription(
+          "Family-owned handyman service in Shelby NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty."
+        )}
         canonical="https://installitguy.com"
         openGraph={{
           url: "https://installitguy.com",
           title: "Shelby Handyman & Home Repairs | Install It Guy",
-          description:
-            "Family-owned handyman service in Shelby NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty.",
+          description: truncateMetaDescription(
+            "Family-owned handyman service in Shelby NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty."
+          ),
           siteName: "Install It Guy",
           images: [
             {

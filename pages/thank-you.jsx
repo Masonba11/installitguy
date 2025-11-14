@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
 import HeroSection from "../components/HeroSection";
+import { truncateMetaDescription } from "../utils/metaHelpers";
 
 export default function ThankYou() {
   const router = useRouter();
@@ -144,7 +145,9 @@ export default function ThankYou() {
     <>
       <NextSeo
         title="Thank You | Install It Guy"
-        description="Thank you for your interest in our handyman services. We'll be in touch soon!"
+        description={truncateMetaDescription(
+          "Thank you for your interest in our handyman services. We'll be in touch soon!"
+        )}
         noindex={true}
         nofollow={true}
       />

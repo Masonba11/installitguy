@@ -2,6 +2,7 @@ import { NextSeo } from "next-seo";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HeroSection from "../components/HeroSection";
+import { truncateMetaDescription } from "../utils/metaHelpers";
 import Link from "next/link";
 
 export default function Investors() {
@@ -9,13 +10,16 @@ export default function Investors() {
     <>
       <NextSeo
         title="Investor Information | Install It Guy"
-        description="Investment opportunities with Install It Guy - a trusted handyman service with 30+ years of experience serving the Carolinas."
+        description={truncateMetaDescription(
+          "Investment opportunities with Install It Guy - a trusted handyman service with 30+ years of experience serving the Carolinas."
+        )}
         canonical="https://installitguy.com/investors"
         openGraph={{
           url: "https://installitguy.com/investors",
           title: "Investor Information | Install It Guy",
-          description:
-            "Investment opportunities with Install It Guy - a trusted handyman service with 30+ years of experience.",
+          description: truncateMetaDescription(
+            "Investment opportunities with Install It Guy - a trusted handyman service with 30+ years of experience serving the Carolinas."
+          ),
           siteName: "Install It Guy",
         }}
         noindex={true}
@@ -29,8 +33,9 @@ export default function Investors() {
             "@context": "https://schema.org",
             "@type": "WebPage",
             name: "Investor Information | Install It Guy",
-            description:
-              "Investment opportunities with Install It Guy - a trusted handyman service with 30+ years of experience serving the Carolinas.",
+            description: truncateMetaDescription(
+              "Investment opportunities with Install It Guy - a trusted handyman service with 30+ years of experience serving the Carolinas."
+            ),
             url: "https://installitguy.com/investors",
             mainEntity: {
               "@type": "Organization",

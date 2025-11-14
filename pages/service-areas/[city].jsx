@@ -20,6 +20,7 @@ import {
 import dynamic from "next/dynamic";
 import HeroSection from "../../components/HeroSection";
 import { generateLocalBusinessSchema } from "../../utils/schemaHelpers";
+import { truncateMetaDescription } from "../../utils/metaHelpers";
 
 const ContextualReviews = dynamic(
   () => import("../../components/ContextualReviews"),
@@ -96,7 +97,7 @@ export default function ServiceAreaPage({ city }) {
     ...generateLocalBusinessSchema({
       type: "city",
       cityName: getCityName(city),
-      description: metaInfo.meta_description,
+      description: truncateMetaDescription(metaInfo.meta_description),
     }),
     url: metaInfo.url,
   };
@@ -150,12 +151,12 @@ export default function ServiceAreaPage({ city }) {
     <>
       <NextSeo
         title={metaInfo.page_title}
-        description={metaInfo.meta_description}
+        description={truncateMetaDescription(metaInfo.meta_description)}
         canonical={metaInfo.url}
         openGraph={{
           url: metaInfo.url,
           title: metaInfo.page_title,
-          description: metaInfo.meta_description,
+          description: truncateMetaDescription(metaInfo.meta_description),
           siteName: "Install It Guy",
           images: [
             {

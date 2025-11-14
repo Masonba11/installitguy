@@ -6,6 +6,7 @@ import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HeroSection from "../components/HeroSection";
+import { truncateMetaDescription } from "../utils/metaHelpers";
 
 export default function Gallery({ images }) {
   const trackRef = useRef(null);
@@ -36,13 +37,16 @@ export default function Gallery({ images }) {
     <>
       <NextSeo
         title="Project Gallery | Install It Guy"
-        description="Browse real Install It Guy projects across the Charlotte region. View completed installs, repairs, and upgrades captured on site."
+        description={truncateMetaDescription(
+          "Browse real Install It Guy projects across the Charlotte region. View completed installs, repairs, and upgrades captured on site."
+        )}
         canonical="https://installitguy.com/gallery"
         openGraph={{
           url: "https://installitguy.com/gallery",
           title: "Project Gallery | Install It Guy",
-          description:
-            "Browse real Install It Guy projects across the Charlotte region. View completed installs, repairs, and upgrades captured on site.",
+          description: truncateMetaDescription(
+            "Browse real Install It Guy projects across the Charlotte region. View completed installs, repairs, and upgrades captured on site."
+          ),
           siteName: "Install It Guy",
           images: [
             {

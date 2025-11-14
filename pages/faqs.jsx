@@ -5,6 +5,7 @@ import ContextualReviews from "../components/ContextualReviews";
 import ContextualFAQs from "../components/ContextualFAQs";
 import QuoteForm from "../components/QuoteForm";
 import HeroSection from "../components/HeroSection";
+import { truncateMetaDescription } from "../utils/metaHelpers";
 import { useState } from "react";
 import { orderedServiceSlugs, servicesContent } from "../data/servicesContent";
 
@@ -105,13 +106,16 @@ export default function FAQs() {
     <>
       <NextSeo
         title="Handyman FAQs | Install It Guy Shelby NC"
-        description="Common handyman questions for Shelby NC homeowners. Fast, local answers."
+        description={truncateMetaDescription(
+          "Common handyman questions for Shelby NC homeowners. Fast, local answers."
+        )}
         canonical="https://installitguy.com/faqs"
         openGraph={{
           url: "https://installitguy.com/faqs",
           title: "Handyman FAQs | Install It Guy Shelby NC",
-          description:
-            "Common handyman questions for Shelby NC homeowners. Fast, local answers.",
+          description: truncateMetaDescription(
+            "Common handyman questions for Shelby NC homeowners. Fast, local answers."
+          ),
           siteName: "Install It Guy",
           images: [
             {

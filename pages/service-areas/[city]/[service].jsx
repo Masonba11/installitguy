@@ -23,6 +23,7 @@ import {
 import dynamic from "next/dynamic";
 import HeroSection from "../../../components/HeroSection";
 import { generateServiceSchema } from "../../../utils/schemaHelpers";
+import { truncateMetaDescription } from "../../../utils/metaHelpers";
 
 const ContextualReviews = dynamic(
   () => import("../../../components/ContextualReviews"),
@@ -97,7 +98,9 @@ export default function ServiceAreaServicePage({ city, service }) {
     ? {
         url: canonicalUrl,
         page_title: `${servicesContent[service].name} in ${cityFullName} | Install It Guy`,
-        meta_description: `${servicesContent[service].longDescription} Serving ${cityFullName} and nearby communities with trusted Install It Guy craftsmanship.`,
+        meta_description: truncateMetaDescription(
+          `${servicesContent[service].longDescription} Serving ${cityFullName} and nearby communities with trusted Install It Guy craftsmanship.`
+        ),
         primary_keyword: `${servicesContent[
           service
         ].name.toLowerCase()} ${cityName.toLowerCase()}`,
@@ -116,7 +119,7 @@ export default function ServiceAreaServicePage({ city, service }) {
 
   const cityServiceSchema = generateServiceSchema({
     serviceName: getServiceName(service),
-    description: metaInfo.meta_description,
+    description: truncateMetaDescription(metaInfo.meta_description),
     url: metaInfo.url,
     areaServed: cityFullName,
     heroImage: heroImage,
@@ -157,12 +160,12 @@ export default function ServiceAreaServicePage({ city, service }) {
     <>
       <NextSeo
         title={metaInfo.page_title}
-        description={metaInfo.meta_description}
+        description={truncateMetaDescription(metaInfo.meta_description)}
         canonical={metaInfo.url}
         openGraph={{
           url: metaInfo.url,
           title: metaInfo.page_title,
-          description: metaInfo.meta_description,
+          description: truncateMetaDescription(metaInfo.meta_description),
           siteName: "Install It Guy",
           images: [
             {

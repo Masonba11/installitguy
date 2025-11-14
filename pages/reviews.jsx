@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import Reviews from "../components/Reviews";
 import ContextualFAQs from "../components/ContextualFAQs";
 import HeroSection from "../components/HeroSection";
+import { truncateMetaDescription } from "../utils/metaHelpers";
 import Link from "next/link";
 
 export default function ReviewsPage() {
@@ -39,13 +40,16 @@ export default function ReviewsPage() {
     <>
       <NextSeo
         title="Customer Reviews | Install It Guy Shelby NC"
-        description="See real reviews from Shelby NC homeowners who trust Install It Guy for quality handyman services, TV mounting, and home repairs."
+        description={truncateMetaDescription(
+          "See real reviews from Shelby NC homeowners who trust Install It Guy for quality handyman services, TV mounting, and home repairs."
+        )}
         canonical="https://installitguy.com/reviews"
         openGraph={{
           url: "https://installitguy.com/reviews",
           title: "Customer Reviews | Install It Guy Shelby NC",
-          description:
-            "See real reviews from Shelby NC homeowners who trust Install It Guy for quality handyman services, TV mounting, and home repairs.",
+          description: truncateMetaDescription(
+            "See real reviews from Shelby NC homeowners who trust Install It Guy for quality handyman services, TV mounting, and home repairs."
+          ),
           siteName: "Install It Guy",
           images: [
             {

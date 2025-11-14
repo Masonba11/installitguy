@@ -2,6 +2,7 @@ import { NextSeo } from "next-seo";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import HeroSection from "../../components/HeroSection";
+import { truncateMetaDescription } from "../../utils/metaHelpers";
 import Link from "next/link";
 import LocalBusinessSchema from "../../components/LocalBusinessSchema";
 
@@ -79,13 +80,16 @@ export default function AdditionalServices() {
     <>
       <NextSeo
         title="Additional Services | Install It Guy | Shelby, NC"
-        description="Additional handyman services including storm door installation, microwave installation, wire concealment, picture hanging, curved shower rods, and chandelier installation."
+        description={truncateMetaDescription(
+          "Additional handyman services including storm door installation, microwave installation, wire concealment, picture hanging, curved shower rods, and chandelier installation."
+        )}
         canonical="https://installitguy.com/services/additional-services"
         openGraph={{
           url: "https://installitguy.com/services/additional-services",
           title: "Additional Services | Install It Guy",
-          description:
-            "Professional installation services for storm doors, microwaves, wire concealment, picture hanging, curved shower rods, and chandeliers.",
+          description: truncateMetaDescription(
+            "Professional installation services for storm doors, microwaves, wire concealment, picture hanging, curved shower rods, and chandeliers."
+          ),
           siteName: "Install It Guy",
         }}
       />
@@ -99,8 +103,9 @@ export default function AdditionalServices() {
             "@context": "https://schema.org",
             "@type": "Service",
             name: "Additional Handyman Services",
-            description:
-              "Professional installation services including storm doors, microwaves, wire concealment, picture hanging, curved shower rods, and chandeliers.",
+            description: truncateMetaDescription(
+              "Professional installation services including storm doors, microwaves, wire concealment, picture hanging, curved shower rods, and chandeliers."
+            ),
             provider: {
               "@type": "LocalBusiness",
               name: "Install It Guy",

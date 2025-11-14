@@ -17,6 +17,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import HeroSection from "../../components/HeroSection";
 import { generateServiceSchema } from "../../utils/schemaHelpers";
+import { truncateMetaDescription } from "../../utils/metaHelpers";
 
 const ContextualReviews = dynamic(
   () => import("../../components/ContextualReviews"),
@@ -92,11 +93,12 @@ export default function ServicePage({ service }) {
   const heroImage = getServiceHeroImage(service);
 
   // Service description should reference Shelby NC
-  const serviceDescription = metaInfo.meta_description.includes("Shelby")
+  const fullDescription = metaInfo.meta_description.includes("Shelby")
     ? metaInfo.meta_description
     : `${getServiceName(service)} services in Shelby NC. ${
         metaInfo.meta_description
       }`;
+  const serviceDescription = truncateMetaDescription(fullDescription);
 
   const serviceSchema = generateServiceSchema({
     serviceName: getServiceName(service),
@@ -135,12 +137,12 @@ export default function ServicePage({ service }) {
     <>
       <NextSeo
         title={metaInfo.page_title}
-        description={metaInfo.meta_description}
+        description={truncateMetaDescription(metaInfo.meta_description)}
         canonical={metaInfo.url}
         openGraph={{
           url: metaInfo.url,
           title: metaInfo.page_title,
-          description: metaInfo.meta_description,
+          description: truncateMetaDescription(metaInfo.meta_description),
           siteName: "Install It Guy",
           images: [
             {

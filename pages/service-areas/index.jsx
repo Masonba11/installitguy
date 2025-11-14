@@ -15,6 +15,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import HeroSection from "../../components/HeroSection";
 import { generateLocalBusinessSchema } from "../../utils/schemaHelpers";
+import { truncateMetaDescription } from "../../utils/metaHelpers";
 
 const Reviews = dynamic(() => import("../../components/Reviews"), {
   ssr: false,
@@ -87,12 +88,14 @@ export default function ServiceAreasIndex() {
     <>
       <NextSeo
         title="Service Areas | Install It Guy"
-        description="Install It Guy proudly serves homeowners across North and South Carolina. Explore the towns and neighborhoods we visit every week."
+        description={truncateMetaDescription(
+          "Install It Guy proudly serves homeowners across North and South Carolina. Explore the towns and neighborhoods we visit every week."
+        )}
         canonical="https://installitguy.com/service-areas"
         openGraph={{
           url: "https://installitguy.com/service-areas",
           title: "Service Areas | Install It Guy",
-          description: serviceAreaCoverageText,
+          description: truncateMetaDescription(serviceAreaCoverageText),
           siteName: "Install It Guy",
           images: [
             {
@@ -119,7 +122,7 @@ export default function ServiceAreasIndex() {
             "@context": "https://schema.org",
             ...generateLocalBusinessSchema({
               type: "global",
-              description: serviceAreaCoverageText,
+              description: truncateMetaDescription(serviceAreaCoverageText),
             }),
           }),
         }}

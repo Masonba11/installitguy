@@ -1,4 +1,5 @@
 import { NextSeo } from "next-seo";
+import { truncateMetaDescription } from "../utils/metaHelpers";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
@@ -44,7 +45,9 @@ export default function Custom404() {
     <>
       <NextSeo
         title="Page Not Found | Install It Guy"
-        description="The page you're looking for doesn't exist. Find the handyman services you need with Install It Guy."
+        description={truncateMetaDescription(
+          "The page you're looking for doesn't exist. Find the handyman services you need with Install It Guy."
+        )}
         noindex={true}
         nofollow={true}
       />

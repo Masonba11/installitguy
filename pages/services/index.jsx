@@ -11,6 +11,7 @@ import dynamic from "next/dynamic";
 import HeroSection from "../../components/HeroSection";
 import Link from "next/link";
 import { generateLocalBusinessSchema } from "../../utils/schemaHelpers";
+import { truncateMetaDescription } from "../../utils/metaHelpers";
 
 const Reviews = dynamic(() => import("../../components/Reviews"), {
   ssr: false,
@@ -106,13 +107,16 @@ export default function ServicesIndex() {
     <>
       <NextSeo
         title="Handyman Services in Shelby, NC | Install It Guy"
-        description="Explore our full list of handyman services in Shelby NC. From installations to repairs, Install It Guy delivers professional results."
+        description={truncateMetaDescription(
+          "Explore our full list of handyman services in Shelby NC. From installations to repairs, Install It Guy delivers professional results."
+        )}
         canonical="https://installitguy.com/services"
         openGraph={{
           url: "https://installitguy.com/services",
           title: "Our Services | Install It Guy",
-          description:
-            "Professional handyman services including TV mounting, ceiling fan installation, lighting installation, epoxy flooring, and more. Quality work guaranteed.",
+          description: truncateMetaDescription(
+            "Professional handyman services including TV mounting, ceiling fan installation, lighting installation, epoxy flooring, and more. Quality work guaranteed."
+          ),
           siteName: "Install It Guy",
           images: [
             {

@@ -5,6 +5,7 @@ import ContextualReviews from "../components/ContextualReviews";
 import ContextualFAQs from "../components/ContextualFAQs";
 import QuoteForm from "../components/QuoteForm";
 import HeroSection from "../components/HeroSection";
+import { truncateMetaDescription } from "../utils/metaHelpers";
 
 export default function ContactUs() {
   const contactPageSchema = {
@@ -46,13 +47,16 @@ export default function ContactUs() {
     <>
       <NextSeo
         title="Contact Install It Guy | Shelby Handyman Services"
-        description="Reach Install It Guy in Shelby NC. Call or message for fast handyman service."
+        description={truncateMetaDescription(
+          "Reach Install It Guy in Shelby NC. Call or message for fast handyman service."
+        )}
         canonical="https://installitguy.com/contact-us"
         openGraph={{
           url: "https://installitguy.com/contact-us",
           title: "Contact Install It Guy | Shelby Handyman Services",
-          description:
-            "Reach Install It Guy in Shelby NC. Call or message for fast handyman service.",
+          description: truncateMetaDescription(
+            "Reach Install It Guy in Shelby NC. Call or message for fast handyman service."
+          ),
           siteName: "Install It Guy",
           images: [
             {
