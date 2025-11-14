@@ -11,10 +11,10 @@ import {
   serviceAreas as allServiceAreas,
   serviceAreasByState,
 } from "../../data/serviceAreas";
-import LocalBusinessSchema from "../../components/LocalBusinessSchema";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import HeroSection from "../../components/HeroSection";
+import { generateLocalBusinessSchema } from "../../utils/schemaHelpers";
 
 const Reviews = dynamic(() => import("../../components/Reviews"), {
   ssr: false,
@@ -112,7 +112,18 @@ export default function ServiceAreasIndex() {
         ]}
       />
 
-      <LocalBusinessSchema />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            ...generateLocalBusinessSchema({
+              type: "global",
+              description: serviceAreaCoverageText,
+            }),
+          }),
+        }}
+      />
 
       <script
         type="application/ld+json"

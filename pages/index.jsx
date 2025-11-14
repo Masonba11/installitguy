@@ -12,6 +12,7 @@ import {
 } from "../data/serviceAreas";
 import dynamic from "next/dynamic";
 import HeroSection from "../components/HeroSection";
+import { generateLocalBusinessSchema } from "../utils/schemaHelpers";
 
 const Reviews = dynamic(() => import("../components/Reviews"), {
   ssr: false,
@@ -76,106 +77,12 @@ export default function Home() {
   ];
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "Install It Guy",
-    image: "https://installitguy.com/images/installit-guy/herohandyman.png",
-    logo: "https://installitguy.com/images/installit-guy/Screenshot%202025-11-12%20at%2012.46.13%E2%80%AFAM.png",
-    description:
-      "Family-owned handyman service in Shelby NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty.",
-    url: "https://installitguy.com",
-    telephone: "+1-704-419-9799",
-    email: "info@installitguy.com",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "210 Joseph Ct",
-      addressLocality: "Shelby",
-      addressRegion: "NC",
-      postalCode: "28152",
-      addressCountry: "US",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "35.2921",
-      longitude: "-81.5357",
-    },
+    ...generateLocalBusinessSchema({
+      type: "global",
+      description:
+        "Family-owned handyman service in Shelby NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty.",
+    }),
     hasMap: "https://www.google.com/maps/place/Install+It+Guy/",
-    areaServed: [
-      {
-        "@type": "City",
-        name: "Charlotte, NC",
-      },
-      {
-        "@type": "City",
-        name: "Concord, NC",
-      },
-      {
-        "@type": "City",
-        name: "Rock Hill, SC",
-      },
-      {
-        "@type": "City",
-        name: "Gastonia, NC",
-      },
-      {
-        "@type": "City",
-        name: "Hickory, NC",
-      },
-      {
-        "@type": "City",
-        name: "Shelby, NC",
-      },
-      {
-        "@type": "City",
-        name: "Lincolnton, NC",
-      },
-      {
-        "@type": "City",
-        name: "Gaffney, SC",
-      },
-      {
-        "@type": "City",
-        name: "Kings Mountain, NC",
-      },
-      {
-        "@type": "City",
-        name: "Forest City, NC",
-      },
-    ],
-    makesOffer: serviceNames.map((name) => ({
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: name,
-      },
-    })),
-    openingHours: ["Mo-Fr 09:00-17:00", "Sa 10:00-14:00"],
-    priceRange: "$$",
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      reviewCount: "240",
-    },
-    sameAs: [
-      "https://www.facebook.com/installitguy",
-      "https://www.instagram.com/installitguy",
-      "https://www.yelp.com/biz/install-it-guy-shelby",
-    ],
-    foundingDate: "1994",
-    numberOfEmployees: "1-10",
-    slogan: "Quality installs, fast repairs, fair prices",
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "Handyman Services",
-      itemListElement: services.map((slug, index) => ({
-        "@type": "Offer",
-        position: index + 1,
-        itemOffered: {
-          "@type": "Service",
-          name: servicesContent[slug].name,
-          description: servicesContent[slug].longDescription,
-        },
-      })),
-    },
   };
 
   return (

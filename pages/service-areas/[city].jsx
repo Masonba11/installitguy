@@ -5,7 +5,6 @@ import QuoteForm from "../../components/QuoteForm";
 import ServiceCard from "../../components/ServiceCard";
 import Link from "next/link";
 import Image from "next/image";
-import LocalBusinessSchema from "../../components/LocalBusinessSchema";
 import metaData from "../../data/metaData.json";
 import {
   orderedServiceSlugs,
@@ -20,6 +19,7 @@ import {
 } from "../../data/serviceAreas";
 import dynamic from "next/dynamic";
 import HeroSection from "../../components/HeroSection";
+import { generateLocalBusinessSchema } from "../../utils/schemaHelpers";
 
 const ContextualReviews = dynamic(
   () => import("../../components/ContextualReviews"),
@@ -93,40 +93,12 @@ export default function ServiceAreaPage({ city }) {
 
   const cityBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "Install It Guy",
-    image: "https://installitguy.com/images/installit-guy/herohandyman.png",
-    logo: "https://installitguy.com/images/installit-guy/Screenshot%202025-11-12%20at%2012.46.13%E2%80%AFAM.png",
-    description: metaInfo.meta_description,
+    ...generateLocalBusinessSchema({
+      type: "city",
+      cityName: getCityName(city),
+      description: metaInfo.meta_description,
+    }),
     url: metaInfo.url,
-    telephone: "+17044199799",
-    email: "info@installitguy.com",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "210 Joseph Ct",
-      addressLocality: "Shelby",
-      addressRegion: "NC",
-      postalCode: "28152",
-      addressCountry: "US",
-    },
-    areaServed: {
-      "@type": "City",
-      name: getCityName(city),
-    },
-    makesOffer: services.map((slug) => ({
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: servicesContent[slug].name,
-      },
-    })),
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      reviewCount: "240",
-      bestRating: "5",
-      worstRating: "1",
-    },
   };
 
   const faqEntities = [
@@ -200,11 +172,6 @@ export default function ServiceAreaPage({ city }) {
             content: metaInfo.primary_keyword,
           },
         ]}
-      />
-
-      <LocalBusinessSchema
-        areaName={getCityName(city)}
-        description={metaInfo.meta_description}
       />
 
       <script

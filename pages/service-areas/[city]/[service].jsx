@@ -4,7 +4,6 @@ import Footer from "../../../components/Footer";
 import QuoteForm from "../../../components/QuoteForm";
 import Link from "next/link";
 import Image from "next/image";
-import LocalBusinessSchema from "../../../components/LocalBusinessSchema";
 import metaData from "../../../data/metaData.json";
 import {
   getServiceName,
@@ -23,6 +22,7 @@ import {
 } from "../../../data/serviceAreas";
 import dynamic from "next/dynamic";
 import HeroSection from "../../../components/HeroSection";
+import { generateServiceSchema } from "../../../utils/schemaHelpers";
 
 const ContextualReviews = dynamic(
   () => import("../../../components/ContextualReviews"),
@@ -114,65 +114,13 @@ export default function ServiceAreaServicePage({ city, service }) {
     return <div>Page not found</div>;
   }
 
-  const cityServiceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: `${getServiceName(service)} in ${cityFullName}`,
+  const cityServiceSchema = generateServiceSchema({
+    serviceName: getServiceName(service),
     description: metaInfo.meta_description,
     url: metaInfo.url,
-    category: "Home Improvement",
-    areaServed: {
-      "@type": "Place",
-      name: cityFullName,
-    },
-    provider: {
-      "@type": "LocalBusiness",
-      name: "Install It Guy",
-      image: heroImage
-        ? `https://installitguy.com/images/installit-guy/${heroImage}`
-        : "https://installitguy.com/images/installit-guy/herohandyman.png",
-      logo: "https://installitguy.com/images/installit-guy/Screenshot%202025-11-12%20at%2012.46.13%E2%80%AFAM.png",
-      url: "https://installitguy.com",
-      telephone: "+1-704-419-9799",
-      email: "info@installitguy.com",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "210 Joseph Ct",
-        addressLocality: "Shelby",
-        addressRegion: "NC",
-        postalCode: "28152",
-        addressCountry: "US",
-      },
-      areaServed: {
-        "@type": "City",
-        name: cityFullName,
-      },
-      makesOffer: [
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: getServiceName(service),
-          },
-        },
-      ],
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.8",
-        reviewCount: "240",
-        bestRating: "5",
-        worstRating: "1",
-      },
-    },
-    offers: {
-      "@type": "Offer",
-      price: "99.00",
-      priceCurrency: "USD",
-      availability: "InStock",
-      url: metaInfo.url,
-      description: servicesContent[service]?.longDescription,
-    },
-  };
+    areaServed: cityFullName,
+    heroImage: heroImage,
+  });
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -235,12 +183,6 @@ export default function ServiceAreaServicePage({ city, service }) {
             content: metaInfo.primary_keyword,
           },
         ]}
-      />
-
-      <LocalBusinessSchema
-        serviceName={getServiceName(service)}
-        areaName={cityFullName}
-        description={metaInfo.meta_description}
       />
 
       <script

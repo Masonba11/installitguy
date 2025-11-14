@@ -7,10 +7,10 @@ import {
   orderedServiceSlugs,
   servicesContent,
 } from "../../data/servicesContent";
-import LocalBusinessSchema from "../../components/LocalBusinessSchema";
 import dynamic from "next/dynamic";
 import HeroSection from "../../components/HeroSection";
 import Link from "next/link";
+import { generateLocalBusinessSchema } from "../../utils/schemaHelpers";
 
 const Reviews = dynamic(() => import("../../components/Reviews"), {
   ssr: false,
@@ -132,7 +132,19 @@ export default function ServicesIndex() {
         ]}
       />
 
-      <LocalBusinessSchema />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            ...generateLocalBusinessSchema({
+              type: "global",
+              description:
+                "Professional handyman services including TV mounting, ceiling fan installation, lighting installation, epoxy flooring, and more. Quality work guaranteed.",
+            }),
+          }),
+        }}
+      />
 
       <script
         type="application/ld+json"
