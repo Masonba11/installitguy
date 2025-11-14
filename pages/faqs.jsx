@@ -113,6 +113,14 @@ export default function FAQs() {
           description:
             "Common handyman questions for Shelby NC homeowners. Fast, local answers.",
           siteName: "Install It Guy",
+          images: [
+            {
+              url: "https://installitguy.com/images/installit-guy/herohandyman.png",
+              width: 1200,
+              height: 630,
+              alt: "Install It Guy FAQs",
+            },
+          ],
         }}
       />
 

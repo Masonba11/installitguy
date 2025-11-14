@@ -38,6 +38,21 @@ export default function Gallery({ images }) {
         title="Project Gallery | Install It Guy"
         description="Browse real Install It Guy projects across the Charlotte region. View completed installs, repairs, and upgrades captured on site."
         canonical="https://installitguy.com/gallery"
+        openGraph={{
+          url: "https://installitguy.com/gallery",
+          title: "Project Gallery | Install It Guy",
+          description:
+            "Browse real Install It Guy projects across the Charlotte region. View completed installs, repairs, and upgrades captured on site.",
+          siteName: "Install It Guy",
+          images: [
+            {
+              url: "https://installitguy.com/images/installit-guy/herohandyman.png",
+              width: 1200,
+              height: 630,
+              alt: "Install It Guy Project Gallery",
+            },
+          ],
+        }}
       />
 
       <Header />

@@ -101,7 +101,7 @@ export default function ThankYou() {
           name: "Forest City, NC",
         },
       ],
-      serviceType: [
+      makesOffer: [
         "TV Mounting",
         "Ceiling Fan Installation",
         "Lighting Installation",
@@ -113,15 +113,20 @@ export default function ThankYou() {
         "Mirror & Towel Bar Installation",
         "Door Installation",
         "Deck & Fence Repair",
-        "Water Leak Repair",
         "Garbage Disposal Installation",
         "Shelving Installation",
         "Painting Services",
         "Flooring Installation",
         "Furniture Assembly",
-        "Fence Installation",
-        "Gutter Cleaning",
-      ],
+        "Home Maintenance",
+        "Epoxy Flooring",
+      ].map((name) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: name,
+        },
+      })),
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: "4.8",
@@ -253,7 +258,9 @@ export default function ThankYou() {
 
               <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
                 <h2 className="text-2xl font-bold text-[#0f2135] mb-4">
-                  <span className="text-[#8BCB6B]">Need Immediate Assistance?</span>
+                  <span className="text-[#8BCB6B]">
+                    Need Immediate Assistance?
+                  </span>
                 </h2>
                 <p className="text-gray-600 mb-6">
                   For urgent repairs or same-day service, call us directly:

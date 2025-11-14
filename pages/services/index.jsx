@@ -114,6 +114,14 @@ export default function ServicesIndex() {
           description:
             "Professional handyman services including TV mounting, ceiling fan installation, lighting installation, epoxy flooring, and more. Quality work guaranteed.",
           siteName: "Install It Guy",
+          images: [
+            {
+              url: "https://installitguy.com/images/installit-guy/herohandyman.png",
+              width: 1200,
+              height: 630,
+              alt: "Install It Guy Services",
+            },
+          ],
         }}
         additionalMetaTags={[
           {

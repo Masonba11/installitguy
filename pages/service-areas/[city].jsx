@@ -95,6 +95,8 @@ export default function ServiceAreaPage({ city }) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "Install It Guy",
+    image: "https://installitguy.com/images/installit-guy/herohandyman.png",
+    logo: "https://installitguy.com/images/installit-guy/Screenshot%202025-11-12%20at%2012.46.13%E2%80%AFAM.png",
     description: metaInfo.meta_description,
     url: metaInfo.url,
     telephone: "+17044199799",
@@ -111,7 +113,20 @@ export default function ServiceAreaPage({ city }) {
       "@type": "City",
       name: getCityName(city),
     },
-    serviceType: services.map((slug) => servicesContent[slug].name),
+    makesOffer: services.map((slug) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: servicesContent[slug].name,
+      },
+    })),
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "240",
+      bestRating: "5",
+      worstRating: "1",
+    },
   };
 
   const faqEntities = [
@@ -170,6 +185,14 @@ export default function ServiceAreaPage({ city }) {
           title: metaInfo.page_title,
           description: metaInfo.meta_description,
           siteName: "Install It Guy",
+          images: [
+            {
+              url: "https://installitguy.com/images/installit-guy/herohandyman.png",
+              width: 1200,
+              height: 630,
+              alt: `Install It Guy Handyman Services in ${getCityName(city)}`,
+            },
+          ],
         }}
         additionalMetaTags={[
           {

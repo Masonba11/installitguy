@@ -54,6 +54,14 @@ export default function ContactUs() {
           description:
             "Reach Install It Guy in Shelby NC. Call or message for fast handyman service.",
           siteName: "Install It Guy",
+          images: [
+            {
+              url: "https://installitguy.com/images/installit-guy/herohandyman.png",
+              width: 1200,
+              height: 630,
+              alt: "Contact Install It Guy",
+            },
+          ],
         }}
       />
 

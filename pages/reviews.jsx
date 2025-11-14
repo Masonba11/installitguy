@@ -47,6 +47,14 @@ export default function ReviewsPage() {
           description:
             "See real reviews from Shelby NC homeowners who trust Install It Guy for quality handyman services, TV mounting, and home repairs.",
           siteName: "Install It Guy",
+          images: [
+            {
+              url: "https://installitguy.com/images/installit-guy/herohandyman.png",
+              width: 1200,
+              height: 630,
+              alt: "Install It Guy Customer Reviews",
+            },
+          ],
         }}
         additionalMetaTags={[
           {

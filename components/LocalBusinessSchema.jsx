@@ -45,7 +45,13 @@ const BASE_LOCAL_BUSINESS_SCHEMA = {
     "@type": "City",
     name,
   })),
-  serviceType: serviceNames,
+  makesOffer: serviceNames.map((name) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: name,
+    },
+  })),
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "4.8",
@@ -58,10 +64,22 @@ export default function LocalBusinessSchema({
   areaName,
   description,
 }) {
+  const makesOffer = serviceName
+    ? [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: serviceName,
+          },
+        },
+      ]
+    : BASE_LOCAL_BUSINESS_SCHEMA.makesOffer;
+
   const schema = {
     ...BASE_LOCAL_BUSINESS_SCHEMA,
     description: description || BASE_LOCAL_BUSINESS_SCHEMA.description,
-    serviceType: serviceName ? [serviceName] : serviceNames,
+    makesOffer: makesOffer,
     areaServed: areaName
       ? [
           {

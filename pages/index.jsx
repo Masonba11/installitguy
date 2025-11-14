@@ -78,6 +78,8 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "Install It Guy",
+    image: "https://installitguy.com/images/installit-guy/herohandyman.png",
+    logo: "https://installitguy.com/images/installit-guy/Screenshot%202025-11-12%20at%2012.46.13%E2%80%AFAM.png",
     description:
       "Family-owned handyman service in Shelby NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty.",
     url: "https://installitguy.com",
@@ -139,7 +141,13 @@ export default function Home() {
         name: "Forest City, NC",
       },
     ],
-    serviceType: serviceNames,
+    makesOffer: serviceNames.map((name) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: name,
+      },
+    })),
     openingHours: ["Mo-Fr 09:00-17:00", "Sa 10:00-14:00"],
     priceRange: "$$",
     aggregateRating: {
@@ -182,6 +190,14 @@ export default function Home() {
           description:
             "Family-owned handyman service in Shelby NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty.",
           siteName: "Install It Guy",
+          images: [
+            {
+              url: "https://installitguy.com/images/installit-guy/herohandyman.png",
+              width: 1200,
+              height: 630,
+              alt: "Install It Guy - Professional Handyman Services",
+            },
+          ],
         }}
         additionalMetaTags={[
           {

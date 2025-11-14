@@ -97,7 +97,6 @@ export default function ServicePage({ service }) {
     name: `${getServiceName(service)} Service`,
     description: metaInfo.meta_description,
     url: metaInfo.url,
-    serviceType: getServiceName(service),
     category: "Home Improvement",
     areaServed: {
       "@type": "Place",
@@ -106,6 +105,10 @@ export default function ServicePage({ service }) {
     provider: {
       "@type": "LocalBusiness",
       name: "Install It Guy",
+      image: heroImage
+        ? `https://installitguy.com/images/installit-guy/${heroImage}`
+        : "https://installitguy.com/images/installit-guy/herohandyman.png",
+      logo: "https://installitguy.com/images/installit-guy/Screenshot%202025-11-12%20at%2012.46.13%E2%80%AFAM.png",
       url: "https://installitguy.com",
       telephone: "+1-704-419-9799",
       email: "info@installitguy.com",
@@ -129,6 +132,22 @@ export default function ServicePage({ service }) {
         "Kings Mountain, NC",
         "Forest City, NC",
       ],
+      makesOffer: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: getServiceName(service),
+          },
+        },
+      ],
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.8",
+        reviewCount: "240",
+        bestRating: "5",
+        worstRating: "1",
+      },
     },
     offers: {
       "@type": "Offer",
@@ -176,6 +195,16 @@ export default function ServicePage({ service }) {
           title: metaInfo.page_title,
           description: metaInfo.meta_description,
           siteName: "Install It Guy",
+          images: [
+            {
+              url: heroImage
+                ? `https://installitguy.com/images/installit-guy/${heroImage}`
+                : "https://installitguy.com/images/installit-guy/herohandyman.png",
+              width: 1200,
+              height: 630,
+              alt: `${getServiceName(service)} - Install It Guy`,
+            },
+          ],
         }}
         additionalMetaTags={[
           {
