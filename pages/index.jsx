@@ -317,7 +317,7 @@ export default function Home() {
       <main>
         {/* Hero */}
         <HeroSection
-          imageSrc="/images/installit-guy/hero-home.webp"
+          imageSrc="/images/installit-guy/herohandyman.png"
           imageAlt="Living room with mounted TV and new ceiling fan"
           priority
           className="py-24"

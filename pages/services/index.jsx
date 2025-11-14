@@ -101,7 +101,6 @@ export default function ServicesIndex() {
       ],
     },
   ];
-  const primaryServices = services.slice(0, 6);
 
   return (
     <>
@@ -216,8 +215,8 @@ export default function ServicesIndex() {
           imageAlt="Install It Guy handyman services collage"
           objectPosition="50% 42%"
         >
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-start">
-            <div>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#8BCB6B]">
                 Installations • Repairs • Maintenance
               </p>
@@ -243,36 +242,6 @@ export default function ServicesIndex() {
                 >
                   Call (704) 419-9799
                 </Link>
-              </div>
-            </div>
-            <div className="rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm p-8 text-slate-200">
-              <h2 className="text-xl font-semibold text-white">
-                Most-requested services
-              </h2>
-              <ul className="mt-6 space-y-3 text-sm">
-                {primaryServices.map((service) => (
-                  <li key={service.slug} className="flex items-start gap-2">
-                    <span className="mt-1 text-primary-200">•</span>
-                    <span>{service.name}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <Link
-                  href="/book-online.html"
-                  className="inline-flex justify-center rounded-full bg-white px-6 py-3 text-base font-semibold text-[#0f2135] shadow-sm transition hover:bg-slate-100"
-                >
-                  Get scheduled →
-                </Link>
-                <span className="text-sm text-slate-200 sm:ml-4">
-                  Prefer to talk? Call{" "}
-                  <a
-                    href="tel:+17044199799"
-                    className="underline hover:text-slate-100"
-                  >
-                    (704) 419-9799
-                  </a>
-                </span>
               </div>
             </div>
           </div>

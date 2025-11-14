@@ -21,12 +21,15 @@ import {
 import dynamic from "next/dynamic";
 import HeroSection from "../../components/HeroSection";
 
-const Reviews = dynamic(() => import("../../components/Reviews"), {
-  ssr: false,
-  loading: () => (
-    <div className="py-16 text-center text-gray-500">Loading reviews...</div>
-  ),
-});
+const ContextualReviews = dynamic(
+  () => import("../../components/ContextualReviews"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="py-16 text-center text-gray-500">Loading reviews...</div>
+    ),
+  }
+);
 
 const ContextualFAQs = dynamic(
   () => import("../../components/ContextualFAQs"),
@@ -207,7 +210,7 @@ export default function ServiceAreaPage({ city }) {
       <main>
         <HeroSection
           className="py-24"
-          imageSrc="/images/installit-guy/hero-home.webp"
+          imageSrc="/images/installit-guy/herohandyman.png"
           imageAlt={`Install It Guy serving ${getCityName(city)}`}
           objectPosition="50% 42%"
         >
@@ -382,7 +385,12 @@ export default function ServiceAreaPage({ city }) {
 
         <section className="py-20 bg-gray-50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Reviews />
+            <ContextualReviews
+              context="general"
+              maxReviews={6}
+              showTitle
+              title={`Customer reviews in ${cityEntry.name}`}
+            />
           </div>
         </section>
 

@@ -44,7 +44,7 @@ export default function Gallery({ images }) {
 
       <HeroSection
         className="py-24"
-        imageSrc="/images/installit-guy/hero-home.webp"
+        imageSrc="/images/installit-guy/herohandyman.png"
         imageAlt="Install It Guy project collage"
         objectPosition="50% 42%"
       >

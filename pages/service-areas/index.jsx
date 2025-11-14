@@ -197,7 +197,7 @@ export default function ServiceAreasIndex() {
         {/* Hero */}
         <HeroSection
           className="py-24"
-          imageSrc="/images/installit-guy/hero-home.webp"
+          imageSrc="/images/installit-guy/herohandyman.png"
           imageAlt="Install It Guy service areas map"
           objectPosition="50% 42%"
         >
@@ -207,7 +207,8 @@ export default function ServiceAreasIndex() {
                 Shelby handyman coverage map
               </p>
               <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight text-white">
-                <span className="text-[#8BCB6B]">One team</span> taking care of homes across the Carolinas
+                <span className="text-[#8BCB6B]">One team</span> taking care of
+                homes across the Carolinas
               </h1>
               <p className="mt-5 text-lg text-slate-200 leading-relaxed">
                 {serviceAreaCoverageText} If you’re close by, we’re happy to
@@ -260,9 +261,9 @@ export default function ServiceAreasIndex() {
                   <span>
                     We also serve South Carolina communities including Rock
                     Hill, Fort Mill, York, Clover, Lake Wylie, Gaffney, Tega
-                    Cay, Indian Land, Lancaster, Blythewood, Winnsboro, Ridgeway,
-                    Camden, Columbia, Blacksburg, Richburg, Great Falls, McConnells,
-                    Hickory Grove, and Sharon.
+                    Cay, Indian Land, Lancaster, Blythewood, Winnsboro,
+                    Ridgeway, Camden, Columbia, Blacksburg, Richburg, Great
+                    Falls, McConnells, Hickory Grove, and Sharon.
                   </span>
                 </li>
               </ul>

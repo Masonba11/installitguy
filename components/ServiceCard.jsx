@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { servicesContent } from "../data/servicesContent";
-import { serviceImageMap } from "../utils/serviceImages";
+import { serviceImageMap, getServiceHeroImage } from "../utils/serviceImages";
 
 export default function ServiceCard({ service, city = null }) {
   const getServiceName = (serviceSlug) => {
@@ -24,8 +24,13 @@ export default function ServiceCard({ service, city = null }) {
     ? `/service-areas/${city}/${service}`
     : `/services/${service}`;
 
+  const heroImage = getServiceHeroImage(service);
   const serviceImages = serviceImageMap[service] || [];
-  const serviceImage = serviceImages.length > 0 ? serviceImages[0] : null;
+  const serviceImage = heroImage
+    ? heroImage
+    : serviceImages.length > 0
+    ? serviceImages[0]
+    : null;
   const imagePath = serviceImage
     ? `/images/installit-guy/${serviceImage}`
     : null;

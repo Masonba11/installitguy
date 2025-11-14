@@ -142,8 +142,26 @@ export default function ContextualReviews({
       );
 
       const contextualReviews = getContextualReviews(allReviews, context);
-      const finalReviews = contextualReviews.slice(0, maxReviews);
 
+      // If we don't have enough contextual reviews, fall back to general reviews
+      // but prioritize contextual ones first
+      let finalReviews = contextualReviews;
+      if (contextualReviews.length < maxReviews && context !== "general") {
+        // Get reviews that aren't already in contextual reviews
+        const contextualReviewTexts = new Set(
+          contextualReviews.map((r) => r.text)
+        );
+        const generalReviews = allReviews.filter(
+          (r) => !contextualReviewTexts.has(r.text)
+        );
+        // Combine contextual reviews first, then fill with general reviews
+        finalReviews = [
+          ...contextualReviews,
+          ...generalReviews.slice(0, maxReviews - contextualReviews.length),
+        ];
+      }
+
+      finalReviews = finalReviews.slice(0, maxReviews);
       setReviews(finalReviews);
     } catch (err) {
       console.error("Error fetching reviews:", err);
@@ -191,8 +209,26 @@ export default function ContextualReviews({
     );
   }
 
-  if (error || reviews.length === 0) {
-    return null; // Don't show anything if no contextual reviews
+  if (error) {
+    return (
+      <section className={`py-8 ${className}`}>
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="text-center">
+            <p className="text-red-600 mb-4">{error}</p>
+            <button
+              onClick={fetchReviews}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (reviews.length === 0) {
+    return null; // Don't show anything if no reviews available
   }
 
   return (

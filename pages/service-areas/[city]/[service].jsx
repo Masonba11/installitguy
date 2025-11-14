@@ -6,7 +6,11 @@ import Link from "next/link";
 import Image from "next/image";
 import LocalBusinessSchema from "../../../components/LocalBusinessSchema";
 import metaData from "../../../data/metaData.json";
-import { getServiceName, getServiceImages } from "../../../utils/serviceImages";
+import {
+  getServiceName,
+  getServiceImages,
+  getServiceHeroImage,
+} from "../../../utils/serviceImages";
 import {
   orderedServiceSlugs,
   servicesContent,
@@ -20,12 +24,15 @@ import {
 import dynamic from "next/dynamic";
 import HeroSection from "../../../components/HeroSection";
 
-const Reviews = dynamic(() => import("../../../components/Reviews"), {
-  ssr: false,
-  loading: () => (
-    <div className="py-16 text-center text-gray-500">Loading reviews...</div>
-  ),
-});
+const ContextualReviews = dynamic(
+  () => import("../../../components/ContextualReviews"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="py-16 text-center text-gray-500">Loading reviews...</div>
+    ),
+  }
+);
 
 const ContextualFAQs = dynamic(
   () => import("../../../components/ContextualFAQs"),
@@ -76,6 +83,7 @@ export default function ServiceAreaServicePage({ city, service }) {
   ];
   const otherServices = services.filter((slug) => slug !== service);
   const serviceImages = getServiceImages(service).slice(0, 3);
+  const heroImage = getServiceHeroImage(service);
   const shortDescription =
     serviceOverview?.shortDescription ||
     `Reliable ${getServiceName(
@@ -306,9 +314,16 @@ export default function ServiceAreaServicePage({ city, service }) {
       <main>
         <HeroSection
           className="py-24"
-          imageSrc="/images/installit-guy/hero-home.webp"
+          imageSrc={
+            heroImage
+              ? `/images/installit-guy/${heroImage}`
+              : serviceImages.length > 0
+              ? `/images/installit-guy/${serviceImages[0]}`
+              : "/images/installit-guy/herohandyman.png"
+          }
           imageAlt={`${getServiceName(service)} in ${cityFullName}`}
           objectPosition="50% 42%"
+          priority={true}
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
             <div>
@@ -332,7 +347,7 @@ export default function ServiceAreaServicePage({ city, service }) {
                   href="tel:+17044199799"
                   className="inline-flex items-center px-5 py-3 rounded-full font-semibold border border-white/60 text-white hover:bg-white/10 transition"
                 >
-                  Call 704-419-9799
+                  Call (704) 419-9799
                 </Link>
               </div>
             </div>
@@ -484,7 +499,12 @@ export default function ServiceAreaServicePage({ city, service }) {
 
         <section className="py-20 bg-white">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Reviews />
+            <ContextualReviews
+              context={service}
+              maxReviews={6}
+              showTitle
+              title={`${getServiceName(service)} reviews in ${cityName}`}
+            />
           </div>
         </section>
 
@@ -563,6 +583,16 @@ export async function getServerSideProps(context) {
 
   if (!serviceAreaSlugs.includes(resolvedCity) || !services.includes(service)) {
     return { notFound: true };
+  }
+
+  // Redirect Shelby city-service pages to main service pages
+  if (resolvedCity === "shelby-nc") {
+    return {
+      redirect: {
+        destination: `/services/${service}`,
+        permanent: true,
+      },
+    };
   }
 
   if (resolvedCity !== city) {

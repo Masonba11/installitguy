@@ -122,7 +122,7 @@ export default function QuoteFormWithIP({
                   value={formData.phone}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
-                  placeholder="(704) 123-4567"
+                  placeholder="(704) 419-9799"
                 />
               </div>
 

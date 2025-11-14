@@ -23,8 +23,9 @@ export default function TestForm() {
             access_key: WEB3FORMS_CONFIG.mason.accessKey,
             name: "Test User",
             email: "test@example.com",
-            phone: "(704) 123-4567",
-            message: "This is a test form submission to verify Web3Forms is working correctly.",
+            phone: "(704) 419-9799",
+            message:
+              "This is a test form submission to verify Web3Forms is working correctly.",
             to: WEB3FORMS_CONFIG.mason.email,
             subject: "Test Form Submission - Install It Guy",
             from_name: "Test User",
@@ -44,8 +45,9 @@ export default function TestForm() {
             access_key: WEB3FORMS_CONFIG.scott.accessKey,
             name: "Test User",
             email: "test@example.com",
-            phone: "(704) 123-4567",
-            message: "This is a test form submission to verify Web3Forms is working correctly.",
+            phone: "(704) 419-9799",
+            message:
+              "This is a test form submission to verify Web3Forms is working correctly.",
             to: WEB3FORMS_CONFIG.scott.email,
             subject: "Test Form Submission - Install It Guy",
             from_name: "Test User",
@@ -57,11 +59,17 @@ export default function TestForm() {
         }),
       ]);
 
-      const successfulSubmissions = submissions.filter(result => result.status === 'fulfilled' && result.value.ok);
-      const failedSubmissions = submissions.filter(result => result.status === 'rejected' || !result.value.ok);
-      
+      const successfulSubmissions = submissions.filter(
+        (result) => result.status === "fulfilled" && result.value.ok
+      );
+      const failedSubmissions = submissions.filter(
+        (result) => result.status === "rejected" || !result.value.ok
+      );
+
       if (successfulSubmissions.length > 0) {
-        setResult(`✅ Form submitted successfully! ${successfulSubmissions.length}/2 accounts received the email. Check both email addresses.`);
+        setResult(
+          `✅ Form submitted successfully! ${successfulSubmissions.length}/2 accounts received the email. Check both email addresses.`
+        );
       } else {
         setResult(`❌ Error: All submissions failed`);
       }
@@ -81,7 +89,7 @@ export default function TestForm() {
         <br />• <strong>{WEB3FORMS_CONFIG.mason.email}</strong> (Mason)
         <br />• <strong>{WEB3FORMS_CONFIG.scott.email}</strong> (Scott)
       </p>
-      
+
       <form onSubmit={handleSubmit}>
         <button
           type="submit"
@@ -93,9 +101,13 @@ export default function TestForm() {
       </form>
 
       {result && (
-        <div className={`mt-4 p-3 rounded ${
-          result.includes("✅") ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-        }`}>
+        <div
+          className={`mt-4 p-3 rounded ${
+            result.includes("✅")
+              ? "bg-green-100 text-green-800"
+              : "bg-red-100 text-red-800"
+          }`}
+        >
           {result}
         </div>
       )}

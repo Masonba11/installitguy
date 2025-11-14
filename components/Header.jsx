@@ -173,6 +173,15 @@ export default function Header() {
                           {service.name}
                         </Link>
                       ))}
+                      <Link
+                        href="/services/additional-services"
+                        className="px-3 py-2 text-sm text-gray-700 rounded-md hover:bg-primary-50 hover:text-primary-600 transition-colors font-semibold"
+                        onClick={() => {
+                          setIsServicesOpen(false);
+                        }}
+                      >
+                        Additional Services
+                      </Link>
                     </div>
                   </div>
                   <div className="mt-2 border-t border-gray-100 pt-2 text-center">
@@ -264,11 +273,17 @@ export default function Header() {
             >
               Reviews
             </Link>
+            <Link
+              href="/investors"
+              className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+            >
+              Investors
+            </Link>
           </nav>
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Link href="tel:+17041234567" className="btn-primary">
+            <Link href="tel:+17044199799" className="btn-primary">
               Call Now
             </Link>
           </div>
@@ -414,6 +429,17 @@ export default function Header() {
                       </button>
                     )}
                     <Link
+                      href="/services/additional-services"
+                      className="block rounded-lg bg-white px-4 py-2 text-sm font-semibold text-gray-700 hover:text-primary-600 hover:bg-primary-50 shadow-sm border-2 border-primary-200"
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        setIsServicesOpen(false);
+                        setShowAllMobileServices(false);
+                      }}
+                    >
+                      Additional Services
+                    </Link>
+                    <Link
                       href="/services"
                       className="block text-sm font-semibold text-primary-600 hover:text-primary-700"
                       onClick={() => setIsMenuOpen(false)}
@@ -499,6 +525,7 @@ export default function Header() {
                 {[
                   { label: "FAQs", href: "/faqs" },
                   { label: "Reviews", href: "/reviews" },
+                  { label: "Investors", href: "/investors" },
                 ].map((item) => (
                   <Link
                     key={item.href}
@@ -513,7 +540,7 @@ export default function Header() {
 
               <div className="pb-4">
                 <Link
-                  href="tel:+17041234567"
+                  href="tel:+17044199799"
                   onClick={() => setIsMenuOpen(false)}
                   className="btn-accent w-full text-center text-lg font-bold"
                 >

@@ -91,7 +91,7 @@ export default function ReviewsPage() {
       <main className="min-h-screen bg-gray-50">
         <HeroSection
           className="py-24"
-          imageSrc="/images/installit-guy/hero-home.webp"
+          imageSrc="/images/installit-guy/herohandyman.png"
           imageAlt="Handyman finishing a living room project"
           objectPosition="50% 42%"
         >
@@ -131,7 +131,8 @@ export default function ReviewsPage() {
           <div className="container-custom">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-[#0f2135]">
-                <span className="text-[#8BCB6B]">What our customers</span> highlight
+                <span className="text-[#8BCB6B]">What our customers</span>{" "}
+                highlight
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Our commitment to quality and customer satisfaction shows in

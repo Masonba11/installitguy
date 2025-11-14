@@ -5,7 +5,11 @@ import QuoteForm from "../../components/QuoteForm";
 import LocalBusinessSchema from "../../components/LocalBusinessSchema";
 import metaData from "../../data/metaData.json";
 import Image from "next/image";
-import { getServiceName, getServiceImages } from "../../utils/serviceImages";
+import {
+  getServiceName,
+  getServiceImages,
+  getServiceHeroImage,
+} from "../../utils/serviceImages";
 import {
   orderedServiceSlugs,
   servicesContent,
@@ -85,6 +89,7 @@ export default function ServicePage({ service }) {
     serviceOverview?.longDescription ||
     `Every project begins with a quick check-in so we understand the hardware, finish, and placement you want. We arrive with the right anchors, fasteners, and protective gear, then double-check alignment before final cleanup—always with Shelby homes and building styles in mind.`;
   const serviceImages = getServiceImages(service).slice(0, 3);
+  const heroImage = getServiceHeroImage(service);
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -263,9 +268,16 @@ export default function ServicePage({ service }) {
       <main>
         <HeroSection
           className="py-24"
-          imageSrc="/images/installit-guy/hero-home.webp"
+          imageSrc={
+            heroImage
+              ? `/images/installit-guy/${heroImage}`
+              : serviceImages.length > 0
+              ? `/images/installit-guy/${serviceImages[0]}`
+              : "/images/installit-guy/hero-home.webp"
+          }
           imageAlt={`${getServiceName(service)} by Install It Guy`}
           objectPosition="50% 42%"
+          priority={true}
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
             <div>
@@ -292,7 +304,7 @@ export default function ServicePage({ service }) {
                   href="tel:+17044199799"
                   className="inline-flex items-center px-5 py-3 rounded-full font-semibold border border-white/60 text-white hover:bg-white/10 transition"
                 >
-                  Call 704-419-9799
+                  Call (704) 419-9799
                 </Link>
               </div>
             </div>
@@ -441,7 +453,7 @@ export default function ServicePage({ service }) {
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <ContextualReviews
               context={service}
-              maxReviews={3}
+              maxReviews={6}
               showTitle
               title={`${getServiceName(service)} client feedback`}
             />

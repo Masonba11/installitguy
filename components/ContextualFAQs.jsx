@@ -426,7 +426,7 @@ export default function ContextualFAQs({
       {
         question: "How do I get a quote for my project?",
         answer:
-          "Call us at (704) 123-4567 or fill out our contact form for a free, no-obligation quote.",
+          "Call us at (704) 419-9799 or fill out our contact form for a free, no-obligation quote.",
       },
       {
         question: "What areas do you serve?",
@@ -458,7 +458,7 @@ export default function ContextualFAQs({
       {
         question: "How do I schedule service?",
         answer:
-          "Call us at (704) 123-4567 or use our online contact form to schedule your service.",
+          "Call us at (704) 419-9799 or use our online contact form to schedule your service.",
       },
     ],
     general: [

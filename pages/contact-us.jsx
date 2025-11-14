@@ -146,7 +146,7 @@ export default function ContactUs() {
 
       <HeroSection
         className="py-24"
-        imageSrc="/images/installit-guy/hero-home.webp"
+        imageSrc="/images/installit-guy/herohandyman.png"
         imageAlt="Handyman speaking with homeowners in living room"
         objectPosition="50% 42%"
       >

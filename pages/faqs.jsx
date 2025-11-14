@@ -149,7 +149,7 @@ export default function FAQs() {
 
       <HeroSection
         className="py-24"
-        imageSrc="/images/installit-guy/hero-home.webp"
+        imageSrc="/images/installit-guy/herohandyman.png"
         imageAlt="Handyman installing wall paneling"
         objectPosition="50% 42%"
       >

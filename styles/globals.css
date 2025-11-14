@@ -85,6 +85,17 @@
     display: block;
   }
 
+  /* Image Quality Enhancements */
+  img,
+  [data-next-image] {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: auto;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   .section-padding {
     @apply py-16 px-4 sm:px-6 lg:px-8;
   }
@@ -250,6 +261,7 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.25rem;
+  color: #8bcb6b;
 }
 
 .stat p {

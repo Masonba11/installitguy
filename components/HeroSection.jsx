@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 export default function HeroSection({
-  imageSrc = "/images/installit-guy/hero-home.webp",
+  imageSrc = null,
   imageAlt = "",
   priority = false,
   className = "py-24",
@@ -25,7 +25,8 @@ export default function HeroSection({
               sizes={imageSizes}
               className="object-cover"
               style={{ objectPosition }}
-              quality={80}
+              quality={95}
+              unoptimized={false}
             />
             <div
               className={`absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(10,19,31,0.45)_0%,_rgba(10,19,31,0.85)_100%)] ${overlayClassName}`}
