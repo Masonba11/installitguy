@@ -267,12 +267,18 @@ export default function ServicePage({ service }) {
                 {shortDescription}
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
-                <Link
-                  href="/book-online.html"
-                  className="inline-flex items-center px-5 py-3 rounded-full font-semibold bg-[#8BCB6B] text-[#0f2135] shadow-md hover:bg-[#7bb65f] transition"
+                <a
+                  href="#quote-form"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document
+                      .getElementById("quote-form")
+                      ?.scrollIntoView({ block: "start" });
+                  }}
+                  className="inline-flex items-center px-6 py-3 rounded-full font-semibold bg-[#8BCB6B] text-[#0f2135] shadow hover:bg-[#7bb65f] transition"
                 >
-                  Schedule your project
-                </Link>
+                  Book Now
+                </a>
                 <Link
                   href="tel:+17044199799"
                   className="inline-flex items-center px-5 py-3 rounded-full font-semibold border border-white/60 text-white hover:bg-white/10 transition"

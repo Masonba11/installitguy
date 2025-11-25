@@ -233,9 +233,29 @@ export default function ServiceAreasIndex() {
                 homes across the Carolinas
               </h1>
               <p className="mt-5 text-lg text-slate-200 leading-relaxed">
-                {serviceAreaCoverageText} If you’re close by, we’re happy to
+                {serviceAreaCoverageText} If you're close by, we're happy to
                 travel—just ask.
               </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href="#quote-form"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document
+                      .getElementById("quote-form")
+                      ?.scrollIntoView({ block: "start" });
+                  }}
+                  className="inline-flex items-center rounded-full bg-[#8BCB6B] px-6 py-3 text-sm font-semibold text-[#0f2135] shadow hover:bg-[#7bb65f] transition"
+                >
+                  Book Now
+                </a>
+                <Link
+                  href="tel:+17044199799"
+                  className="inline-flex items-center rounded-full border border-white/60 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
+                >
+                  Call (704) 419-9799
+                </Link>
+              </div>
             </div>
             <div className="rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm p-8 text-slate-100">
               <h2 className="text-xl font-semibold text-white">

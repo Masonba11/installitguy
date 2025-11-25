@@ -2,6 +2,7 @@ import { NextSeo } from "next-seo";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import HeroSection from "../../components/HeroSection";
+import QuoteForm from "../../components/QuoteForm";
 import { truncateMetaDescription } from "../../utils/metaHelpers";
 import Link from "next/link";
 import LocalBusinessSchema from "../../components/LocalBusinessSchema";
@@ -184,12 +185,6 @@ export default function AdditionalServices() {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
-                  href="/book-online.html"
-                  className="inline-flex items-center rounded-full bg-[#8BCB6B] px-5 py-3 text-sm font-semibold text-[#0f2135] shadow-sm hover:bg-[#7bb65f] transition"
-                >
-                  Book a project
-                </Link>
-                <Link
                   href="tel:+17044199799"
                   className="inline-flex items-center rounded-full border border-white/60 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
                 >
@@ -260,20 +255,32 @@ export default function AdditionalServices() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                href="/book-online.html"
-                className="inline-flex items-center rounded-full bg-[#8BCB6B] px-6 py-3 text-base font-semibold text-[#0f2135] shadow-sm hover:bg-[#7bb65f] transition"
-              >
-                Book Online
-              </Link>
-              <Link
                 href="tel:+17044199799"
                 className="inline-flex items-center rounded-full border-2 border-[#0f2135] px-6 py-3 text-base font-semibold text-[#0f2135] hover:bg-[#0f2135] hover:text-white transition"
               >
                 Call (704) 419-9799
               </Link>
+              <a
+                href="#quote-form"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document
+                    .getElementById("quote-form")
+                    ?.scrollIntoView({ block: "start" });
+                }}
+                className="inline-flex items-center rounded-full bg-[#8BCB6B] px-6 py-3 text-base font-semibold text-[#0f2135] shadow-sm hover:bg-[#7bb65f] transition"
+              >
+                Get Your Free Quote
+              </a>
             </div>
           </div>
         </section>
+
+        {/* Quote Form */}
+        <QuoteForm
+          title="Ready to get started?"
+          subtitle="Fill out the form below and we'll get back to you within 24 hours"
+        />
       </main>
 
       <Footer />

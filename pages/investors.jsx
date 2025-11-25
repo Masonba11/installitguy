@@ -2,6 +2,7 @@ import { NextSeo } from "next-seo";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HeroSection from "../components/HeroSection";
+import QuoteForm from "../components/QuoteForm";
 import { truncateMetaDescription } from "../utils/metaHelpers";
 import Link from "next/link";
 
@@ -121,12 +122,24 @@ export default function Investors() {
               Join a proven business model with 30+ years of experience serving
               homeowners across North and South Carolina.
             </p>
-            <div className="pt-4">
-              <Link
-                href="/book-online.html"
+            <div className="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href="#quote-form"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document
+                    .getElementById("quote-form")
+                    ?.scrollIntoView({ block: "start" });
+                }}
                 className="inline-flex items-center justify-center rounded-full bg-[#8BCB6B] px-8 py-4 text-base font-semibold text-[#0f2135] shadow-sm hover:bg-[#7bb65f] transition"
               >
-                Apply
+                Book Now
+              </a>
+              <Link
+                href="tel:+17044199799"
+                className="inline-flex items-center justify-center rounded-full border border-white/60 px-8 py-4 text-base font-semibold text-white hover:bg-white/10 transition"
+              >
+                Call (704) 419-9799
               </Link>
             </div>
           </div>
@@ -296,6 +309,12 @@ export default function Investors() {
             </div>
           </div>
         </section>
+
+        {/* Quote Form */}
+        <QuoteForm
+          title="Interested in learning more?"
+          subtitle="Fill out the form below and we'll get back to you within 24 hours"
+        />
       </main>
 
       <Footer />

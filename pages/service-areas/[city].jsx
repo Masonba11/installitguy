@@ -221,10 +221,16 @@ export default function ServiceAreaPage({ city }) {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
-                  href="/book-online.html"
-                  className="inline-flex items-center rounded-full bg-[#8BCB6B] px-5 py-3 text-sm font-semibold text-[#0f2135] shadow-sm hover:bg-[#7bb65f] transition"
+                  href="#quote-form"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document
+                      .getElementById("quote-form")
+                      ?.scrollIntoView({ block: "start" });
+                  }}
+                  className="inline-flex items-center rounded-full bg-[#8BCB6B] px-6 py-3 text-sm font-semibold text-[#0f2135] shadow hover:bg-[#7bb65f] transition"
                 >
-                  Book online
+                  Book Now
                 </a>
                 <Link
                   href="/service-areas"

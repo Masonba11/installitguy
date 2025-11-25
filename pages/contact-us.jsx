@@ -181,7 +181,13 @@ export default function ContactUs() {
               Call (704) 419-9799
             </a>
             <a
-              href="#contact-form"
+              href="#quote-form"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById("quote-form")
+                  ?.scrollIntoView({ block: "start" });
+              }}
               className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white border border-white/60 hover:bg-white/10 transition"
             >
               Send a message
@@ -367,27 +373,6 @@ export default function ContactUs() {
               </div>
 
               {/* Contact Form */}
-              <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  Send Us a Message
-                </h2>
-
-                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-10 text-center shadow-sm">
-                  <h3 className="text-2xl font-semibold text-[#0f2135] mb-4">
-                    Book online in moments
-                  </h3>
-                  <p className="text-gray-600 mb-6">
-                    Skip the back-and-forth and lock in a visit on our booking
-                    page.
-                  </p>
-                  <a
-                    href="/book-online.html"
-                    className="inline-flex items-center justify-center rounded-full bg-[#8BCB6B] px-6 py-3 text-base font-semibold text-[#0f2135] shadow-md transition hover:bg-[#7bb65f]"
-                  >
-                    Book Online
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
         </div>

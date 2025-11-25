@@ -265,12 +265,18 @@ export default function Home() {
                 finished.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <Link
-                  href="/book-online.html"
+                <a
+                  href="#quote-form"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document
+                      .getElementById("quote-form")
+                      ?.scrollIntoView({ block: "start" });
+                  }}
                   className="inline-flex justify-center rounded-full bg-[#8BCB6B] px-6 py-3 text-sm font-semibold text-[#0f2135] shadow hover:bg-[#7bb65f] transition"
                 >
-                  Book your handyman
-                </Link>
+                  Book Now
+                </a>
                 <span className="text-sm text-slate-200 sm:ml-4">
                   Prefer to talk? Call{" "}
                   <a

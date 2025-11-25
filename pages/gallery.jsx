@@ -6,6 +6,7 @@ import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HeroSection from "../components/HeroSection";
+import QuoteForm from "../components/QuoteForm";
 import { truncateMetaDescription } from "../utils/metaHelpers";
 
 export default function Gallery({ images }) {
@@ -30,7 +31,7 @@ export default function Gallery({ images }) {
     if (!track) return;
 
     const cardWidth = track.clientWidth * 0.8;
-    track.scrollBy({ left: direction * cardWidth, behavior: "smooth" });
+    track.scrollBy({ left: direction * cardWidth, block: "start" });
   };
 
   return (
@@ -76,8 +77,28 @@ export default function Gallery({ images }) {
           </h1>
           <p className="text-lg md:text-xl text-white/80">
             Swipe through accent walls, installs, repairs, and maintenance
-            finished by our crew. Every photo is from a real home we’ve helped.
+            finished by our crew. Every photo is from a real home we've helped.
           </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href="#quote-form"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById("quote-form")
+                  ?.scrollIntoView({ block: "start" });
+              }}
+              className="inline-flex items-center justify-center rounded-full bg-[#8BCB6B] px-6 py-3 text-sm font-semibold text-[#0f2135] shadow hover:bg-[#7bb65f] transition"
+            >
+              Book Now
+            </a>
+            <a
+              href="tel:+17044199799"
+              className="inline-flex items-center justify-center rounded-full border border-white/60 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
+            >
+              Call (704) 419-9799
+            </a>
+          </div>
         </div>
       </HeroSection>
 
@@ -161,6 +182,12 @@ export default function Gallery({ images }) {
             </div>
           </div>
         </section>
+
+        {/* Quote Form */}
+        <QuoteForm
+          title="Ready to start your project?"
+          subtitle="Fill out the form below and we'll get back to you within 24 hours"
+        />
       </main>
 
       <Footer />

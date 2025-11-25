@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import Reviews from "../components/Reviews";
 import ContextualFAQs from "../components/ContextualFAQs";
 import HeroSection from "../components/HeroSection";
+import QuoteForm from "../components/QuoteForm";
 import { truncateMetaDescription } from "../utils/metaHelpers";
 import Link from "next/link";
 
@@ -125,12 +126,18 @@ export default function ReviewsPage() {
               >
                 Call (704) 419-9799
               </Link>
-              <Link
-                href="/contact-us"
-                className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white border border-white/60 hover:bg-white/10 transition"
+              <a
+                href="#quote-form"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document
+                    .getElementById("quote-form")
+                    ?.scrollIntoView({ block: "start" });
+                }}
+                className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-[#0f2135] bg-[#8BCB6B] shadow hover:bg-[#7bb65f] transition"
               >
-                Book your project
-              </Link>
+                Book Now
+              </a>
             </div>
           </div>
         </HeroSection>
@@ -181,6 +188,12 @@ export default function ReviewsPage() {
             </div>
           </div>
         </section>
+
+        {/* Quote Form */}
+        <QuoteForm
+          title="Ready to work with us?"
+          subtitle="Fill out the form below and we'll get back to you within 24 hours"
+        />
 
         {/* FAQs */}
         <ContextualFAQs
