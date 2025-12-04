@@ -53,7 +53,7 @@ export default function ServicePage({ service }) {
   const fallbackMeta = servicesContent[service]
     ? {
         url: canonicalUrl,
-        page_title: `${servicesContent[service].name} in Shelby NC | Install It Guy`,
+        page_title: `${servicesContent[service].name} Shelby NC | Install It Guy`,
         meta_description: servicesContent[service].longDescription,
         primary_keyword: `${servicesContent[
           service
@@ -95,7 +95,7 @@ export default function ServicePage({ service }) {
   // Service description should reference Shelby NC
   const fullDescription = metaInfo.meta_description.includes("Shelby")
     ? metaInfo.meta_description
-    : `${getServiceName(service)} services in Shelby NC. ${
+    : `${getServiceName(service)} services Shelby NC. ${
         metaInfo.meta_description
       }`;
   const serviceDescription = truncateMetaDescription(fullDescription);
@@ -182,7 +182,7 @@ export default function ServicePage({ service }) {
             name: `${getServiceName(service)} FAQs`,
             description: `Common questions about ${getServiceName(
               service
-            ).toLowerCase()} services in Shelby NC`,
+            ).toLowerCase()} services Shelby NC`,
             url: metaInfo.url,
             mainEntity: [
               {
@@ -261,7 +261,7 @@ export default function ServicePage({ service }) {
                 <span className="text-[#8BCB6B]">
                   {getServiceName(service)}
                 </span>{" "}
-                in Shelby, NC done right the first time
+                Shelby, NC done right the first time
               </h1>
               <p className="mt-5 text-lg text-slate-100/90 leading-relaxed">
                 {shortDescription}
@@ -324,7 +324,7 @@ export default function ServicePage({ service }) {
           <section className="py-12 bg-gray-50">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <h2 className="text-2xl font-semibold text-slate-900">
-                Recent {getServiceName(service)} work in the Shelby area
+                Recent {getServiceName(service)} work the Shelby area
               </h2>
               <p className="mt-2 text-slate-600 max-w-3xl">
                 A quick look at a few {getServiceName(service).toLowerCase()}{" "}
@@ -445,7 +445,7 @@ export default function ServicePage({ service }) {
             <QuoteForm
               title={`Ready to schedule ${getServiceName(
                 service
-              ).toLowerCase()} in Shelby?`}
+              ).toLowerCase()} Shelby?`}
               subtitle="Share the details and we’ll respond with availability and pricing within one business day."
             />
           </div>
