@@ -89,7 +89,7 @@ export default function ServiceAreaServicePage({ city, service }) {
     serviceOverview?.shortDescription ||
     `Reliable ${getServiceName(
       service
-    ).toLowerCase()} for homeowners in ${cityFullName}.`;
+    ).toLowerCase()} for homeowners ${cityFullName}.`;
   const longDescription =
     serviceOverview?.longDescription ||
     `We combine careful prep, precise installation, and a detailed walkthrough so ${cityFullName} homeowners can trust the finished result.`;
@@ -97,7 +97,7 @@ export default function ServiceAreaServicePage({ city, service }) {
   const fallbackMeta = serviceOverview
     ? {
         url: canonicalUrl,
-        page_title: `${servicesContent[service].name} in ${cityFullName} | Install It Guy`,
+        page_title: `${servicesContent[service].name} ${cityFullName} | Install It Guy`,
         meta_description: truncateMetaDescription(
           `${servicesContent[service].longDescription} Serving ${cityFullName} and nearby communities with trusted Install It Guy craftsmanship.`
         ),
@@ -176,7 +176,7 @@ export default function ServiceAreaServicePage({ city, service }) {
               height: 630,
               alt: `${getServiceName(
                 service
-              )} in ${cityFullName} - Install It Guy`,
+              )} ${cityFullName} - Install It Guy`,
             },
           ],
         }}
@@ -204,22 +204,22 @@ export default function ServiceAreaServicePage({ city, service }) {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            name: `${getServiceName(service)} FAQs in ${getCityFullName(city)}`,
+            name: `${getServiceName(service)} FAQs ${getCityFullName(city)}`,
             description: `Common questions about ${getServiceName(
               service
-            ).toLowerCase()} services in ${getCityFullName(city)}`,
+            ).toLowerCase()} services ${getCityFullName(city)}`,
             url: metaInfo.url,
             mainEntity: [
               {
                 "@type": "Question",
                 name: `How much does ${getServiceName(
                   service
-                ).toLowerCase()} cost in ${getCityFullName(city)}?`,
+                ).toLowerCase()} cost ${getCityFullName(city)}?`,
                 acceptedAnswer: {
                   "@type": "Answer",
                   text: `Our pricing varies based on the specific project requirements. We provide free, detailed quotes for all ${getServiceName(
                     service
-                  ).toLowerCase()} projects in ${getCityFullName(
+                  ).toLowerCase()} projects ${getCityFullName(
                     city
                   )}. Contact us for a personalized estimate.`,
                 },
@@ -233,7 +233,7 @@ export default function ServiceAreaServicePage({ city, service }) {
                   "@type": "Answer",
                   text: `Yes, we often provide same-day service for ${getServiceName(
                     service
-                  ).toLowerCase()} in ${getCityFullName(
+                  ).toLowerCase()} ${getCityFullName(
                     city
                   )}. Contact us to check availability and schedule your appointment.`,
                 },
@@ -242,12 +242,12 @@ export default function ServiceAreaServicePage({ city, service }) {
                 "@type": "Question",
                 name: `What services do you offer for ${getServiceName(
                   service
-                )} in ${getCityFullName(city)}?`,
+                )} ${getCityFullName(city)}?`,
                 acceptedAnswer: {
                   "@type": "Answer",
                   text: `We provide expert ${getServiceName(
                     service
-                  ).toLowerCase()} services in ${getCityFullName(
+                  ).toLowerCase()} services ${getCityFullName(
                     city
                   )} along with ${formatServiceList(
                     services
@@ -297,7 +297,7 @@ export default function ServiceAreaServicePage({ city, service }) {
               ? `/images/installit-guy/${serviceImages[0]}`
               : "/images/installit-guy/herohandyman.png"
           }
-          imageAlt={`${getServiceName(service)} in ${cityFullName}`}
+          imageAlt={`${getServiceName(service)} ${cityFullName}`}
           objectPosition="50% 42%"
           priority={true}
         >
@@ -307,7 +307,7 @@ export default function ServiceAreaServicePage({ city, service }) {
                 {cityFullName} {getServiceName(service).toLowerCase()}
               </p>
               <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight">
-                {getServiceName(service)} in {cityFullName}
+                {getServiceName(service)} {cityFullName}
               </h1>
               <p className="mt-5 text-lg text-slate-100/90 max-w-2xl">
                 {shortDescription}
@@ -368,7 +368,7 @@ export default function ServiceAreaServicePage({ city, service }) {
           <section className="py-12 bg-gray-50">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <h2 className="text-2xl font-semibold text-slate-900">
-                Recent {getServiceName(service)} work in {cityName}
+                Recent {getServiceName(service)} work {cityName}
               </h2>
               <p className="mt-2 text-slate-600 max-w-3xl">
                 Here’s a look at a few {getServiceName(service).toLowerCase()}{" "}
@@ -383,7 +383,7 @@ export default function ServiceAreaServicePage({ city, service }) {
                   >
                     <Image
                       src={`/images/installit-guy/${image}`}
-                      alt={`${getServiceName(service)} project in ${cityName}`}
+                      alt={`${getServiceName(service)} project ${cityName}`}
                       width={640}
                       height={480}
                       className="h-56 w-full object-cover"
@@ -400,7 +400,7 @@ export default function ServiceAreaServicePage({ city, service }) {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
             <div>
               <h2 className="text-2xl font-semibold text-slate-900">
-                What we do in {cityFullName}
+                What we do {cityFullName}
               </h2>
               <p className="mt-4 text-slate-700 leading-relaxed">
                 {longDescription}
@@ -438,7 +438,7 @@ export default function ServiceAreaServicePage({ city, service }) {
                         ? "Living rooms, media dens, and outdoor patios that need a clean, secure install."
                         : service === "garbage-disposal-installation"
                         ? "Kitchen upgrades, home flips, and busy households wanting faster cleanup."
-                        : `Homes and businesses in ${cityName} looking for reliable ${getServiceName(
+                        : `Homes and businesses ${cityName} looking for reliable ${getServiceName(
                             service
                           ).toLowerCase()} support.`}
                     </p>
@@ -472,7 +472,7 @@ export default function ServiceAreaServicePage({ city, service }) {
                   href={`/service-areas/${city}`}
                   className="inline-flex items-center font-semibold text-emerald-300 hover:text-emerald-200"
                 >
-                  View all services in {cityName}
+                  View all services {cityName}
                 </Link>
               </div>
             </div>
@@ -485,7 +485,7 @@ export default function ServiceAreaServicePage({ city, service }) {
               context={service}
               maxReviews={6}
               showTitle
-              title={`${getServiceName(service)} reviews in ${cityName}`}
+              title={`${getServiceName(service)} reviews ${cityName}`}
             />
           </div>
         </section>
@@ -495,7 +495,7 @@ export default function ServiceAreaServicePage({ city, service }) {
             <QuoteForm
               title={`Request ${getServiceName(
                 service
-              ).toLowerCase()} in ${cityFullName}`}
+              ).toLowerCase()} ${cityFullName}`}
               subtitle="Share the details and our team will confirm pricing and scheduling within one business day."
             />
           </div>
@@ -517,12 +517,12 @@ export default function ServiceAreaServicePage({ city, service }) {
         <section className="py-20 bg-gray-50 border-t border-slate-100">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-semibold text-slate-900">
-              Other services we offer in {cityFullName}
+              Other services we offer {cityFullName}
             </h2>
             <p className="mt-3 text-slate-600 max-w-3xl">
-              Need help with something else while we’re in {cityName}? Explore
-              more ways we support homeowners in the area and keep projects
-              moving without calling another crew.
+              Need help with something else while we're {cityName}? Explore more
+              ways we support homeowners in the area and keep projects moving
+              without calling another crew.
             </p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {otherServices.map((slug) => (
@@ -532,7 +532,7 @@ export default function ServiceAreaServicePage({ city, service }) {
                   className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-primary-600 hover:border-primary-200 hover:text-primary-500 transition"
                 >
                   <span>
-                    {getServiceName(slug)} in {cityName}
+                    {getServiceName(slug)} {cityName}
                   </span>
                   <svg
                     className="h-4 w-4"

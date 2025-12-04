@@ -514,7 +514,7 @@ export default function ContextualFAQs({
     : "handyman services";
 
   const citySentence = cityName
-    ? `We support homeowners across ${cityName} with ${derivedServiceLabel}.`
+    ? `We support homeowners ${cityName} with ${derivedServiceLabel}.`
     : "";
 
   const appendCityDetails = (answer) => {
@@ -532,7 +532,7 @@ export default function ContextualFAQs({
     if (lower.includes(cityName.toLowerCase())) {
       return trimmed;
     }
-    return `${trimmed.replace(/\?$/, "")} in ${cityName}?`;
+    return `${trimmed.replace(/\?$/, "")} ${cityName}?`;
   };
 
   const faqs = getContextualFAQs(context).map((faq) => ({
