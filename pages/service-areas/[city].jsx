@@ -81,8 +81,8 @@ export default function ServiceAreaPage({ city }) {
 
   const fallbackMeta = {
     url: canonicalUrl,
-    page_title: `Handyman Services in ${cityEntry.name} | Install It Guy`,
-    meta_description: `Professional handyman services in ${
+    page_title: `Handyman Services ${cityEntry.name} | Install It Guy`,
+    meta_description: `Professional handyman services ${
       cityEntry.name
     }. We provide ${formatServiceList(
       serviceNames
@@ -105,10 +105,10 @@ export default function ServiceAreaPage({ city }) {
   const faqEntities = [
     {
       "@type": "Question",
-      name: `What services do you offer in ${getCityName(city)}?`,
+      name: `What services do you offer ${getCityName(city)}?`,
       acceptedAnswer: {
         "@type": "Answer",
-        text: `We regularly help homeowners in ${getCityName(
+        text: `We regularly help homeowners ${getCityName(
           city
         )} with ${formatServiceList(
           serviceNames
@@ -127,7 +127,7 @@ export default function ServiceAreaPage({ city }) {
     },
     {
       "@type": "Question",
-      name: `How quickly can you schedule a visit in ${getCityName(city)}?`,
+      name: `How quickly can you schedule a visit ${getCityName(city)}?`,
       acceptedAnswer: {
         "@type": "Answer",
         text: `Most projects are booked within a week. Let us know your timeline and we'll share the first available openings for our ${getCityName(
@@ -163,7 +163,7 @@ export default function ServiceAreaPage({ city }) {
               url: "https://installitguy.com/images/installit-guy/Screenshot%202025-11-12%20at%2012.46.13%E2%80%AFAM.png",
               width: 1200,
               height: 630,
-              alt: `Install It Guy Handyman Services in ${getCityName(city)}`,
+              alt: `Install It Guy Handyman Services ${getCityName(city)}`,
             },
           ],
         }}
@@ -186,8 +186,8 @@ export default function ServiceAreaPage({ city }) {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            name: `Handyman Services FAQs in ${getCityName(city)}`,
-            description: `Common questions about handyman services in ${getCityName(
+            name: `Handyman Services FAQs ${getCityName(city)}`,
+            description: `Common questions about handyman services ${getCityName(
               city
             )}`,
             url: metaInfo.url,
@@ -211,7 +211,7 @@ export default function ServiceAreaPage({ city }) {
                 Serving {getCityShortName(city)} and nearby neighborhoods
               </p>
               <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight text-white">
-                <span className="text-[#8BCB6B]">Trusted handyman help</span> in{" "}
+                <span className="text-[#8BCB6B]">Trusted handyman help</span>{" "}
                 {getCityName(city)}
               </h1>
               <p className="mt-5 text-lg text-slate-200 leading-relaxed">
@@ -264,7 +264,7 @@ export default function ServiceAreaPage({ city }) {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-wide text-primary-600">
-                What we handle in {getCityShortName(city)}
+                What we handle {getCityShortName(city)}
               </p>
               <h2 className="mt-3 text-3xl md:text-4xl font-bold text-gray-900">
                 One team for installs, punch lists, and seasonal upkeep
@@ -293,7 +293,7 @@ export default function ServiceAreaPage({ city }) {
                   Featured project
                 </p>
                 <h2 className="mt-3 text-3xl md:text-4xl font-bold">
-                  Accent wall transformation in {getCityName(city)}
+                  Accent wall transformation {getCityName(city)}
                 </h2>
                 <p className="mt-4 text-slate-200 leading-relaxed">
                   A recent living-room upgrade captured step-by-step—from first
@@ -312,7 +312,7 @@ export default function ServiceAreaPage({ city }) {
                     src={`/images/installit-guy/${image}`}
                     alt={`Accent wall project photo ${
                       index + 1
-                    } in ${getCityName(city)}`}
+                    } ${getCityName(city)}`}
                     fill
                     className="object-cover"
                     sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
@@ -386,7 +386,7 @@ export default function ServiceAreaPage({ city }) {
               context="general"
               maxReviews={6}
               showTitle
-              title={`Customer reviews in ${cityEntry.name}`}
+              title={`Customer reviews ${cityEntry.name}`}
             />
           </div>
         </section>
