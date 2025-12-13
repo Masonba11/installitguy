@@ -5,11 +5,16 @@ import ServiceCard from "../components/ServiceCard";
 import QuoteForm from "../components/QuoteForm";
 import Link from "next/link";
 import Image from "next/image";
-import { orderedServiceSlugs, servicesContent } from "../data/servicesContent";
+// Removed orderedServiceSlugs - only using simplified services now
 import {
   serviceAreas as allServiceAreas,
   serviceAreasByState,
 } from "../data/serviceAreas";
+import {
+  simplifiedServices,
+  simplifiedServiceSlugs,
+  PRIMARY_LOCATIONS,
+} from "../data/simplifiedServices";
 import dynamic from "next/dynamic";
 import HeroSection from "../components/HeroSection";
 import { generateLocalBusinessSchema } from "../utils/schemaHelpers";
@@ -28,8 +33,20 @@ const ContextualFAQs = dynamic(() => import("../components/ContextualFAQs"), {
   ),
 });
 
-const services = orderedServiceSlugs;
-const serviceNames = services.map((slug) => servicesContent[slug].name);
+// Use only the 8 main simplified services
+const mainServiceSlugs = [
+  "handyman-services",
+  "home-repair",
+  "general-installation-services",
+  "door-hardware-repair",
+  "drywall-repair",
+  "deck-fence-repair",
+  "flooring-installation",
+  "garage-door-opener-services",
+];
+
+const services = mainServiceSlugs;
+const serviceNames = services.map((slug) => simplifiedServices[slug].name);
 
 const formatServiceList = (list) => {
   if (list.length === 1) return list[0];
@@ -52,7 +69,6 @@ const projectJourney = [
 ];
 
 export default function Home() {
-  const featuredServices = services.slice(0, 6);
   const highlights = [
     {
       title: "Right-sized visits",
@@ -81,7 +97,7 @@ export default function Home() {
     ...generateLocalBusinessSchema({
       type: "global",
       description:
-        "Family-owned handyman service in Shelby NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty.",
+        "Family-owned handyman service in Charlotte NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty.",
     }),
     hasMap: "https://www.google.com/maps/place/Install+It+Guy/",
   };
@@ -89,16 +105,16 @@ export default function Home() {
   return (
     <>
       <NextSeo
-        title="Shelby Handyman & Home Repairs | Install It Guy"
+        title="Charlotte Handyman & Home Repairs | Install It Guy"
         description={truncateMetaDescription(
-          "Family-owned handyman service in Shelby NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty."
+          "Family-owned handyman service in Charlotte NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty."
         )}
         canonical="https://installitguy.com"
         openGraph={{
           url: "https://installitguy.com",
-          title: "Shelby Handyman & Home Repairs | Install It Guy",
+          title: "Charlotte Handyman & Home Repairs | Install It Guy",
           description: truncateMetaDescription(
-            "Family-owned handyman service in Shelby NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty."
+            "Family-owned handyman service in Charlotte NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty."
           ),
           siteName: "Install It Guy",
           images: [
@@ -114,7 +130,7 @@ export default function Home() {
           {
             name: "keywords",
             content:
-              "handyman shelby nc, family owned business, 30 years experience, lifetime warranty, home repairs, installations, tv mounting, ceiling fan installation, painting services, flooring installation, furniture assembly",
+              "Charlotte Handyman, handyman charlotte nc, family owned business, 30 years experience, lifetime warranty, home repairs, installations, tv mounting, ceiling fan installation, painting services, flooring installation, furniture assembly",
           },
         ]}
       />
@@ -134,13 +150,13 @@ export default function Home() {
             url: "https://installitguy.com",
             logo: "https://installitguy.com/images/installit-guy/logo3.png",
             description:
-              "Family-owned handyman service in Shelby NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty.",
+              "Family-owned handyman service in Charlotte NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty.",
             foundingDate: "1994",
             numberOfEmployees: "1-10",
             address: {
               "@type": "PostalAddress",
               streetAddress: "210 Joseph Ct",
-              addressLocality: "Shelby",
+              addressLocality: "Charlotte",
               addressRegion: "NC",
               postalCode: "28152",
               addressCountry: "US",
@@ -155,7 +171,7 @@ export default function Home() {
             sameAs: [
               "https://www.facebook.com/installitguy",
               "https://www.instagram.com/installitguy",
-              "https://www.yelp.com/biz/install-it-guy-shelby",
+              "https://www.yelp.com/biz/install-it-guy-charlotte",
             ],
           }),
         }}
@@ -170,7 +186,7 @@ export default function Home() {
             name: "Install It Guy",
             url: "https://installitguy.com",
             description:
-              "Family-owned handyman service in Shelby NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty.",
+              "Family-owned handyman service in Charlotte NC for 30+ years. Expert installations, repairs, and home maintenance with lifetime warranty.",
             publisher: {
               "@type": "Organization",
               name: "Install It Guy",
@@ -197,7 +213,7 @@ export default function Home() {
             "@type": "FAQPage",
             name: "Handyman Services FAQs",
             description:
-              "Common questions about Install It Guy handyman services in Shelby NC",
+              "Common questions about Install It Guy handyman services in Charlotte NC",
             url: "https://installitguy.com",
             mainEntity: [
               {
@@ -253,15 +269,15 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-start">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#8BCB6B]">
-                Shelby handyman experts
+                Charlotte handyman experts
               </p>
               <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight">
-                Shelby handyman services for every room in your home
+                Charlotte handyman services for every room in your home
               </h1>
               <p className="mt-5 text-lg text-slate-200 leading-relaxed">
-                Install It Guy is Shelby’s family-owned handyman team with 30+
+                Install It Guy is Charlotte's trusted handyman team with 30+
                 years of experience. We tackle the punch lists, upgrades, and
-                seasonal maintenance that keep Cleveland County homes feeling
+                seasonal maintenance that keep Charlotte-area homes feeling
                 finished.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -369,7 +385,7 @@ export default function Home() {
                   Accent wall transformation from sketch to reveal
                 </h2>
                 <p className="mt-4 text-slate-200 leading-relaxed">
-                  This Shelby homeowner wanted a dramatic feature wall in the
+                  This Charlotte homeowner wanted a dramatic feature wall in the
                   family room. Here’s how our crew handled it—from layout and
                   lumber to the final coat of paint.
                 </p>
@@ -399,30 +415,33 @@ export default function Home() {
         {/* Featured Services */}
         <section className="py-20 bg-gray-50" id="services">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <div className="max-w-2xl">
-                <p className="text-sm font-semibold uppercase tracking-wide text-primary-600">
-                  Services
-                </p>
-                <h2 className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">
-                  Everyday projects we handle start to finish
-                </h2>
-                <p className="mt-4 text-lg text-gray-600">
-                  From quick installs to multi-room upgrades, choose the
-                  services you need and we’ll take it from there.
-                </p>
-              </div>
-              <Link
-                href="/services"
-                className="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700"
-              >
-                View the full services catalog →
-              </Link>
+            <div className="text-center mb-12">
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary-600">
+                Services
+              </p>
+              <h2 className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">
+                Complete Handyman Services
+              </h2>
+              <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                From quick installs to multi-room upgrades, choose the services
+                you need and we'll take it from there.
+              </p>
             </div>
 
-            <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {featuredServices.map((slug) => (
-                <ServiceCard key={slug} service={slug} />
+            <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {mainServiceSlugs.map((slug) => (
+                <Link
+                  key={slug}
+                  href={`/services/${slug}`}
+                  className="rounded-xl border-2 border-primary-200 bg-white p-6 hover:border-primary-400 hover:shadow-lg transition-all"
+                >
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    {simplifiedServices[slug].name}
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    {simplifiedServices[slug].description}
+                  </p>
+                </Link>
               ))}
             </div>
           </div>
@@ -433,14 +452,15 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-wide text-primary-600">
-                Shelby handyman process
+                Charlotte handyman process
               </p>
               <h2 className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">
-                A Shelby handyman experience that feels organized—not automated
+                A Charlotte handyman experience that feels organized—not
+                automated
               </h2>
               <p className="mt-4 text-lg text-gray-600 leading-relaxed">
                 We plan ahead, communicate clearly, and leave your home ready to
-                enjoy. Shelby homeowners mention our punctual techs, tidy
+                enjoy. Charlotte homeowners mention our punctual techs, tidy
                 workspaces, and reliable follow-through in nearly every review.
               </p>
             </div>
@@ -487,6 +507,44 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Primary Service Areas */}
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary-600">
+                Service Areas
+              </p>
+              <h2 className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">
+                Handyman Services in Your City
+              </h2>
+              <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                Fast repairs, expert installations, and reliable home
+                maintenance. Serving homeowners across the Charlotte metro with
+                30+ years of experience.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {PRIMARY_LOCATIONS.map((area) => (
+                <Link
+                  key={area.slug}
+                  href={`/service-areas/${area.slug}`}
+                  className="group rounded-xl border-2 border-primary-200 bg-white p-6 hover:border-primary-400 hover:shadow-lg transition-all"
+                >
+                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors">
+                    Handyman {area.name}
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-600">
+                    Fast repairs & installations
+                  </p>
+                  <span className="mt-4 inline-flex items-center text-primary-600 font-semibold text-sm group-hover:text-primary-700">
+                    View services →
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Service Areas */}
         <HeroSection className="py-20" imageSrc={null}>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
@@ -499,8 +557,8 @@ export default function Home() {
               </h2>
               <p className="mt-4 text-lg text-slate-200 leading-relaxed">
                 Homeowners call us for projects in both North and South
-                Carolina. Whether you’re updating a condo in Uptown Charlotte or
-                refreshing a lake house in Tega Cay, we’re nearby.
+                Carolina. Whether you're updating a condo in Uptown Charlotte or
+                refreshing a lake house in Tega Cay, we're nearby.
               </p>
               <div className="mt-8 grid gap-6 md:grid-cols-2">
                 <div className="rounded-2xl bg-white/10 border border-white/20 p-6 backdrop-blur-sm">
@@ -527,7 +585,7 @@ export default function Home() {
               </h3>
               <p className="mt-4 text-slate-200">
                 We routinely travel for repeat clients and referrals. Share your
-                address and we’ll confirm availability right away.
+                address and we'll confirm availability right away.
               </p>
             </div>
           </div>
@@ -552,7 +610,7 @@ export default function Home() {
           maxFAQs={5}
           showTitle
           title="Frequently asked questions"
-          cityName="Shelby, NC"
+          cityName="Charlotte, NC"
           serviceLabel="handyman services"
         />
       </main>

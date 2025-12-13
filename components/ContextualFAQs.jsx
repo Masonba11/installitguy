@@ -572,7 +572,7 @@ export default function ContextualFAQs({
                 onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
               >
                 <span className="font-semibold text-gray-900">
-                  {faq.question}
+                  Q{index + 1}. {faq.question}
                 </span>
                 <span className="text-gray-500">
                   {openFAQ === index ? "−" : "+"}

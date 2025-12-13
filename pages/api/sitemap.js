@@ -1,5 +1,9 @@
 import { serviceAreaSlugs } from "../../data/serviceAreas";
-import { orderedServiceSlugs } from "../../data/servicesContent";
+import {
+  simplifiedServiceSlugs,
+  PRIMARY_LOCATIONS,
+  CORE_SERVICES,
+} from "../../data/simplifiedServices";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://installitguy.com";
 
@@ -51,8 +55,8 @@ function generateSitemap() {
     priority: getPriority(homepageUrl),
   });
 
-  // 2. Base service pages (/services/{service})
-  orderedServiceSlugs.forEach((service) => {
+  // 2. Base service pages (/services/{service}) - Only CORE services
+  CORE_SERVICES.forEach((service) => {
     const serviceUrl = `${SITE_URL}/services/${service}`;
     sitemap.push({
       loc: serviceUrl,
@@ -80,8 +84,9 @@ function generateSitemap() {
     priority: getPriority(serviceAreasUrl),
   });
 
-  // 5. City pages (/service-areas/{city})
-  serviceAreaSlugs.forEach((city) => {
+  // 5. City pages (/service-areas/{city}) - Only primary locations
+  const primaryLocationSlugs = PRIMARY_LOCATIONS.map((loc) => loc.slug);
+  primaryLocationSlugs.forEach((city) => {
     const cityUrl = `${SITE_URL}/service-areas/${city}`;
     sitemap.push({
       loc: cityUrl,
@@ -91,21 +96,27 @@ function generateSitemap() {
     });
 
     // 6. City-service combination pages (/service-areas/{city}/{service})
-    // ❗ Skip Shelby — it does NOT have city/service pages
-    if (city !== "shelby-nc") {
-      orderedServiceSlugs.forEach((service) => {
-        const cityServiceUrl = `${SITE_URL}/service-areas/${city}/${service}`;
-        sitemap.push({
-          loc: cityServiceUrl,
-          lastmod: new Date().toISOString(),
-          changefreq: "weekly",
-          priority: getPriority(cityServiceUrl),
-        });
-      });
-    }
+    // Only include CORE services (optional city handyman pages)
+    // For now, only include handyman-services for each city
+    const cityServiceUrl = `${SITE_URL}/service-areas/${city}/handyman-services`;
+    sitemap.push({
+      loc: cityServiceUrl,
+      lastmod: new Date().toISOString(),
+      changefreq: "weekly",
+      priority: getPriority(cityServiceUrl),
+    });
   });
 
-  // 7. Utility pages (reviews, contact-us, faqs, gallery, thank-you, investors)
+  // 7. Where We Work page
+  const whereWeWorkUrl = `${SITE_URL}/service-areas/where-we-work`;
+  sitemap.push({
+    loc: whereWeWorkUrl,
+    lastmod: new Date().toISOString(),
+    changefreq: "monthly",
+    priority: "0.60",
+  });
+
+  // 8. Utility pages (reviews, contact-us, faqs, gallery, thank-you, investors)
   const utilityPages = [
     "reviews",
     "contact-us",

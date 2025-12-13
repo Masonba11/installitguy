@@ -1,16 +1,38 @@
 import { NextSeo } from "next-seo";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ContextualReviews from "../components/ContextualReviews";
+import dynamic from "next/dynamic";
+
+const Reviews = dynamic(() => import("../components/Reviews"), {
+  ssr: false,
+  loading: () => (
+    <div className="py-16 text-center text-gray-500">Loading reviews...</div>
+  ),
+});
 import ContextualFAQs from "../components/ContextualFAQs";
 import QuoteForm from "../components/QuoteForm";
 import HeroSection from "../components/HeroSection";
 import { truncateMetaDescription } from "../utils/metaHelpers";
 import { useState } from "react";
-import { orderedServiceSlugs, servicesContent } from "../data/servicesContent";
+import {
+  simplifiedServices,
+  simplifiedServiceSlugs,
+} from "../data/simplifiedServices";
 
-const serviceNames = orderedServiceSlugs.map(
-  (slug) => servicesContent[slug].name
+// Only use the 8 main services
+const mainServiceSlugs = [
+  "handyman-services",
+  "home-repair",
+  "general-installation-services",
+  "door-hardware-repair",
+  "drywall-repair",
+  "deck-fence-repair",
+  "flooring-installation",
+  "garage-door-opener-services",
+];
+
+const serviceNames = mainServiceSlugs.map(
+  (slug) => simplifiedServices[slug].name
 );
 
 const formatServiceList = (list) => {
@@ -321,13 +343,12 @@ export default function FAQs() {
           subtitle="Have questions about our services? Get a personalized quote for your project"
         />
 
-        {/* Customer Reviews */}
-        <ContextualReviews
-          context="faqs"
-          maxReviews={3}
-          showTitle={true}
-          title="Customer Testimonials"
-        />
+        {/* Reviews */}
+        <section className="py-20 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Reviews />
+          </div>
+        </section>
 
         {/* Additional FAQs */}
         <ContextualFAQs

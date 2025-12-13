@@ -4,9 +4,9 @@ import Footer from "../../components/Footer";
 import ServiceCard from "../../components/ServiceCard";
 import QuoteForm from "../../components/QuoteForm";
 import {
-  orderedServiceSlugs,
-  servicesContent,
-} from "../../data/servicesContent";
+  simplifiedServices,
+  simplifiedServiceSlugs,
+} from "../../data/simplifiedServices";
 import dynamic from "next/dynamic";
 import HeroSection from "../../components/HeroSection";
 import Link from "next/link";
@@ -29,8 +29,22 @@ const ContextualFAQs = dynamic(
   }
 );
 
-const services = orderedServiceSlugs;
-const serviceNames = services.map((slug) => servicesContent[slug].name);
+// Only show the 8 main simplified services
+const mainServiceSlugs = [
+  "handyman-services",
+  "home-repair",
+  "general-installation-services",
+  "door-hardware-repair",
+  "drywall-repair",
+  "deck-fence-repair",
+  "flooring-installation",
+  "garage-door-opener-services",
+];
+
+const services = mainServiceSlugs.filter((slug) => simplifiedServices[slug]);
+const serviceNames = services.map(
+  (slug) => simplifiedServices[slug]?.name || slug
+);
 
 const formatServiceList = (list) => {
   if (list.length === 1) return list[0];
@@ -51,7 +65,7 @@ export default function ServicesIndex() {
       position: index + 1,
       item: {
         "@type": "Service",
-        name: servicesContent[service].name,
+        name: simplifiedServices[service]?.name || service,
         url: `https://installitguy.com/services/${service}`,
         provider: {
           "@type": "LocalBusiness",
@@ -106,9 +120,9 @@ export default function ServicesIndex() {
   return (
     <>
       <NextSeo
-        title="Handyman Services in Shelby, NC | Install It Guy"
+        title="Handyman Services in Charlotte, NC | Install It Guy"
         description={truncateMetaDescription(
-          "Explore our full list of handyman services in Shelby NC. From installations to repairs, Install It Guy delivers professional results."
+          "Explore our full list of handyman services in Charlotte NC. From installations to repairs, Install It Guy delivers professional results."
         )}
         canonical="https://installitguy.com/services"
         openGraph={{
@@ -163,7 +177,7 @@ export default function ServicesIndex() {
             "@type": "FAQPage",
             name: "Handyman Services FAQs",
             description:
-              "Common questions about our handyman services in Shelby NC",
+              "Common questions about our handyman services in Charlotte NC",
             url: "https://installitguy.com/services",
             mainEntity: [
               {

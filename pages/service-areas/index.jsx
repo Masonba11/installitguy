@@ -4,13 +4,14 @@ import Footer from "../../components/Footer";
 import ServiceCard from "../../components/ServiceCard";
 import QuoteForm from "../../components/QuoteForm";
 import {
-  orderedServiceSlugs,
-  servicesContent,
-} from "../../data/servicesContent";
+  simplifiedServices,
+  simplifiedServiceSlugs,
+} from "../../data/simplifiedServices";
 import {
   serviceAreas as allServiceAreas,
   serviceAreasByState,
 } from "../../data/serviceAreas";
+import { PRIMARY_LOCATIONS } from "../../data/simplifiedServices";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import HeroSection from "../../components/HeroSection";
@@ -33,7 +34,18 @@ const ContextualFAQs = dynamic(
   }
 );
 
-const services = orderedServiceSlugs;
+// Only use simplified services
+const mainServiceSlugs = [
+  "handyman-services",
+  "home-repair",
+  "general-installation-services",
+  "door-hardware-repair",
+  "drywall-repair",
+  "deck-fence-repair",
+  "flooring-installation",
+  "garage-door-opener-services",
+];
+const services = mainServiceSlugs;
 
 const serviceAreas = allServiceAreas;
 
@@ -54,8 +66,8 @@ export default function ServiceAreasIndex() {
     "@type": "ItemList",
     name: "Service Areas",
     description: serviceAreaCoverageText,
-    numberOfItems: serviceAreas.length,
-    itemListElement: serviceAreas.map((area, index) => ({
+    numberOfItems: PRIMARY_LOCATIONS.length,
+    itemListElement: PRIMARY_LOCATIONS.map((area, index) => ({
       "@type": "ListItem",
       position: index + 1,
       item: {
@@ -313,6 +325,44 @@ export default function ServiceAreasIndex() {
           </div>
         </HeroSection>
 
+        {/* Primary Service Areas */}
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary-600">
+                Service Areas
+              </p>
+              <h2 className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">
+                Handyman Services in Your City
+              </h2>
+              <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                Fast repairs, expert installations, and reliable home
+                maintenance. Serving homeowners across the Charlotte metro with
+                30+ years of experience.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {PRIMARY_LOCATIONS.map((area) => (
+                <Link
+                  key={area.slug}
+                  href={`/service-areas/${area.slug}`}
+                  className="group rounded-xl border-2 border-primary-200 bg-white p-6 hover:border-primary-400 hover:shadow-lg transition-all"
+                >
+                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors">
+                    Handyman {area.name}
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-600">
+                    Fast repairs & installations
+                  </p>
+                  <span className="mt-4 inline-flex items-center text-primary-600 font-semibold text-sm group-hover:text-primary-700">
+                    View services →
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Areas we cover */}
         <section className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -324,7 +374,7 @@ export default function ServiceAreasIndex() {
                 North and South Carolina communities we visit every week
               </h2>
               <p className="mt-4 text-lg text-gray-600">
-                We schedule projects in these neighborhoods daily. Don’t see
+                We schedule projects in these neighborhoods daily. Don't see
                 your town? Let us know—we frequently expand for existing clients
                 and referrals.
               </p>
@@ -352,23 +402,27 @@ export default function ServiceAreasIndex() {
             </div>
 
             <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {serviceAreas.map((area) => (
-                <Link
-                  key={area.slug}
-                  href={`/service-areas/${area.slug}`}
-                  className="rounded-xl border border-gray-200 bg-white px-4 py-5 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <p className="text-sm font-semibold text-primary-600">
-                    {area.state === "NC" ? "NC" : "SC"}
-                  </p>
-                  <p className="mt-1 text-lg font-semibold text-gray-900">
-                    {area.shortName}
-                  </p>
-                  <span className="mt-3 inline-flex items-center text-sm font-medium text-primary-600">
-                    View services →
-                  </span>
-                </Link>
-              ))}
+              {PRIMARY_LOCATIONS.map((area) => {
+                const state = area.slug.includes("-nc") ? "NC" : "SC";
+                const shortName = area.name.split(",")[0];
+                return (
+                  <Link
+                    key={area.slug}
+                    href={`/service-areas/${area.slug}`}
+                    className="rounded-xl border border-gray-200 bg-white px-4 py-5 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                  >
+                    <p className="text-sm font-semibold text-primary-600">
+                      {state}
+                    </p>
+                    <p className="mt-1 text-lg font-semibold text-gray-900">
+                      {shortName}
+                    </p>
+                    <span className="mt-3 inline-flex items-center text-sm font-medium text-primary-600">
+                      View services →
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -421,7 +475,7 @@ export default function ServiceAreasIndex() {
                 Popular requests in your area
               </h3>
               <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {services.slice(0, 6).map((service) => (
+                {services.map((service) => (
                   <ServiceCard key={service} service={service} />
                 ))}
               </div>

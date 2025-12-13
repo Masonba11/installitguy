@@ -176,18 +176,10 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="/service-areas/concord-nc"
+                    href="/service-areas/shelby-nc"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Concord, NC
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/service-areas/rock-hill-sc"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    Rock Hill, SC
+                    Shelby, NC
                   </Link>
                 </li>
                 <li>
@@ -200,18 +192,18 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="/service-areas/shelby-nc"
+                    href="/service-areas/concord-nc"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Shelby, NC
+                    Concord, NC
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/service-areas"
-                    className="text-primary-400 hover:text-primary-300 transition-colors"
+                    href="/service-areas/rock-hill-sc"
+                    className="text-gray-300 hover:text-white transition-colors"
                   >
-                    View All Areas →
+                    Rock Hill, SC
                   </Link>
                 </li>
               </ul>

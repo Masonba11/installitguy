@@ -1,7 +1,14 @@
 import { NextSeo } from "next-seo";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ContextualReviews from "../components/ContextualReviews";
+import dynamic from "next/dynamic";
+
+const Reviews = dynamic(() => import("../components/Reviews"), {
+  ssr: false,
+  loading: () => (
+    <div className="py-16 text-center text-gray-500">Loading reviews...</div>
+  ),
+});
 import ContextualFAQs from "../components/ContextualFAQs";
 import QuoteForm from "../components/QuoteForm";
 import HeroSection from "../components/HeroSection";
@@ -546,13 +553,12 @@ export default function ContactUs() {
           subtitle="Fill out the form below and we'll get back to you within 24 hours"
         />
 
-        {/* Customer Reviews */}
-        <ContextualReviews
-          context="contact"
-          maxReviews={4}
-          showTitle={true}
-          title="What Our Customers Say"
-        />
+        {/* Reviews */}
+        <section className="py-20 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Reviews />
+          </div>
+        </section>
 
         {/* FAQs */}
         <ContextualFAQs

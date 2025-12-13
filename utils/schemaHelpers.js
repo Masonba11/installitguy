@@ -1,5 +1,9 @@
 import { serviceAreas } from "../data/serviceAreas";
-import { orderedServiceSlugs, servicesContent } from "../data/servicesContent";
+import {
+  simplifiedServices,
+  simplifiedServiceSlugs,
+  PRIMARY_LOCATIONS,
+} from "../data/simplifiedServices";
 
 // Base LocalBusiness properties
 const BASE_BUSINESS = {
@@ -42,15 +46,15 @@ const BASE_BUSINESS = {
   slogan: "Quality installs, fast repairs, fair prices",
 };
 
-// All cities for global schema
-const ALL_CITIES = serviceAreas.map((area) => ({
+// All cities for global schema - Only primary locations
+const ALL_CITIES = PRIMARY_LOCATIONS.map((area) => ({
   "@type": "City",
   name: area.name,
 }));
 
-// All service names
-const ALL_SERVICE_NAMES = orderedServiceSlugs.map(
-  (slug) => servicesContent[slug].name
+// All service names - Only simplified services
+const ALL_SERVICE_NAMES = simplifiedServiceSlugs.map(
+  (slug) => simplifiedServices[slug].name
 );
 
 /**
@@ -92,12 +96,12 @@ export function generateLocalBusinessSchema({
     schema.hasOfferCatalog = {
       "@type": "OfferCatalog",
       name: "Handyman Services",
-      itemListElement: orderedServiceSlugs.map((slug) => ({
+      itemListElement: simplifiedServiceSlugs.map((slug) => ({
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: servicesContent[slug].name,
-          description: servicesContent[slug].longDescription,
+          name: simplifiedServices[slug].name,
+          description: simplifiedServices[slug].description,
         },
       })),
     };

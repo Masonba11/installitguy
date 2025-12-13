@@ -1,11 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { servicesContent } from "../data/servicesContent";
+import { simplifiedServices } from "../data/simplifiedServices";
 import { serviceImageMap, getServiceHeroImage } from "../utils/serviceImages";
 
 export default function ServiceCard({ service, city = null }) {
   const getServiceName = (serviceSlug) => {
     return (
+      simplifiedServices[serviceSlug]?.name ||
       servicesContent[serviceSlug]?.name ||
       serviceSlug.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())
     );
@@ -13,6 +15,7 @@ export default function ServiceCard({ service, city = null }) {
 
   const getServiceDescription = (serviceSlug) => {
     return (
+      simplifiedServices[serviceSlug]?.description ||
       servicesContent[serviceSlug]?.shortDescription ||
       "Professional installation and repair services."
     );

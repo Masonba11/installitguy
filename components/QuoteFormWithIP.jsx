@@ -90,25 +90,14 @@ export default function QuoteFormWithIP({
                 >
                   Service Area *
                 </label>
-                <select
+                <input
+                  type="text"
                   id="service_area"
                   name="service_area"
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
-                >
-                  <option value="">Select your area</option>
-                  <option value="Charlotte, NC">Charlotte, NC</option>
-                  <option value="Concord, NC">Concord, NC</option>
-                  <option value="Rock Hill, SC">Rock Hill, SC</option>
-                  <option value="Gastonia, NC">Gastonia, NC</option>
-                  <option value="Hickory, NC">Hickory, NC</option>
-                  <option value="Shelby, NC">Shelby, NC</option>
-                  <option value="Lincolnton, NC">Lincolnton, NC</option>
-                  <option value="Gaffney, SC">Gaffney, SC</option>
-                  <option value="Kings Mountain, NC">Kings Mountain, NC</option>
-                  <option value="Forest City, NC">Forest City, NC</option>
-                  <option value="Other">Other</option>
-                </select>
+                  placeholder="Enter your city and state (e.g., Charlotte, NC)"
+                />
               </div>
             </div>
 
