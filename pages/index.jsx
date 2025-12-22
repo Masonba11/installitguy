@@ -361,13 +361,13 @@ export default function Home() {
                 technicians, and workmanship that lasts.
               </p>
             </div>
-            <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm flex items-center justify-center">
+            <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm overflow-hidden">
               <Image
-                src="/images/installit-guy/Screenshot%202025-11-12%20at%2012.46.13%E2%80%AFAM.png"
-                alt="Install It Guy logo"
-                width={200}
-                height={100}
-                className="object-contain"
+                src="/images/installit-guy/installation112.jpeg"
+                alt="Professional handyman installation work"
+                width={800}
+                height={600}
+                className="w-full h-full object-cover rounded-xl"
                 priority
               />
             </div>
