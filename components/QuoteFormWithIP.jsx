@@ -3,6 +3,16 @@ export default function QuoteFormWithIP({
   subtitle = "Fill out the form below and we'll get back to you within 24 hours",
   className = "",
 }) {
+  const handleSubmit = (e) => {
+    // Fire Google tag conversion event
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "ads_conversion_SUBMIT_LEAD_FORM_1", {
+        // <event_parameters>
+      });
+    }
+    // Form will submit normally after this
+  };
+
   return (
     <section id="quote-form" className={`py-16 bg-white ${className}`}>
       <div className="container-custom">
@@ -16,6 +26,7 @@ export default function QuoteFormWithIP({
             action="https://api.web3forms.com/submit"
             method="POST"
             className="bg-gray-50 rounded-2xl p-8"
+            onSubmit={handleSubmit}
           >
             {/* Web3Forms Hidden Fields */}
             <input
