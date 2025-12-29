@@ -20,7 +20,16 @@ export default function Reviews() {
       const data = await response.json();
 
       if (data.error) {
-        setError(data.message);
+        const errorMessage = data.details 
+          ? `${data.message}: ${data.details}` 
+          : data.message;
+        setError(errorMessage);
+        console.error("Reviews API error:", data);
+        return;
+      }
+
+      if (!response.ok) {
+        setError(`Failed to fetch reviews: ${response.statusText}`);
         return;
       }
 
@@ -42,7 +51,7 @@ export default function Reviews() {
       setReviews(reviews);
     } catch (err) {
       console.error("Error fetching reviews:", err);
-      setError("Failed to load reviews");
+      setError(`Failed to load reviews: ${err.message}`);
     } finally {
       setLoading(false);
     }
