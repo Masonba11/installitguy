@@ -136,7 +136,7 @@ export default function ReviewsPage() {
                 }}
                 className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-[#0f2135] bg-[#8BCB6B] shadow hover:bg-[#7bb65f] transition"
               >
-                Book Now
+                Get Free Quote
               </a>
             </div>
           </div>

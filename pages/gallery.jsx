@@ -90,7 +90,7 @@ export default function Gallery({ images }) {
               }}
               className="inline-flex items-center justify-center rounded-full bg-[#8BCB6B] px-6 py-3 text-sm font-semibold text-[#0f2135] shadow hover:bg-[#7bb65f] transition"
             >
-              Book Now
+              Get Free Quote
             </a>
             <a
               href="tel:+17044199799"

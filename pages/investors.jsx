@@ -133,7 +133,7 @@ export default function Investors() {
                 }}
                 className="inline-flex items-center justify-center rounded-full bg-[#8BCB6B] px-8 py-4 text-base font-semibold text-[#0f2135] shadow-sm hover:bg-[#7bb65f] transition"
               >
-                Book Now
+                Get Free Quote
               </a>
               <Link
                 href="tel:+17044199799"

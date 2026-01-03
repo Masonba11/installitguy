@@ -291,7 +291,7 @@ export default function Home() {
                   }}
                   className="inline-flex justify-center rounded-full bg-[#8BCB6B] px-6 py-3 text-sm font-semibold text-[#0f2135] shadow hover:bg-[#7bb65f] transition"
                 >
-                  Book Now
+                  Get Free Quote
                 </a>
                 <span className="text-sm text-slate-200 sm:ml-4">
                   Prefer to talk? Call{" "}
