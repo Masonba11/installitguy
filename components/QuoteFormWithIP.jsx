@@ -1,6 +1,6 @@
 export default function QuoteFormWithIP({
   title = "Get Your Free Quote",
-  subtitle = "Fill out the form below and we'll get back to you soon",
+  subtitle = "Fill out the form below and we'll contact you within minutes",
   className = "",
 }) {
   const handleSubmit = (e) => {
@@ -133,7 +133,7 @@ export default function QuoteFormWithIP({
                 Get Free Quote
               </button>
               <p className="text-sm text-gray-500 mt-4">
-                * Required fields.
+                * Required fields. We'll contact you within minutes.
               </p>
             </div>
           </form>
