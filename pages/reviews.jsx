@@ -192,7 +192,7 @@ export default function ReviewsPage() {
         {/* Quote Form */}
         <QuoteForm
           title="Ready to work with us?"
-          subtitle="Fill out the form below and we'll get back to you within 24 hours"
+          subtitle="Fill out the form below and we'll get back to you soon"
         />
 
         {/* FAQs */}

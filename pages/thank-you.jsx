@@ -186,7 +186,7 @@ export default function ThankYou() {
               Request received
             </p>
             <h1 className="text-3xl md:text-5xl font-bold">
-              Thank you! We’ll be in touch within 24 hours.
+              Thank you! We'll be in touch soon.
             </h1>
             <p className="text-lg md:text-xl text-white/80">
               In the meantime, feel free to call us for immediate assistance or
@@ -239,7 +239,7 @@ export default function ThankYou() {
                       Contact You
                     </h3>
                     <p className="text-gray-600">
-                      We'll call you within 24 hours to discuss your project and
+                      We'll call you soon to discuss your project and
                       answer any questions.
                     </p>
                   </div>

@@ -186,7 +186,7 @@ export default function Gallery({ images }) {
         {/* Quote Form */}
         <QuoteForm
           title="Ready to start your project?"
-          subtitle="Fill out the form below and we'll get back to you within 24 hours"
+          subtitle="Fill out the form below and we'll get back to you soon"
         />
       </main>
 

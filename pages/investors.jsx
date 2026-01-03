@@ -313,7 +313,7 @@ export default function Investors() {
         {/* Quote Form */}
         <QuoteForm
           title="Interested in learning more?"
-          subtitle="Fill out the form below and we'll get back to you within 24 hours"
+          subtitle="Fill out the form below and we'll get back to you soon"
         />
       </main>
 
