@@ -367,8 +367,8 @@ export default function ServicesIndex() {
         <section className="py-20 bg-gray-50" id="quote-form">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <QuoteForm
-              title="Tell us what you need"
-              subtitle="Share your project list and we’ll send back availability and pricing within one business day."
+              title="Ready to cross a few projects off your list?"
+              subtitle="Tell us what you need and we'll share pricing and availability within minutes."
             />
           </div>
         </section>

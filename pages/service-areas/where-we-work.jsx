@@ -159,7 +159,7 @@ export default function WhereWeWork() {
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <QuoteForm
               title="Ready to Get Started?"
-              subtitle="Share your project details and we'll respond with availability and pricing within one business day."
+              subtitle="Tell us what you need and we'll share pricing and availability within minutes."
             />
           </div>
         </section>

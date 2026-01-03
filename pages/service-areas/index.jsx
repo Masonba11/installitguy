@@ -503,7 +503,7 @@ export default function ServiceAreasIndex() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <QuoteForm
               title="Let’s coordinate your visit"
-              subtitle="Share your address and project details—we’ll confirm availability and pricing within one business day."
+              subtitle="Tell us what you need and we'll share pricing and availability within minutes."
             />
           </div>
         </section>

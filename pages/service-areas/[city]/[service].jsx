@@ -686,7 +686,7 @@ export default function ServiceAreaServicePage({ city, service }) {
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <QuoteForm
               title={`Request ${serviceDisplayName.toLowerCase()} ${cityFullName}`}
-              subtitle="Share the details and our team will confirm pricing and scheduling within one business day."
+              subtitle="Tell us what you need and we'll share pricing and availability within minutes."
             />
           </div>
         </section>

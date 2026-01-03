@@ -599,7 +599,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <QuoteForm
               title="Ready to cross a few projects off your list?"
-              subtitle="Tell us what you need and we’ll share pricing and availability within one business day."
+              subtitle="Tell us what you need and we'll share pricing and availability within minutes."
             />
           </div>
         </section>
